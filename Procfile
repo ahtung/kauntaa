@@ -1,1 +1,1 @@
-web: rails s -e production
+web: rails s -e production -p $PORT
