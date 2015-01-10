@@ -18,12 +18,13 @@ group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
-end
-
-group :development, :test do
   gem 'rspec-rails'
   gem 'faker'
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'poltergeist'
+end
+
+group :test do
+  gem 'shoulda-matchers', require: false
 end
