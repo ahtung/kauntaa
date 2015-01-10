@@ -13,6 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'foreman'
 gem 'slim-rails'
 gem 'foundation-rails'
+gem 'devise'
 
 group :production do
   gem 'rails_12factor'
