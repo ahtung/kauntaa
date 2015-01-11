@@ -9,16 +9,11 @@ describe 'User', js: true do
 
   it 'should be able to see a counted number in homepage' do
     visit user_root_path
-    counter_value = @user.counter.value
-    if !counter_value
-      counter_value = 0
-    end
-    expect(page).to have_content("You have kauntaa'd #{counter_value} times so far")
+    expect(counter_value).to eq("9 9 0 9 9 0")
   end
 
   it 'should be able to edit his/her counter name' do
     visit user_root_path
-    save_and_open_page
     click_on 'Edit Counter'
     fill_in 'counter_name', with: Faker::Lorem.sentence
     click_on 'Save'
@@ -34,17 +29,19 @@ describe 'User', js: true do
   end
 
   describe '' do
-    it 'should be able to start counting from 0' do
+    it 'should be able to start counting from 0', focus: true do
       visit user_root_path
       click_on 'Count'
-      expect(page).to have_content('1 times')
+      sleep 1
+      expect(counter_value).to eq("9 0 0 0 1 1")
     end
 
     it 'should be able to resume counting' do
       @user.counter.update_attribute(:value, 10)
       visit user_root_path
       click_on 'Count'
-      expect(page).to have_content('11 times')
+      sleep 1
+      expect(counter_value).to eq("1 1 1 0 1 1")
     end
   end
 end

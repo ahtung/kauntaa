@@ -16,4 +16,9 @@ module Helpers
     fill_in 'user_password', with: user.password
     click_on 'Log in'
   end
+
+  def counter_value
+    counter = first('.counter')
+    ActionController::Base.helpers.strip_tags(counter.text)
+  end
 end
