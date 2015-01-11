@@ -1,1 +1,1 @@
-window.test.increment()
+window.test.clock.increment()

@@ -1,14 +1,14 @@
 # spec/features/client/counter_spec.rb
 require 'rails_helper'
 
-describe 'User' do
+describe 'User', js: true do
   before :each do
     @user = create(:user)
     login_as(@user)
   end
 
   it 'should be able to see a counted number in homepage' do
-    visit root_path
+    visit user_root_path
     counter_value = @user.counter.value
     if !counter_value
       counter_value = 0
@@ -17,7 +17,8 @@ describe 'User' do
   end
 
   it 'should be able to edit his/her counter name' do
-    visit root_path
+    visit user_root_path
+    save_and_open_page
     click_on 'Edit Counter'
     fill_in 'counter_name', with: Faker::Lorem.sentence
     click_on 'Save'
@@ -25,7 +26,7 @@ describe 'User' do
   end
 
   it 'should be able to edit his/her counter value' do
-    visit root_path
+    visit user_root_path
     click_on 'Edit Counter'
     fill_in 'counter_value', with: rand(0..30)
     click_on 'Save'
