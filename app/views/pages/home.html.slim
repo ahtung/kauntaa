@@ -1,8 +1,9 @@
 h1 Kauntaa
 p Count anything
 
-p
-  = "You have kauntaa'd #{@counter.clean_value} times so far"
+p You have kauntaa'd
+.counter =@counter.clean_value
+p times so far
 
 p = link_to 'Edit Counter', edit_user_counter_path(current_user)
 
