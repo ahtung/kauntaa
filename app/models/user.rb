@@ -24,6 +24,6 @@ class User < ActiveRecord::Base
   private
 
   def set_counter_name
-    counter.update_attribute(:name, 'TODO') if counter.name
+    counter.update_attribute(:name, 'TODO') unless counter.name
   end
 end
