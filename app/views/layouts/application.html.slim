@@ -13,9 +13,7 @@ html lang="en"
   body
     p.notice= notice
     p.alert= alert
-
+    h1 Kauntaa
     == yield
-
     = javascript_include_tag "application"
 
-    = link_to 'Sign in with Google', user_omniauth_authorize_path(:google_oauth2)

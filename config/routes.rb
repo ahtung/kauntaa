@@ -3,5 +3,9 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  root 'pages#home'
+  authenticated :user do
+    root 'pages#home', as: :user_root
+  end
+
+  root 'pages#about', as: :guest_root
 end
