@@ -14,6 +14,7 @@ gem 'foreman'
 gem 'slim-rails'
 gem 'foundation-rails'
 gem 'devise'
+gem 'rack-google-analytics'
 
 group :production do
   gem 'rails_12factor'
