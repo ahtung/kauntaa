@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 ruby '2.1.2'
 
@@ -17,6 +18,7 @@ gem 'devise'
 gem 'rack-google-analytics'
 gem 'omniauth-google-oauth2'
 gem 'newrelic_rpm'
+gem 'rails-assets-FlipClock'
 
 group :production do
   gem 'rails_12factor'
