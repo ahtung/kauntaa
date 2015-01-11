@@ -1,13 +1,10 @@
-# spec/features/client/post_spec.rb
+# spec/features/client/counter_spec.rb
 require 'rails_helper'
 
 describe 'User' do
   before :each do
-    @user = FactoryGirl.create(:user)
-    visit new_user_session_path
-    fill_in 'user_email', with: @user.email
-    fill_in 'user_password', with: @user.password
-    click_on 'Log in'
+    @user = create(:user)
+    login_as(@user)
   end
 
   it 'should be able to see a counted number in homepage' do
@@ -25,5 +22,20 @@ describe 'User' do
     fill_in 'counter_name', with: Faker::Lorem.sentence
     click_on 'Save'
     expect(page).to have_content("Counter was successfully updated.")
+  end
+
+  describe '' do
+    it 'should be able to start counting from 0' do
+      visit user_root_path
+      click_on 'Count'
+      expect(page).to have_content('1 times')
+    end
+
+    it 'should be able to resume counting' do
+      @user.counter.update_attribute(:value, 10)
+      visit user_root_path
+      click_on 'Count'
+      expect(page).to have_content('11 times')
+    end
   end
 end
