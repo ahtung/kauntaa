@@ -24,10 +24,10 @@ describe 'User', js: true do
   it 'should be able to edit his/her counter value' do
     visit user_root_path
     click_on @user.counter.name
-    new_value = rand(0..30)
+    new_value = 29
     fill_in 'counter_value', with: new_value
     click_on 'Save'
-    expect(counter_value).to eq("11 22 22 33")
+    expect(counter_value).to eq("11 22 88 99")
   end
 
   describe '' do
