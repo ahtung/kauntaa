@@ -15,17 +15,19 @@ describe 'User', js: true do
   it 'should be able to edit his/her counter name' do
     visit user_root_path
     click_on @user.counter.name
-    fill_in 'counter_name', with: Faker::Lorem.sentence
+    new_name = Faker::Lorem.sentence
+    fill_in 'counter_name', with: new_name
     click_on 'Save'
-    expect(page).to have_content("Counter was successfully updated.")
+    expect(page).to have_content(new_name)
   end
 
   it 'should be able to edit his/her counter value' do
     visit user_root_path
     click_on @user.counter.name
-    fill_in 'counter_value', with: rand(0..30)
+    new_value = rand(0..30)
+    fill_in 'counter_value', with: new_value
     click_on 'Save'
-    expect(page).to have_content("Counter was successfully updated.")
+    expect(counter_value).to eq("11 22 22 33")
   end
 
   describe '' do
