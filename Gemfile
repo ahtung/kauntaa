@@ -16,6 +16,7 @@ gem 'foundation-rails'
 gem 'devise'
 gem 'rack-google-analytics'
 gem 'omniauth-google-oauth2'
+gem 'newrelic_rpm'
 
 group :production do
   gem 'rails_12factor'
