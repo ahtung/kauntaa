@@ -10,10 +10,11 @@ html lang="en"
     = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tag
 
-  body
-    p.notice= notice
-    p.alert= alert
-    h1 Kauntaa
-    == yield
+  body.metal
+    = render 'navigation'
+    .row.text-center#content
+      .columns.small-11.small-centered
+        .panel.radius
+          == yield
     = javascript_include_tag "application"
 

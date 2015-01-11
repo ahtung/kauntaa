@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 ruby '2.1.2'
 
@@ -18,6 +19,8 @@ gem 'rack-google-analytics'
 gem 'omniauth-google-oauth2'
 gem 'newrelic_rpm'
 gem 'thin'
+gem 'rails-assets-FlipClock'
+gem 'rails-assets-font-awesome'
 
 group :production do
   gem 'rails_12factor'
@@ -36,8 +39,9 @@ group :development, :test do
   gem 'faker'
   gem 'factory_girl_rails'
   gem 'capybara'
-  gem 'poltergeist'
   gem 'launchy'
+  gem 'database_cleaner'
+  gem 'poltergeist'
 end
 
 group :test do
