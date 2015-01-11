@@ -1,4 +1,7 @@
-h1 Homepage
+h1 Kauntaa
+p Count anything
 
 p
   = "You have kauntaa'd "+ (@counter.value ? @counter.value : "0") + " times so far"
+
+p = link_to 'Edit Counter', edit_user_counter_path(current_user)
