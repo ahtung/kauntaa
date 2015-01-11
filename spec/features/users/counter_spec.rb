@@ -14,7 +14,6 @@ describe 'User', js: true do
 
   it 'should be able to edit his/her counter name' do
     visit user_root_path
-    sleep 3
     click_on @user.counter.name
     fill_in 'counter_name', with: Faker::Lorem.sentence
     click_on 'Save'
