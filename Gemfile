@@ -19,6 +19,7 @@ gem 'rack-google-analytics'
 gem 'omniauth-google-oauth2'
 gem 'newrelic_rpm'
 gem 'rails-assets-FlipClock'
+gem 'rails-assets-font-awesome'
 
 group :production do
   gem 'rails_12factor'
