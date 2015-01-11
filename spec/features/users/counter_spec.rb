@@ -19,10 +19,18 @@ describe 'User' do
     expect(page).to have_content("You have kauntaa'd #{counter_value} times so far")
   end
 
-  it 'should be able to edit his/her counter' do
+  it 'should be able to edit his/her counter name' do
     visit root_path
     click_on 'Edit Counter'
     fill_in 'counter_name', with: Faker::Lorem.sentence
+    click_on 'Save'
+    expect(page).to have_content("Counter was successfully updated.")
+  end
+
+  it 'should be able to edit his/her counter value' do
+    visit root_path
+    click_on 'Edit Counter'
+    fill_in 'counter_value', with: rand(0..30)
     click_on 'Save'
     expect(page).to have_content("Counter was successfully updated.")
   end
