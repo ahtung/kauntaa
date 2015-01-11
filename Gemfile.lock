@@ -111,8 +111,12 @@ GEM
     mini_portile (0.6.2)
     minitest (5.5.1)
     multi_json (1.10.1)
+<<<<<<< HEAD
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+=======
+    newrelic_rpm (3.9.8.273)
+>>>>>>> feature/new_relic
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     oauth2 (0.9.4)
@@ -264,7 +268,11 @@ DEPENDENCIES
   foundation-rails
   jbuilder (~> 2.0)
   jquery-rails
+<<<<<<< HEAD
   omniauth-google-oauth2
+=======
+  newrelic_rpm
+>>>>>>> feature/new_relic
   pg
   poltergeist
   rack-google-analytics
