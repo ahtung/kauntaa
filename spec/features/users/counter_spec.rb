@@ -33,7 +33,7 @@ describe 'User', js: true do
   describe '' do
     it 'should be able to start counting from 0', focus: true do
       visit user_root_path
-      click_on 'Count'
+      first('#counter-button').click
       sleep 1
       expect(counter_value).to eq("99 00 00 11")
     end
@@ -41,7 +41,7 @@ describe 'User', js: true do
     it 'should be able to resume counting' do
       @user.counter.update_attribute(:value, 10)
       visit user_root_path
-      click_on 'Count'
+      first('#counter-button').click
       sleep 1
       expect(counter_value).to eq("11 11 00 11")
     end
