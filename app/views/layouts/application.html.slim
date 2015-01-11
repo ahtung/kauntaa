@@ -16,6 +16,8 @@ html lang="en"
         p.notice= notice
         p.alert= alert
         h1 Kauntaa
-    == yield
+    .row
+      .columns.small-12
+        == yield
     = javascript_include_tag "application"
 
