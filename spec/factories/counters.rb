@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :counter do
     name { Faker::Name.name }
-    value 0
+    value 29
   end
 end
