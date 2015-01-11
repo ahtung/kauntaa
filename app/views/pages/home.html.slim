@@ -5,4 +5,4 @@ h1
       i.fa.fa-pencil.edit-counter
 p= link_to '', increment_user_counter_path(current_user), remote: true, id: 'counter-button'
 .counter
-  =@counter.clean_value
+  = @counter.clean_value.to_s.rjust(4, '0')
