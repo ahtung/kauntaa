@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :counter do
-    name "MyString"
-value 1
+    name { Faker::Name.name }
+    value 0
   end
-
 end

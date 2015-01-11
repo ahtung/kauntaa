@@ -14,7 +14,8 @@ describe 'User', js: true do
 
   it 'should be able to edit his/her counter name' do
     visit user_root_path
-    click_on 'Edit Counter'
+    sleep 3
+    click_on @user.counter.name
     fill_in 'counter_name', with: Faker::Lorem.sentence
     click_on 'Save'
     expect(page).to have_content("Counter was successfully updated.")
@@ -22,7 +23,7 @@ describe 'User', js: true do
 
   it 'should be able to edit his/her counter value' do
     visit user_root_path
-    click_on 'Edit Counter'
+    click_on @user.counter.name
     fill_in 'counter_value', with: rand(0..30)
     click_on 'Save'
     expect(page).to have_content("Counter was successfully updated.")
