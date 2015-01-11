@@ -11,9 +11,11 @@ html lang="en"
     = csrf_meta_tag
 
   body
-    p.notice= notice
-    p.alert= alert
-    h1 Kauntaa
+    .row.metal
+      .columns.small-12
+        p.notice= notice
+        p.alert= alert
+        h1 Kauntaa
     == yield
     = javascript_include_tag "application"
 
