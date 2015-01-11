@@ -37,9 +37,9 @@ group :development, :test do
   gem 'faker'
   gem 'factory_girl_rails'
   gem 'capybara'
-  gem 'poltergeist'
   gem 'launchy'
   gem 'database_cleaner'
+  gem 'selenium-webdriver'
 end
 
 group :test do
