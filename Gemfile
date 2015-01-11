@@ -14,6 +14,7 @@ gem 'foreman'
 gem 'slim-rails'
 gem 'foundation-rails'
 gem 'devise'
+gem 'omniauth-google-oauth2'
 
 group :production do
   gem 'rails_12factor'
