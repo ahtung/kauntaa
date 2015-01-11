@@ -9,7 +9,7 @@ describe 'User', js: true do
 
   it 'should be able to see a counted number in homepage' do
     visit user_root_path
-    expect(counter_value).to eq("9 9 0 9 9 0")
+    expect(counter_value).to eq("99 00 99 00")
   end
 
   it 'should be able to edit his/her counter name' do
@@ -33,7 +33,7 @@ describe 'User', js: true do
       visit user_root_path
       click_on 'Count'
       sleep 1
-      expect(counter_value).to eq("9 0 0 0 1 1")
+      expect(counter_value).to eq("99 00 00 11")
     end
 
     it 'should be able to resume counting' do
@@ -41,7 +41,7 @@ describe 'User', js: true do
       visit user_root_path
       click_on 'Count'
       sleep 1
-      expect(counter_value).to eq("1 1 1 0 1 1")
+      expect(counter_value).to eq("11 11 00 11")
     end
   end
 end
