@@ -15,6 +15,7 @@ gem 'slim-rails'
 gem 'foundation-rails'
 gem 'devise'
 gem 'rack-google-analytics'
+gem 'omniauth-google-oauth2'
 
 group :production do
   gem 'rails_12factor'
