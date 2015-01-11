@@ -1,0 +1,12 @@
+= form_for @counter, url: user_counter_path do |f|
+  - if @counter.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@counter.errors.count, "error")} prohibited this section from being saved:"
+      ul
+        - @counter.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions = f.submit 'Save'
