@@ -19,7 +19,7 @@ class CountersController < ApplicationController
 
   def increment
     @counter.update_attribute(:value, @counter.clean_value + 1)
-    redirect_to user_root_path
+    render layout: false
   end
 
   private
