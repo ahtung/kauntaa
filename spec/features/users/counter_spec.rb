@@ -27,7 +27,7 @@ describe 'User', js: true do
     new_value = 29
     fill_in 'counter_value', with: new_value
     click_on 'Save'
-    expect(counter_value).to eq("11 22 88 99")
+    expect(counter_value).to eq("99 00 11 22")
   end
 
   describe '' do
@@ -43,7 +43,7 @@ describe 'User', js: true do
       visit user_root_path
       first('#counter-button').click
       sleep 1
-      expect(counter_value).to eq("11 11 00 11")
+      expect(counter_value).to eq("99 00 88 99")
     end
   end
 end
