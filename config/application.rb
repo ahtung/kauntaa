@@ -30,6 +30,6 @@ module Kauntaa
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    config.middleware.use Rack::GoogleAnalytics, :tracker => 'UA-17049541-18'
+    config.middleware.use Rack::GoogleAnalytics, tracker: 'UA-17049541-18'
   end
 end
