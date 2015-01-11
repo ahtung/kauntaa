@@ -11,11 +11,7 @@ html lang="en"
     = csrf_meta_tag
 
   body.metal
-    .row.text-center
-      .columns.small-12
-        p.notice= notice
-        p.alert= alert
-        h1 Kauntaa
+    = render 'navigation'
     .row.text-center.panel.round
       .columns.small-12
         == yield
