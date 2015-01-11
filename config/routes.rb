@@ -8,4 +8,10 @@ Rails.application.routes.draw do
   end
 
   root 'pages#about', as: :guest_root
+
+  resources :users do
+    resource :counter
+  end
+  root 'pages#home'
+
 end
