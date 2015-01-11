@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
 
-  has_one :counter
+  has_one :counter, dependent: :destroy
   before_create :build_counter
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
