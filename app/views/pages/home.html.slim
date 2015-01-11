@@ -1,6 +1,6 @@
-= link_to @counter.name, edit_user_counter_path(current_user)
+p = link_to @counter.name, edit_user_counter_path(current_user)
+p = link_to '', increment_user_counter_path(current_user), remote: true, id: 'counter-button'
 .counter =@counter.clean_value
-p= link_to 'Count', increment_user_counter_path(current_user), remote: true
 
 ul
   li= link_to 'About', pages_about_path
