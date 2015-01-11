@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Guest' do
   before :each do
-    visit root_path
+    visit guest_root_path
   end
 
   it 'should see the product title' do
