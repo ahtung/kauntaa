@@ -15,6 +15,7 @@ gem 'slim-rails'
 gem 'foundation-rails'
 gem 'devise'
 gem 'rack-google-analytics'
+gem 'newrelic_rpm'
 
 group :production do
   gem 'rails_12factor'
