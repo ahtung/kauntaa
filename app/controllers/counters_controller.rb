@@ -1,6 +1,6 @@
 class CountersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_counter, only: [:edit, :update]
+  before_action :set_counter, only: [:edit, :update, :increment]
 
   def edit
   end
@@ -15,6 +15,11 @@ class CountersController < ApplicationController
         format.json { render json: @counter.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def increment
+    @counter.update_attribute(:value, @counter.clean_value + 1)
+    redirect_to user_root_path
   end
 
   private

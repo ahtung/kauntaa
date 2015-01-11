@@ -2,9 +2,11 @@ h1 Kauntaa
 p Count anything
 
 p
-  = "You have kauntaa'd "+ (@counter.value ? "#{@counter.value}" : "0") + " times so far"
+  = "You have kauntaa'd #{@counter.clean_value} times so far"
 
 p = link_to 'Edit Counter', edit_user_counter_path(current_user)
+
+= link_to 'Count', increment_user_counter_path(current_user)
 
 = link_to 'About', pages_about_path
 
