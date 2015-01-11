@@ -1,7 +1,5 @@
 class @Pages
   constructor: (initial) ->
-    clock = $(".counter").FlipClock(initial,
-      clockFace: "Counter"
-    )
+    @clock = $(".counter").FlipClock(initial,clockFace: "Counter")
   increment: () ->
-    console.log()
+    @clock.increment

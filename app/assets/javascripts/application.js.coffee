@@ -7,5 +7,4 @@
 $(document).ready ->
   $(document).foundation()
   initial = parseInt($(".counter").text())
-  new Pages(initial)
-
+  window.test = new Pages(initial)

@@ -7,7 +7,7 @@ p times so far
 
 p = link_to 'Edit Counter', edit_user_counter_path(current_user)
 
-= link_to 'Count', increment_user_counter_path(current_user)
+= link_to 'Count', increment_user_counter_path(current_user), remote: true
 
 = link_to 'About', pages_about_path
 
