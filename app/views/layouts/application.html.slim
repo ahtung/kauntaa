@@ -12,8 +12,8 @@ html lang="en"
 
   body.metal
     = render 'navigation'
-    .row.text-center
-      .columns.small-12
+    .row.text-center#content
+      .columns.small-11.small-centered
         .panel.radius
           == yield
     = javascript_include_tag "application"

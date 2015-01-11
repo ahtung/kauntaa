@@ -1,4 +1,4 @@
 h1= link_to @counter.name, edit_user_counter_path(current_user)
 p= link_to '', increment_user_counter_path(current_user), remote: true, id: 'counter-button'
 .counter
-  =@counter.clean_value
+  = @counter.clean_value.to_s.rjust(4, '0')
