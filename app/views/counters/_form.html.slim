@@ -1,4 +1,4 @@
-= form_for @counter, url: user_counters_path do |f|
+= form_for @counter, url: (params[:action] == 'new' ? user_counters_path : user_counter_path(current_user, @counter)) do |f|
   - if @counter.errors.any?
     #error_explanation
       h2 = "#{pluralize(@counter.errors.count, "error")} prohibited this section from being saved:"

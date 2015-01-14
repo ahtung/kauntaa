@@ -11,6 +11,10 @@ class Counter < ActiveRecord::Base
     end
   end
 
+  def editable_attributes
+    %w(name value)
+  end
+
   private
 
   def set_name
