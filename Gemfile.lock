@@ -333,7 +333,7 @@ GEM
       equalizer (~> 0.0.9)
       parser (~> 2.2.0.pre.7)
       procto (~> 0.0.2)
-    virtus (1.0.3)
+    virtus (1.0.4)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
