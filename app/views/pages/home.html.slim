@@ -3,7 +3,7 @@ ul.small-block-grid-1.medium-block-grid-3.large-block-grid-5
     li.panel.radius
       h1
         = link_to edit_user_counter_path(current_user, counter) do
-          = counter.name
+          = truncate(counter.name, length: 10)
           sup
             i.fa.fa-pencil.edit-counter
       p= link_to '', increment_user_counter_path(current_user, counter), remote: true, id: 'counter-button'
