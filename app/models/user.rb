@@ -8,13 +8,13 @@ class User < ActiveRecord::Base
   has_many :counters, dependent: :destroy
   before_create :build_counter
 
-  def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
+  def self.find_for_google_oauth2(access_token, signed_in_resource = nil)
     data = access_token.info
     user = User.where(email: data['email']).first
     unless user
       user = User.create(
         email: data['email'],
-        password: Devise.friendly_token[0,20]
+        password: Devise.friendly_token[0, 20]
       )
     end
     user

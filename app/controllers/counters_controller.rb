@@ -38,5 +38,4 @@ class CountersController < ApplicationController
   def counter_params
     params.require(:counter).permit(:id, :name, :value)
   end
-
 end
