@@ -15,7 +15,7 @@ describe 'User', js: true do
 
   it 'should be able to edit his/her counter name' do
     visit user_root_path
-    click_on @user.counter.name
+    click_on @user.counters.first.name
     fill_in 'counter_name', with: @counter.name
     click_on 'Save'
     expect(page).to have_content(@counter.name)
@@ -23,7 +23,7 @@ describe 'User', js: true do
 
   it 'should be able to edit his/her counter value' do
     visit user_root_path
-    click_on @user.counter.name
+    click_on @user.counters.first.name
     fill_in 'counter_value', with: @counter.value
     click_on 'Save'
     expect(counter_value).to eq("99 00 11 22")
@@ -38,7 +38,7 @@ describe 'User', js: true do
     end
 
     it 'should be able to resume counting' do
-      @user.counter.update_attribute(:value, 10)
+      @user.counters.first.update_attribute(:value, 10)
       visit user_root_path
       first('#counter-button').click
       sleep 1
