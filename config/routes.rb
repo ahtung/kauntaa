@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root 'pages#about', as: :guest_root
 
   resources :users do
-    resource :counter do
+    resources :counters do
       member do
         get 'increment'
       end
