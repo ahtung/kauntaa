@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   before_action :authenticate_user!, only: :home
 
   def home
-    @counter = current_user.counter
+    @counters = current_user.counters
   end
 
   def about

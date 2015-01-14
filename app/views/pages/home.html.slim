@@ -1,8 +1,9 @@
-h1
-  = link_to edit_user_counter_path(current_user) do
-    = @counter.name
-    sup
-      i.fa.fa-pencil.edit-counter
-p= link_to '', increment_user_counter_path(current_user), remote: true, id: 'counter-button'
-.counter
-  = @counter.clean_value.to_s.rjust(4, '0')
+- @counters.each do |counter|
+  h1
+    = link_to edit_user_counter_path(current_user, counter) do
+      = counter.name
+      sup
+        i.fa.fa-pencil.edit-counter
+  p= link_to '', increment_user_counter_path(current_user, counter), remote: true, id: 'counter-button'
+  .counter
+    = counter.clean_value.to_s.rjust(4, '0')

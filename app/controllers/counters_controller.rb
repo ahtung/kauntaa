@@ -25,7 +25,7 @@ class CountersController < ApplicationController
   private
 
   def set_counter
-    @counter = current_user.counter
+    @counter = Counter.find(params[:id])
   end
 
   def counter_params
