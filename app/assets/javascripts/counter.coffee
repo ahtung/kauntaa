@@ -1,4 +1,4 @@
 class @Counter
-  constructor: (options) ->
+  constructor: (options, value = 0) ->
     @odometer = new Odometer(options)
-    @odometer.render()
+    @odometer.update(value)

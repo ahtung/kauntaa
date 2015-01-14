@@ -12,8 +12,8 @@ $(document).ready ->
   $('.counter').map (index) ->
     options = {
       el: $(this)[0],
-      value: parseInt($(this).text()),
-      format: '(ddd)',
-      duration: 200
+      format: '',
+      duration: 200,
+      theme: 'car'
     }
-    new Counter(options)
+    new Counter(options, parseInt($(this).text()))
