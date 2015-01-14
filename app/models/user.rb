@@ -5,9 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
 
-  has_one :counter, dependent: :destroy
+  has_many :counters, dependent: :destroy
   before_create :build_counter
-  after_save :set_counter_name
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
@@ -23,7 +22,7 @@ class User < ActiveRecord::Base
 
   private
 
-  def set_counter_name
-    counter.update_attribute(:name, 'TODO') unless counter.name
+  def build_counter
+    counters.build if counters.empty?
   end
 end
