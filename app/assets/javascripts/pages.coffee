@@ -1,3 +1,3 @@
 class @Pages
   constructor: (initial) ->
-    @clock = $(".counter").FlipClock(initial,clockFace: "Counter")
+    @clocks = $(".counter").FlipClock(initial,clockFace: "Counter")

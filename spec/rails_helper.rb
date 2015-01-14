@@ -14,6 +14,10 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
 
+  config.filter_run focus: true
+  config.run_all_when_everything_filtered = true
+  config.order = 'random'
+
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.use_transactional_fixtures = false
