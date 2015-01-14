@@ -9,7 +9,7 @@ describe 'User', js: true do
 
   it 'should be able to see a counted number in homepage' do
     visit user_root_path
-    expect(counter_value).to eq("99 00 99 00")
+    expect(counter_value).to eq("0")
   end
 
   describe 'should be able to edit his/her counter' do
@@ -27,7 +27,7 @@ describe 'User', js: true do
     it 'value' do
       fill_in 'counter_value', with: 99
       click_on 'Save'
-      expect(page).to have_content('99')
+      expect(page).to have_content('9 9')
     end
   end
 
@@ -36,7 +36,7 @@ describe 'User', js: true do
     click_on @user.counters.first.name
     fill_in 'counter_value', with: 29
     click_on 'Save'
-    expect(counter_value).to eq("99 00 11 22")
+    expect(counter_value).to eq("2 9")
   end
 
   describe '' do
@@ -46,7 +46,7 @@ describe 'User', js: true do
         first('.counter-button').click
       end
       sleep 1
-      expect(counter_value).to eq("99 00 00 11")
+      expect(counter_value).to eq("0 1")
     end
 
     it 'should be able to resume counting' do
@@ -56,7 +56,7 @@ describe 'User', js: true do
         first('.counter-button').click
       end
       sleep 1
-      expect(counter_value).to eq("99 00 88 99")
+      expect(counter_value).to eq("1 0 1")
     end
 
     it 'should be able to count 2 seperate things' do
@@ -67,10 +67,10 @@ describe 'User', js: true do
       end
       sleep 1
       within "[data-counter-id='#{@user.counters.first.id}']" do
-        expect(counter_value).to eq("99 00 11 22")
+        expect(counter_value).to eq("0 1")
       end
       within "[data-counter-id='#{@user.counters.last.id}']" do
-        expect(counter_value).to eq("99 00 99 00")
+        expect(counter_value).to eq("2 9")
       end
     end
   end

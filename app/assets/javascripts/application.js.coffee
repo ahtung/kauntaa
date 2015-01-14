@@ -1,10 +1,19 @@
 #= require jquery
 #= require jquery_ujs
 #= require foundation
-#= require FlipClock
-#= require pages
+#= require odometer
+#= require counter
 
 $(document).ready ->
+  # Foundation
   $(document).foundation()
-  initial = parseInt($(".counter").text())
-  window.test = new Pages(initial)
+
+  # Counters
+  $('.counter').map (index) ->
+    options = {
+      el: $(this)[0],
+      value: parseInt($(this).text()),
+      format: '(ddd)',
+      duration: 200
+    }
+    new Counter(options)

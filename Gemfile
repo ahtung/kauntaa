@@ -19,7 +19,7 @@ gem 'rack-google-analytics'
 gem 'omniauth-google-oauth2'
 gem 'newrelic_rpm'
 gem 'thin'
-gem 'rails-assets-odometer'
+gem 'rails-assets-HubSpot--odometer'
 gem 'rails-assets-font-awesome'
 
 group :production do
