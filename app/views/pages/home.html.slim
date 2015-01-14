@@ -10,3 +10,6 @@ ul.small-block-grid-1.medium-block-grid-3.large-block-grid-3
         p= link_to '', increment_user_counter_path(current_user, counter), remote: true, class: 'counter-button'
         .counter
           = counter.clean_value
+.row
+  .columns.small-12
+    = link_to 'new', new_user_counter_path(current_user)

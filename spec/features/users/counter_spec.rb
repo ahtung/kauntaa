@@ -12,6 +12,21 @@ describe 'User', js: true do
     expect(counter_value).to eq("0")
   end
 
+  it 'should be able to add a new counter' do
+    visit user_root_path
+    click_on 'new'
+    fill_in 'counter_name', with: 'Dunya'
+    click_on 'Save'
+    expect(counter_value).to eq("0")
+  end
+
+  it 'should be able to add a new counter' do
+    visit user_root_path
+    first("[data-counter-id='#{@user.counters.first.id}'] a").click
+    click_on 'delete'
+    expect(first('.counter')).to be_nil
+  end
+
   describe 'should be able to edit his/her counter' do
     before :each do
       visit user_root_path

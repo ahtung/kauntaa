@@ -1,20 +1,27 @@
 class CountersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_counter, only: [:edit, :update, :increment]
+  before_action :set_counter, only: [:edit, :update, :increment, :destroy]
+
+  def new
+    @counter = current_user.counters.new
+  end
 
   def edit
   end
 
+  def create
+    current_user.counters.create(counter_params)
+    redirect_to root_path
+  end
+
   def update
-    respond_to do |format|
-      if @counter.update(counter_params)
-        format.html { redirect_to root_path, notice: 'Counter was successfully updated.' }
-        format.json { render :show, status: :ok, location: @counter }
-      else
-        format.html { render :edit }
-        format.json { render json: @counter.errors, status: :unprocessable_entity }
-      end
-    end
+    @counter.update(counter_params)
+    redirect_to root_path
+  end
+
+  def destroy
+    @counter.destroy
+    redirect_to root_path
   end
 
   def increment
@@ -29,7 +36,7 @@ class CountersController < ApplicationController
   end
 
   def counter_params
-    params.require(:counter).permit(:name, :value)
+    params.require(:counter).permit(:id, :name, :value)
   end
 
 end
