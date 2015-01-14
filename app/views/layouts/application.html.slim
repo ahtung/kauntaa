@@ -14,7 +14,6 @@ html lang="en"
     = render 'navigation'
     .row.text-center#content
       .columns.small-11.small-centered
-        .panel.radius
-          == yield
+        == yield
     = javascript_include_tag "application"
 
