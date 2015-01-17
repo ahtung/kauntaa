@@ -1,7 +1,12 @@
-.logo {
-  padding-top: 20px;
+.fixed-height {
+  max-height:250px;
 }
 
 .dark-back {
-  background-color: red;
+  background-color: #151611;
+}
+
+.light-bg {
+  background-color: #BFBCAA;
+  border-radius: 0em 0em 0em 3em / 1em 3em;
 }

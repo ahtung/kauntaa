@@ -1,15 +1,15 @@
-ul.small-block-grid-1.medium-block-grid-4
+.row.text-center
   - @counters.each do |counter|
-    li data-counter-id="#{counter.id}"
-      .panel
-        h1
-          = link_to edit_user_counter_path(current_user, counter) do
-            = truncate(counter.name, length: 9)
-            sup
-              i.fa.fa-pencil.edit-counter
-        p= link_to '', increment_user_counter_path(current_user, counter), remote: true, class: 'counter-button'
-        .counter
-          = counter.clean_value
-.row
-  .columns.small-12
-    = link_to 'new', new_user_counter_path(current_user)
+    .columns.small-12.medium-6.large-3.counter-item data-counter-id="#{counter.id}"
+      .counter-container.panel.radius
+        .row.counter-row
+          .columns.small-6.small-centered
+            .counter
+              = counter.clean_value
+        .row
+          .columns.small-10.small-centered
+            = link_to "#{time_ago_in_words(counter.created_at)} ago", edit_user_counter_path(current_user, counter)
+        .row.info-row
+          .columns.small-2.small-centered.info-link
+            = link_to 'i', ''
+  / = link_to '', increment_user_counter_path(current_user, counter), remote: true, class: 'counter-button'

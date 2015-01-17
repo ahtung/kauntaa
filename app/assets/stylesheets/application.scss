@@ -14,11 +14,11 @@
  *= require odometer/themes/odometer-theme-car
  *= require foundation_and_overrides
  *= require pages
+ *= require counter
  *= require header
  *= require font-awesome
  */
 
-
-#content {
-  margin-top: 1em;
+.odometer {
+  font-size: 2em;
 }
