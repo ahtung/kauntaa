@@ -5,6 +5,18 @@ describe 'Guest' do
     visit guest_root_path
   end
 
+  describe 'in navigation', js: true do
+    it 'should see the number of users' do
+      create_list(:user, 12)
+      visit guest_root_path
+      expect(page).to have_content('1 2')
+    end
+
+    it 'should see motto' do
+      expect(page).to have_content('Count')
+    end
+  end
+
   it 'should see the product title' do
     expect(page).to have_content('Kauntaa')
   end

@@ -1,5 +1,5 @@
 - if counter
-  = link_to increment_user_counter_path(current_user, counter), remote: true do
+  = link_to increment_user_counter_path(current_user, counter), remote: true, class: 'counter-button' do
     .counter-container.panel.radius
       .row.counter-row
         .columns.small-6.small-centered
@@ -10,10 +10,10 @@
           = "#{time_ago_in_words(counter.created_at)} ago"
       .row.info-row
         .columns.small-2.small-centered.info-link
-          = link_to edit_user_counter_path(current_user, counter) do
+          = link_to edit_user_counter_path(current_user, counter), class: 'edit-counter' do
             i.fa.fa-info
 - else
-  = link_to pages_about_path do
+  = link_to pages_about_path, class: 'about-link' do
     .counter-container.panel.radius
       .row.counter-row
         .columns.small-6.small-centered
