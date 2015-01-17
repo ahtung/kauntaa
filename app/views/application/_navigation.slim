@@ -1,16 +1,6 @@
-nav class="top-bar" data-topbar=true role="navigation"
-  ul class="title-area"
-    li class="name"
-      h1= link_to 'Kauntaa', user_root_path
-    li class="toggle-topbar menu-icon"
-      a href="#"
-        span Menu
-
-  section class="top-bar-section"
-    ul class="right"
-      li= link_to 'About', pages_about_path
-      - if user_signed_in?
-        li class="has-dropdown"
-          a href="#" User
-          ul class="dropdown"
-            li= link_to 'Sign out', destroy_user_session_path, method: :delete
+.row.logo
+  .columns.small-12.medium-3.dark-back
+    = image_tag 'cc_logo.gif'
+  .columns.hide-for-small.medium-9
+    h1= link_to 'Kauntaa', user_root_path
+    p= 'More text to followto followto followto followto followto followto followto followto followto followto followto followto followto followto followto follow'
