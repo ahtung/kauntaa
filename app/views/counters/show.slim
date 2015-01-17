@@ -1,26 +1,27 @@
 - if counter
-  .counter-container.panel.radius
-    .row.counter-row
-      .columns.small-6.small-centered
-        .counter
-          = counter.clean_value
-    .row
-      .columns.small-10.small-centered
-        = link_to "#{time_ago_in_words(counter.created_at)} ago", edit_user_counter_path(current_user, counter)
-    .row.info-row
-      .columns.small-2.small-centered.info-link
-        = link_to '' do
-          i.fa.fa-info
+  = link_to increment_user_counter_path(current_user, counter), remote: true do
+    .counter-container.panel.radius
+      .row.counter-row
+        .columns.small-6.small-centered
+          .counter
+            = counter.clean_value
+      .row
+        .columns.small-10.small-centered
+          = "#{time_ago_in_words(counter.created_at)} ago"
+      .row.info-row
+        .columns.small-2.small-centered.info-link
+          = link_to edit_user_counter_path(current_user, counter) do
+            i.fa.fa-info
 - else
-  .counter-container.panel.radius
-    .row.counter-row
-      .columns.small-6.small-centered
-        .counter
-          = User.all.count
-    .row
-      .columns.small-10.small-centered
-        = link_to "#{time_ago_in_words(DateTime.new(2015,1,11))} ago", pages_about_path
-    .row.info-row
-      .columns.small-2.small-centered.info-link
-        = link_to '' do
+  = link_to pages_about_path do
+    .counter-container.panel.radius
+      .row.counter-row
+        .columns.small-6.small-centered
+          .counter
+            = User.all.count
+      .row
+        .columns.small-10.small-centered
+          = "#{time_ago_in_words(DateTime.new(2015,1,11))} ago"
+      .row.info-row
+        .columns.small-2.small-centered.info-link
           i.fa.fa-info

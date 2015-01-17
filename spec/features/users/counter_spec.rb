@@ -24,7 +24,7 @@ describe 'User', js: true do
     visit user_root_path
     first("[data-counter-id='#{user.counters.first.id}'] a").click
     click_on 'delete'
-    expect(first('.counter')).to be_nil
+    expect(find('.counter').length).to eq(1)
   end
 
   describe 'should be able to edit his/her counter' do
