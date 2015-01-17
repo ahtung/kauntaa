@@ -7,3 +7,4 @@
       p= 'More text to followto followto followto followto followto'
       - if user_signed_in?
         = link_to 'new', new_user_counter_path(current_user)
+        = link_to('Logout', destroy_user_session_path, method: :delete)
