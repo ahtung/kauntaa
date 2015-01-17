@@ -1,0 +1,24 @@
+- if counter
+  .counter-container.panel.radius
+    .row.counter-row
+      .columns.small-6.small-centered
+        .counter
+          = counter.clean_value
+    .row
+      .columns.small-10.small-centered
+        = link_to "#{time_ago_in_words(counter.created_at)} ago", edit_user_counter_path(current_user, counter)
+    .row.info-row
+      .columns.small-2.small-centered.info-link
+        = link_to 'i', ''
+- else
+  .counter-container.panel.radius
+    .row.counter-row
+      .columns.small-6.small-centered
+        .counter
+          = User.all.count
+    .row
+      .columns.small-10.small-centered
+        = link_to "#{time_ago_in_words(DateTime.new(2015,1,11))} ago", pages_about_path
+    .row.info-row
+      .columns.small-2.small-centered.info-link
+        = link_to 'i', ''

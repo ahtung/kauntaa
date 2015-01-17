@@ -1,15 +1,5 @@
 .row.text-center
   - @counters.each do |counter|
     .columns.small-12.medium-6.large-3.counter-item data-counter-id="#{counter.id}"
-      .counter-container.panel.radius
-        .row.counter-row
-          .columns.small-6.small-centered
-            .counter
-              = counter.clean_value
-        .row
-          .columns.small-10.small-centered
-            = link_to "#{time_ago_in_words(counter.created_at)} ago", edit_user_counter_path(current_user, counter)
-        .row.info-row
-          .columns.small-2.small-centered.info-link
-            = link_to 'i', ''
+      = render template: 'counters/show', locals: { counter: counter }
   / = link_to '', increment_user_counter_path(current_user, counter), remote: true, class: 'counter-button'
