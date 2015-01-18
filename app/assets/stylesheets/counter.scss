@@ -1,24 +1,27 @@
+@import "foundation_and_overrides";
+
 .counter-item {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.counter-container {
-  background-color:#1E3340;
-}
-
-.counter-row {
-  padding-top: 40px;
-  padding-bottom: 20px;
-}
-
-.info-row {
-  padding-bottom: 40px;
-}
-
-.info-link{
-  background-color:#731D24;
-  border-radius:2em;
-  width:2em;
-  height:2em;
+  margin-top:20px;
+  min-height: 180px;
+  .increment-button {
+    background-color:$green;
+    height: 90px;
+    .info-link{
+      padding-top: 9px;
+      margin-top:2em;
+      background-color:$white;
+      border-radius:2em;
+      width:2em;
+      height:2em;
+    }
+  }
+  .decrement-button {
+    background-color:$red;
+    height: 90px;
+    .description-text {
+      padding-top: 20px;
+      min-height: 70px;
+      background-color:$white;
+    }
+  }
 }

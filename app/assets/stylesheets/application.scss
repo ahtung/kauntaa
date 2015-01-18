@@ -11,7 +11,7 @@
  * file per style scope.
  *
  *= require_self
- *= require odometer/themes/odometer-theme-car
+ *= require odometer/themes/odometer-theme-minimal
  *= require foundation_and_overrides
  *= require pages
  *= require counter
@@ -20,5 +20,5 @@
  */
 
 .odometer {
-  font-size: 2em;
+  font-size: 1em;
 }

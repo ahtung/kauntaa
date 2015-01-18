@@ -50,7 +50,7 @@ describe 'User', js: true do
     it 'should be able to start counting from 0' do
       visit user_root_path
       within "[data-counter-id='#{user.counters.first.id}']" do
-        first('.counter-button').trigger 'click'
+        first('.increment-button').trigger 'click'
       end
       sleep 1
       expect(counter_value).to eq("0 1")
@@ -60,7 +60,7 @@ describe 'User', js: true do
       user.counters.first.update_attribute(:value, 10)
       visit user_root_path
       within "[data-counter-id='#{user.counters.first.id}']" do
-        first('.counter-button').trigger 'click'
+        first('.increment-button').trigger 'click'
       end
       sleep 1
       expect(counter_value).to eq("0 1")
@@ -70,7 +70,7 @@ describe 'User', js: true do
       user.counters << create(:counter)
       visit user_root_path
       within "[data-counter-id='#{user.counters.first.id}']" do
-        first('.counter-button').trigger 'click'
+        first('.increment-button').trigger 'click'
       end
       sleep 1
       within "[data-counter-id='#{user.counters.first.id}']" do

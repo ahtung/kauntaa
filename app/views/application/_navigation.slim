@@ -1,8 +1,8 @@
-.row data-equalizer=true
-  .columns.small-12.medium-6.large-3.dark-back.text-center data-equalizer-watch=true
-    = render template: 'counters/show', locals: { counter: nil }
-  .columns.hide-for-small.medium-6.large-9.light-bg data-equalizer-watch=true
-    .panel.radius
+.row
+  .columns.small-12.medium-6.large-3.text-center.counter-item
+    = render partial: 'counters/counter', locals: { counter: nil }
+  .columns.hide-for-small.medium-6.large-9
+    .radius
       h1= link_to 'Kauntaa', user_root_path
       p= 'More text to followto followto followto followto followto'
       - if user_signed_in?

@@ -1,0 +1,19 @@
+- if counter
+  .increment-button data-increment-url="#{ increment_user_counter_path(current_user, counter) }"
+    .columns.small-2.small-centered
+      = link_to edit_user_counter_path(current_user, counter), class: 'edit-counter' do
+        i.fa.fa-info.info-link
+  .decrement-button data-decrement-url="#{ decrement_user_counter_path(current_user, counter) }"
+    = link_to increment_user_counter_path(current_user, counter), remote: true do
+      .description-text
+        .counter= counter.clean_value
+        == "<b>#{counter.name}</b> since <b>#{time_ago_in_words(counter.created_at)}</b>"
+- else
+  = link_to pages_about_path, class: 'about-link' do
+    .increment-button
+      .columns.small-2.small-centered
+        i.fa.fa-info.info-link
+    .decrement-button
+      .description-text
+        .counter= User.all.count
+        == "<b>Users</b> since <b>#{time_ago_in_words(DateTime.new(2015,1,11))}</b>"

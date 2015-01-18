@@ -14,6 +14,15 @@ $(document).ready ->
       el: $(this)[0],
       format: '',
       duration: 200,
-      theme: 'car'
+      theme: 'minimal'
     }
     new Counter(options, parseInt($(this).text()))
+
+  $('body').on 'click', '.increment-button', () ->
+    $.get $(this).data('increment-url'), ( data ) ->
+      alert( "Load was performed." )
+    , "script"
+  $('body').on 'click', '.decrement-button', () ->
+    $.get $(this).data('decrement-url'), ( data ) ->
+      alert( "Load was performed." )
+    , "script"

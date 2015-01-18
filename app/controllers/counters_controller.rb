@@ -1,6 +1,6 @@
 class CountersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_counter, only: [:edit, :update, :increment, :destroy]
+  before_action :set_counter, only: [:edit, :update, :increment, :decrement, :destroy]
 
   def new
     @counter = current_user.counters.new
@@ -26,6 +26,11 @@ class CountersController < ApplicationController
 
   def increment
     @counter.update_attribute(:value, @counter.clean_value + 1)
+    render layout: false
+  end
+
+  def decrement
+    @counter.update_attribute(:value, @counter.clean_value - 1)
     render layout: false
   end
 

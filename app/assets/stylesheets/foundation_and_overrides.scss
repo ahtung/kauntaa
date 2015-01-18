@@ -81,7 +81,7 @@ $include-html-global-classes: $include-html-classes;
 
 $row-width: 100%;
 // $total-columns: 12;
-$column-gutter: rem-calc(20);
+//$column-gutter: rem-calc(20);
 
 // c. Global
 // - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -112,6 +112,9 @@ $primary-color: #BF8034;
 //$smoke       : #EEEEEE;
 // $gainsboro   : #DDDDDD;
 $iron        : #C0C0C0;
+$green       : #B2C441;
+$red         : #F25361;
+$brown       : #A5836D;
 // $base        : #AAAAAA;
 // $aluminum    : #999999;
 // $jumbo       : #888888;
@@ -125,7 +128,7 @@ $iron        : #C0C0C0;
 
 // We use these to control various global styles
 $body-bg: $iron;
-$body-font-color: #BFBCAA;
+$body-font-color: $brown;
 // $body-font-family: $font-family-sans-serif;
 // $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;

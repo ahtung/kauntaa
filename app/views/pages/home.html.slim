@@ -1,5 +1,4 @@
-.row.text-center
-  - @counters.each do |counter|
-    .columns.small-12.medium-6.large-3.counter-item data-counter-id="#{counter.id}"
-      = render template: 'counters/show', locals: { counter: counter }
-  / = link_to '', increment_user_counter_path(current_user, counter), remote: true, class: 'counter-button'
+.row
+  .columns.small-12
+    ul.small-block-grid-1.medium-block-grid-2.large-block-grid-4
+      = render collection: @counters, partial: 'counters/counter_li', as: :counter
