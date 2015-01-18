@@ -1,7 +1,10 @@
 @import "foundation_and_overrides";
 
 .counter-item {
-  margin-top:20px;
+//  margin-top: 20px;
+  &.header {
+    margin:20px 0 20px 0;
+  }
   min-height: 180px;
   .increment-button {
     background-color:$green;

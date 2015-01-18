@@ -1,0 +1,12 @@
+@import 'foundation_and_overrides';
+
+.header-row {
+  margin-bottom:20px;
+  .header-item {
+    min-height: 220px;
+    background-color:$white;
+    .sub-title {
+      text-color: $red;
+    }
+  }
+}

@@ -1,10 +1,10 @@
-.row
-  .columns.small-12.medium-6.large-3.text-center.counter-item
+.row.header-row
+  .columns.small-12.medium-6.large-3.text-center.counter-item.header
     = render partial: 'counters/counter', locals: { counter: nil }
-  .columns.hide-for-small.medium-6.large-9
+  .columns.hide-for-small.medium-6.large-9.header-item
     .radius
-      h1= link_to 'Kauntaa', user_root_path
-      p= 'More text to followto followto followto followto followto'
+      h1 Kauntaa
+      p.sub-title= 'More text to followto followto followto followto followto'
       - if user_signed_in?
         = link_to 'new', new_user_counter_path(current_user)
         = link_to('Logout', destroy_user_session_path, method: :delete)
