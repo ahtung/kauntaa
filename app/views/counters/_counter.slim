@@ -6,8 +6,15 @@
   .decrement-button data-decrement-url="#{ decrement_user_counter_path(current_user, counter) }"
     = link_to increment_user_counter_path(current_user, counter), remote: true do
       .description-text
-        .counter= counter.clean_value
-        == "<b>#{counter.name}</b> since <b>#{time_ago_in_words(counter.created_at)}</b>"
+        .row
+          .columns.small-6.text-right
+            .counter= counter.clean_value
+          .columns.small-6.text-left
+            b= counter.name
+        .row
+          .columns.small-6.text-right since
+          .columns.small-6.text-left
+            b= time_ago_in_words(counter.created_at)
 - else
   = link_to pages_about_path, class: 'about-link' do
     .increment-button
@@ -15,5 +22,12 @@
         i.fa.fa-info.info-link
     .decrement-button
       .description-text
-        .counter= User.all.count
-        == "<b>Users</b> since <b>#{time_ago_in_words(DateTime.new(2015,1,11))}</b>"
+        .row
+          .columns.small-6.text-right
+            .counter= User.all.count
+          .columns.small-6.text-left
+            b Users
+        .row
+          .columns.small-6.text-right since
+          .columns.small-6.text-left
+            b= time_ago_in_words(DateTime.new(2015,1,11))
