@@ -3,7 +3,7 @@
     = render partial: 'counters/counter', locals: { counter: nil }
   .columns.hide-for-small.medium-6.large-9.header-item
     .radius
-      h1 Kauntaa
+      h1.title Kauntaa
       p.sub-title= 'More text to followto followto followto followto followto'
       - if user_signed_in?
         = link_to 'new', new_user_counter_path(current_user)
