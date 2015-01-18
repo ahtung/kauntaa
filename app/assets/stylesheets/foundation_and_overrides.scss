@@ -109,9 +109,9 @@ $primary-color: #BF8034;
 // $vapor       : #F6F6F6;
 // $white-smoke : #F5F5F5;
 // $silver      : #EFEFEF;
-// $smoke       : #EEEEEE;
+//$smoke       : #EEEEEE;
 // $gainsboro   : #DDDDDD;
-// $iron        : #CCCCCC;
+$iron        : #C0C0C0;
 // $base        : #AAAAAA;
 // $aluminum    : #999999;
 // $jumbo       : #888888;
@@ -120,11 +120,11 @@ $primary-color: #BF8034;
 // $charcoal    : #555555;
 // $tuatara     : #444444;
 // $oil         : #333333;
-$jet         : #222222;
-$black       : #000000;
+//$jet         : #222222;
+//$black       : #000000;
 
 // We use these to control various global styles
-$body-bg: #151611;
+$body-bg: $iron;
 $body-font-color: #BFBCAA;
 // $body-font-family: $font-family-sans-serif;
 // $body-font-weight: $font-weight-normal;
