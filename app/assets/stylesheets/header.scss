@@ -1,7 +1,9 @@
 @import 'foundation_and_overrides';
 
 .header-row {
-  margin-bottom:20px;
+  @media #{$medium-up} {
+    margin-bottom:20px;
+  }
   .header-item {
     min-height: 220px;
     background-color:$white;
