@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'shoulda/matchers'
 require 'helpers'
 require 'capybara/poltergeist'
+Dir["./spec/support/**/*.rb"].sort.each { |f| require f}
 Capybara.javascript_driver = :poltergeist
 
 ActiveRecord::Migration.maintain_test_schema!
@@ -18,6 +19,7 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.order = 'random'
 
+  config.alias_it_should_behave_like_to :it_behaves_like, 'can'
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.use_transactional_fixtures = false
