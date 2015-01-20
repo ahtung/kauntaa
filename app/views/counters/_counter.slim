@@ -19,8 +19,8 @@
 - else
   = link_to pages_about_path, class: 'about-link' do
     .counter-button-container
-      .increment-button
-        a.edit-counter
+      .header-top
+        span.edit-counter
           i.fa.fa-info.info-link
     .counter-data
       .description-text
@@ -28,9 +28,9 @@
           .columns.small-6.text-right
             .counter= User.all.count
           .columns.small-6.text-left
-            b Users
+            strong Users
         .row
           .columns.small-6.text-right since
           .columns.small-6.text-left
             b= time_ago_in_words(DateTime.new(2015,1,11))
-    .decrement-button
+    .header-bottom
