@@ -2,7 +2,7 @@
   .columns.small-12
     h1
       = "Editing counter for #{@counter.name}"
-      = link_to 'x', user_counter_path, method: :delete, confirm: 'Sure?'
+      = link_to 'x', user_counter_path, method: :delete, data: {confirm: "Sure?"}
 
     == render 'form'
 
