@@ -18,10 +18,11 @@
     = link_to '', increment_user_counter_path(current_user, counter), remote: true
 - else
   = link_to pages_about_path, class: 'about-link' do
-    .increment-button
-      .columns.small-2.small-centered
-        i.fa.fa-info.info-link
-    .decrement-button
+    .counter-button-container
+      .increment-button
+        a.edit-counter
+          i.fa.fa-info.info-link
+    .counter-data
       .description-text
         .row
           .columns.small-6.text-right
@@ -32,3 +33,4 @@
           .columns.small-6.text-right since
           .columns.small-6.text-left
             b= time_ago_in_words(DateTime.new(2015,1,11))
+    .decrement-button
