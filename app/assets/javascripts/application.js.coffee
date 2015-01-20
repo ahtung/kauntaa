@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require foundation
 #= require odometer
+#= require jquery.transit
 #= require counter
 
 $(document).ready ->
@@ -26,3 +27,9 @@ $(document).ready ->
     $.get $(this).data('decrement-url'), ( data ) ->
       alert( "Load was performed." )
     , "script"
+
+  # Transit
+  $('.box').transition {
+    perspective: '100px',
+    rotateY: '180deg'
+  }
