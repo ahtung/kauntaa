@@ -19,11 +19,11 @@ $(document).ready ->
     }
     new Counter(options, parseInt($(this).text()))
 
-  $('body').on 'click touchstart', '.increment-button', () ->
+  $('body').on 'click tap', '.increment-button', () ->
     $.get $(this).data('increment-url'), ( data ) ->
       console.log( "Load was performed." )
     , "script"
-  $('body').on 'click touchstart', '.decrement-button', () ->
+  $('body').on 'click tap', '.decrement-button', () ->
     $.get $(this).data('decrement-url'), ( data ) ->
       console.log( "Load was performed." )
     , "script"
