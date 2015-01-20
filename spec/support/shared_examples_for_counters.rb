@@ -56,7 +56,7 @@ RSpec.shared_examples "update counter" do |attribute, expected_value|
 end
 
 RSpec.shared_examples "delete counter" do |expected_count|
-  xit '' do
+  it '' do
     first("[data-counter-id='#{subject.id}'] a.edit-counter").click
     click_on 'x'
     expect(page).to have_selector('.counter', count: expected_count)

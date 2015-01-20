@@ -29,6 +29,7 @@ describe 'User', js: true do
       it_behaves_like 'update counter', :value, 99
       it_behaves_like 'delete counter', 1
     end
+
     context 'of value 5' do
       before :each do
         subject.update_attribute(:value, 5)
@@ -40,7 +41,7 @@ describe 'User', js: true do
       it_behaves_like 'decrement counter', 4
       it_behaves_like 'update counter', :name, 'Dunya'
       it_behaves_like 'update counter', :value, 99
-      it_behaves_like 'delete counter', 5
+      it_behaves_like 'delete counter', 1
     end
   end
 
