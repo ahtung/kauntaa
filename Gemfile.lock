@@ -211,6 +211,7 @@ GEM
       sprockets-rails
     rails-assets-HubSpot--odometer (0.4.7)
     rails-assets-font-awesome (4.2.0)
+    rails-assets-transit (0.2.0)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.5)
@@ -377,6 +378,7 @@ DEPENDENCIES
   rails (= 4.2.0)
   rails-assets-HubSpot--odometer
   rails-assets-font-awesome
+  rails-assets-transit
   rails_12factor
   rspec-rails
   rubocop
