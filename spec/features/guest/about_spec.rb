@@ -9,7 +9,8 @@ describe 'Guest' do
     it 'should see the number of users' do
       create_list(:user, 12)
       visit guest_root_path
-      expect(page).to have_content('1 2')
+      value = first('.counter').text.split(' ').last.to_i
+      expect(page).to have_content(value)
     end
 
     it 'should see motto' do
