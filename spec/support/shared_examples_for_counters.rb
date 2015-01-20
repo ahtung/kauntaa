@@ -25,7 +25,7 @@ RSpec.shared_examples "increment counter" do |expected_value|
     sleep 1
     value = 0
     within "[data-counter-id='#{subject.id}']" do
-      value = first('.counter').text
+      value = first('.counter').text.split(' ').last.to_i
     end
     expect(value).to eq(expected_value)
   end
@@ -39,7 +39,7 @@ RSpec.shared_examples "decrement counter" do |expected_value|
     sleep 1
     value = 0
     within "[data-counter-id='#{subject.id}']" do
-      value = first('.counter').text
+      value = first('.counter').text.split(' ').last.to_i
     end
     expect(value).to eq(expected_value)
   end
@@ -58,7 +58,7 @@ end
 RSpec.shared_examples "delete counter" do |expected_count|
   it '' do
     first("[data-counter-id='#{subject.id}'] a.edit-counter").click
-    click_on 'delete'
+    click_on 'x'
     expect(page).to have_selector('.counter', count: expected_count)
   end
 end

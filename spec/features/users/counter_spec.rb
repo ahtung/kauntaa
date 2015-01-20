@@ -21,28 +21,26 @@ describe 'User', js: true do
     subject { user.counters.first }
 
     context 'of value 0' do
-      it_behaves_like "create counter", 3
-      it_behaves_like "read counter"
-      it_behaves_like "increment counter", 1
-      it_behaves_like "decrement counter", 0
-      it_behaves_like "update counter", :name, 'Dunya'
-      it_behaves_like "update counter", :value, 99
-      it_behaves_like "update counter", :started_at, DateTime.now
-      it_behaves_like "delete counter", 1
+      it_behaves_like 'create counter', 3
+      it_behaves_like 'read counter'
+      it_behaves_like 'increment counter', 1
+      it_behaves_like 'decrement counter', 0
+      it_behaves_like 'update counter', :name, 'Dunya'
+      it_behaves_like 'update counter', :value, 99
+      it_behaves_like 'delete counter', 1
     end
     context 'of value 5' do
       before :each do
         subject.update_attribute(:value, 5)
       end
 
-      it_behaves_like "create counter", 7
-      it_behaves_like "read counter"
-      it_behaves_like "increment counter", 6
-      it_behaves_like "decrement counter", 4
-      it_behaves_like "update counter", :name, 'Dunya'
-      it_behaves_like "update counter", :value, 99
-      it_behaves_like "update counter", :started_at, DateTime.now
-      it_behaves_like "delete counter", 5
+      it_behaves_like 'create counter', 7
+      it_behaves_like 'read counter'
+      it_behaves_like 'increment counter', 6
+      it_behaves_like 'decrement counter', 4
+      it_behaves_like 'update counter', :name, 'Dunya'
+      it_behaves_like 'update counter', :value, 99
+      it_behaves_like 'delete counter', 5
     end
   end
 
