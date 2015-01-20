@@ -19,17 +19,11 @@ $(document).ready ->
     }
     new Counter(options, parseInt($(this).text()))
 
-  $('body').on 'click', '.increment-button', () ->
+  $('body').on 'click touchstart', '.increment-button', () ->
     $.get $(this).data('increment-url'), ( data ) ->
-      alert( "Load was performed." )
+      console.log( "Load was performed." )
     , "script"
-  $('body').on 'click', '.decrement-button', () ->
+  $('body').on 'click touchstart', '.decrement-button', () ->
     $.get $(this).data('decrement-url'), ( data ) ->
-      alert( "Load was performed." )
+      console.log( "Load was performed." )
     , "script"
-
-  # Transit
-  $('.box').transition {
-    perspective: '100px',
-    rotateY: '180deg'
-  }
