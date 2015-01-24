@@ -8,7 +8,9 @@ RSpec.describe 'User', type: :feature do
 
   it 'should be able to logout' do
     visit user_root_path
-    click_on 'Logout'
+    within '.header-item' do
+      click_on 'Logout'
+    end
     expect(page).to have_content('Count anything')
   end
 
