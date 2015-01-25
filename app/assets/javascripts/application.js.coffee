@@ -23,6 +23,7 @@ $(document).ready ->
     $.get $(this).data('increment-url'), ( data ) ->
       console.log( "Load was performed." )
     , "script"
+
   $('body').on 'click', '.decrement-button', () ->
     $.get $(this).data('decrement-url'), ( data ) ->
       console.log( "Load was performed." )
