@@ -25,5 +25,12 @@
   padding:5px 0;
   ul{
     list-style-type:none;
+    &.right{
+      margin-right:1.1rem;
+      margin-bottom:0;
+    }
+    &.left{
+      margin-bottom:0;
+    }
   }
 }
