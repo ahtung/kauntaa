@@ -1,35 +1,53 @@
 class CountersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_counter, only: [:edit, :update, :increment, :decrement, :destroy]
+  after_action :verify_authorized
 
   def new
     @counter = current_user.counters.new
+    authorize @counter
   end
 
   def edit
+    authorize @counter
   end
 
   def create
-    current_user.counters.create(counter_params)
-    redirect_to root_path
+    @counter = current_user.counters.new(counter_params)
+    authorize @counter
+    if @counter.save
+      redirect_to root_path, notice: "Counter created."
+    else
+      redirect_to root_path, alert: "Unable to create counter."
+    end
   end
 
   def update
-    @counter.update(counter_params)
-    redirect_to root_path
+    authorize @counter
+    if @counter.update_attributes(counter_params)
+      redirect_to root_path, notice: "Counter updated."
+    else
+      redirect_to root_path, alert: "Unable to update counter."
+    end
   end
 
   def destroy
-    @counter.destroy
-    redirect_to root_path
+    authorize @counter
+    if @counter.destroy
+      redirect_to root_path, notice: "Counter deleted."
+    else
+      redirect_to root_path, alert: "Unable to delete counter."
+    end
   end
 
   def increment
+    authorize @counter, :update?
     @counter.update_attribute(:value, @counter.clean_value + 1)
     render layout: false
   end
 
   def decrement
+    authorize @counter, :update?
     @counter.update_attribute(:value, @counter.clean_value - 1)
     render layout: false
   end

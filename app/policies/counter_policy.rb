@@ -6,6 +6,14 @@ class CounterPolicy
     @counter = model
   end
 
+  def new?
+    @counter.user == @current_user
+  end
+
+  def edit?
+    @counter.user == @current_user
+  end
+
   def create?
     @counter.user == @current_user
   end
