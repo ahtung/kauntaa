@@ -22,6 +22,7 @@ gem 'thin'
 gem 'rails-assets-HubSpot--odometer'
 gem 'rails-assets-font-awesome'
 gem 'rails-assets-jquery.transit'
+gem 'pundit'
 
 group :production do
   gem 'rails_12factor'
