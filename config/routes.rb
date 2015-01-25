@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'pages/about'
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations' }
 
   authenticated :user do
     root 'pages#home', as: :user_root
