@@ -16,7 +16,7 @@
       position:absolute;
       z-index:1;
       top:0;
-      &:hover{
+      &:active{
         background-color:scale-color($green, $lightness: -10%);
       }
     }
@@ -52,7 +52,7 @@
   .decrement-button {
     background-color:$red;
     height: 20px;
-    &:hover{
+    &:active{
       background-color:scale-color($red, $lightness: -30%);
     }
   }
