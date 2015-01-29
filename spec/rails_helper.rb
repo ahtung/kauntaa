@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'shoulda/matchers'
 require 'helpers'
 require 'capybara/poltergeist'
+require 'pundit/rspec'
 Dir["./spec/support/**/*.rb"].sort.each { |f| require f}
 Capybara.javascript_driver = :poltergeist
 
