@@ -19,12 +19,12 @@ $(document).ready ->
     }
     new Counter(options, parseInt($(this).text()))
 
-  $('body').on 'click', '.increment-button', () ->
+  $('.counter-item').on 'click', '.increment-button', () ->
     $.get $(this).data('increment-url'), ( data ) ->
       console.log( "Load was performed." )
     , "script"
 
-  $('body').on 'click', '.decrement-button', () ->
+  $('.counter-item').on 'click', '.decrement-button', () ->
     $.get $(this).data('decrement-url'), ( data ) ->
       console.log( "Load was performed." )
     , "script"
