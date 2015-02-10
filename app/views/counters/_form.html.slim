@@ -20,5 +20,5 @@
       = f.date_field :created_at_date, value: @counter.created_at.in_time_zone('Istanbul').to_date
     .field
       = f.label :created_at
-      = f.time_field :created_at_time, value: @counter.created_at.in_time_zone('Istanbul').strftime('%H:%M')
+      = f.time_field :created_at_time, value: @counter.created_at.in_time_zone('Istanbul').strftime('%H:%M'), :ampm => false
   .actions = f.submit 'Save', class: 'button'
