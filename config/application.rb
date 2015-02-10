@@ -16,7 +16,7 @@ Bundler.require(*Rails.groups)
 
 module Kauntaa
   class Application < Rails::Application
-    config.time_zone = 'Istanbul'
+    # config.time_zone = 'Istanbul'
     config.active_record.raise_in_transactional_callbacks = true
     config.middleware.use Rack::GoogleAnalytics, tracker: 'UA-17049541-18'
   end
