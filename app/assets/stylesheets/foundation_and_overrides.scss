@@ -63,7 +63,7 @@
 // Since the typical default browser font-size is 16px, that makes the calculation for grid size.
 // If you want your base font-size to be different and not have it affect the grid breakpoints,
 // set $rem-base to $base-font-size and make sure $base-font-size is a px value.
-// $base-font-size: 100%;
+ $base-font-size: 95%;
 
 // The $base-font-size is 100% while $base-line-height is 150%
 // $base-line-height: 150%;
@@ -79,9 +79,9 @@ $include-html-global-classes: $include-html-classes;
 // $include-html-grid-classes: $include-html-classes;
 // $include-xl-html-grid-classes: false;
 
-// $row-width: rem-calc(1000);
+$row-width: 100%;
 // $total-columns: 12;
-$column-gutter: rem-calc(0);
+//$column-gutter: rem-calc(20);
 
 // c. Global
 // - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -96,7 +96,7 @@ $column-gutter: rem-calc(0);
 // $font-weight-bold: bold !default;
 
 // We use these as default colors throughout
-$primary-color: #E4EDEA;
+$primary-color: #BF8034;
 // $secondary-color: #e7e7e7;
 // $alert-color: #f04124;
 // $success-color: #43AC6A;
@@ -109,9 +109,12 @@ $primary-color: #E4EDEA;
 // $vapor       : #F6F6F6;
 // $white-smoke : #F5F5F5;
 // $silver      : #EFEFEF;
-// $smoke       : #EEEEEE;
+//$smoke       : #EEEEEE;
 // $gainsboro   : #DDDDDD;
-// $iron        : #CCCCCC;
+$iron        : #C0C0C0;
+$green       : #B2C441;
+$red         : #F25361;
+$brown       : #A5836D;
 // $base        : #AAAAAA;
 // $aluminum    : #999999;
 // $jumbo       : #888888;
@@ -120,12 +123,12 @@ $primary-color: #E4EDEA;
 // $charcoal    : #555555;
 // $tuatara     : #444444;
 // $oil         : #333333;
-$jet         : #222222;
-$black       : #000000;
+//$jet         : #222222;
+//$black       : #000000;
 
 // We use these to control various global styles
-// $body-bg: $white;
-// $body-font-color: $jet;
+$body-bg: $iron;
+$body-font-color: $brown;
 // $body-font-family: $font-family-sans-serif;
 // $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
@@ -140,7 +143,7 @@ $black       : #000000;
 // $last-child-float: $opposite-direction;
 
 // We use these to make sure border radius matches unless we want it different.
-$global-radius: 10px;
+$global-radius: 2em;
 // $global-rounded: 1000px;
 
 // We use these to control inset shadow shiny edges and depressions.
@@ -198,7 +201,7 @@ $global-radius: 10px;
 // $header-font-family: $body-font-family;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
-// $header-font-color: $jet;
+$header-font-color: $green;
 // $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 // $header-bottom-margin: .5rem;
@@ -378,7 +381,7 @@ $global-radius: 10px;
 
 // We use this to control the maximum number of block grid elements per row
 // $block-grid-elements: 12;
-// $block-grid-default-spacing: rem-calc(20);
+$block-grid-default-spacing: rem-calc(20);
 // $align-block-grid-to-grid: false;
 
 // Enables media queries for block-grid classes. Set to false if writing semantic HTML.
@@ -951,7 +954,7 @@ $global-radius: 10px;
 // $include-html-panel-classes: $include-html-classes;
 
 // We use these to control the background and border styles
-$panel-bg: $jet;
+$panel-bg: #1E3340;
 // $panel-border-style: solid;
 // $panel-border-size: 1px;
 
@@ -1365,7 +1368,7 @@ $panel-bg: $jet;
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin
-// $topbar-height: 45px;
+$topbar-height: rem-calc(320);
 // $topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar

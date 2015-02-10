@@ -1,16 +1,19 @@
-nav class="top-bar" data-topbar=true role="navigation"
-  ul class="title-area"
-    li class="name"
-      h1= link_to 'Kauntaa', user_root_path
-    li class="toggle-topbar menu-icon"
-      a href="#"
-        span Menu
-
-  section class="top-bar-section"
-    ul class="right"
-      li= link_to 'About', pages_about_path
+.row.header-row
+  .column.small-12.show-for-small
+    .navigation
       - if user_signed_in?
-        li class="has-dropdown"
-          a href="#" User
-          ul class="dropdown"
-            li= link_to 'Sign out', destroy_user_session_path, method: :delete
+        ul.left
+          li
+            i.fa.fa-pencil-square-o.fa-lg
+            = link_to ' New', new_user_counter_path(current_user)
+        ul.right
+          li = link_to('Logout ', destroy_user_session_path, method: :delete)
+  .columns.small-12.medium-6.large-3.text-center.counter-item.header
+    = render partial: 'counters/counter', locals: { counter: nil }
+  .columns.hide-for-small.medium-6.large-9.header-item
+    .radius
+      h1.title Kauntaa
+      p.sub-title= 'More text to followto followto followto followto followto'
+      - if user_signed_in?
+        = link_to 'new', new_user_counter_path(current_user)
+        = link_to('Logout', destroy_user_session_path, method: :delete)

@@ -1,6 +1,9 @@
-h1 Editing counter
+.row
+  .columns.small-12
+    h1
+      = "Editing counter for #{@counter.name}"
+      = link_to 'x', user_counter_path, method: :delete, data: {confirm: "Sure?"}
 
-== render 'form'
+    == render 'form'
 
-p = link_to 'To homepage', root_path
-p = link_to 'delete', user_counter_path, method: :delete
+    p= link_to 'Cancel', root_path, class: 'button'

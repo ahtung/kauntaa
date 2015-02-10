@@ -1,15 +1,4 @@
-ul.small-block-grid-1.medium-block-grid-3.large-block-grid-3
-  - @counters.each do |counter|
-    li data-counter-id="#{counter.id}"
-      .panel.radius
-        h1
-          = link_to edit_user_counter_path(current_user, counter) do
-            = truncate(counter.name, length: 9)
-            sup
-              i.fa.fa-pencil.edit-counter
-        p= link_to '', increment_user_counter_path(current_user, counter), remote: true, class: 'counter-button'
-        .counter
-          = counter.clean_value
 .row
   .columns.small-12
-    = link_to 'new', new_user_counter_path(current_user)
+    ul.small-block-grid-1.medium-block-grid-2.large-block-grid-4
+      = render collection: @counters, partial: 'counters/counter_li', as: :counter

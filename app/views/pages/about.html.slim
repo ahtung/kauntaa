@@ -1,6 +1,14 @@
-p Count anything
-p = image_tag 'http://www.hsi.usda.gov/CornEarWorm/image/counter.jpg'
-- unless user_signed_in?
-  = link_to 'Sign in with Google', user_omniauth_authorize_path(:google_oauth2)
-- else
-  = link_to 'Home', user_root_path
+.row
+  .columns.small-12.text-center
+    .box style='width:20px;height:20px;background-color:red;'
+    h1 Kauntaa
+    h1.subheader Count anything
+    p
+      | Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer consequat sapien a lectus gravida euismod. Sed vitae nisl non odio viverra accumsan. Curabitur nisi neque, egestas sed, vulputate sit amet, luctus vitae, dolor. Cras lacus massa, sagittis ut, volutpat consequat, interdum a, nulla. Vivamus rhoncus molestie nulla. Ut porttitor turpis sit amet turpis. Nam suscipit, justo quis ullamcorper sagittis, mauris diam dictum elit, suscipit blandit ligula ante sit amet mauris. Integer id arcu. Aenean scelerisque. Sed a purus. Pellentesque nec nisl eget metus varius tempor. Curabitur tincidunt iaculis lectus. Aliquam molestie velit id urna. Suspendisse in ante ac nunc commodo placerat.
+
+      | Morbi gravida posuere est. Fusce id augue. Sed facilisis, felis quis ornare consequat, neque risus faucibus dui, quis ullamcorper tellus lacus vitae felis. Phasellus ac dolor. Integer ante diam, consectetuer in, tempor vitae, volutpat in, enim. Integer diam felis, semper at, iaculis ut, suscipit quis, dolor. Vestibulum semper, velit et tincidunt vehicula, nisl risus eleifend ipsum, vel consectetuer enim dolor id magna. Praesent hendrerit urna ac lacus. Maecenas porttitor ipsum sed orci. In ac odio vel lorem tincidunt pellentesque. Nam tempor pulvinar turpis. Nunc in leo in libero ultricies interdum. Proin ut urna. Donec ultricies nunc dapibus justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent vulputate, lectus pulvinar nonummy eleifend, sapien urna posuere metus, vel auctor risus odio eu augue. Cras vitae dolor. Phasellus dolor. Etiam enim. Donec erat felis, tincidunt quis, luctus in, faucibus at, est.
+
+    - unless user_signed_in?
+      = link_to 'Sign in with Google', user_omniauth_authorize_path(:google_oauth2), class: 'button'
+    - else
+      = link_to 'Home', user_root_path, class: 'button'

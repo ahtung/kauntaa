@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :counters do
       member do
         get 'increment'
+        get 'decrement'
       end
     end
   end

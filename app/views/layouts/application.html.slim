@@ -10,10 +10,8 @@ html lang="en"
     = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tag
 
-  body.metal
+  body
     = render 'navigation'
-    .row.text-center#content
-      .columns.small-11.small-centered
-        == yield
+    == yield
     = javascript_include_tag "application"
 

@@ -13,4 +13,12 @@
   .field
     = f.label :value
     = f.text_field :value
-  .actions = f.submit 'Save'
+
+  - if @counter.persisted?
+    .field
+      = f.label :created_at
+      = f.date_field :created_at
+    .field
+      = f.label :created_at
+      = f.time_field :created_at, ignore_date: true
+  .actions = f.submit 'Save', class: 'button'

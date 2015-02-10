@@ -192,6 +192,8 @@ GEM
       websocket-driver (>= 0.2.0)
     powerpack (0.0.9)
     procto (0.0.2)
+    pundit (0.3.0)
+      activesupport (>= 3.0.0)
     rack (1.6.0)
     rack-google-analytics (1.2.0)
       actionpack
@@ -211,6 +213,9 @@ GEM
       sprockets-rails
     rails-assets-HubSpot--odometer (0.4.7)
     rails-assets-font-awesome (4.2.0)
+    rails-assets-jquery (2.1.3)
+    rails-assets-jquery.transit (0.9.12)
+      rails-assets-jquery
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.5)
@@ -233,10 +238,10 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
-    reek (1.6.0)
+    reek (1.6.3)
       parser (~> 2.2.0.pre.7)
       rainbow (>= 1.99, < 3.0)
-      unparser (~> 0.1.16)
+      unparser (~> 0.2.2)
     responders (2.0.2)
       railties (>= 4.2.0.alpha, < 5)
     rspec-core (3.1.7)
@@ -267,11 +272,11 @@ GEM
       sexp_processor (~> 4.0)
     ruby_parser (3.1.3)
       sexp_processor (~> 4.1)
-    rubycritic (1.2.0)
+    rubycritic (1.2.1)
       flay (= 2.4.0)
       flog (= 4.2.1)
-      parser (>= 2.2.0.pre.5, < 3.0)
-      reek (= 1.6.0)
+      parser (>= 2.2.0, < 3.0)
+      reek (= 1.6.3)
       ruby2ruby (>= 2.1.1, < 3.0)
       virtus (~> 1.0)
     sass (3.3.14)
@@ -284,7 +289,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    sexp_processor (4.4.4)
+    sexp_processor (4.4.5)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
     simplecov (0.9.1)
@@ -326,12 +331,13 @@ GEM
     uglifier (2.7.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    unparser (0.1.16)
+    unparser (0.2.2)
       abstract_type (~> 0.0.7)
       adamantium (~> 0.2.0)
       concord (~> 0.1.5)
+      diff-lcs (~> 1.2.5)
       equalizer (~> 0.0.9)
-      parser (~> 2.2.0.pre.7)
+      parser (~> 2.2.0.2)
       procto (~> 0.0.2)
     virtus (1.0.4)
       axiom-types (~> 0.1)
@@ -372,10 +378,12 @@ DEPENDENCIES
   omniauth-google-oauth2
   pg
   poltergeist
+  pundit
   rack-google-analytics
   rails (= 4.2.0)
   rails-assets-HubSpot--odometer
   rails-assets-font-awesome
+  rails-assets-jquery.transit
   rails_12factor
   rspec-rails
   rubocop
