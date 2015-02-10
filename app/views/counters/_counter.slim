@@ -8,12 +8,10 @@
       .row
         .columns.small-6.text-right
           .counter= counter.clean_value
-        .columns.small-6.text-left
-          b= counter.name
+        .columns.small-6.text-left = truncate(counter.name, length: 14)
       .row
         .columns.small-6.text-right since
-        .columns.small-6.text-left
-          b= time_ago_in_words(counter.created_at)
+        .columns.small-6.text-left = time_ago_in_words(counter.created_at)
   .decrement-button data-decrement-url="#{ decrement_user_counter_path(current_user, counter) }"
     = link_to '', increment_user_counter_path(current_user, counter), remote: true
 - else
@@ -27,10 +25,8 @@
         .row
           .columns.small-6.text-right
             .counter= User.all.count
-          .columns.small-6.text-left
-            strong Users
+          .columns.small-6.text-left Users
         .row
           .columns.small-6.text-right since
-          .columns.small-6.text-left
-            b= time_ago_in_words(DateTime.new(2015,1,11))
+          .columns.small-6.text-left = time_ago_in_words(DateTime.new(2015,1,11))
     .header-bottom
