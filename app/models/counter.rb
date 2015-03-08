@@ -4,6 +4,7 @@ class Counter < ActiveRecord::Base
   before_save :set_name
   before_update :set_creation_date
 
+  attr_accessor :created_at_date, :created_at_time
 
 
   def clean_value
