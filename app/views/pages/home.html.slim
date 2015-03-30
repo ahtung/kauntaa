@@ -1,4 +1,11 @@
-.row
-  .columns.small-12
-    ul.small-block-grid-1.medium-block-grid-2.large-block-grid-4
-      = render collection: @counters, partial: 'counters/counter_li', as: :counter
+- row_and_col_for(@counters.count).each do |row, col|
+  - row.times do
+    .row
+      - col.times do
+        .columns class="small-#{12 / col}"
+          p TEst
+
+/ .row
+/   .columns.small-12
+/     ul.small-block-grid-1.medium-block-grid-2.large-block-grid-4
+/       = render collection: @counters, partial: 'counters/counter_li', as: :counter

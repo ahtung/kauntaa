@@ -1,32 +1,32 @@
-- if counter
-  .counter-button-container
-    .increment-button data-increment-url="#{ increment_user_counter_path(current_user, counter) }"
-    = link_to edit_user_counter_path(current_user, counter), class: 'edit-counter' do
-      i.fa.fa-info.info-link
-  .counter-data
-    .description-text
-      .row
-        .columns.small-6.text-right
-          .counter= counter.clean_value
-        .columns.small-6.text-left = truncate(counter.name, length: 14)
-      .row
-        .columns.small-6.text-right since
-        .columns.small-6.text-left = time_ago_in_words(counter.created_at)
-  .decrement-button data-decrement-url="#{ decrement_user_counter_path(current_user, counter) }"
-    = link_to '', increment_user_counter_path(current_user, counter), remote: true
-- else
-  = link_to pages_about_path, class: 'about-link' do
-    .counter-button-container
-      .header-top
-        span.edit-counter
-          i.fa.fa-info.info-link
-    .counter-data
-      .description-text
-        .row
-          .columns.small-6.text-right
-            .counter= User.all.count
-          .columns.small-6.text-left Users
-        .row
-          .columns.small-6.text-right since
-          .columns.small-6.text-left = time_ago_in_words(DateTime.new(2015,1,11))
-    .header-bottom
+/ - if counter
+/   .counter-button-container
+/     .increment-button data-increment-url="#{ increment_user_counter_path(current_user, counter) }"
+/     = link_to edit_user_counter_path(current_user, counter), class: 'edit-counter' do
+/       i.fa.fa-info.info-link
+/   .counter-data
+/     .description-text
+/       .row
+/         .columns.small-6.text-right
+/           .counter= counter.clean_value
+/         .columns.small-6.text-left = truncate(counter.name, length: 14)
+/       .row
+/         .columns.small-6.text-right since
+/         .columns.small-6.text-left = time_ago_in_words(counter.created_at)
+/   .decrement-button data-decrement-url="#{ decrement_user_counter_path(current_user, counter) }"
+/     = link_to '', increment_user_counter_path(current_user, counter), remote: true
+/ - else
+/   = link_to pages_about_path, class: 'about-link' do
+/     .counter-button-container
+/       .header-top
+/         span.edit-counter
+/           i.fa.fa-info.info-link
+/     .counter-data
+/       .description-text
+/         .row
+/           .columns.small-6.text-right
+/             .counter= User.all.count
+/           .columns.small-6.text-left Users
+/         .row
+/           .columns.small-6.text-right since
+/           .columns.small-6.text-left = time_ago_in_words(DateTime.new(2015,1,11))
+/     .header-bottom
