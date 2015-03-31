@@ -4,7 +4,7 @@ module ApplicationHelper
     col = row
     col_or_row = true
     loop do
-      break if col * row >= n
+      break if col * row > n
       col += 1 if col_or_row
       row += 1 unless col_or_row
       col_or_row = !col_or_row

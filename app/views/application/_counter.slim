@@ -3,7 +3,7 @@
   div.text-center style="background-color:#{counter.palette.background_color};height:100%;"
     p.responsive-text style="color:#{counter.palette.foreground_color};line-height:224px;font-size:224px;height:70%;"
       = counter.value
-    p style="color:#{counter.palette.text_color};line-height:47px;font-size:47px;"
-      = "#{counter.name} since #{counter.created_at}"
+    p.responsive-text style="color:#{counter.palette.text_color};line-height:47px;font-size:47px;"
+      = "#{counter.name} since #{ time_ago_in_words(counter.created_at) }"
 - else
   div.text-center style="background-color:#{palette.background_color};height:100%;"

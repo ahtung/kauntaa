@@ -12,7 +12,6 @@ describe 'User', js: true do
     before :each do
       @timeago = time_ago_in_words(user.counters.first.created_at)
       @created_at = user.counters.first.created_at
-      pp user.counters.first.created_at
       visit edit_user_counter_path(user, user.counters.first)
       fill_in 'counter_value', with: 5
       first('input[type=submit]').click
@@ -20,7 +19,6 @@ describe 'User', js: true do
 
     it 'should be able to edit it and have the time unchanged unles user set it' do
       user.reload
-      pp user.counters.first.created_at
       expect(page).to have_content("#{@timeago}")
     end
 
