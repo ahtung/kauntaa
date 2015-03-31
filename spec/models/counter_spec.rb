@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Counter, type: :model do
   it { should belong_to(:user) }
-  it { should belongs_to(:palette) }
+  it { should belong_to(:palette) }
 
   it '#editable_attributes' do
     counter = create(:counter)

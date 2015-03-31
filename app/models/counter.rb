@@ -1,5 +1,6 @@
 class Counter < ActiveRecord::Base
   belongs_to :user
+  belongs_to :palette
 
   before_save :set_name
   before_update :set_creation_date
