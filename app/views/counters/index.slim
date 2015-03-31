@@ -14,4 +14,4 @@
           - if c == 0 && r == 0
             = render 'new_counter'
           - else
-            = render 'counter', counter: @counters[(r * c -1) + c]
+            = render 'counter', counter: @counters[(col * r) + c]
