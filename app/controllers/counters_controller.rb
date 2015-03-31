@@ -3,6 +3,11 @@ class CountersController < ApplicationController
   before_action :set_counter, only: [:edit, :update, :increment, :decrement, :destroy]
   after_action :verify_authorized
 
+  def index
+    authorize Counter, :index?
+    @counters = current_user.counters
+  end
+
   def new
     @counter = current_user.counters.new
     authorize @counter

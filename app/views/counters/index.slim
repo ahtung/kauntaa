@@ -1,0 +1,9 @@
+- row_and_col_for(@counters.count).each do |row, col|
+  - row.times do |r|
+    .row style="height:#{100 / row}%"
+      - col.times do |c|
+        .columns class="small-#{12 / col}"
+          - if c == 0 && r == 0
+            = render 'new_counter'
+          - else
+            = render 'counter', counter: @counters[(r * c -1) + c]
