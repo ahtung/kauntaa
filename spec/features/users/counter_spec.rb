@@ -3,7 +3,7 @@ require 'rails_helper'
 
 describe 'User', js: true do
   let!(:palette) { create(:palette) }
-  let(:user) { create(:user) }
+  let(:user) { create(:user, :with_counter_a_month_old) }
 
   before :each do
     login_as(user)
