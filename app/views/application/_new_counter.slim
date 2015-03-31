@@ -1,4 +1,5 @@
-p.text-center style='line-height:59px;font-size:59px;'
+- palette = Palette.all.sample
+.text-center style='font-size:59px;background-color:#{palette.background_color};color:#{palette.foreground_color};height:100%;'
   = image_tag 'add.svg'
-  div.text-center style='line-height:59px;font-size:59px;'
-    = link_to 'Add counter', new_user_counter_path(current_user)
+  div.text-center style='font-size:59px;'
+    = link_to 'Add counter', new_user_counter_path(current_user), style: "color:#{palette.text_color};"
