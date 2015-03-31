@@ -15,22 +15,22 @@ class CounterPolicy
   end
 
   def edit?
-    counter.user == current_user
+    @counter.user == current_user
   end
 
   def create?
-    counter.user == current_user
+    @counter.user == current_user
   end
 
   def show?
-    counter.user == current_user
+    @counter.user == current_user
   end
 
   def update?
-    counter.user == current_user
+    @counter.user == current_user
   end
 
   def destroy?
-    counter.user == current_user
+    @counter.user == current_user
   end
 end

@@ -2,7 +2,7 @@
   - row.times do |r|
     .row style="height:#{100 / row}%"
       - col.times do |c|
-        .columns class="small-#{12 / col}"
+        .columns class="small-#{12 / col}" style="height:100%"
           - if c == 0 && r == 0
             = render 'new_counter'
           - else

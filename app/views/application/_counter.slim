@@ -1,2 +1,5 @@
-p= counter.value
-p= counter.name
+div style="background-color:#{counter.palette.background_color};height:100%;"
+  p style="color:#{counter.palette.foreground_color};"
+    = counter.value
+  p style="color:#{counter.palette.text_color};"
+    = counter.name
