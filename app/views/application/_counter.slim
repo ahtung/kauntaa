@@ -1,9 +1,16 @@
 - palette = Palette.all.sample
 - if counter
-  div.text-center style="background-color:#{counter.palette.background_color};height:100%;"
-    p.responsive-text style="color:#{counter.palette.foreground_color};line-height:224px;font-size:224px;height:70%;"
-      = counter.value
-    p.responsive-text style="color:#{counter.palette.text_color};line-height:47px;font-size:47px;"
-      = "#{counter.name} since #{ time_ago_in_words(counter.created_at) }"
+  .counter-item data-counter-id="#{counter.id}" style="background-color:#{counter.palette.background_color};height:100%;"
+    .counter-button-container
+      .increment-button data-increment-url="#{ increment_user_counter_path(current_user, counter) }"
+        = link_to edit_user_counter_path(current_user, counter), class: 'edit-counter' do
+          i.fa.fa-info.info-link
+      .counter-data style='background-color:transparent;'
+        .description-text.text-center
+          .row.responsive-text style="color:#{counter.palette.foreground_color};"
+            .columns.small-12
+              .counter= counter.clean_value
+          .row.responsive-text style="color:#{counter.palette.text_color};"
+            .columns.small-12= "#{truncate(counter.name, length: 14)} since #{time_ago_in_words(counter.created_at)}"
 - else
   div.text-center style="background-color:#{palette.background_color};height:100%;"
