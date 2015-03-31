@@ -1,5 +1,9 @@
-div.text-center style="background-color:#{counter.palette.background_color};height:100%;"
-  p style="color:#{counter.palette.foreground_color};line-height:224px;font-size:224px;"
-    = counter.value
-  p style="color:#{counter.palette.text_color};line-height:47px;font-size:47px;"
-    = counter.name
+- palette = Palette.all.sample
+- if counter
+  div.text-center style="background-color:#{counter.palette.background_color};height:100%;"
+    p style="color:#{counter.palette.foreground_color};line-height:224px;font-size:224px;"
+      = counter.value
+    p style="color:#{counter.palette.text_color};line-height:47px;font-size:47px;"
+      = counter.name
+- else
+  div.text-center style="background-color:#{palette.background_color};height:100%;"
