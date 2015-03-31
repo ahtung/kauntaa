@@ -21,6 +21,7 @@ gem 'newrelic_rpm'
 gem 'thin'
 gem 'rails-assets-HubSpot--odometer'
 gem 'rails-assets-font-awesome'
+gem 'rails-assets-FitText.js'
 gem 'rails-assets-jquery.transit'
 gem 'pundit'
 

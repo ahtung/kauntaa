@@ -211,6 +211,8 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.0)
       sprockets-rails
+    rails-assets-FitText.js (1.2.0)
+      rails-assets-jquery (>= 1.6)
     rails-assets-HubSpot--odometer (0.4.7)
     rails-assets-font-awesome (4.2.0)
     rails-assets-jquery (2.1.3)
@@ -381,6 +383,7 @@ DEPENDENCIES
   pundit
   rack-google-analytics
   rails (= 4.2.0)
+  rails-assets-FitText.js
   rails-assets-HubSpot--odometer
   rails-assets-font-awesome
   rails-assets-jquery.transit
