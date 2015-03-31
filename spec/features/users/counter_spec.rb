@@ -2,6 +2,7 @@
 require 'rails_helper'
 
 describe 'User', js: true do
+  let!(:palette) { create(:palette) }
   let(:user) { create(:user) }
 
   before :each do
