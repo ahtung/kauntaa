@@ -3,11 +3,15 @@
 #= require foundation
 #= require odometer
 #= require jquery.transit
+#= require FitText
 #= require counter
 
 $(document).ready ->
   # Foundation
   $(document).foundation()
+
+  # FitText
+  $(".responsive-text").fitText(0.5)
 
   # Counters
   $('.counter').map (index) ->
