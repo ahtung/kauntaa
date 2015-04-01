@@ -1,9 +1,6 @@
-.row
+.row style='background-color:#{@palette.background_color};height:100%;'
   .columns.small-12
-    h1
-      = "Editing counter for #{@counter.name}"
-      = link_to 'x', user_counter_path, method: :delete, data: {confirm: "Sure?"}
-
+    = link_to 'Back', :back, style: "color:#{@palette.text_color};"
+    h1 style="color:#{@palette.foreground_color};" Tell me about your counter:
     == render 'form'
-
-    p= link_to 'Cancel', guest_root_path, class: 'button'
+    = link_to 'x', user_counter_path, method: :delete, data: {confirm: "Sure?"}

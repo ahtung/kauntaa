@@ -1,4 +1,3 @@
-- palette = Palette.all.sample
 - if counter
   .counter-item data-counter-id="#{counter.id}" style="background-color:#{counter.palette.background_color};height:100%;"
     .counter-button-container
@@ -10,7 +9,7 @@
           .row.responsive-text style="color:#{counter.palette.foreground_color};"
             .columns.small-12
               .counter= counter.clean_value
-          .row style="color:white;"
+          .row style="color:#{counter.palette.foreground_color};"
             .columns.small-12= "#{truncate(counter.name, length: 14)} since #{time_ago_in_words(counter.created_at)}".html_safe
 - else
-  div.text-center style="background-color:#{palette.background_color};height:100%;"
+  div.text-center style="background-color:#{@palette.background_color};height:100%;"
