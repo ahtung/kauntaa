@@ -6,8 +6,9 @@
     .text-center style='background-color:transparent;margin-top:10%;'
       .row style="color:#{counter.palette.foreground_color};"
         .columns.small-12
-          .counter.responsive-text= counter.clean_value
-      .row style="color:#{counter.palette.foreground_color};"
+          .counter style='font-size:30px;'
+            = counter.clean_value
+      .row style="color:#{counter.palette.text_color};"
         .columns.small-12
           = "#{truncate(counter.name, length: 14)} since #{time_ago_in_words(counter.created_at)}".html_safe
 - else

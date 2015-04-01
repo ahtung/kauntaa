@@ -1,16 +1,8 @@
-.row.show-for-small style="height:50%"
-  - @counters.each_with_index do |counter, index|
-    .columns.small-12 style="height:100%"
-      - if index.zero?
-        = render 'new_counter'
-      - else
-        = render 'counter', counter: counter
-
 - row_and_col_for(@counters.count).each do |row, col|
   - row.times do |r|
-    .row.hide-for-small style="height:#{100 / row}%"
+    .row style="height:#{100 / row}%"
       - col.times do |c|
-        .columns class="small-#{12 / col}" style="height:100%"
+        .columns.small-12 class="medium-#{12 / col}" style="height:100%"
           - if c == 0 && r == 0
             = render 'new_counter'
           - else
