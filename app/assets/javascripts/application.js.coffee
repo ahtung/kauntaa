@@ -18,17 +18,16 @@ $(document).ready ->
     options = {
       el: $(this)[0],
       format: '',
-      duration: 200,
-      theme: 'minimal'
     }
-    new Counter(options, parseInt($(this).text()))
+    window.counters = []
+    window.counters.push new Counter(options, parseInt($(this).text()))
 
-  $('.counter-item').on 'click', '.increment-button', () ->
+  $('body').on 'click', '.increment-button', () ->
     $.get $(this).data('increment-url'), ( data ) ->
       console.log( "Load was performed." )
     , "script"
 
-  $('.counter-item').on 'click', '.decrement-button', () ->
+  $('body').on 'click', '.decrement-button', () ->
     $.get $(this).data('decrement-url'), ( data ) ->
       console.log( "Load was performed." )
     , "script"

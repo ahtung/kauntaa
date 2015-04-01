@@ -3,13 +3,12 @@
     div
       = link_to edit_user_counter_path(current_user, counter), class: 'edit-counter' do
         i.fa.fa-info.info-link
-    div style='background-color:transparent;'
-      .text-center
-        .row style="color:#{counter.palette.foreground_color};margin-top:5%;"
-          .columns.small-12
-            .responsive-text= counter.clean_value
-        .row style="color:#{counter.palette.foreground_color};"
-          .columns.small-12
-            = "#{truncate(counter.name, length: 14)} since #{time_ago_in_words(counter.created_at)}".html_safe
+    .text-center style='background-color:transparent;margin-top:10%;'
+      .row style="color:#{counter.palette.foreground_color};"
+        .columns.small-12
+          .counter.responsive-text= counter.clean_value
+      .row style="color:#{counter.palette.foreground_color};"
+        .columns.small-12
+          = "#{truncate(counter.name, length: 14)} since #{time_ago_in_words(counter.created_at)}".html_safe
 - else
   div.text-center style="background-color:#{Palette.all.sample.background_color};height:100%;"
