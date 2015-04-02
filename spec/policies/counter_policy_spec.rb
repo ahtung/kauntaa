@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 describe CounterPolicy do
   subject { described_class }
 
