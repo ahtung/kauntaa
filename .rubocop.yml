@@ -8,4 +8,4 @@ AllCops:
   RunRailsCops: true
 
 Style/LineLength:
-  Max: 120
+  Max: 150
