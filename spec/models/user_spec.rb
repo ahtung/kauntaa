@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
       expect(User.count).to be(1)
     end
 
-    it "should return user if exists" do
+    it 'should return user if exists' do
       user = create(:user)
       expect(User.find_for_google_oauth2(omniauth_hash(user.email, user.password), nil)).to eq(user)
     end
