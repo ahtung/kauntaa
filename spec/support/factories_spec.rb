@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Factory Girl' do
   FactoryGirl.factories.map(&:name).each do |factory_name|
     describe "#{factory_name} factory" do
-
       it 'is valid' do
         factory = FactoryGirl.build(factory_name)
         if factory.respond_to?(:valid?)
@@ -12,7 +11,6 @@ RSpec.describe 'Factory Girl' do
           end
         end
       end
-
       FactoryGirl.factories[factory_name].
         definition.defined_traits.map(&:name).each do |trait_name|
         context "with trait #{trait_name}" do
