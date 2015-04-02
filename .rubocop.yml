@@ -1,2 +1,11 @@
 Documentation:
   Enabled: false
+
+AllCops:
+  Excludes:
+    - db/schema.rb
+    - bin/*
+  RunRailsCops: true
+
+Style/LineLength:
+  Max: 120
