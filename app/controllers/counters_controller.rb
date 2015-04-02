@@ -1,3 +1,4 @@
+# CountersController
 class CountersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_counter, only: [:edit, :update, :increment, :decrement, :destroy]

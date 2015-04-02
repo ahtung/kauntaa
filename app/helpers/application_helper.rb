@@ -1,3 +1,4 @@
+# ApplicationHelper
 module ApplicationHelper
   # returns row and col count given n
   def row_and_col_for(n)

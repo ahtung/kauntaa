@@ -1,3 +1,4 @@
+# CounterPolicy
 class CounterPolicy
   attr_reader :current_user, :model
 
