@@ -19,7 +19,7 @@ describe 'User', js: true, skip: true do
 
     it 'should be able to edit it and have the time unchanged unles user set it' do
       user.reload
-      expect(page).to have_content("#{@timeago}")
+      expect(page).to have_content(@timeago)
     end
 
     it 'should be able to edit it and have the time unchanged unles user set it' do
