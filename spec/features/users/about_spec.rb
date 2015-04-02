@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User' do
+describe 'User', skip: true do
   before :each do
     user = create(:user)
     login_as user

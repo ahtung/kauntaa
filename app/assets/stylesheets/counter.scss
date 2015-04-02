@@ -10,18 +10,17 @@
     height: 90px;
     position:relative;
     .increment-button {
-      background-color:$green;
       width:100%;
       height:100%;
       position:absolute;
       z-index:1;
       top:0;
       &:active{
-        background-color:scale-color($green, $lightness: -10%);
+
       }
     }
     .header-top {
-      background-color:$green;
+
       width:100%;
       height:100%;
       position:absolute;
@@ -33,13 +32,13 @@
       z-index:5;
       top:1.7em;
       .info-link{
-        background-color:$white;
+
         border-radius:2em;
         width:2em;
         height:2em;
         line-height:2em;
         &:hover{
-          color:scale-color($red, $lightness: -20%);;
+
         }
       }
     }
@@ -50,14 +49,14 @@
     min-height: 70px;
   }
   .decrement-button {
-    background-color:$red;
+
     height: 20px;
     &:active{
-      background-color:scale-color($red, $lightness: -30%);
+
     }
   }
   .header-bottom {
-    background-color:$red;
+
     height: 20px;
   }
 }

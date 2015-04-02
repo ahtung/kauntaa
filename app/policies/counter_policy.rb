@@ -1,3 +1,4 @@
+# CounterPolicy
 class CounterPolicy
   attr_reader :current_user, :model
 
@@ -6,27 +7,31 @@ class CounterPolicy
     @counter = model
   end
 
+  def index?
+    current_user
+  end
+
   def new?
-    @counter.user == @current_user
+    @counter.user == current_user
   end
 
   def edit?
-    @counter.user == @current_user
+    @counter.user == current_user
   end
 
   def create?
-    @counter.user == @current_user
+    @counter.user == current_user
   end
 
   def show?
-    @counter.user == @current_user
+    @counter.user == current_user
   end
 
   def update?
-    @counter.user == @current_user
+    @counter.user == current_user
   end
 
   def destroy?
-    @counter.user == @current_user
+    @counter.user == current_user
   end
 end

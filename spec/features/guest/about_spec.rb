@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Guest' do
+describe 'Guest', skip: true do
   before :each do
     visit guest_root_path
   end

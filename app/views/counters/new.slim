@@ -1,7 +1,5 @@
-.row
+.row style='background-color:#{@palette.background_color};height:100%;'
   .columns.small-12
-    h1 New counter
-
+    = link_to 'Back', :back, style: "color:#{@palette.text_color};"
+    h1 style="color:#{@palette.foreground_color};" Tell me about your counter:
     == render 'form'
-
-    p = link_to 'Home', root_path, class: 'button'

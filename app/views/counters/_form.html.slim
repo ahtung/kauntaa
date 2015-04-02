@@ -1,23 +1,19 @@
-= form_for @counter, url: (params[:action] == 'new' ? user_counters_path : user_counter_path(current_user, @counter)) do |f|
-  - if @counter.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@counter.errors.count, "error")} prohibited this section from being saved:"
-      ul
-        - @counter.errors.full_messages.each do |message|
-          li = message
-
-  .field
-    = f.label :name
-    = f.text_field :name
-
-  .field
-    = f.label :value
-    = f.text_field :value
-
-  - if @counter.persisted?
-    .field
-      = f.label :created_at
-      = f.date_field :created_at_date, value: @counter.created_at.to_date
-    .field
-      = f.time_field :created_at_time,  ignore_date: true, value: @counter.created_at.strftime('%H:%M'), :ampm => false
-  .actions = f.submit 'Save', class: 'button'
+.row.center-text
+  = form_for @counter, url: (params[:action] == 'new' ? user_counters_path : user_counter_path(current_user, @counter)) do |f|
+    - if @counter.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(@counter.errors.count, "error")} prohibited this section from being saved:"
+        ul
+          - @counter.errors.full_messages.each do |message|
+            li = message
+    .columns.small-2
+      = f.text_field :value
+    .columns.small-10
+      = f.text_field :name
+    - if @counter.persisted?
+      .field
+        = f.label :created_at
+        = f.date_field :created_at_date, value: @counter.created_at.to_date
+      .field
+        = f.time_field :created_at_time,  ignore_date: true, value: @counter.created_at.strftime('%H:%M'), ampm: false
+    .actions = f.submit 'Next', class: 'button'

@@ -1,7 +1,10 @@
+# Counter
 class Counter < ActiveRecord::Base
   belongs_to :user
+  belongs_to :palette
 
   before_save :set_name
+  before_save :set_palette
   before_update :set_creation_date
 
   attr_accessor :created_at_date, :created_at_time
@@ -20,6 +23,10 @@ class Counter < ActiveRecord::Base
   end
 
   private
+
+  def set_palette
+    self.palette = Palette.all.sample
+  end
 
   def set_name
     update_attribute(:name, 'TODO') unless name

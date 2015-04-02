@@ -1,8 +1,9 @@
 # spec/features/client/counter_spec.rb
 require 'rails_helper'
 
-describe 'User', js: true do
-  let(:user) { create(:user) }
+describe 'User', js: true, skip: true do
+  let!(:palette) { create(:palette) }
+  let(:user) { create(:user, :with_counter_a_month_old) }
 
   before :each do
     login_as(user)
