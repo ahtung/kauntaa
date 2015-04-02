@@ -24,6 +24,7 @@ gem 'rails-assets-font-awesome'
 gem 'rails-assets-FitText.js'
 gem 'rails-assets-jquery.transit'
 gem 'pundit'
+gem 'cane'
 
 group :production do
   gem 'rails_12factor'
@@ -37,7 +38,6 @@ end
 
 group :development, :test do
   gem 'yard'
-  gem 'cane'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
