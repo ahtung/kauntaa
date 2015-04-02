@@ -18,8 +18,10 @@ A personal counter
 ## Tasks
 
     foreman run -e Procfile.dev.env rake spec
-    foreman run -e Procfile.dev.env rake quality
     foreman run -e Procfile.dev.env rake style
+    foreman run -e Procfile.dev.env rake security
+    foreman run -e Procfile.dev.env rake doc
+    foreman run -e Procfile.dev.env rake quality
 
 ### Security
 
