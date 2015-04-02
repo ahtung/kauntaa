@@ -15,7 +15,7 @@ describe 'User', js: true, skip: true do
       visit user_root_path
     end
 
-    it_behaves_like "create counter", 2
+    it_behaves_like 'create counter', 2
   end
 
   context 'w a counter' do
