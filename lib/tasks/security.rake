@@ -1,4 +1,4 @@
 desc 'security test'
 task security: :environment do
-  system('bundle exec brakeman -z')
+  Rake::Task['brakeman:run'].invoke
 end
