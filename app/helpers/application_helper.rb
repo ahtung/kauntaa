@@ -11,7 +11,7 @@ module ApplicationHelper
       row += 1 unless col_or_row
       col_or_row = !col_or_row
     end
-    [[row,col]]
+    [[row, col]]
   end
 
   # https://robots.thoughtbot.com/organized-workflow-for-svg
@@ -19,9 +19,9 @@ module ApplicationHelper
     assets = Rails.application.assets
     file = assets.find_asset(filename).body.force_encoding("UTF-8")
     doc = Nokogiri::HTML::DocumentFragment.parse file
-    svg = doc.at_css "svg"
+    svg = doc.at_css 'svg'
     if options[:class].present?
-      svg["class"] = options[:class]
+      svg['class'] = options[:class]
     end
     raw doc
   end
