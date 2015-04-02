@@ -9,7 +9,6 @@ class Counter < ActiveRecord::Base
 
   attr_accessor :created_at_date, :created_at_time
 
-
   def clean_value
     if value
       value
@@ -33,7 +32,7 @@ class Counter < ActiveRecord::Base
   end
 
   def set_creation_date
-    if self.created_at_date && self.created_at_time
+    if created_at_date && created_at_time
       self.created_at = DateTime.parse("#{created_at_date} #{created_at_time}")
     end
   end

@@ -22,11 +22,11 @@ Palette.delete_all
   ['#0B0C11', '#A6CFE3', '#FBFAEF'],
   ['#BBAB9A', '#371722', '#FBFAEF'],
   ['#018E8F', '#C7C6C4', '#FBFAEF'],
-  ['#CF2F89', '#D3B5A9', '#262F88'],
+  ['#CF2F89', '#D3B5A9', '#262F88']
 ].each do |palette|
   Palette.create(foreground_color: palette[0], background_color: palette[1], text_color: palette[2])
 end
-Counter.all.map { |c|
+Counter.all.map do |c|
   c.palette = Palette.all.sample
   c.save
-}
+end
