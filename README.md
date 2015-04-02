@@ -1,22 +1,45 @@
-# Kauntaa
+# kauntaa
 
 A personal counter
 
-# Tech
+[![Circle CI](https://circleci.com/gh/dunyakirkali/kauntaa.png?circle-token=f174742eaf65e547a254e8a3df6d511704ac8ab4)](https://circleci.com/gh/dunyakirkali/kauntaa)
 
-- Rails 4.2
-- Foreman TODO
-- Foundation TODO
+## Tech
+
+- Rails 4.2.1
+- Foreman
+- Foundation
 - Postgresql
 
 ## Development
 
-  foreman start -f Procfile.dev -e Procfile.dev.env
+``` foreman start -f Procfile.dev -e Procfile.dev.env ```
 
-## Test
+## Tasks
 
-  foreman run rspec -e Procfile.test.env
+    foreman run -e Procfile.dev.env rake spec
+    foreman run -e Procfile.dev.env rake quality
+    foreman run -e Procfile.dev.env rake style
 
-## Production
+### Security
 
-  foreman start -f Procfile -e Procfile.env
+Run ``` foreman run -e Procfile.dev.env rake security ``` and use ``` brakeman ```
+
+### Documentation
+
+Run ``` foreman run -e Procfile.dev.env rake doc ``` and open docs with ``` open doc/index.html ```
+
+## Deploy
+
+### Auto
+
+Once a PullRequest is merged into the master branch, Github will trigger a build on CircleCI.
+CircleCI will do ``` circle.yml ``` and eventually deploy to heroku.
+
+### Manual
+
+    ./script/staging/deploy
+    ./script/production/deploy
+
+
+
