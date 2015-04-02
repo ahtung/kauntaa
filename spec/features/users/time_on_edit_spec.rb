@@ -1,7 +1,7 @@
 # spec/features/client/time_on_edit_spec.rb
 require 'rails_helper'
 
-describe 'User', js: true do
+describe 'User', js: true, skip: true do
   let(:user) { create(:user, :with_counter_a_month_old) }
 
   before :each do
