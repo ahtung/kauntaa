@@ -1,5 +1,5 @@
 
-RSpec.shared_examples "create counter" do |counter, expected_count|
+RSpec.shared_examples 'create counter' do |_, expected_count|
   it '' do
     click_on 'Add counter'
     fill_in 'counter_name', with: 'Dunya'
@@ -8,7 +8,7 @@ RSpec.shared_examples "create counter" do |counter, expected_count|
   end
 end
 
-RSpec.shared_examples "read counter" do
+RSpec.shared_examples 'read counter' do
   xit '' do
     # click_on 'new'
     # fill_in 'counter_name', with: 'Dunya'
@@ -17,7 +17,7 @@ RSpec.shared_examples "read counter" do
   end
 end
 
-RSpec.shared_examples "increment counter" do |expected_value|
+RSpec.shared_examples 'increment counter' do |expected_value|
   it '' do
     within "[data-counter-id='#{subject.id}']" do
       first('.increment-button').trigger 'click'
@@ -31,7 +31,7 @@ RSpec.shared_examples "increment counter" do |expected_value|
   end
 end
 
-RSpec.shared_examples "decrement counter" do |expected_value|
+RSpec.shared_examples 'decrement counter' do |expected_value|
   xit '' do
     within "[data-counter-id='#{subject.id}']" do
       first('.decrement-button').trigger 'click'
@@ -45,7 +45,7 @@ RSpec.shared_examples "decrement counter" do |expected_value|
   end
 end
 
-RSpec.shared_examples "update counter" do |attribute, expected_value|
+RSpec.shared_examples 'update counter' do |attribute, expected_value|
   xit '' do
     first("[data-counter-id='#{subject.id}'] a.edit-counter").click
     fill_in "counter_#{attribute}", with: expected_value
@@ -55,7 +55,7 @@ RSpec.shared_examples "update counter" do |attribute, expected_value|
   end
 end
 
-RSpec.shared_examples "delete counter" do |expected_count|
+RSpec.shared_examples 'delete counter' do |expected_count|
   it '' do
     first("[data-counter-id='#{subject.id}'] a.edit-counter").click
     click_on 'x'
