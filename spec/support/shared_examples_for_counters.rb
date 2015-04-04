@@ -1,5 +1,5 @@
 
-RSpec.shared_examples 'create counter' do |counter, expected_count|
+RSpec.shared_examples 'create counter' do |_, expected_count|
   it '' do
     click_on 'Add counter'
     fill_in 'counter_name', with: 'Dunya'

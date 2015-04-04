@@ -1,5 +1,12 @@
 class DeviseCreateUsers < ActiveRecord::Migration
   def change
+    create_users_table
+    add_indexes
+  end
+
+  private
+
+  def create_users_table
     create_table(:users) do |t|
       t.string :email, null: false, default: ''
       t.string :encrypted_password, null: false, default: ''
@@ -13,7 +20,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.inet :last_sign_in_ip
       t.timestamps
     end
+  end
 
+  def add_indexes
     add_index :users, :email, unique: true
     add_index :users, :reset_password_token, unique: true
     # add_index :users, :confirmation_token,   unique: true
