@@ -7,9 +7,10 @@ AllCops:
     - '**/config.ru'
   Exclude:
     - 'db/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
     - 'bin/**/*'
-    - 'config/**/*'
-    - 'script/**/*'
+    - 'log/**/*'
   RunRailsCops: true
 
 Style/LineLength:
