@@ -1,3 +1,4 @@
+# Helpers
 module Helpers
   def omniauth_hash(email, password)
     OmniAuth::AuthHash.new(

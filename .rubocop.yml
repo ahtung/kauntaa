@@ -2,8 +2,8 @@ Documentation:
   Enabled: true
 
 AllCops:
-  Excludes:
-    - db/schema.rb
+  Exclude:
+    - db/*
     - bin/*
   RunRailsCops: true
 
