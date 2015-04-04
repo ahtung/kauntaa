@@ -2,9 +2,14 @@ Documentation:
   Enabled: true
 
 AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
   Exclude:
-    - db/*
-    - bin/*
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
   RunRailsCops: true
 
 Style/LineLength:
