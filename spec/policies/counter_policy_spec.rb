@@ -7,6 +7,15 @@ describe CounterPolicy do
   let(:another_user) { create(:user) }
   let(:counter) { create(:counter) }
 
+  permissions :index? do
+    it 'grants access if  current_user' do
+      expect(subject).to permit(user)
+    end
+    it 'does not grants access if no current_user' do
+      expect(subject).not_to permit(nil)
+    end
+  end
+
   permissions :new? do
     it 'grants access if user is current_user' do
       counter.update_attribute(:user_id, user.id)
