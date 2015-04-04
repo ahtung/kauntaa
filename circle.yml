@@ -3,7 +3,6 @@ test:
     - bundle exec rake spec
     - bundle exec rake style
     - bundle exec rake security
-    - bundle exec rake doc
     - bundle exec rake quality
 deployment:
   staging:
