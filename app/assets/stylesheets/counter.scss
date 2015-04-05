@@ -1,1 +1,17 @@
 @import "foundation_and_overrides";
+
+#back_from_new_counter{
+  padding-top:10vh;
+}
+
+#counter_form{
+  padding-top:20vh;
+  input[type='text']{
+    background-color:inherit;
+    border:0;
+    border-bottom:3px solid white;
+    box-shadow:inherit;
+    height:30vh;
+    font-size:5em;
+  }
+}
