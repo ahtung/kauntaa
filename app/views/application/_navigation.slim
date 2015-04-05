@@ -8,7 +8,7 @@
             = link_to ' New', new_user_counter_path(current_user)
         ul.right
           li = link_to('Logout ', destroy_user_session_path, method: :delete)
-  .columns.small-12.medium-6.large-3.text-center.counter-item.header
+  .columns.small-12.medium-6.large-3.text-center.counter.header
     = render partial: 'counters/counter', locals: { counter: nil }
   .columns.hide-for-small.medium-6.large-9.header-item
     .radius
