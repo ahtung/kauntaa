@@ -1,62 +1,60 @@
 @import "foundation_and_overrides";
 
-.counter-item {
-//  margin-top: 20px;
-  &.header {
-    margin:20px 0 20px 0;
+#back_from_new_counter{
+  padding-top:10vh;
+}
+
+#counter_form{
+  padding-top:15vh;
+  input[type='text'],
+  input[type='date'],
+  input[type='time']{
+    background-color:inherit;
+    border:0;
+    border-bottom:1px solid white;
+    box-shadow:inherit;
   }
-  min-height: 180px;
-  .counter-button-container{
-    height: 90px;
-    position:relative;
-    .increment-button {
-      width:100%;
-      height:100%;
-      position:absolute;
-      z-index:1;
-      top:0;
-      &:active{
 
-      }
-    }
-    .header-top {
-
-      width:100%;
-      height:100%;
-      position:absolute;
-      z-index:1;
-      top:0;
-    }
-    .edit-counter{
-      position:relative;
-      z-index:5;
-      top:1.7em;
-      .info-link{
-
-        border-radius:2em;
-        width:2em;
-        height:2em;
-        line-height:2em;
-        &:hover{
-
-        }
-      }
-    }
+  input[type='text']{
+    height:19vh;
+    line-height:15vh;
+    font-size:5em;
   }
-  .counter-data{
-    padding:10px 5px;
-    background:$white;
-    min-height: 70px;
+  input[type='date'],
+  input[type='time'],
+  .time_description{
+    height:19vh;
+    line-height:16.5vh;
+    font-size:2.5em;
   }
-  .decrement-button {
 
-    height: 20px;
-    &:active{
+  .time_description{
+    padding: 0.5rem;
+    border-bottom:1px solid white;
+  }
 
+  .small_header{
+    padding-top: 5vh;
+    margin-bottom:10vh;
+  }
+}
+
+@media only screen and (max-width: 40em) {
+
+  #counter_form{
+    padding-top:0 !important;
+    input[type='text']{
+      font-size:14vh;
+    }
+    #counter_value{
+      border-bottom:0;
+      margin-bottom:0;
     }
   }
-  .header-bottom {
 
-    height: 20px;
+  #back_from_new_counter{
+    padding-top: 5vh;
   }
+
+
 }
