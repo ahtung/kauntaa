@@ -7,5 +7,7 @@ export RACK_ENV='test'
 
 git push git@heroku.com:kauntaa.git master
 heroku run rake db:migrate --app kauntaa
+heroku run rake db:seed --app kauntaa
+heroku run rake counter:colorize --app kauntaa
 heroku run rake sitemap:refresh --app kauntaa
 # bundle exec rake smoke:production
