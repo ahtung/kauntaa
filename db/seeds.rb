@@ -50,7 +50,3 @@ Palette.delete_all
 ].each do |palette|
   Palette.create(foreground_color: palette[0], background_color: palette[1], text_color: palette[2])
 end
-Counter.all.map do |c|
-  c.palette = Palette.all.sample
-  c.save
-end
