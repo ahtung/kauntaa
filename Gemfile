@@ -25,6 +25,8 @@ gem 'rails-assets-FitText.js'
 gem 'rails-assets-jquery.transit'
 gem 'pundit'
 gem 'cane'
+gem 'roboto'
+gem 'sitemap_generator'
 
 group :production do
   gem 'rails_12factor'
