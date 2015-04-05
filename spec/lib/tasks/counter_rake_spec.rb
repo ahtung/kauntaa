@@ -5,7 +5,7 @@ describe 'counter:colorize' do
 
   its(:prerequisites) { should include('environment') }
 
-  it 'generates a registrations report' do
+  it 'changes counter palettes' do
     counter = create(:counter)
     before_palette = counter.palette
     subject.invoke
