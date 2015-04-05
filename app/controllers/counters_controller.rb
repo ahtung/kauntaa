@@ -2,6 +2,7 @@
 class CountersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_counter, only: [:edit, :update, :increment, :decrement, :destroy]
+  before_action :set_palette_if_counter
   after_action :verify_authorized
 
   def index
@@ -62,6 +63,10 @@ class CountersController < ApplicationController
 
   def set_counter
     @counter = Counter.find(params[:id])
+  end
+
+  def set_palette_if_counter
+    @palette = @counter.palette if @counter && @counter.palette
   end
 
   def counter_params
