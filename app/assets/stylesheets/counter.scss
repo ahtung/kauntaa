@@ -6,14 +6,31 @@
 
 #counter_form{
   padding-top:20vh;
-  input[type='text']{
+  input[type='text'],
+  input[type='date'],
+  input[type='time']{
     background-color:inherit;
     border:0;
     border-bottom:1px solid white;
     box-shadow:inherit;
+  }
+
+  input[type='text']{
     height:19vh;
     line-height:15vh;
     font-size:5em;
+  }
+  input[type='date'],
+  input[type='time'],
+  .time_description{
+    height:19vh;
+    line-height:15vh;
+    font-size:2.5em;
+  }
+
+  .time_description{
+    padding: 0.5rem;
+    border-bottom:1px solid white;
   }
 
   .small_header{
