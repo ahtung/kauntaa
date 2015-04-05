@@ -65,6 +65,6 @@ class CountersController < ApplicationController
   end
 
   def counter_params
-    params.require(:counter).permit(:id, :name, :value, :created_at_date, :created_at_time)
+    params.require(:counter).permit(:id, :name, :value, :created_at_date, :created_at_time, :palette_id)
   end
 end

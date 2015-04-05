@@ -6,7 +6,6 @@ class Counter < ActiveRecord::Base
 
   # Callbacks
   before_save :set_name
-  before_save :set_palette
   before_update :set_creation_date
 
   attr_accessor :created_at_date, :created_at_time
@@ -23,11 +22,6 @@ class Counter < ActiveRecord::Base
   end
 
   private
-
-  # sets a random palette
-  def set_palette
-    self.palette = Palette.all.sample unless palette
-  end
 
   # sets name to 'TODO' if no name speified
   def set_name
