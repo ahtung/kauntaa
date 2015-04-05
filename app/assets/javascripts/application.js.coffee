@@ -11,7 +11,7 @@ $(document).ready ->
   $(document).foundation()
 
   # FitText
-  $(".responsive-text").fitText(1.0)
+  # $(".responsive-text").fitText(1.0)
 
   # Counters
   $('.counter').map (index) ->
