@@ -7,33 +7,35 @@
           - @counter.errors.full_messages.each do |message|
             li = message
     .columns.small-12.medium-2
-      = f.text_field :value, placeholder: '00', class: 'text-center', style: "color:#{@palette.foreground_color};"
+      = f.text_field :value, placeholder: '00', class: 'text-center', style: "color:#{((@counter.palette) ? @counter.palette.foreground_color : @palette.foreground_color)};"
     .columns.small-12.medium-10
-      = f.text_field :name, class: 'small-only-text-center', style: "color:#{@palette.text_color};"
+      = f.text_field :name, class: 'small-only-text-center', style: "color:#{((@counter.palette) ? @counter.palette.text_color : @palette.text_color)};"
     - if @counter.persisted?
-      .columns.hide-for-small.medium-2.time_description style="color:#{((@counter.palette) ? @counter.palette.foreground_color : @palette.foreground_color)};" On
+      .columns.hide-for-small.medium-2 style="color:#{((@counter.palette) ? @counter.palette.foreground_color : @palette.foreground_color)};"
+        .time_description On
       .columns.small-12.medium-6.text-center
         = f.date_field :created_at_date, value: @counter.created_at.to_date, style: "color:#{((@counter.palette) ? @counter.palette.text_color : @palette.text_color)};"
-      .columns.hide-for-small.medium-1.time_description style="color:#{((@counter.palette) ? @counter.palette.foreground_color : @palette.foreground_color)};" @
+      .columns.hide-for-small.medium-1 style="color:#{((@counter.palette) ? @counter.palette.foreground_color : @palette.foreground_color)};"
+        .time_description @
       .columns.small-12.medium-3.text-center
         = f.time_field :created_at_time,  ignore_date: true, value: @counter.created_at.strftime('%H:%M'), ampm: false, style: "color:#{((@counter.palette) ? @counter.palette.text_color : @palette.text_color)};"
 
     = f.hidden_field :palette_id, value: @palette.id
-    .actions = f.submit 'Next', class: 'button', style: "color:#{@palette.text_color}; background:#{@palette.foreground_color};"
+    .actions = f.submit 'Next', class: 'button', style: "color:#{((@counter.palette) ? @counter.palette.text_color : @palette.text_color)}; background:#{((@counter.palette) ? @counter.palette.foreground_color : @palette.foreground_color)};"
 
 css:
   ::-webkit-input-placeholder {
-     color:#{@palette.foreground_color};
+     color:#{((@counter.palette) ? @counter.palette.foreground_color : @palette.foreground_color)};
   }
 
   :-moz-placeholder {
-     color:#{@palette.foreground_color};
+     color:#{((@counter.palette) ? @counter.palette.foreground_color : @palette.foreground_color)};
   }
 
   ::-moz-placeholder {
-     color:#{@palette.foreground_color};
+     color:#{((@counter.palette) ? @counter.palette.foreground_color : @palette.foreground_color)};
   }
 
   :-ms-input-placeholder {
-     color:#{@palette.foreground_color};
+     color:#{((@counter.palette) ? @counter.palette.foreground_color : @palette.foreground_color)};
   }
