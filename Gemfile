@@ -27,6 +27,7 @@ gem 'pundit'
 gem 'cane'
 gem 'roboto'
 gem 'sitemap_generator'
+gem 'fog'
 
 group :production do
   gem 'rails_12factor'
