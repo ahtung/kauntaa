@@ -1,9 +1,11 @@
-describe 'counters:colorize' do
+require 'rails_helper'
+
+describe 'counter:colorize' do
   include_context 'rake'
 
   its(:prerequisites) { should include('environment') }
 
-  it 'generates a registrations report' do
+  it 'changes counter palettes' do
     counter = create(:counter)
     before_palette = counter.palette
     subject.invoke
