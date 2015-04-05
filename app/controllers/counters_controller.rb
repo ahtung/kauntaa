@@ -6,7 +6,7 @@ class CountersController < ApplicationController
 
   def index
     authorize Counter, :index?
-    @counters = current_user.counters
+    @counters = current_user.counters.order(updated_at: :desc)
   end
 
   def new

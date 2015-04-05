@@ -26,7 +26,7 @@ class Counter < ActiveRecord::Base
 
   # sets a random palette
   def set_palette
-    self.palette = Palette.all.sample
+    self.palette = Palette.all.sample unless palette
   end
 
   # sets name to 'TODO' if no name speified
