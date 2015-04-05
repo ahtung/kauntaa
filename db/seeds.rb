@@ -28,7 +28,13 @@ Palette.delete_all
   ['#96CBD1', '#EE3E49', '#FCD7C3'],
   ['#FD677B', '#C0C2CE', '#072E65'],
   ['#162BF4', '#EEC0DC', '#FBFAEF'],
-  ['#BF2A1A', '#B6CAC1', '#FBFAEF']
+  ['#BF2A1A', '#B6CAC1', '#FBFAEF'],
+
+  ['#B22A48', '#C5BEAA', '#182C76'],
+  ['#D31C33', '#FDF06E', '#FBFAEF'],
+  ['#BEDFD4', '#EDB6BC', '#FBFAEF'],
+  ['#FFFFFF', '#17C27B', '#FBFAEF'],
+  ['#14A19B', '#293571', '#FBFAEF']
 ].each do |palette|
   Palette.create(foreground_color: palette[0], background_color: palette[1], text_color: palette[2])
 end
