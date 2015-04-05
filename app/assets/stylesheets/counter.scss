@@ -11,7 +11,33 @@
     border:0;
     border-bottom:1px solid white;
     box-shadow:inherit;
-    height:15vh;
+    height:19vh;
+    line-height:15vh;
     font-size:5em;
   }
+
+  .small_header{
+    padding-top: 5vh;
+    margin-bottom:10vh;
+  }
+}
+
+@media only screen and (max-width: 40em) {
+
+  #counter_form{
+    padding-top:0 !important;
+    input[type='text']{
+      font-size:14vh;
+    }
+    #counter_value{
+      border-bottom:0;
+      margin-bottom:0;
+    }
+  }
+
+  #back_from_new_counter{
+    padding-top: 5vh;
+  }
+
+
 }
