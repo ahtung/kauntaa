@@ -6,7 +6,7 @@ class CountersController < ApplicationController
 
   def index
     authorize Counter, :index?
-    @counters = current_user.counters
+    @counters = current_user.counters.order(updated_at: :desc)
   end
 
   def new
@@ -65,6 +65,6 @@ class CountersController < ApplicationController
   end
 
   def counter_params
-    params.require(:counter).permit(:id, :name, :value, :created_at_date, :created_at_time)
+    params.require(:counter).permit(:id, :name, :value, :created_at_date, :created_at_time, :palette_id)
   end
 end
