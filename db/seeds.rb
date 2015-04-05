@@ -70,7 +70,23 @@ Palette.delete_all
   ['#CC9AB5', '#776EA7', '#FBFAEF'],
   ['#ABCEE2', '#EAEAEA', '#FBFAEF'],
   ['#471C19', '#EF303A', '#FBFAEF'],
-  ['#FFFFFF', '#000015', '#FBFAEF']  # 60
+  ['#FFFFFF', '#000015', '#FBFAEF'], # 60
+
+  ['#199BA3', '#FFFDE7', '#EB0817'],
+  ['#1538CF', '#F1D3D3', '#FBFAEF'],
+  ['#F3BFA9', '#D2E8E3', '#FBFAEF'],
+  ['#F3E836', '#F1EBDF', '#FBFAEF'],
+  ['#F2CB6C', '#3A745E', '#FBFAEF'], # 65
+
+  ['#84CFBB', '#CE7082', '#FBFAEF'],
+  ['#9B8FFF', '#340A0B', '#FBFAEF'],
+  ['#0B3833', '#F7EBED', '#4A4A4A'],
+  ['#E2B7C1', '#FF9A66', '#FBFAEF'],
+  ['#CDFFCC', '#002FEB', '#FBFAEF'], # 70
+
+  ['#FFFFFF', '#F5623A', '#1E3265'],
+  ['#2B47B2', '#FDC862', '#F49A20'],
+  ['#0B57CA', '#94C9DB', '#122959']  # 73
 ].each do |palette|
   Palette.create(foreground_color: palette[0], background_color: palette[1], text_color: palette[2])
 end
