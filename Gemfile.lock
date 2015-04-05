@@ -249,6 +249,9 @@ GEM
       unparser (~> 0.2.2)
     responders (2.0.2)
       railties (>= 4.2.0.alpha, < 5)
+    roboto (0.2.0)
+      actionpack (>= 3.0.0)
+      rails (>= 3.1.0)
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.2)
@@ -396,6 +399,7 @@ DEPENDENCIES
   rails-assets-font-awesome
   rails-assets-jquery.transit
   rails_12factor
+  roboto
   rspec-its
   rspec-rails
   rubocop
