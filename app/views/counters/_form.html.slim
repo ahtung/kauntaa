@@ -17,3 +17,20 @@
       .field
         = f.time_field :created_at_time,  ignore_date: true, value: @counter.created_at.strftime('%H:%M'), ampm: false
     .actions = f.submit 'Next', class: 'button', style: "color:#{@palette.text_color}; background:#{@palette.foreground_color};"
+
+css:
+  ::-webkit-input-placeholder {
+     color:#{@palette.foreground_color};
+  }
+
+  :-moz-placeholder {
+     color:#{@palette.foreground_color};
+  }
+
+  ::-moz-placeholder {
+     color:#{@palette.foreground_color};
+  }
+
+  :-ms-input-placeholder {
+     color:#{@palette.foreground_color};
+  }
