@@ -25,7 +25,6 @@ gem 'rails-assets-FitText.js'
 gem 'rails-assets-jquery.transit'
 gem 'pundit'
 gem 'cane'
-gem 'colorize'
 
 group :production do
   gem 'rails_12factor'

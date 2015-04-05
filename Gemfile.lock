@@ -86,7 +86,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
-    colorize (0.7.5)
     columnize (0.9.0)
     concord (0.1.5)
       adamantium (~> 0.2.0)
@@ -373,7 +372,6 @@ DEPENDENCIES
   cane
   capybara
   coffee-rails (~> 4.1.0)
-  colorize
   database_cleaner
   devise
   factory_girl_rails
