@@ -7,7 +7,7 @@
           - @counter.errors.full_messages.each do |message|
             li = message
     .columns.small-12.medium-2
-      = f.text_field :value, placeholder: '00', class: 'text-center', style: "color:#{((@counter.palette) ? @counter.palette.foreground_color : @palette.foreground_color)};"
+      = f.text_field :value, placeholder: '00', class: 'text-center', style: "color:#{@palette.foreground_color};"
     .columns.small-12.medium-10
       = f.text_field :name, class: 'small-only-text-center', style: "color:#{((@counter.palette) ? @counter.palette.text_color : @palette.text_color)};"
     - if @counter.persisted?
