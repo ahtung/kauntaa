@@ -6,14 +6,14 @@
         ul
           - @counter.errors.full_messages.each do |message|
             li = message
-    .columns.small-2
-      = f.text_field :value
-    .columns.small-10
-      = f.text_field :name
+    .columns.small-4.medium-2
+      = f.text_field :value, placeholder: '00', style: "color:#{@palette.foreground_color};"
+    .columns.small-8.medium-10
+      = f.text_field :name, style: "color:#{@palette.text_color};"
     - if @counter.persisted?
       .field
         = f.label :created_at
         = f.date_field :created_at_date, value: @counter.created_at.to_date
       .field
         = f.time_field :created_at_time,  ignore_date: true, value: @counter.created_at.strftime('%H:%M'), ampm: false
-    .actions = f.submit 'Next', class: 'button'
+    .actions = f.submit 'Next', class: 'button', style: "color:#{@palette.text_color}; background:#{@palette.foreground_color};"
