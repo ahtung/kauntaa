@@ -6,7 +6,9 @@
 .row#counter_form
   .columns.small-1.medium-3 &nbsp;
   .columns.small-10.medium-6.text-center
-    h2
+    h2.hide-for-small
       small style="color:#{@palette.text_color};" Tell me about your counter:
+    h2.show-for-small.small_header
+      small style="color:#{@palette.text_color};" Tell me:
     == render 'form'
   .columns.small-1.medium-3 &nbsp;
