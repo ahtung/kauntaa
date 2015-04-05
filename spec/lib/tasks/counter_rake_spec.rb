@@ -1,4 +1,6 @@
-describe 'counters:colorize' do
+require 'rails_helper'
+
+describe 'counter:colorize' do
   include_context 'rake'
 
   its(:prerequisites) { should include('environment') }
