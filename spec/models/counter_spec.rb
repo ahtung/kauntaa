@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Counter, type: :model, focus: true do
+RSpec.describe Counter, type: :model do
   # Reations
   it { should belong_to(:user) }
   it { should belong_to(:palette) }
