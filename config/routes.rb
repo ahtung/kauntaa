@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   mount_roboto
+  mount API => '/'
+
   get 'pages/about'
 
   constraints(format: 'xml') do
