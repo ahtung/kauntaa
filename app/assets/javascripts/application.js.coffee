@@ -1,4 +1,4 @@
-#= require jquery
+  #= require jquery
 #= require jquery_ujs
 #= require foundation
 #= require odometer
@@ -21,6 +21,9 @@ $(document).ready ->
     }
     window.counters = []
     window.counters.push new Counter(options, parseInt($(this).text()))
+
+  $('body').on 'click', '.edit-counter', (event) ->
+    event.stopPropagation();
 
   $('body').on 'click', '.increment-button', () ->
     $.get $(this).data('increment-url'), ( data ) ->
