@@ -31,5 +31,11 @@ RSpec.describe Counter, type: :model do
       counter.save
       expect(counter.created_at).to eq DateTime.parse('2015-11-05 00:00')
     end
+
+    it 'increment' do
+      counter = create(:counter, value: 0)
+      counter.increment
+      expect(counter.value).to eq 1
+    end
   end
 end

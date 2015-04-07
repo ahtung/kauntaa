@@ -28,6 +28,7 @@ gem 'cane'
 gem 'roboto'
 gem 'sitemap_generator'
 gem 'fog'
+gem 'grape'
 
 group :production do
   gem 'rails_12factor'

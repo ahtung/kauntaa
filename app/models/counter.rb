@@ -21,6 +21,11 @@ class Counter < ActiveRecord::Base
     %w(name value)
   end
 
+  # increments the value by 1
+  def increment
+    update_column(:value, value + 1)
+  end
+
   private
 
   # sets name to 'TODO' if no name speified
