@@ -23,7 +23,7 @@ class Counter < ActiveRecord::Base
 
   # increments the value by 1
   def increment
-    update_column(:value, value + 1)
+    update_column(:value, clean_value + 1)
   end
 
   private
