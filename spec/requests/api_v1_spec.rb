@@ -8,4 +8,5 @@ describe API, type: :request do
       expect(response.body).to eq 'true'
     end
   end
+
 end
