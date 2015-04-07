@@ -1,6 +1,9 @@
-- divide = (@counters.count / 4).ceil
-ul#counters.small-block-grid-1.medium-block-grid-4.large-block-grid-6
-  li style="height=#{100/divide}%;"= render 'new_counter'
-  - @counters.each_with_index do |counter, index|
-    li style="height=#{100/divide}%;"
-      = render 'counter', counter: counter
+- row_and_col_for(@counters.count).each do |row, col|
+  - row.times do |r|
+    .row style="height:#{100 / row}%"
+      - col.times do |c|
+        .columns.small-12 class="medium-#{12 / col}" style="height:100%"
+          - if c == 0 && r == 0
+            = render 'new_counter'
+          - else
+            = render 'counter', counter: @counters[((col * r) + c) - 1]
