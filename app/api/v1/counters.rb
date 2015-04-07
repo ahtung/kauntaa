@@ -1,4 +1,5 @@
 module V1
+  # Counters API
   class Counters < Grape::API
     resource :counters do
       desc 'Increment counter'

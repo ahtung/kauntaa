@@ -5,7 +5,7 @@ describe API, type: :request do
     it 'increments counter' do
       counter = create(:counter)
       get "/api/v1/counters/#{counter.id}"
-      expect(response.body).to eq "true"
+      expect(response.body).to eq 'true'
     end
   end
 end
