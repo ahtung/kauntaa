@@ -2,7 +2,7 @@
   .columns.small-1 &nbsp;
   .columns.small-10#back_from_new_counter
     = link_to 'Back', :back, style: "color:#{@palette.text_color};"
-  .columns.small-1 &nbsp;
+  .columns.small-1.medium-3 &nbsp;
 .row#counter_form
   .columns.small-1.medium-3 &nbsp;
   .columns.small-10.medium-6.text-center
@@ -12,5 +12,6 @@
       small style="color:#{@palette.text_color};" Tell me:
     == render 'form'
   .columns.small-1.medium-3 &nbsp;
+.row
   .column.small-12.text-right
     = link_to 'x', user_counter_path, method: :delete, data: {confirm: "Sure?"}
