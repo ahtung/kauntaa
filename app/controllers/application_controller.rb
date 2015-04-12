@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
   def set_palette
     @palette = Palette.all.sample
   end
+
+  def allow_iframe
+    response.headers.delete 'X-Frame-Options'
+  end
 end
