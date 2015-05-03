@@ -1,6 +1,6 @@
 - if counter
   .row.text-center data-counter-id="#{counter.id}" style='background-color:#{counter.palette.background_color};height:100%;'
-    .row.increment-area
+    .row.increment-area style='height:#{height_for(@counters.count)}%;width:100%'
       .increment-button data-increment-url="#{ increment_user_counter_path(current_user, counter) }"
     .row style='height:50%'
       .columns.small-12.center-vertical

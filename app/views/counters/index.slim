@@ -1,8 +1,8 @@
 .row style='height:100%;'
   .columns-small-12 style='height:100%;'
     ul.small-block-grid-1.medium-block-grid-3.large-block-grid-4 style='height:100%;padding:0;margin:0;'
-      li style="height:33%;padding:0;margin:0;"
+      li style="height:#{height_for(@counters.count)}%;padding:0;margin:0;min-height:160px"
         = render 'new_counter'
       - @counters.each do |counter|
-        li style="height:33%;padding:0;margin:0;"
+        li style="height:#{height_for(@counters.count)}%;padding:0;margin:0;min-height:160px"
           = render 'counter', counter: counter
