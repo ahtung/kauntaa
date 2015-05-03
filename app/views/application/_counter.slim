@@ -3,13 +3,14 @@
     .row.increment-area
       .increment-button data-increment-url="#{ increment_user_counter_path(current_user, counter) }"
     .row style='height:50%'
-      .columns.small-12
-        h2.counter.center-vertical style="color: #{counter.palette.foreground_color};"
+      .columns.small-12.center-vertical
+        h2.counter style="color: #{counter.palette.foreground_color};"
           = counter.clean_value
     .row style='height:50%'
-      .columns.small-12
-        = link_to edit_user_counter_path(current_user, counter), class: 'edit-counter counter-edit-area', style: "color: #{counter.palette.text_color}" do
-          = "#{truncate(counter.name, length: 14)} since #{time_ago_in_words(counter.created_at)}".html_safe
+      .columns.small-12.center-vertical
+        p
+          = link_to edit_user_counter_path(current_user, counter), class: 'edit-counter counter-edit-area', style: "color: #{counter.palette.text_color}" do
+            = "#{truncate(counter.name, length: 14)} since #{time_ago_in_words(counter.created_at)}".html_safe
 
 - else
   .row
