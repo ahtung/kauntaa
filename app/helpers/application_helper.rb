@@ -1,7 +1,7 @@
 # ApplicationHelper
 module ApplicationHelper
   # returns row and col count given n
-  def row_and_col_for(n)
+  def height_for(n)
     row = Math.sqrt(n + 1).to_i
     col = row
     col_or_row = true
@@ -11,7 +11,7 @@ module ApplicationHelper
       row += 1 unless col_or_row
       col_or_row = !col_or_row
     end
-    [[row, col]]
+    100 / row.to_f
   end
 
   # https://robots.thoughtbot.com/organized-workflow-for-svg

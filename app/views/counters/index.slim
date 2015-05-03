@@ -1,9 +1,8 @@
-- row_and_col_for(@counters.count).each do |row, col|
-  - row.times do |r|
-    .row style="height:#{100 / row}%"
-      - col.times do |c|
-        .columns.small-12 class="medium-#{12 / col}" style="height:100%"
-          - if c == 0 && r == 0
-            = render 'new_counter'
-          - else
-            = render 'counter', counter: @counters[((col * r) + c) - 1]
+.row style='height:100%;'
+  .columns-small-12 style='height:100%;'
+    ul.small-block-grid-1.medium-block-grid-3.large-block-grid-4 style='height:100%;padding:0;margin:0;'
+      li style="height:#{height_for(@counters.count)}%;padding:0;margin:0;min-height:160px"
+        = render 'new_counter'
+      - @counters.each do |counter|
+        li style="height:#{height_for(@counters.count)}%;padding:0;margin:0;min-height:160px"
+          = render 'counter', counter: counter

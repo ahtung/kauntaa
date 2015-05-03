@@ -2,6 +2,7 @@
 
 // Show
 
+
 .a-counter {
   height:100%;
   .count {
@@ -13,11 +14,9 @@
   }
 }
 
-.increment-area{
+.increment-area, .add-area{
   z-index:1;
   position:absolute;
-  width:100% !important;
-  height:100%;
   .increment-button,
   .new-counter-button{
     width:100%;
