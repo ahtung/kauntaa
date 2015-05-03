@@ -1,41 +1,41 @@
 require 'rails_helper'
 
 describe ApplicationHelper do
-  describe '#row_and_col_for(n)' do
-    it 'returns [1, 1] if n = 0' do
-      expect(helper.row_and_col_for(0)).to match_array [[1, 1]]
+  describe '#height_for(n)' do
+    it 'returns 100 if n = 0' do
+      expect(helper.height_for(0)).to eq(100)
     end
 
-    it 'returns [1, 2] if n = 1' do
-      expect(helper.row_and_col_for(1)).to match_array [[1, 2]]
+    it 'returns 100 if n = 1' do
+      expect(helper.height_for(1)).to eq(100)
     end
 
-    it 'returns [2, 2] if n = 2' do
-      expect(helper.row_and_col_for(2)).to match_array [[2, 2]]
+    it 'returns 50 if n = 2' do
+      expect(helper.height_for(2)).to eq(50)
     end
 
-    it 'returns [2, 2] if n = 3' do
-      expect(helper.row_and_col_for(3)).to match_array [[2, 2]]
+    it 'returns 50 if n = 3' do
+      expect(helper.height_for(3)).to eq(50)
     end
 
-    it 'returns [2, 3] if n = 5' do
-      expect(helper.row_and_col_for(5)).to match_array [[2, 3]]
+    it 'returns 50 if n = 5' do
+      expect(helper.height_for(5)).to eq(50)
     end
 
-    it 'returns [3, 3] if n = 8' do
-      expect(helper.row_and_col_for(8)).to match_array [[3, 3]]
+    it 'returns 33.33 if n = 8' do
+      expect(helper.height_for(8)).to eq(33.333333333333336)
     end
 
-    it 'returns [4, 4] if n = 13' do
-      expect(helper.row_and_col_for(13)).to match_array [[4, 4]]
+    it 'returns 25 if n = 13' do
+      expect(helper.height_for(13)).to eq(25)
     end
 
-    it 'returns [5, 5] if n = 21' do
-      expect(helper.row_and_col_for(21)).to match_array [[5, 5]]
+    it 'returns 20 if n = 21' do
+      expect(helper.height_for(21)).to eq(20)
     end
 
-    it 'returns [6, 6] if n = 34' do
-      expect(helper.row_and_col_for(34)).to match_array [[6, 6]]
+    it 'returns 16.66 if n = 34' do
+      expect(helper.height_for(34)).to eq(16.666666666666668)
     end
   end
 end
