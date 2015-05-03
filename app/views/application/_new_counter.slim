@@ -5,7 +5,7 @@ css:
 
 .row.text-center style='background-color:#{@palette.background_color};height:100%;'
   .row style='height:50%'
-    = embedded_svg "add.svg", class: 'add-icon'
+    = embedded_svg 'add.svg', class: 'add-icon'
   .row style='height:50%'
     h2
       = link_to 'Add', new_user_counter_path(current_user), style: "color:#{@palette.text_color};"
