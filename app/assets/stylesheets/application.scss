@@ -20,7 +20,8 @@
  *= require font-awesome
  */
 
-.add-icon {
-  height:20%;
-  margin-top:10%;
+.center-vertical {
+  position: relative;
+  top: 50%;
+  transform: translateY(50%);
 }

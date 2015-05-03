@@ -2,7 +2,7 @@
   .row.text-center.increment-button data-counter-id="#{counter.id}" style='background-color:#{counter.palette.background_color};height:100%;'
     .row style='height:50%'
       .columns.small-12 data-increment-url="#{ increment_user_counter_path(current_user, counter) }"
-        h2.counter style="color: #{counter.palette.foreground_color};padding-top:30px;"
+        h2.counter.center-vertical style="color: #{counter.palette.foreground_color};"
           = counter.clean_value
     .row style='height:50%'
       .columns.small-12
