@@ -14,15 +14,24 @@
 }
 
 .increment-area{
-
   z-index:1;
   position:absolute;
   width:100% !important;
   height:100%;
-  .increment-button{
+  .increment-button,
+  .new-counter-button{
     width:100%;
     height:100%;
   }
+
+  .new-counter-button{
+    display:block;
+  }
+}
+
+.sign-out{
+  position:relative;
+  z-index:5;
 }
 
 .counter-edit-area{
