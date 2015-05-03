@@ -1,12 +1,14 @@
 - if counter
-  .row.text-center.increment-button data-counter-id="#{counter.id}" style='background-color:#{counter.palette.background_color};height:100%;'
+  .row.text-center data-counter-id="#{counter.id}" style='background-color:#{counter.palette.background_color};height:100%;'
+    .row.increment-area
+      .increment-button data-increment-url="#{ increment_user_counter_path(current_user, counter) }"
     .row style='height:50%'
-      .columns.small-12 data-increment-url="#{ increment_user_counter_path(current_user, counter) }"
+      .columns.small-12
         h2.counter.center-vertical style="color: #{counter.palette.foreground_color};"
           = counter.clean_value
     .row style='height:50%'
       .columns.small-12
-        = link_to edit_user_counter_path(current_user, counter), class: 'edit-counter', style: "color: #{counter.palette.text_color}" do
+        = link_to edit_user_counter_path(current_user, counter), class: 'edit-counter counter-edit-area', style: "color: #{counter.palette.text_color}" do
           = "#{truncate(counter.name, length: 14)} since #{time_ago_in_words(counter.created_at)}".html_safe
 
 - else

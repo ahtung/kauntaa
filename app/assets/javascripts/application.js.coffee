@@ -25,7 +25,7 @@ $(document).ready ->
   $('body').on 'click', '.edit-counter', (event) ->
     event.stopPropagation();
 
-  $('body').on 'click', '.increment-button', () ->
+  $('.increment-area').on 'click', '.increment-button', () ->
     $.get $(this).data('increment-url'), ( data ) ->
       console.log( "Load was performed." )
     , "script"
