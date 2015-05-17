@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 
 ruby '2.1.2'
 
@@ -19,10 +18,6 @@ gem 'rack-google-analytics'
 gem 'omniauth-google-oauth2'
 gem 'newrelic_rpm'
 gem 'thin'
-gem 'rails-assets-HubSpot--odometer'
-gem 'rails-assets-font-awesome'
-gem 'rails-assets-FitText.js'
-gem 'rails-assets-jquery.transit'
 gem 'pundit'
 gem 'cane'
 gem 'roboto'
@@ -58,4 +53,11 @@ group :test do
   gem 'rspec-its'
   gem 'shoulda-matchers', require: false
   gem 'simplecov', require: false
+end
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-HubSpot--odometer'
+  gem 'rails-assets-font-awesome'
+  gem 'rails-assets-FitText.js'
+  gem 'rails-assets-jquery.transit'
 end
