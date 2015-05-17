@@ -58,6 +58,7 @@ end
 source 'https://rails-assets.org' do
   gem 'rails-assets-HubSpot--odometer'
   gem 'rails-assets-font-awesome'
+  gem 'rails-assets-d3'
   gem 'rails-assets-FitText.js'
   gem 'rails-assets-jquery.transit'
 end
