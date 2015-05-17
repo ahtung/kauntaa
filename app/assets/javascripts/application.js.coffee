@@ -9,39 +9,51 @@
 
 $(document).ready ->
   #D3
+  des_width = 320
+  des_height = 240
   margin = {top: 20, right: 0, bottom: 0, left: 0}
   formatNumber = d3.format("d")
   svg = d3.select("#chart").append("svg").attr("class", 'svg')
-  svg.append("g")
-    .append("rect")
-    .attr("x", 0)
-    .attr("y", 0)
-    .attr("width", '50%')
-    .attr("height", '50%')
-    .append('text')
-    .text('add')
 
-  $.get( "/users/1/counters/3", ( data ) ->
-    svg.append("foreignObject")
-      .attr("width", '50%')
-      .attr("height", '50%')
-    .append("xhtml:body")
-      .style("font", "14px 'Helvetica Neue'")
-      .html(data);
-  )
   d3.json("api/v1/counters.json", (root) ->
-
-    p = svg.selectAll("g")
-      .data(root)
-      .enter()
-      .append("g")
+    console.log($('body').width(), $('body').height())
+    k = ($('body').width() / $('body').height()) * (des_width / des_height)
+    col = Math.floor(Math.sqrt(k * (root.length + 1)))
+    row = Math.ceil(Math.sqrt((root.length + 1) / k))
+    console.log(row, col)
+    p = svg.append("g")
       .append("rect")
       .attr("x", 0)
       .attr("y", 0)
-      .attr("width", '50%')
-      .attr("height", '50%')
+      .attr("width", des_width)
+      .attr("height", des_height)
       .append('text')
-      .text((d)-> d['name'])
+      .text('add')
+
+    content = ''
+    $.get( "/users/1/counters/3", (d)->
+      content = d
+      svg.selectAll(".counter").data(root)
+        .enter()
+        .append("g")
+        .attr('class', 'counter')
+        .append("rect")
+        .attr('opacity', 0.0)
+        .attr("x", (d) ->
+          ((root.indexOf(d) + 1) % col) * des_width
+        )
+        .attr("y", (d) ->
+          ((root.indexOf(d) + 1) % row) * des_height
+        )
+        .attr("width", des_width)
+        .attr("height", des_height)
+        .append("foreignObject")
+          .attr("width", '50%')
+          .attr("height", '50%')
+        .append("xhtml:body")
+          .style("font", "14px 'Helvetica Neue'")
+          .html(content)
+    )
   )
 
   # Foundation
