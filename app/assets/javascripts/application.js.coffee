@@ -13,7 +13,7 @@ $(document).ready ->
   des_height = 240
   row= 0
   col= 0
-  svg = d3.select("#chart").append("svg").attr("class", 'svg')
+  svg = d3.select("#chart").append("svg").attr("class", 'svg').attr('preserveAspectRatio', "xMinYMin")
   svg.append("g")
     .append("rect")
     .attr("x", 0)
@@ -44,8 +44,8 @@ $(document).ready ->
         .attr("y", (d) ->
           ((root.indexOf(d) + 1) % row) * ($('body').height() / row)
         )
-        .attr("width", ($('body').width() / col))
-        .attr("height", ($('body').height() / row))
+        .attr("width", "#{($('body').width() / col) / $('body').width() * 100}%")
+        .attr("height", "#{($('body').height() / row) / $('body').height() * 100}%")
         .append("xhtml:body")
         .html((d) ->
           $.ajax(
@@ -72,9 +72,10 @@ $(document).ready ->
       setTimeout(resizeend, delta)
     else
       timeout = false
-      console.log('raw')
+      console.log('draw')
       draw()
   draw()
+
   # Foundation
   $(document).foundation()
 
@@ -104,10 +105,7 @@ $(document).ready ->
     counter_elem = $(this).closest('.counter')[0]
     counter = d3.select(counter_elem)
     counter_html = counter.select(".html")
-
     last_pos = [counter_html.attr('x'), counter_html.attr('y')]
-
-
 
     counter_html.each(moveToFront).transition().duration(200).ease('elastic').attr("x",0).attr("y",0).attr('width', window.innerWidth).attr('height', window.innerHeight).each("end", () ->
       d3.select('svg')
