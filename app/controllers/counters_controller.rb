@@ -22,6 +22,7 @@ class CountersController < ApplicationController
 
   def edit
     authorize @counter
+    render layout: false
   end
 
   def create
