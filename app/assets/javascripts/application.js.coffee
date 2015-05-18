@@ -1,4 +1,4 @@
-  #= require jquery
+#= require jquery
 #= require jquery_ujs
 #= require foundation
 #= require odometer
@@ -11,34 +11,30 @@ $(document).ready ->
   #D3
   des_width = 320
   des_height = 240
-  margin = {top: 20, right: 0, bottom: 0, left: 0}
-  formatNumber = d3.format("d")
   svg = d3.select("#chart").append("svg").attr("class", 'svg')
+  svg.append("g")
+    .append("rect")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", des_width)
+    .attr("height", des_height)
+    .append('text')
+    .text('add')
 
-  d3.json("api/v1/counters.json", (root) ->
-    console.log($('body').width(), $('body').height())
-    k = ($('body').width() / $('body').height()) * (des_width / des_height)
-    col = Math.floor(Math.sqrt(k * (root.length + 1)))
-    row = Math.ceil(Math.sqrt((root.length + 1) / k))
-    console.log(row, col)
-    p = svg.append("g")
-      .append("rect")
-      .attr("x", 0)
-      .attr("y", 0)
-      .attr("width", des_width)
-      .attr("height", des_height)
-      .append('text')
-      .text('add')
+  draw = () ->
+    margin = {top: 20, right: 0, bottom: 0, left: 0}
+    formatNumber = d3.format("d")
 
-    content = ''
-    $.get( "/users/1/counters/3", (d)->
-      content = d
+    d3.json("api/v1/counters.json", (root) ->
+      k = ($('body').width() / $('body').height()) * (des_width / des_height)
+      col = Math.floor(Math.sqrt(k * (root.length + 1)))
+      row = Math.ceil(Math.sqrt((root.length + 1) / k))
+      content = ''
       svg.selectAll(".counter").data(root)
         .enter()
         .append("g")
         .attr('class', 'counter')
-        .append("rect")
-        .attr('opacity', 0.0)
+        .append("foreignObject")
         .attr("x", (d) ->
           ((root.indexOf(d) + 1) % col) * des_width
         )
@@ -47,15 +43,34 @@ $(document).ready ->
         )
         .attr("width", des_width)
         .attr("height", des_height)
-        .append("foreignObject")
-          .attr("width", '50%')
-          .attr("height", '50%')
         .append("xhtml:body")
-          .style("font", "14px 'Helvetica Neue'")
-          .html(content)
-    )
-  )
+        .html((d) ->
+          $.ajax(
+            url: "/users/1/counters/#{d['id']}",
+            async: false
+          ).done((data) ->
+            content = data
+          )
+          content
+        )
+      )
 
+  timeout = false
+  delta = 200
+  rtime = new Date(1, 1, 2000, 12,0,0)
+  $(window).resize(() ->
+    rtime = new Date()
+    unless timeout
+      timeout = true;
+      setTimeout(resizeend, delta)
+  )
+  resizeend = () ->
+    if (new Date() - rtime < delta)
+      setTimeout(resizeend, delta)
+    else
+      timeout = false
+      draw()
+  draw()
   # Foundation
   $(document).foundation()
 
