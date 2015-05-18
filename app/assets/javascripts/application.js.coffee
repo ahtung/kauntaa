@@ -11,6 +11,8 @@ $(document).ready ->
   #D3
   des_width = 320
   des_height = 240
+  row= 0
+  col= 0
   svg = d3.select("#chart").append("svg").attr("class", 'svg')
   svg.append("g")
     .append("rect")
@@ -37,13 +39,13 @@ $(document).ready ->
         .append("foreignObject")
         .attr('class', 'html')
         .attr("x", (d) ->
-          ((root.indexOf(d) + 1) % col) * des_width
+          ((root.indexOf(d) + 1) % col) * ($('body').width() / col)
         )
         .attr("y", (d) ->
-          ((root.indexOf(d) + 1) % row) * des_height
+          ((root.indexOf(d) + 1) % row) * ($('body').height() / row)
         )
-        .attr("width", des_width)
-        .attr("height", des_height)
+        .attr("width", ($('body').width() / col))
+        .attr("height", ($('body').height() / row))
         .append("xhtml:body")
         .html((d) ->
           $.ajax(
@@ -70,6 +72,7 @@ $(document).ready ->
       setTimeout(resizeend, delta)
     else
       timeout = false
+      console.log('raw')
       draw()
   draw()
   # Foundation
@@ -132,7 +135,7 @@ $(document).ready ->
     form_elem = $(this).closest('.html')[0]
     form = d3.select(form_elem)
     form.remove()
-    counter.select('.html').transition().duration(200).ease('back').attr("x",last_pos[0]).attr("y",last_pos[1]).attr('width', 320).attr('height', 240)
+    counter.select('.html').transition().duration(200).ease('back').attr("x",last_pos[0]).attr("y",last_pos[1]).attr('width', ($('body').width() / col)).attr('height', ($('body').height() / row))
     event.stopPropagation()
     event.preventDefault()
 

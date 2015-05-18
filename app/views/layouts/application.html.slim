@@ -11,6 +11,7 @@ html lang="en"
     = csrf_meta_tag
 
   body style="background:#{@palette.background_color};"
-    == yield
+    .row
+      == yield
     = javascript_include_tag "application"
 
