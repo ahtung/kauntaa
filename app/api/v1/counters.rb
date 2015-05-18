@@ -1,13 +1,12 @@
 module V1
   # Counters API
   class Counters < Grape::API
-
     resource :counters do
-        desc "List all Counters"
-        get do
-          Counter.all
-        end
+      desc 'List all Counters'
+      get do
+        Counter.all
       end
+    end
 
     resource :counters do
       desc 'Increment counter'
