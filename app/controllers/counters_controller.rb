@@ -7,6 +7,7 @@ class CountersController < ApplicationController
   after_action :allow_iframe, only: :show
 
   def show
+    render layout: false
   end
 
   def index

@@ -9,6 +9,12 @@
 
 $(document).ready ->
   #D3
+  d3.selection.prototype.moveToFront = () ->
+    this.each(() ->
+      this.parentNode.appendChild(this)
+    )
+
+
   des_width = 320
   des_height = 240
   svg = d3.select("#chart").append("svg").attr("class", 'svg')
@@ -35,6 +41,7 @@ $(document).ready ->
         .append("g")
         .attr('class', 'counter')
         .append("foreignObject")
+        .attr('class', 'html')
         .attr("x", (d) ->
           ((root.indexOf(d) + 1) % col) * des_width
         )
@@ -87,7 +94,11 @@ $(document).ready ->
     window.counters.push new Counter(options, parseInt($(this).text()))
 
   $('body').on 'click', '.edit-counter', (event) ->
-    event.stopPropagation();
+    counter_elem = $(this).closest('.counter')[0]
+    counter = d3.select(counter_elem).select(".html")
+    counter.moveToFront().transition().attr("x",0).attr("y",0).attr('width', '100%').attr('height', '100%')
+    event.stopPropagation()
+    # event.preventDefault()
 
   $('body').on 'click', '.increment-button', () ->
     $.get $(this).data('increment-url'), ( data ) ->
