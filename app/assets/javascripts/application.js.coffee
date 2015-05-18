@@ -9,6 +9,7 @@
 
 $(document).ready ->
   #D3
+  counters = []
   des_width = 320
   des_height = 240
   row= 0
@@ -23,11 +24,26 @@ $(document).ready ->
     .append('text')
     .text('add')
 
+  resize_svg = () ->
+    k = ($('body').width() / $('body').height()) * (des_width / des_height)
+    col = Math.floor(Math.sqrt(k * (counters.length + 1)))
+    row = Math.ceil(Math.sqrt((counters.length + 1) / k))
+    svg.selectAll(".counter").selectAll(".html").transition()
+      .attr("x", (d) ->
+        ((counters.indexOf(d) + 1) % col) * ($('body').width() / col)
+      )
+      .attr("y", (d) ->
+        ((counters.indexOf(d) + 1) % row) * ($('body').height() / row)
+      )
+      .attr("width", ($('body').width() / col))
+      .attr("height", ($('body').height() / row))
+
   draw = () ->
     margin = {top: 20, right: 0, bottom: 0, left: 0}
     formatNumber = d3.format("d")
 
     d3.json("api/v1/counters.json", (root) ->
+      counters = root
       k = ($('body').width() / $('body').height()) * (des_width / des_height)
       col = Math.floor(Math.sqrt(k * (root.length + 1)))
       row = Math.ceil(Math.sqrt((root.length + 1) / k))
@@ -44,8 +60,8 @@ $(document).ready ->
         .attr("y", (d) ->
           ((root.indexOf(d) + 1) % row) * ($('body').height() / row)
         )
-        .attr("width", "#{($('body').width() / col) / $('body').width() * 100}%")
-        .attr("height", "#{($('body').height() / row) / $('body').height() * 100}%")
+        .attr("width", ($('body').width() / col))
+        .attr("height", ($('body').height() / row))
         .append("xhtml:body")
         .html((d) ->
           $.ajax(
@@ -72,8 +88,7 @@ $(document).ready ->
       setTimeout(resizeend, delta)
     else
       timeout = false
-      console.log('draw')
-      draw()
+      resize_svg();
   draw()
 
   # Foundation
