@@ -15,14 +15,28 @@ $(document).ready ->
   row= 0
   col= 0
   svg = d3.select("#chart").append("svg").attr("class", 'svg').attr('preserveAspectRatio', "xMinYMin")
+  k = ($('body').width() / $('body').height()) * (des_width / des_height)
+  col = Math.floor(Math.sqrt(k * (5 + 1)))
+  row = Math.ceil(Math.sqrt((5 + 1) / k))
+
   svg.append("g")
-    .append("rect")
+    .attr('class', 'add-counter')
+    .append("foreignObject")
+    .attr('class', 'html')
     .attr("x", 0)
     .attr("y", 0)
-    .attr("width", des_width)
-    .attr("height", des_height)
-    .append('text')
-    .text('add')
+    .attr("width", ($('body').width() / col))
+    .attr("height", ($('body').height() / row))
+    .append("xhtml:body")
+    .html(() ->
+      $.ajax(
+        url: "/counter/new",
+        async: false
+      ).done((data) ->
+        content = data
+      )
+      content
+    )
 
   resize_svg = () ->
     k = ($('body').width() / $('body').height()) * (des_width / des_height)
@@ -48,6 +62,7 @@ $(document).ready ->
       col = Math.floor(Math.sqrt(k * (root.length + 1)))
       row = Math.ceil(Math.sqrt((root.length + 1) / k))
       content = ''
+
       svg.selectAll(".counter").data(root)
         .enter()
         .append("g")

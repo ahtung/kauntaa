@@ -18,6 +18,13 @@ class CountersController < ApplicationController
   def new
     @counter = current_user.counters.new
     authorize @counter
+    render layout: false
+  end
+
+  def new_counter
+    @counter = current_user.counters.new
+    authorize @counter
+    render layout: false
   end
 
   def edit
