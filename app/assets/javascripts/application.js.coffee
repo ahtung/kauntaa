@@ -9,12 +9,6 @@
 
 $(document).ready ->
   #D3
-  d3.selection.prototype.moveToFront = () ->
-    this.each(() ->
-      this.parentNode.appendChild(this)
-    )
-
-
   des_width = 320
   des_height = 240
   svg = d3.select("#chart").append("svg").attr("class", 'svg')
@@ -93,12 +87,42 @@ $(document).ready ->
     window.counters = []
     window.counters.push new Counter(options, parseInt($(this).text()))
 
+  link = ''
+  counter = ''
+  counter_html = ''
+  content = ''
+
+  moveToFront = () ->
+    this.parentNode.parentNode.appendChild(this.parentNode)
+
   $('body').on 'click', '.edit-counter', (event) ->
+    link = $(this).attr('href')
     counter_elem = $(this).closest('.counter')[0]
-    counter = d3.select(counter_elem).select(".html")
-    counter.moveToFront().transition().attr("x",0).attr("y",0).attr('width', '100%').attr('height', '100%')
+    counter = d3.select(counter_elem)
+    counter_html = counter.select(".html")
+    counter_html.each(moveToFront).transition().duration(2000).attr("x",0).attr("y",0).attr('width', window.innerWidth).attr('height', window.innerHeight).remove().each("end", () ->
+      d3.select('.svg').selectAll('g').remove()
+      # d3.select('.svg').append("g")
+#         .attr('class', 'counter')
+#         .append("foreignObject")
+#         .attr('class', 'html')
+#         .attr("x", '0')
+#         .attr("y", '0')
+#         .attr("width", '100%')
+#         .attr("height", '100%')
+#         .append("xhtml:body")
+#         .html((d) ->
+#           $.ajax(
+#             url: link,
+#             async: false
+#           ).done((data) ->
+#             content = data
+#           )
+#           content
+#         )
+    )
     event.stopPropagation()
-    # event.preventDefault()
+    event.preventDefault()
 
   $('body').on 'click', '.increment-button', () ->
     $.get $(this).data('increment-url'), ( data ) ->
