@@ -1,7 +1,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require foundation
-# require d3
+#= require d3
 #= require counter
 
 $(document).ready ->

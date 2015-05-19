@@ -325,6 +325,10 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.1)
       sprockets-rails
+    rails-assets-FitText.js (1.2.0)
+      rails-assets-jquery (>= 1.6)
+    rails-assets-d3 (3.5.5)
+    rails-assets-jquery (2.1.4)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.6)
@@ -476,6 +480,7 @@ PLATFORMS
 
 DEPENDENCIES
   brakeman
+  bundler (>= 1.8.4)
   byebug
   cane
   capybara
@@ -498,6 +503,8 @@ DEPENDENCIES
   pundit
   rack-google-analytics
   rails (= 4.2.1)
+  rails-assets-FitText.js!
+  rails-assets-d3!
   rails_12factor
   roboto
   rspec-its
