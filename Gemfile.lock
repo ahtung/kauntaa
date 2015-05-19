@@ -245,6 +245,10 @@ GEM
     i18n (0.7.0)
     ice_nine (0.11.1)
     inflecto (0.0.2)
+    inline_svg (0.5.2)
+      activesupport (>= 4.1.9)
+      loofah (>= 2.0)
+      nokogiri (~> 1.6)
     ipaddress (0.8.0)
     jbuilder (2.2.16)
       activesupport (>= 3.0.0, < 5)
@@ -493,6 +497,7 @@ DEPENDENCIES
   foreman
   foundation-rails
   grape
+  inline_svg
   jbuilder (~> 2.0)
   jquery-rails
   launchy

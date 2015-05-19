@@ -25,6 +25,7 @@ gem 'roboto'
 gem 'sitemap_generator'
 gem 'fog'
 gem 'grape'
+gem 'inline_svg'
 
 group :production do
   gem 'rails_12factor'
