@@ -1,16 +1,19 @@
 class @Navigator
+  @des_width
+  @des_height
+  @svg
   constructor: (options, value = 0) ->
     counters = []
-    des_width = 320
-    des_height = 240
     row= 0
     col= 0
-    svg = d3.select("#chart").append("svg").attr("class", 'svg').attr('preserveAspectRatio', "xMinYMin")
-    k = ($('body').width() / $('body').height()) * (des_width / des_height)
+    @des_width = 320
+    @des_height = 240
+    @svg = d3.select("#chart").append("svg").attr("class", 'svg').attr('preserveAspectRatio', "xMinYMin")
+    k = ($('body').width() / $('body').height()) * (@des_width / @des_height)
     col = Math.floor(Math.sqrt(k * (5 + 1)))
     row = Math.ceil(Math.sqrt((5 + 1) / k))
 
-    svg.append("g")
+    @svg.append("g")
       .attr('class', 'add-counter')
       .append("foreignObject")
       .attr('class', 'html')
@@ -31,11 +34,11 @@ class @Navigator
 
     d3.json("api/v1/counters.json", (root) ->
       counters = root
-      k = ($('body').width() / $('body').height()) * (des_width / des_height)
+      k = ($('body').width() / $('body').height()) * (@des_width / @des_height)
       col = Math.floor(Math.sqrt(k * (root.length + 1)))
       row = Math.ceil(Math.sqrt((root.length + 1) / k))
 
-      svg.selectAll(".counter").data(root)
+      @svg.selectAll(".counter").data(root)
         .enter()
         .append("g")
         .attr('class', 'counter')
@@ -51,7 +54,7 @@ class @Navigator
         .attr("height", ($('body').height() / row))
         .append("xhtml:body")
         .html((d) ->
-          content(true)
+          content(false)
         )
       )
 
@@ -59,7 +62,7 @@ class @Navigator
     k = ($('body').width() / $('body').height()) * (des_width / des_height)
     col = Math.floor(Math.sqrt(k * (counters.length + 1)))
     row = Math.ceil(Math.sqrt((counters.length + 1) / k))
-    svg.selectAll(".counter").selectAll(".html").transition()
+    @svg.selectAll(".counter").selectAll(".html").transition()
       .attr("x", (d) ->
         ((counters.indexOf(d) + 1) % col) * ($('body').width() / col)
       )
@@ -69,11 +72,12 @@ class @Navigator
       .attr("width", ($('body').width() / col))
       .attr("height", ($('body').height() / row))
 
-  content: (first = false) ->
+  content = (first = false) ->
+    content_data = ''
     $.ajax(
       url: (first ? '/counter/new' : "/users/1/counters/#{d['id']}"),
       async: false
     ).done((data) ->
-      content = data
+      content_data = data
     )
-    content
+    content_data
