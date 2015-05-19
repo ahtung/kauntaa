@@ -4,7 +4,7 @@ module V1
     resource :counters do
       desc 'List all Counters'
       get do
-        Counter.all
+        User.first.counters
       end
     end
 
