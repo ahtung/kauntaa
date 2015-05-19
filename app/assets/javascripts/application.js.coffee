@@ -163,13 +163,3 @@ $(document).ready ->
     counter.select('.html').transition().duration(200).ease('back').attr("x",last_pos[0]).attr("y",last_pos[1]).attr('width', ($('body').width() / col)).attr('height', ($('body').height() / row))
     event.stopPropagation()
     event.preventDefault()
-
-  $('body').on 'click', '.increment-button', () ->
-    $.get $(this).data('increment-url'), ( data ) ->
-      console.log( "Load was performed." )
-    , "script"
-
-  $('body').on 'click', '.decrement-button', () ->
-    $.get $(this).data('decrement-url'), ( data ) ->
-      console.log( "Load was performed." )
-    , "script"
