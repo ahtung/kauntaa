@@ -1,11 +1,9 @@
 #= require jquery
 #= require jquery_ujs
 #= require foundation
-#= require odometer
-#= require jquery.transit
 #= require FitText
-#= require counter
 #= require d3
+#= require counter
 
 $(document).ready ->
   #D3
