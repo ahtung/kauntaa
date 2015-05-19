@@ -51,7 +51,7 @@ class @Navigator
         .attr("height", ($('body').height() / row))
         .append("xhtml:body")
         .html((d) ->
-          content
+          content(true)
         )
       )
 

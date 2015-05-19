@@ -3,15 +3,11 @@
 #= require foundation
 #= require d3
 #= require counter
+#= require navigator
 
 $(document).ready ->
   #D3
-
-  resize_svg = () ->
-
-
-  draw = () ->
-
+  navigator = new Navigator
 
   timeout = false
   delta = 200
@@ -27,8 +23,9 @@ $(document).ready ->
       setTimeout(resizeend, delta)
     else
       timeout = false
-      resize_svg();
-  draw()
+      navigator.resize()
+
+  navigator.draw()
 
   # Foundation
   $(document).foundation()
