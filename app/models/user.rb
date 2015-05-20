@@ -24,6 +24,6 @@ class User < ActiveRecord::Base
   private
 
   def build_counter
-    counters.build if counters.empty?
+    counters.build(palette: Palette.all.sample) if counters.empty?
   end
 end
