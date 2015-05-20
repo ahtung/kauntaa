@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_google_oauth2(access_token, _ = nil)
     data = access_token.info
-    user = User.where(email: data['email']).first
+    user = User.find_by(email: data['email'])
     unless user
       user = User.create(
         email: data['email'],
@@ -24,6 +24,6 @@ class User < ActiveRecord::Base
   private
 
   def build_counter
-    counters.build if counters.empty?
+    counters.build(palette: Palette.all.sample) if counters.empty?
   end
 end

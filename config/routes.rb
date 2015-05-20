@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     root 'counters#index', as: :user_root
   end
 
+  get 'counter/new', to: 'counters#new_counter'
+
   root 'pages#about', as: :guest_root
 
   resources :users do

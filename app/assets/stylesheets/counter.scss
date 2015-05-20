@@ -2,8 +2,31 @@
 
 // Show
 
+.counter {
+  body {
+    height: 100%;
+  }
+}
 
+.add-counter {
+  body {
+    height: 100%;
+    .text-center {
+      position: fixed;
+      height: 100%;
+      width:100%;
+
+      .text-container {
+        p {
+          font-size:30px;
+        }
+      }
+    }
+  }
+}
 .a-counter {
+  position: fixed;
+  width:100%;
   height:100%;
   .count {
     height:50%;
@@ -12,30 +35,6 @@
   .description {
     height:50%;
   }
-}
-
-.increment-area, .add-area{
-  z-index:1;
-  position:absolute;
-  .increment-button,
-  .new-counter-button{
-    width:100%;
-    height:100%;
-  }
-
-  .new-counter-button{
-    display:block;
-  }
-}
-
-.sign-out{
-  position:relative;
-  z-index:5;
-}
-
-.counter-edit-area{
-  position:relative;
-  z-index:5;
 }
 
 #back_from_new_counter{

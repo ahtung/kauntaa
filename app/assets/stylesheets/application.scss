@@ -11,19 +11,29 @@
  * file per style scope.
  *
  *= require_self
- *= require odometer/themes/odometer-theme-minimal
  *= require fonts
  *= require foundation_and_overrides
  *= require pages
  *= require counter
  *= require header
- *= require font-awesome
  */
 
-.center-vertical {
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+.add-icon, .add-text {
+  height:50%;
+
+  .text-container {
+//    position: relative;
+//    top: 50%;
+//    transform: translateY(-50%);
+  }
+}
+
+#chart {
+  width: 100%;
+  min-height: 100vh;
+
+  .svg {
+    width: 100%;
+    min-height: 100vh;
+  }
 }
