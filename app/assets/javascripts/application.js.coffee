@@ -58,7 +58,9 @@ $(document).ready ->
     counter_elem = $(this).closest('.counter')[0]
     counter = d3.select(counter_elem)
     counter_html = counter.select(".html")
-    last_pos = [counter_html.attr('x'), counter_html.attr('y')]
+    navigator.last_pos = [counter_html.attr('x'), counter_html.attr('y')]
+
+    navigator.counter = counter
 
     counter_html.each(moveToFront)
       .transition()

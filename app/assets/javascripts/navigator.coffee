@@ -4,6 +4,8 @@ class @Navigator
   @svg
   @col
   @row
+  @counter
+  @last_pos
   constructor: (options, value = 0) ->
     counters = []
     row= 0
@@ -27,14 +29,17 @@ class @Navigator
       .append("xhtml:body")
       .html(content())
 
-  back: () ->
+    dit = @
     $('body').on 'click', '#back_from_new_counter', () ->
-      form_elem = $(this).closest('.html')[0]
-      form = d3.select(form_elem)
-      form.remove()
-      counter.select('.html').transition().duration(200).ease('back').attr("x",last_pos[0]).attr("y",last_pos[1]).attr('width', ($('body').width() / col)).attr('height', ($('body').height() / row))
+      dit.back(this)
       event.stopPropagation()
       event.preventDefault()
+
+  back: (elem) ->
+    form_elem = $(elem).closest('.html')[0]
+    form = d3.select(form_elem)
+    form.remove()
+    @counter.select('.html').transition().duration(200).ease('back').attr("x",@last_pos[0]).attr("y",@last_pos[1]).attr('width', ($('body').width() / @col)).attr('height', ($('body').height() / @row))
 
   draw: () ->
     margin = {top: 20, right: 0, bottom: 0, left: 0}
@@ -57,14 +62,6 @@ class @Navigator
         .attr('class', 'counter')
         .append("foreignObject")
         .attr('class', 'html')
-        # .attr("x", (d) ->
-        #   ((root.indexOf(d) + 1) % col) * $('body').width() / col
-        # )
-        # .attr("y", (d) ->
-        #   ((root.indexOf(d) + 1) / col) * ($('body').height() / row)
-        # )
-        # .attr("width", ($('body').width() / col))
-        # .attr("height", ($('body').height() / row))
         .append("xhtml:body")
         .html((d) ->
           content(d)
