@@ -4,6 +4,7 @@ RSpec.describe User, type: :model do
   it { should have_many(:counters).dependent(:destroy) }
 
   it '#build_counter' do
+    create(:palette)
     user = create(:user)
     expect(user.counters.count).to be(1)
   end
