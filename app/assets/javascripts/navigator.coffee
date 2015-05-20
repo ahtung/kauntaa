@@ -53,7 +53,7 @@ class @Navigator
     d3.json("api/v1/counters.json", (root) ->
       dit.counters = root
       k = ($('body').width() / $('body').height()) * (des_width / des_height)
-      col = Math.floor(Math.sqrt(k * (root.length + 1)))
+      col = Math.ceil(Math.sqrt(k * (root.length + 1)))
       row = Math.ceil(Math.sqrt((root.length + 1) / k))
       console.log root
       svg.selectAll(".counter").data(root)
