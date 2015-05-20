@@ -13,8 +13,6 @@ class @Navigator
     col = Math.floor(Math.sqrt(k * (1)))
     row = Math.ceil(Math.sqrt((1) / k))
 
-    console.log()
-
     @svg.append("g")
       .attr('class', 'add-counter')
       .append("foreignObject")
@@ -82,11 +80,11 @@ class @Navigator
       .attr("height", ($('body').height() / row))
 
   content = (first = false) ->
+    content_data = ''
     if first
       url = '/counter/new'
     else
       url = "/users/1/counters/#{d['id']}"
-    content_data = ''
     $.ajax(
       url: url
       async: false
