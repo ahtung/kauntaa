@@ -18,7 +18,6 @@ class @Navigator
 
     @svg.append("g")
       .attr('class', 'add-counter')
-      .attr('class', 'block')
       .append("foreignObject")
       .attr('class', 'html')
       .attr("x", 0)
@@ -51,21 +50,21 @@ class @Navigator
       k = ($('body').width() / $('body').height()) * (des_width / des_height)
       col = Math.floor(Math.sqrt(k * (root.length + 1)))
       row = Math.ceil(Math.sqrt((root.length + 1) / k))
+      console.log root
       svg.selectAll(".counter").data(root)
         .enter()
         .append("g")
         .attr('class', 'counter')
-        .attr('class', 'block')
         .append("foreignObject")
         .attr('class', 'html')
-        .attr("x", (d) ->
-          ((root.indexOf(d) + 1) % col) * ($('body').width() / col)
-        )
-        .attr("y", (d) ->
-          ((root.indexOf(d) + 1) % row) * ($('body').height() / row)
-        )
-        .attr("width", ($('body').width() / col))
-        .attr("height", ($('body').height() / row))
+        # .attr("x", (d) ->
+        #   ((root.indexOf(d) + 1) % col) * $('body').width() / col
+        # )
+        # .attr("y", (d) ->
+        #   ((root.indexOf(d) + 1) / col) * ($('body').height() / row)
+        # )
+        # .attr("width", ($('body').width() / col))
+        # .attr("height", ($('body').height() / row))
         .append("xhtml:body")
         .html((d) ->
           content(d)
@@ -81,12 +80,21 @@ class @Navigator
     @col = Math.floor(Math.sqrt(k * (@counters.length + 1)))
     @row = Math.ceil(Math.sqrt((@counters.length + 1) / k))
     dit = @
-    @svg.selectAll(".block").selectAll(".html").transition()
+
+    @svg.selectAll(".add-counter")
+      .selectAll(".html")
+      .transition()
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", @col_width())
+      .attr("height", @row_height())
+
+    @svg.selectAll(".counter").selectAll(".html").transition()
       .attr("x", (d) ->
-        ((dit.counters.indexOf(d) + 1) % dit.col) * ($('body').width() / dit.col)
+        ((dit.counters.indexOf(d) + 1) % dit.col) * $('body').width() / dit.col
       )
       .attr("y", (d) ->
-        ((dit.counters.indexOf(d) + 1) % dit.row) * ($('body').height() / dit.row)
+        parseInt((dit.counters.indexOf(d) + 1) / dit.col) * ($('body').height() / dit.row)
       )
       .attr("width", dit.col_width())
       .attr("height", dit.row_height())
