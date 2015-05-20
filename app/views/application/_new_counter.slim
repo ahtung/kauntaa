@@ -5,7 +5,8 @@ css:
 
 .text-center style='background-color:#{@palette.background_color};height:100%;'
   = inline_svg("add.svg", class: 'add-icon')
-  div
-    h2
-      = link_to 'Add', new_user_counter_path(current_user), style: "color:#{@palette.text_color};"
-    = link_to 'Sign out', destroy_user_session_path, method: :delete, style: "color:#{@palette.foreground_color};"
+  div.add-text
+    .text-container
+      h2
+        = link_to 'Add', new_user_counter_path(current_user), style: "color:#{@palette.text_color};"
+      = link_to 'Sign out', destroy_user_session_path, method: :delete, style: "color:#{@palette.foreground_color};"

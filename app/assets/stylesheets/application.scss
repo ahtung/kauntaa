@@ -18,9 +18,14 @@
  *= require header
  */
 
-.add-icon {
-  height:20%;
-  margin-top:10%;
+.add-icon, .add-text {
+  height:50vh;
+
+  .text-container {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
 
 #chart {
