@@ -13,6 +13,8 @@ class @Navigator
     col = Math.floor(Math.sqrt(k * (1)))
     row = Math.ceil(Math.sqrt((1) / k))
 
+    # console.log(@svg)
+
     @svg.append("g")
       .attr('class', 'add-counter')
       .append("foreignObject")
@@ -22,9 +24,7 @@ class @Navigator
       .attr("width", ($('body').width() / col))
       .attr("height", ($('body').height() / row))
       .append("xhtml:body")
-      .html(() ->
-        content(true)
-      )
+      .html(content(true))
 
   back: () ->
     $('body').on 'click', '#back_from_new_counter', () ->
@@ -39,13 +39,17 @@ class @Navigator
     margin = {top: 20, right: 0, bottom: 0, left: 0}
     formatNumber = d3.format("d")
 
+    svg = @svg
+    des_width = @des_width
+    des_height = @des_height
+
     d3.json("api/v1/counters.json", (root) ->
       counters = root
-      k = ($('body').width() / $('body').height()) * (@des_width / @des_height)
+      console.log(root)
+      k = ($('body').width() / $('body').height()) * (des_width / des_height)
       col = Math.floor(Math.sqrt(k * (root.length + 1)))
       row = Math.ceil(Math.sqrt((root.length + 1) / k))
-
-      @svg.selectAll(".counter").data(root)
+      svg.selectAll(".counter").data(root)
         .enter()
         .append("g")
         .attr('class', 'counter')
@@ -60,9 +64,7 @@ class @Navigator
         .attr("width", ($('body').width() / col))
         .attr("height", ($('body').height() / row))
         .append("xhtml:body")
-        .html((d) ->
-          content(false)
-        )
+        .html(content(false))
       )
 
   resize: () ->

@@ -25,7 +25,7 @@ $(document).ready ->
   #     timeout = false
   #     navigator.resize()
   #
-  # navigator.draw()
+  navigator.draw()
 
   # Foundation
   $(document).foundation()
