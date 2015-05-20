@@ -29,7 +29,7 @@ RSpec.describe Counter, type: :model do
       counter.created_at_date = '2015-11-05'
       counter.created_at_time = '00:00'
       counter.save
-      expect(counter.created_at).to eq DateTime.parse('2015-11-05 00:00')
+      expect(counter.created_at).to eq DateTime.zone.parse('2015-11-05 00:00')
     end
 
     it 'increment' do

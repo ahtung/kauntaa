@@ -5,7 +5,7 @@ FactoryGirl.define do
     palette
 
     trait :a_month_older do
-      created_at { Time.now - 1.month }
+      created_at { Time.zone.now - 1.month }
     end
   end
 end

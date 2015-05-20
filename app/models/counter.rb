@@ -36,6 +36,6 @@ class Counter < ActiveRecord::Base
   # sets creation date
   def set_creation_date
     return unless created_at_date && created_at_time
-    self.created_at = DateTime.parse("#{created_at_date} #{created_at_time}")
+    self.created_at = DateTime.zone.parse("#{created_at_date} #{created_at_time}")
   end
 end
