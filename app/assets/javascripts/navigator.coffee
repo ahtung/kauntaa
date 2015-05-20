@@ -2,6 +2,8 @@ class @Navigator
   @des_width
   @des_height
   @svg
+  @col
+  @row
   constructor: (options, value = 0) ->
     counters = []
     row= 0
@@ -12,12 +14,11 @@ class @Navigator
     k = ($('body').width() / $('body').height()) * (@des_width / @des_height)
     col = Math.floor(Math.sqrt(k * (1)))
     row = Math.ceil(Math.sqrt((1) / k))
-
-    col = 2
-    row = 2
+    @col = 0
 
     @svg.append("g")
       .attr('class', 'add-counter')
+      .attr('class', 'block')
       .append("foreignObject")
       .attr('class', 'html')
       .attr("x", 0)
@@ -43,9 +44,10 @@ class @Navigator
     svg = @svg
     des_width = @des_width
     des_height = @des_height
+    dit = @
 
     d3.json("api/v1/counters.json", (root) ->
-      counters = root
+      dit.counters = root
       k = ($('body').width() / $('body').height()) * (des_width / des_height)
       col = Math.floor(Math.sqrt(k * (root.length + 1)))
       row = Math.ceil(Math.sqrt((root.length + 1) / k))
@@ -53,6 +55,7 @@ class @Navigator
         .enter()
         .append("g")
         .attr('class', 'counter')
+        .attr('class', 'block')
         .append("foreignObject")
         .attr('class', 'html')
         .attr("x", (d) ->
@@ -67,21 +70,32 @@ class @Navigator
         .html((d) ->
           content(d)
         )
-      )
+      dit.resize()
+    )
+
+  row_and_col: () ->
+    console.log('TODO')
 
   resize: () ->
-    k = ($('body').width() / $('body').height()) * (des_width / des_height)
-    col = Math.floor(Math.sqrt(k * (counters.length + 1)))
-    row = Math.ceil(Math.sqrt((counters.length + 1) / k))
-    @svg.selectAll(".counter").selectAll(".html").transition()
+    k = ($('body').width() / $('body').height()) * (@des_width / @des_height)
+    @col = Math.floor(Math.sqrt(k * (@counters.length + 1)))
+    @row = Math.ceil(Math.sqrt((@counters.length + 1) / k))
+    dit = @
+    @svg.selectAll(".block").selectAll(".html").transition()
       .attr("x", (d) ->
-        ((counters.indexOf(d) + 1) % col) * ($('body').width() / col)
+        ((dit.counters.indexOf(d) + 1) % dit.col) * ($('body').width() / dit.col)
       )
       .attr("y", (d) ->
-        ((counters.indexOf(d) + 1) % row) * ($('body').height() / row)
+        ((dit.counters.indexOf(d) + 1) % dit.row) * ($('body').height() / dit.row)
       )
-      .attr("width", ($('body').width() / col))
-      .attr("height", ($('body').height() / row))
+      .attr("width", dit.col_width())
+      .attr("height", dit.row_height())
+
+  col_width: () ->
+    $('body').width() / @col
+
+  row_height: () ->
+    $('body').height() / @row
 
   content = (d) ->
     content_data = ''

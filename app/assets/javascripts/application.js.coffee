@@ -9,22 +9,22 @@ $(document).ready ->
   #D3
   navigator = new Navigator
 
-  # timeout = false
-  # delta = 200
-  # rtime = new Date(1, 1, 2000, 12,0,0)
-  # $(window).resize(() ->
-  #   rtime = new Date()
-  #   unless timeout
-  #     timeout = true;
-  #     setTimeout(resizeend, delta)
-  # )
-  # resizeend = () ->
-  #   if (new Date() - rtime < delta)
-  #     setTimeout(resizeend, delta)
-  #   else
-  #     timeout = false
-  #     navigator.resize()
-  #
+  timeout = false
+  delta = 200
+  rtime = new Date(1, 1, 2000, 12,0,0)
+  $(window).resize(() ->
+    rtime = new Date()
+    unless timeout
+      timeout = true;
+      setTimeout(resizeend, delta)
+  )
+  resizeend = () ->
+    if (new Date() - rtime < delta)
+      setTimeout(resizeend, delta)
+    else
+      timeout = false
+      navigator.resize()
+
   navigator.draw()
 
   # Foundation
@@ -58,24 +58,32 @@ $(document).ready ->
     counter_html = counter.select(".html")
     last_pos = [counter_html.attr('x'), counter_html.attr('y')]
 
-    counter_html.each(moveToFront).transition().duration(200).ease('elastic').attr("x",0).attr("y",0).attr('width', window.innerWidth).attr('height', window.innerHeight).each("end", () ->
-      d3.select('svg')
-        .append("foreignObject")
-        .attr('class', 'html')
-        .attr("x", '0')
-        .attr("y", '0')
-        .attr("width", '100%')
-        .attr("height", '100%')
-        .append("xhtml:body")
-        .html((d) ->
-          $.ajax(
-            url: link,
-            async: false
-          ).done((data) ->
-            content = data
+    counter_html.each(moveToFront)
+      .transition()
+      .duration(200)
+      .ease('elastic')
+      .attr("x",0)
+      .attr("y",0)
+      .attr('width', window.innerWidth)
+      .attr('height', window.innerHeight)
+      .each("end", () ->
+        d3.select('svg')
+          .append("foreignObject")
+          .attr('class', 'html')
+          .attr("x", '0')
+          .attr("y", '0')
+          .attr("width", '100%')
+          .attr("height", '100%')
+          .append("xhtml:body")
+          .html((d) ->
+            $.ajax(
+              url: link,
+              async: false
+            ).done((data) ->
+              content = data
+            )
+            content
           )
-          content
-        )
-    )
+      )
     event.stopPropagation()
     event.preventDefault()
