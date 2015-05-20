@@ -42,12 +42,14 @@ $(document).ready ->
     window.counters = []
     window.counters.push new Counter(options, parseInt($(this).text()))
 
+  # TODO: (dunyakirkali) Refactor to navigator
   link = ''
   counter = ''
   counter_elem = ''
   counter_html = ''
   content = ''
   last_pos = []
+
   moveToFront = () ->
     this.parentNode.parentNode.appendChild(this.parentNode)
 
