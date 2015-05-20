@@ -16,8 +16,6 @@ class @Navigator
     col = 2
     row = 2
 
-    # console.log(@svg)
-
     @svg.append("g")
       .attr('class', 'add-counter')
       .append("foreignObject")
@@ -48,7 +46,6 @@ class @Navigator
 
     d3.json("api/v1/counters.json", (root) ->
       counters = root
-      console.log(root)
       k = ($('body').width() / $('body').height()) * (des_width / des_height)
       col = Math.floor(Math.sqrt(k * (root.length + 1)))
       row = Math.ceil(Math.sqrt((root.length + 1) / k))
