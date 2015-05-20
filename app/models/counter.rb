@@ -5,7 +5,7 @@ class Counter < ActiveRecord::Base
   belongs_to :palette
 
   # Validation
-  validate :palette, presence: true
+  validates :palette, presence: true
 
   # Callbacks
   before_save :set_name
