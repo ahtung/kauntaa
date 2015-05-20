@@ -14,7 +14,7 @@ class @Navigator
     @des_height = 240
     @svg = d3.select("#chart").append("svg").attr("class", 'svg').attr('preserveAspectRatio', "xMinYMin")
     k = ($('body').width() / $('body').height()) * (@des_width / @des_height)
-    col = Math.floor(Math.sqrt(k * (1)))
+    col = Math.ceil(Math.sqrt(k * (1)))
     row = Math.ceil(Math.sqrt((1) / k))
     @col = 0
 
