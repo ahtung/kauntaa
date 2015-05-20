@@ -10,8 +10,10 @@ class @Navigator
     @des_height = 240
     @svg = d3.select("#chart").append("svg").attr("class", 'svg').attr('preserveAspectRatio', "xMinYMin")
     k = ($('body').width() / $('body').height()) * (@des_width / @des_height)
-    col = Math.floor(Math.sqrt(k * (5 + 1)))
-    row = Math.ceil(Math.sqrt((5 + 1) / k))
+    col = Math.floor(Math.sqrt(k * (1)))
+    row = Math.ceil(Math.sqrt((1) / k))
+
+    console.log()
 
     @svg.append("g")
       .attr('class', 'add-counter')
@@ -26,7 +28,14 @@ class @Navigator
         content(true)
       )
 
-  init: () ->
+  back: () ->
+    $('body').on 'click', '#back_from_new_counter', () ->
+      form_elem = $(this).closest('.html')[0]
+      form = d3.select(form_elem)
+      form.remove()
+      counter.select('.html').transition().duration(200).ease('back').attr("x",last_pos[0]).attr("y",last_pos[1]).attr('width', ($('body').width() / col)).attr('height', ($('body').height() / row))
+      event.stopPropagation()
+      event.preventDefault()
 
   draw: () ->
     margin = {top: 20, right: 0, bottom: 0, left: 0}
@@ -73,9 +82,13 @@ class @Navigator
       .attr("height", ($('body').height() / row))
 
   content = (first = false) ->
+    if first
+      url = '/counter/new'
+    else
+      url = "/users/1/counters/#{d['id']}"
     content_data = ''
     $.ajax(
-      url: (first ? '/counter/new' : "/users/1/counters/#{d['id']}"),
+      url: url
       async: false
     ).done((data) ->
       content_data = data

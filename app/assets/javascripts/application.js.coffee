@@ -9,23 +9,23 @@ $(document).ready ->
   #D3
   navigator = new Navigator
 
-  timeout = false
-  delta = 200
-  rtime = new Date(1, 1, 2000, 12,0,0)
-  $(window).resize(() ->
-    rtime = new Date()
-    unless timeout
-      timeout = true;
-      setTimeout(resizeend, delta)
-  )
-  resizeend = () ->
-    if (new Date() - rtime < delta)
-      setTimeout(resizeend, delta)
-    else
-      timeout = false
-      navigator.resize()
-
-  navigator.draw()
+  # timeout = false
+  # delta = 200
+  # rtime = new Date(1, 1, 2000, 12,0,0)
+  # $(window).resize(() ->
+  #   rtime = new Date()
+  #   unless timeout
+  #     timeout = true;
+  #     setTimeout(resizeend, delta)
+  # )
+  # resizeend = () ->
+  #   if (new Date() - rtime < delta)
+  #     setTimeout(resizeend, delta)
+  #   else
+  #     timeout = false
+  #     navigator.resize()
+  #
+  # navigator.draw()
 
   # Foundation
   $(document).foundation()
@@ -77,13 +77,5 @@ $(document).ready ->
           content
         )
     )
-    event.stopPropagation()
-    event.preventDefault()
-
-  $('body').on 'click', '#back_from_new_counter', () ->
-    form_elem = $(this).closest('.html')[0]
-    form = d3.select(form_elem)
-    form.remove()
-    counter.select('.html').transition().duration(200).ease('back').attr("x",last_pos[0]).attr("y",last_pos[1]).attr('width', ($('body').width() / col)).attr('height', ($('body').height() / row))
     event.stopPropagation()
     event.preventDefault()
