@@ -13,6 +13,9 @@ class @Navigator
     col = Math.floor(Math.sqrt(k * (1)))
     row = Math.ceil(Math.sqrt((1) / k))
 
+    col = 2
+    row = 2
+
     # console.log(@svg)
 
     @svg.append("g")
@@ -24,7 +27,7 @@ class @Navigator
       .attr("width", ($('body').width() / col))
       .attr("height", ($('body').height() / row))
       .append("xhtml:body")
-      .html(content(true))
+      .html(content())
 
   back: () ->
     $('body').on 'click', '#back_from_new_counter', () ->
@@ -64,7 +67,9 @@ class @Navigator
         .attr("width", ($('body').width() / col))
         .attr("height", ($('body').height() / row))
         .append("xhtml:body")
-        .html(content(false))
+        .html((d) ->
+          content(d)
+        )
       )
 
   resize: () ->
@@ -81,12 +86,13 @@ class @Navigator
       .attr("width", ($('body').width() / col))
       .attr("height", ($('body').height() / row))
 
-  content = (first = false) ->
+  content = (d) ->
     content_data = ''
-    if first
-      url = '/counter/new'
-    else
+    if d
       url = "/users/1/counters/#{d['id']}"
+    else
+      url = '/counter/new'
+
     $.ajax(
       url: url
       async: false
