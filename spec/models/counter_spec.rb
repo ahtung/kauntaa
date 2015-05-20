@@ -5,6 +5,9 @@ RSpec.describe Counter, type: :model do
   it { should belong_to(:user) }
   it { should belong_to(:palette) }
 
+  # Validations
+  it { should validate_presence_of(:palette) }
+
   # Instance methods
   describe '#' do
     it 'editable_attributes' do
@@ -29,7 +32,7 @@ RSpec.describe Counter, type: :model do
       counter.created_at_date = '2015-11-05'
       counter.created_at_time = '00:00'
       counter.save
-      expect(counter.created_at).to eq DateTime.zone.parse('2015-11-05 00:00')
+      expect(counter.created_at).to eq Time.zone.parse('2015-11-05 00:00')
     end
 
     it 'increment' do

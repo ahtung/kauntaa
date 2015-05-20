@@ -4,6 +4,9 @@ class Counter < ActiveRecord::Base
   belongs_to :user
   belongs_to :palette
 
+  # Validation
+  validate :palette, presence: true
+
   # Callbacks
   before_save :set_name
   before_update :set_creation_date
@@ -36,6 +39,6 @@ class Counter < ActiveRecord::Base
   # sets creation date
   def set_creation_date
     return unless created_at_date && created_at_time
-    self.created_at = DateTime.zone.parse("#{created_at_date} #{created_at_time}")
+    self.created_at = Time.zone.parse("#{created_at_date} #{created_at_time}")
   end
 end
