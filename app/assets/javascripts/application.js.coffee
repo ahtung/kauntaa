@@ -2,7 +2,7 @@
 #= require jquery_ujs
 #= require foundation
 #= require d3
-#= require FitText
+# require fittext
 #= require counter
 #= require navigator
 
