@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require foundation
 #= require d3
+#= require FitText
 #= require counter
 #= require navigator
 
@@ -31,7 +32,8 @@ $(document).ready ->
   $(document).foundation()
 
   # FitText
-  # $(".responsive-text").fitText(1.0)
+  $(".a-counter .counter").fitText(0.3);
+  $(".a-counter .description").fitText(1);
 
   # Counters
   $('.counter').map (index) ->
