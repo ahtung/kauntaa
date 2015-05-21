@@ -150,7 +150,7 @@ GEM
     fog-atmos (0.1.0)
       fog-core
       fog-xml
-    fog-aws (0.2.2)
+    fog-aws (0.3.0)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
@@ -304,7 +304,7 @@ GEM
       websocket-driver (>= 0.2.0)
     powerpack (0.1.1)
     procto (0.0.2)
-    puma (2.11.0)
+    puma (2.11.3)
       rack (>= 1.1, < 2.0)
     pundit (1.0.0)
       activesupport (>= 3.0.0)
