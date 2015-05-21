@@ -10,8 +10,8 @@ class @Navigator
     counters = []
     row= 0
     col= 0
-    @des_width = 320
-    @des_height = 240
+    @des_width = 640
+    @des_height = 480
     @svg = d3.select("#chart").append("svg").attr("class", 'svg').attr('preserveAspectRatio', "xMinYMin")
     k = ($('body').width() / $('body').height()) * (@des_width / @des_height)
     col = Math.ceil(Math.sqrt(k * (1)))
