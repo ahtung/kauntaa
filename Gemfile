@@ -59,5 +59,6 @@ end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-d3'
+  gem 'rails-assets-underscore'
   gem 'rails-assets-FitText.js'
 end

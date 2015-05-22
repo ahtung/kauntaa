@@ -333,6 +333,7 @@ GEM
       rails-assets-jquery (>= 1.6)
     rails-assets-d3 (3.5.5)
     rails-assets-jquery (2.1.4)
+    rails-assets-underscore (1.8.3)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.6)
@@ -507,6 +508,7 @@ DEPENDENCIES
   rails (= 4.2.1)
   rails-assets-FitText.js!
   rails-assets-d3!
+  rails-assets-underscore!
   rails_12factor
   roboto
   rspec-its
