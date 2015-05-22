@@ -67,7 +67,7 @@ $(document).ready ->
 
     counter_html.each(moveToFront)
       .transition()
-      .duration(200)
+      .duration(300)
       .ease('elastic')
       .attr("x",0)
       .attr("y",0)

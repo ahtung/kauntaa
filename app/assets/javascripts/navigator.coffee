@@ -30,7 +30,7 @@ class @Navigator
     form_elem = $(elem).closest('.html')[0]
     form = d3.select(form_elem)
     form.remove()
-    @counter.select('.html').transition().duration(200).ease('back').attr("x",@last_pos[0]).attr("y",@last_pos[1]).attr('width', ($('body').width() / @col)).attr('height', ($('body').height() / @row))
+    @counter.select('.html').transition().duration(300).ease('back').attr("x",@last_pos[0]).attr("y",@last_pos[1]).attr('width', ($('body').width() / @col)).attr('height', ($('body').height() / @row))
 
   draw: () ->
     margin = {top: 20, right: 0, bottom: 0, left: 0}
@@ -77,9 +77,6 @@ class @Navigator
     @col = dimensions[0]
     @row = dimensions[1]
     dit = @
-
-    console.log(dimensions)
-
     @svg.selectAll(".add-counter")
       .selectAll(".html")
       .transition()
