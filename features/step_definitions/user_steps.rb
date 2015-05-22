@@ -11,6 +11,11 @@ Then(/^I should have a couter$/) do
   expect(page).to have_selector('.a-counter')
 end
 
+When(/^I sign in with "(.*?)"$/) do |email|
+  user = FactoryGirl.create(:user, email: email)
+  login_as(user, scope: :user)
+end
+
 def fill_form
 
 end
