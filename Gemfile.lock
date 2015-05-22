@@ -118,6 +118,8 @@ GEM
     fastercsv (1.5.5)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
+    fittextjs_rails (1.2.0.1)
+      railties (>= 3.1)
     flay (2.4.0)
       ruby_parser (~> 3.0)
       sexp_processor (~> 4.0)
@@ -329,10 +331,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.1)
       sprockets-rails
-    rails-assets-FitText.js (1.2.0)
-      rails-assets-jquery (>= 1.6)
     rails-assets-d3 (3.5.5)
-    rails-assets-jquery (2.1.4)
     rails-assets-underscore (1.8.3)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
@@ -490,6 +489,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  fittextjs_rails
   fog
   foreman
   foundation-rails
@@ -506,7 +506,6 @@ DEPENDENCIES
   pundit
   rack-google-analytics
   rails (= 4.2.1)
-  rails-assets-FitText.js!
   rails-assets-d3!
   rails-assets-underscore!
   rails_12factor

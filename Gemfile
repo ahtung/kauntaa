@@ -26,6 +26,7 @@ gem 'sitemap_generator'
 gem 'fog'
 gem 'grape'
 gem 'inline_svg'
+gem 'fittextjs_rails'
 
 group :production do
   gem 'rails_12factor'
@@ -60,5 +61,4 @@ end
 source 'https://rails-assets.org' do
   gem 'rails-assets-d3'
   gem 'rails-assets-underscore'
-  gem 'rails-assets-FitText.js'
 end
