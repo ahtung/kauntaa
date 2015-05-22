@@ -40,8 +40,8 @@ class @Navigator
     des_width = @des_width
     des_height = @des_height
     dit = @
-
-    d3.json("api/v1/counters.json", (root) ->
+    user_id = $('#chart').data('user-id')
+    d3.json("api/v1/users/#{user_id}/counters.json", (root) ->
       dit.counters = root
       svg.selectAll(".counter").data(root)
         .enter()
