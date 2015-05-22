@@ -52,10 +52,6 @@ class @Navigator
 
     d3.json("api/v1/counters.json", (root) ->
       dit.counters = root
-      k = ($('body').width() / $('body').height()) * (des_width / des_height)
-      col = Math.ceil(Math.sqrt(k * (root.length + 1)))
-      row = Math.ceil(Math.sqrt((root.length + 1) / k))
-      console.log root
       svg.selectAll(".counter").data(root)
         .enter()
         .append("g")
@@ -73,16 +69,10 @@ class @Navigator
     console.log('TODO')
 
   resize: () ->
-    if $("body").width() > $("body").height()
-      k = ($("body").width() / $("body").height()) * (@des_width / @des_height)
-    else
-      k = ($("body").height() / $("body").width()) * (@des_height / @des_width)
-    if $("body").width() > $("body").height()
-      @col = Math.floor(Math.sqrt(k * (@counters.length + 1)))
-      @row = Math.ceil(Math.sqrt((@counters.length + 1) / k))
-    else
-      @col = Math.floor(Math.sqrt(k * (@counters.length + 2)))
-      @row = Math.ceil(Math.sqrt((@counters.length + 1) / k))
+    k = ($('body').width() / $('body').height()) * (@des_width / @des_height)
+    @col = Math.round(Math.sqrt(k * (@counters.length)))
+    @row = Math.round(Math.sqrt((@counters.length) / k))
+    console.log(@col, @row)
     dit = @
 
     @svg.selectAll(".add-counter")
