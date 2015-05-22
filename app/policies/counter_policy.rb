@@ -15,10 +15,6 @@ class CounterPolicy
     @counter.user == current_user
   end
 
-  def new_counter?
-    @counter.user == current_user
-  end
-
   def edit?
     @counter.user == current_user
   end
