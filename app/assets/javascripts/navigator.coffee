@@ -10,26 +10,17 @@ class @Navigator
     counters = []
     row= 0
     col= 0
-    @des_width = 640
-    @des_height = 480
+    @des_width = 1
+    @des_height = 1
     @svg = d3.select("#chart").append("svg").attr("class", 'svg').attr('preserveAspectRatio', "xMinYMin")
-    k = ($('body').width() / $('body').height()) * (@des_width / @des_height)
-    col = Math.ceil(Math.sqrt(k * (1)))
-    row = Math.ceil(Math.sqrt((1) / k))
-    @col = 0
-
+    dit = @
     @svg.append("g")
       .attr('class', 'add-counter')
       .append("foreignObject")
       .attr('class', 'html')
-      .attr("x", 0)
-      .attr("y", 0)
-      .attr("width", ($('body').width() / col))
-      .attr("height", ($('body').height() / row))
       .append("xhtml:body")
       .html(content())
 
-    dit = @
     $('body').on 'click', '#back_from_new_counter', () ->
       dit.back(this)
       event.stopPropagation()
@@ -52,10 +43,6 @@ class @Navigator
 
     d3.json("api/v1/counters.json", (root) ->
       dit.counters = root
-      k = ($('body').width() / $('body').height()) * (des_width / des_height)
-      col = Math.ceil(Math.sqrt(k * (root.length + 1)))
-      row = Math.ceil(Math.sqrt((root.length + 1) / k))
-      console.log root
       svg.selectAll(".counter").data(root)
         .enter()
         .append("g")
@@ -69,14 +56,29 @@ class @Navigator
       dit.resize()
     )
 
+  get_dimensions: (n) ->
+    # preferred_ratio = 1.2
+    # desired_aspect = ($('body').width() / $('body').height()) / preferred_ratio
+    num_cols = Math.ceil(Math.sqrt(n))
+    num_rows = Math.ceil(n / parseFloat(num_cols))
+    return [num_rows, num_cols]
+
+  range: (n) ->
+    Array.apply(null, Array(n)).map((_, i) ->
+      i
+    )
+
   row_and_col: () ->
     console.log('TODO')
 
   resize: () ->
     k = ($('body').width() / $('body').height()) * (@des_width / @des_height)
-    @col = Math.floor(Math.sqrt(k * (@counters.length + 1)))
-    @row = Math.ceil(Math.sqrt((@counters.length + 1) / k))
+    dimensions = @get_dimensions(@counters.length + 1)
+    @col = dimensions[0]
+    @row = dimensions[1]
     dit = @
+
+    console.log(dimensions)
 
     @svg.selectAll(".add-counter")
       .selectAll(".html")
