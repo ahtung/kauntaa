@@ -31,8 +31,8 @@ $(document).ready ->
   $(document).foundation()
 
   # FitText
-  # $(".a-counter .counter").fitText(0.3);
-  # $(".a-counter .description").fitText(1);
+  $(".a-counter .counter , .new-counter .add").fitText(0.3);
+  $(".a-counter .description, .new-counter .description").fitText(1);
 
   # Counters
   $('.counter').map (index) ->
