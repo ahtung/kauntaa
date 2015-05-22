@@ -1,7 +1,7 @@
 .a-counter.increment-button data-counter-id="#{@counter.id}" style="background-color:#{@counter.palette.background_color};height:100%;" data-increment-url="#{ increment_user_counter_path(current_user, @counter) }"
   .count.text-center
     .number
-      h2.counter style="color: #{@counter.palette.foreground_color};padding-top:30px;"
+      h2.counter style="color: #{@counter.palette.foreground_color};"
         = @counter.clean_value
   .description.text-center
     .text
