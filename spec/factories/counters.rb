@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :counter do
     name { Faker::Name.name }
-    value 29
+    value { Faker::Number.number(2) }
     palette
 
     trait :a_month_older do
