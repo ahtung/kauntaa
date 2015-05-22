@@ -1,9 +1,14 @@
 @javascript
 Feature: Increment
   In order to count
-  A visitor
+  User
   Should be able to increase a counter
 
-  Scenario:
-    When
-    Then
+  Scenario: Increment a counter
+    Given Counter page
+    When I visit click to a counter
+    Then counter should have increased by 1
+
+  Scenario: Don't increment a counter
+    When I click on a description of a counter
+    Then counter should have not increased by 1
