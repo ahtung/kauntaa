@@ -73,9 +73,16 @@ class @Navigator
     console.log('TODO')
 
   resize: () ->
-    k = ($('body').width() / $('body').height()) * (@des_width / @des_height)
-    @col = Math.floor(Math.sqrt(k * (@counters.length + 1)))
-    @row = Math.ceil(Math.sqrt((@counters.length + 1) / k))
+    if $("body").width() > $("body").height()
+      k = ($("body").width() / $("body").height()) * (@des_width / @des_height)
+    else
+      k = ($("body").height() / $("body").width()) * (@des_height / @des_width)
+    if $("body").width() > $("body").height()
+      @col = Math.floor(Math.sqrt(k * (@counters.length + 1)))
+      @row = Math.ceil(Math.sqrt((@counters.length + 1) / k))
+    else
+      @col = Math.floor(Math.sqrt(k * (@counters.length + 2)))
+      @row = Math.ceil(Math.sqrt((@counters.length + 1) / k))
     dit = @
 
     @svg.selectAll(".add-counter")
