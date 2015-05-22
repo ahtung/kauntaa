@@ -1,10 +1,13 @@
 module V1
   # Counters API
   class Counters < Grape::API
-    resource :counters do
-      desc 'List all Counters'
-      get do
-        User.first.counters
+    desc 'Increment counter'
+    resource :users do
+      segment '/:user_id' do
+        get '/counters' do
+          # authorize Counter, :index?
+          @counters = User.find(params[:user_id]).counters.order(updated_at: :desc)
+        end
       end
     end
 
