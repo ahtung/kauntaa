@@ -1,0 +1,58 @@
+I have the following further questions for you:
+
+
+TODO explain once more
+
+1. Can you confirm that the fundraiser will be the Primary recipient in an Instant Chained payment & you will collect your fees as Secondary recipient please?  We will require you to set up the payment in this way, as per our Crowdfunding application guidelines;  https://developer.paypal.com/webapps/developer/docs/classic/lifecycle/crowdfunding/, so that the seller is the Merchant of Record in the case of any Chargebacks or Refunds.  Please amend your selections in the 'Services used by app' -- 'Adaptive Payments' -- 'Chained Payments' section of your submission to reflect this.
+
+  NO, we are making use of elayed chained payments.
+
+2. As Crowdfunding is a heavily regulated area, could you answer the following questions please.  Your best guesses or estimates will suffice:
+
+a. Will the projects on your platform collect cross-border payments?  Please specify the exact countries you expect to receive payments and projects from.
+  YES; mainly from Turkey, The Netherlands and other European countries, U.S.A., Canada, Australia and Japan.
+
+b. Do Donors receive any reward or gain for donations?  If so, can you give us examples of what these would be please (expected rewards and values would be fine)?
+  NO; they do not. The 'donors' are basically giving a gift to a friend of his/hers.
+
+c. What is the expected dollar amount per project?
+  We have set a maximum of a 1000Euros. However the user is free in specifiyin an upper limit (which still has to be under 1000).
+
+d. What is the maximum contribution allowed?  Please note that PayPal would require a maximum contribution limit of $2,000.
+  see answer c.
+
+e. What will be the typical timeframe of the projects?
+  We expect it to be aroun 30 days in average but we have defined a maximum of 90 days.
+
+f. How many projects are allowed per fundraiser at one time?  Your best estimate for the expected value will suffice.
+  Unlimited
+
+g. How many projects are allowed per fundraiser per year?  Your best estimate for the expected value will suffice.
+  Unlimited
+
+h. What is the number of payments allowed per donor per project?  Your best estimate for the expected value will suffice.
+  Unlimited
+
+i. Do you have any internal processes for Anti Money Laundering monitoring or Project Vetting?
+  Unlimited
+
+3. Please provide a Live URL for your business.
+  https://www.opotto.com
+  https://www.sirket.com
+
+4. Finally, as Crowdfunding is an advanced Business Model, we will need to conduct a Business Review requiring the following information:
+
+-           A Cert. of Incorporation or similar document showing your company as a registered business entity
+  TODO sirket ac
+
+-           Proof of Identity of the Account Holder.  This can be a Passport, Drivers License or other Government-issued photoID.
+  TODO passport fotokopi
+
+-           Please attach a scan of the above documentation to the ‘Business Information’ section of the submission form.
+  TODO sirket ac
+
+
+
+Thanks & Regards,
+
+Celine
