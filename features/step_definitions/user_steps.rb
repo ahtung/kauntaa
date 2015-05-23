@@ -5,7 +5,6 @@ When(/^I add a counter$/) do
 end
 
 Then(/^I should have a couter$/) do
-  visit user_counters_path
   expect(page).to have_selector('.a-counter')
 end
 
@@ -13,7 +12,7 @@ When(/^I sign in with "(.*?)"$/) do |email|
   create(:palette)
   user = FactoryGirl.create(:user, email: email)
   login_as(user, scope: :user)
-  visit user_counters_path(user)
+  visit user_root_path
 end
 
 def fill_form
