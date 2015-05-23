@@ -1,6 +1,6 @@
 When(/^I add a counter$/) do
   save_and_open_page
-  first('.new-counter').click
+  first('.add-counter').click
   fill_form
 end
 
