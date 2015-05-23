@@ -1,5 +1,4 @@
 When(/^I add a counter$/) do
-  save_and_open_page
   first('.add-counter').click
   fill_form
 end
@@ -16,5 +15,4 @@ When(/^I sign in with "(.*?)"$/) do |email|
 end
 
 def fill_form
-
 end
