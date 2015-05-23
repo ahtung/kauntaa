@@ -23,7 +23,7 @@ class CountersController < ApplicationController
 
   def new_counter
     @counter = current_user.counters.new
-    authorize @counter
+    authorize @counter, :new?
     render layout: false
   end
 

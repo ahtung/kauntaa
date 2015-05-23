@@ -56,6 +56,7 @@ group :test do
   gem 'rspec-its'
   gem 'shoulda-matchers', require: false
   gem 'simplecov', require: false
+  gem 'cucumber-rails', require: false
 end
 
 source 'https://rails-assets.org' do

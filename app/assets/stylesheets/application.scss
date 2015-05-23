@@ -18,6 +18,9 @@
  *= require header
  */
 
+body {
+  overflow: hidden;
+}
 .new-counter,
 .new-counter a{
     margin:0;
