@@ -43,6 +43,14 @@ class @Navigator
     form_elem = $(elem).closest('.html')[0]
     form = d3.select(form_elem)
     form.remove()
+    @counter.transition()
+      .duration(@duration)
+      .select('.edit-counter')
+      .style('opacity', 1)
+    @counter.transition()
+      .duration(@duration)
+      .select('.counter')
+      .style('opacity', 1)
     @counter.select('.html').transition().duration(@duration).ease('back').attr("x",@last_pos[0]).attr("y",@last_pos[1]).attr('width', ($('body').width() / @col)).attr('height', ($('body').height() / @row))
 
   # Draw
@@ -79,6 +87,7 @@ class @Navigator
     @counter = d3.select(elem)
     counter_html = @counter.select(".html")
     @last_pos = [counter_html.attr('x'), counter_html.attr('y')]
+    palette_id = $('.new-counter').data('palette-id')
 
     counter_html.each(moveToFront)
       .transition()
@@ -98,7 +107,7 @@ class @Navigator
           .attr("height", '100%')
           .append("xhtml:body")
           .html((d) ->
-            content(link)
+            content(link + "?palette_id=#{palette_id}")
           )
       )
 
@@ -110,6 +119,14 @@ class @Navigator
     counter_html = @counter.select(".html")
     @last_pos = [counter_html.attr('x'), counter_html.attr('y')]
 
+    counter_html.transition()
+      .duration(@duration)
+      .select('.edit-counter')
+      .style('opacity', 0)
+    counter_html.transition()
+      .duration(@duration)
+      .select('.counter')
+      .style('opacity', 0)
     counter_html.each(moveToFront)
       .transition()
       .duration(@duration)
