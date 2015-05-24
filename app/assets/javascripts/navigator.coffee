@@ -33,6 +33,11 @@ class @Navigator
       event.stopPropagation()
       event.preventDefault()
 
+    $('body').on 'click', '.add-counter', (event) ->
+      dit.add(@)
+      event.stopPropagation()
+      event.preventDefault()
+
   # Go back
   back: (elem) ->
     form_elem = $(elem).closest('.html')[0]
@@ -68,6 +73,36 @@ class @Navigator
   moveToFront = () ->
     this.parentNode.parentNode.appendChild(this.parentNode)
 
+  # New counter
+  add: (elem) ->
+    link = $(elem).find('a').attr('href')
+    @counter = d3.select(elem)
+    counter_html = @counter.select(".html")
+    @last_pos = [counter_html.attr('x'), counter_html.attr('y')]
+
+    counter_html.each(moveToFront)
+      .transition()
+      .duration(@duration)
+      .ease('elastic')
+      .attr("x",0)
+      .attr("y",0)
+      .attr('width', window.innerWidth)
+      .attr('height', window.innerHeight)
+      .each("end", () ->
+        d3.select('svg')
+          .append("foreignObject")
+          .attr('class', 'html')
+          .attr("x", '0')
+          .attr("y", '0')
+          .attr("width", '100%')
+          .attr("height", '100%')
+          .append("xhtml:body")
+          .html((d) ->
+            content(link)
+          )
+      )
+
+  # Edit counter
   edit: (counter) ->
     counter = $(counter).closest('.counter')[0]
     link = $(counter).find('a').attr('href')
