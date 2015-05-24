@@ -169,11 +169,13 @@ class @Navigator
 
   # return row an col count
   get_dimensions: (n) ->
-    # preferred_ratio = 1.2
-    # desired_aspect = ($('body').width() / $('body').height()) / preferred_ratio
-    num_cols = Math.ceil(Math.sqrt(n))
-    num_rows = Math.ceil(n / parseFloat(num_cols))
-    return [num_rows, num_cols]
+    if $('body').width() < 640
+      num_cols = 1
+      num_rows = Math.ceil(n / parseFloat(num_cols))
+    else
+      num_cols = Math.ceil(Math.sqrt(n))
+      num_rows = Math.ceil(n / parseFloat(num_cols))
+    return [num_cols, num_rows]
 
   # Helper function
   range: (n) ->
