@@ -1,16 +1,21 @@
 class @Counter
   constructor: (options, value = 0) ->
+    # Odometer
     @odometer = new Odometer(options)
     @odometer.update(value)
+
+    # FitText
+    $(".a-counter .counter").fitText(0.3);
+    $(".a-counter .description, .new-counter .description").fitText(1);
+
+    # Events
     $('body').on 'click', '.increment-button', () ->
       increment()
     $('body').on 'click', '.decrement-button', () ->
       decrement()
+
+  # Functions
   increment: () ->
       $.get $(this).data('increment-url'), ( data ) ->
-        console.log( "Load was performed." )
-      , "script"
-  decrement: () ->
-      $.get $(this).data('decrement-url'), ( data ) ->
-        console.log( "Load was performed." )
+        console.log( "Incremented." )
       , "script"

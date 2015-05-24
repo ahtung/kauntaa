@@ -6,7 +6,9 @@ class @Navigator
   @row
   @counter
   @last_pos
+
   constructor: (options, value = 0) ->
+    @duration = 300
     counters = []
     row= 0
     col= 0
@@ -19,19 +21,26 @@ class @Navigator
       .append("foreignObject")
       .attr('class', 'html')
       .append("xhtml:body")
-      .html(content())
+      .html(content('/counter/new'))
 
-    $('body').on 'click', '#back_from_new_counter', () ->
-      dit.back(this)
+    $('body').on 'click', '#back_from_new_counter', (event) ->
+      dit.back(@)
       event.stopPropagation()
       event.preventDefault()
 
+    $('body').on 'click', '.edit-counter', (event) ->
+      dit.edit(@)
+      event.stopPropagation()
+      event.preventDefault()
+
+  # Go back
   back: (elem) ->
     form_elem = $(elem).closest('.html')[0]
     form = d3.select(form_elem)
     form.remove()
-    @counter.select('.html').transition().duration(300).ease('back').attr("x",@last_pos[0]).attr("y",@last_pos[1]).attr('width', ($('body').width() / @col)).attr('height', ($('body').height() / @row))
+    @counter.select('.html').transition().duration(@duration).ease('back').attr("x",@last_pos[0]).attr("y",@last_pos[1]).attr('width', ($('body').width() / @col)).attr('height', ($('body').height() / @row))
 
+  # Draw
   draw: () ->
     margin = {top: 20, right: 0, bottom: 0, left: 0}
     formatNumber = d3.format("d")
@@ -51,11 +60,44 @@ class @Navigator
         .attr('class', 'html')
         .append("xhtml:body")
         .html((d) ->
-          content(d)
+          content("/users/1/counters/#{d['id']}")
         )
       dit.resize()
     )
 
+  moveToFront = () ->
+    this.parentNode.parentNode.appendChild(this.parentNode)
+
+  edit: (counter) ->
+    counter = $(counter).closest('.counter')[0]
+    link = $(counter).find('a').attr('href')
+    @counter = d3.select(counter)
+    counter_html = @counter.select(".html")
+    @last_pos = [counter_html.attr('x'), counter_html.attr('y')]
+
+    counter_html.each(moveToFront)
+      .transition()
+      .duration(@duration)
+      .ease('elastic')
+      .attr("x",0)
+      .attr("y",0)
+      .attr('width', window.innerWidth)
+      .attr('height', window.innerHeight)
+      .each("end", () ->
+        d3.select('svg')
+          .append("foreignObject")
+          .attr('class', 'html')
+          .attr("x", '0')
+          .attr("y", '0')
+          .attr("width", '100%')
+          .attr("height", '100%')
+          .append("xhtml:body")
+          .html((d) ->
+            content(link)
+          )
+      )
+
+  # return row an col count
   get_dimensions: (n) ->
     # preferred_ratio = 1.2
     # desired_aspect = ($('body').width() / $('body').height()) / preferred_ratio
@@ -63,13 +105,11 @@ class @Navigator
     num_rows = Math.ceil(n / parseFloat(num_cols))
     return [num_rows, num_cols]
 
+  # Helper function
   range: (n) ->
     Array.apply(null, Array(n)).map((_, i) ->
       i
     )
-
-  row_and_col: () ->
-    console.log('TODO')
 
   resize: () ->
     k = ($('body').width() / $('body').height()) * (@des_width / @des_height)
@@ -101,13 +141,8 @@ class @Navigator
   row_height: () ->
     $('body').height() / @row
 
-  content = (d) ->
+  content = (url) ->
     content_data = ''
-    if d
-      url = "/users/1/counters/#{d['id']}"
-    else
-      url = '/counter/new'
-
     $.ajax(
       url: url
       async: false
