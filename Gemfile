@@ -29,6 +29,7 @@ gem 'roboto'
 gem 'sitemap_generator'
 gem 'fog'
 gem 'grape'
+gem 'skylight'
 
 group :production do
   gem 'rails_12factor'
