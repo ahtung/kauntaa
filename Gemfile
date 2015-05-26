@@ -27,6 +27,7 @@ gem 'fog'
 gem 'grape'
 gem 'inline_svg'
 gem 'fittextjs_rails'
+gem 'skylight'
 
 group :production do
   gem 'rails_12factor'
