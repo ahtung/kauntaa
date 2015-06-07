@@ -69,9 +69,9 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 
 at_exit do
   begin
-    e = $! # last exception
+    e = $ERROR_INFO
     cleanup_after_tests
   ensure
-    raise e if $! != e
+    fail e if $ERROR_INFO != e
   end
 end
