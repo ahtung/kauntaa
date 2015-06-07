@@ -3,6 +3,11 @@ When(/^I add a counter$/) do
   fill_form
 end
 
+When(/^I edit a counter$/) do
+  find('.a-counter .edit-counter').trigger('click')
+  fill_form
+end
+
 Then(/^I should have two counters$/) do
   expect(page).to have_selector('.a-counter', count: 2)
 end
