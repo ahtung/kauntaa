@@ -10,5 +10,6 @@ Feature: Increment
     Then counter should have increased by 1
 
   Scenario: Don't increment a counter
+    Given User home page
     When I click on a description of a counter
     Then counter should not have changed

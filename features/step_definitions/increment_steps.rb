@@ -15,9 +15,10 @@ end
 # end
 
 When(/^I click on a description of a counter$/) do
-  first('.a-counter .description').click
+  save_and_open_page
+  find('.a-counter').trigger('click')
 end
 
 Then(/^counter should not have changed$/) do
-  expect(current_user.counters.first.value).to eq(1)
+  expect(@user.counters.first.value).to eq(1)
 end
