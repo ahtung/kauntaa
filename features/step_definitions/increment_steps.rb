@@ -15,7 +15,6 @@ end
 # end
 
 When(/^I click on a description of a counter$/) do
-  save_and_open_page
   find('.a-counter').trigger('click')
 end
 
