@@ -5,10 +5,11 @@ Feature: Increment
   Should be able to increase a counter
 
   Scenario: Increment a counter
-    Given Counter page
+    Given User home page
     When I visit click to a counter
     Then counter should have increased by 1
 
   Scenario: Don't increment a counter
+    Given User home page
     When I click on a description of a counter
-    Then counter should have not increased by 1
+    Then counter should not have changed

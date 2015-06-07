@@ -7,4 +7,4 @@ Feature: Add
   Scenario: Add Counter
     When I sign in with "dunyakirkali@gmail.com"
     When I add a counter
-    Then I should have a couter
+    Then I should have two counters
