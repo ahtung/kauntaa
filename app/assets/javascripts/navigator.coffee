@@ -43,7 +43,7 @@ class @Navigator
   # Redraws counters
   redraw: () ->
     _this = @
-    console.log('redraw')
+    # console.log('redraw')
     @counters = @svg.selectAll(".counter").data(@counter_data)
     counter = @counters.enter().append("g").attr('class', 'counter')
     counter.insert("rect")
