@@ -1,5 +1,5 @@
 When(/^I add a counter$/) do
-  first('.add-counter').click
+  first('.add-a-counter').trigger('click')
   fill_form
 end
 

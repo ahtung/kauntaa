@@ -9,6 +9,6 @@ css:
       .add-icon = inline_svg("add.svg")
   .user-menu.text-center
     .text
-      = link_to 'Add', new_user_counter_path(current_user), style: "color:#{@palette.text_color};", class: 'add-counter'
+      = link_to 'Add', new_user_counter_path(current_user), style: "color:#{@palette.text_color};", class: 'add-a-counter'
     .text
       = link_to 'Sign out', destroy_user_session_path, method: :delete, style: "color:#{@palette.foreground_color};", class: 'sign-out'
