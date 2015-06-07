@@ -11,4 +11,4 @@ Feature: Increment
 
   Scenario: Don't increment a counter
     When I click on a description of a counter
-    Then counter should have not increased by 1
+    Then counter should not have changed
