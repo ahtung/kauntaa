@@ -1,10 +1,10 @@
 When(/^I add a counter$/) do
-  first('.add-a-counter').trigger('click')
+  first('.add-counter-link').trigger('click')
   fill_form
 end
 
-Then(/^I should have a couter$/) do
-  expect(page).to have_selector('.a-counter')
+Then(/^I should have two counters$/) do
+  expect(page).to have_selector('.a-counter', count: 2)
 end
 
 When(/^I sign in with "(.*?)"$/) do |email|
@@ -15,10 +15,10 @@ When(/^I sign in with "(.*?)"$/) do |email|
 end
 
 def fill_form
-  sleep 1
-  counter = FactoryGirl.build(:counter)
-  fill_in 'counter_value', with: counter.value
-  fill_in 'counter_name', with: counter.name
+  sleep 0.4
+  counter = build(:counter)
+  fill_in 'counter_value', with: "#{counter.value}"
+  fill_in 'counter_name', with: "#{counter.name}"
   page.execute_script("document.getElementById('counter_palette_id').value = #{counter.palette.id}")
   first('.button').click
 end
