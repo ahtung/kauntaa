@@ -6,7 +6,7 @@ module V1
       segment '/:user_id' do
         get '/counters' do
           # authorize Counter, :index?
-          @counters = User.find(params[:user_id]).counters
+          present User.find(params[:user_id]).counters.includes(:user).includes(:palette), with: CounterEntity
         end
       end
     end
