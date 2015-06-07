@@ -46,6 +46,7 @@ class @Navigator
     # console.log('redraw')
     @counters = @svg.selectAll(".counter").data(@counter_data)
     counter = @counters.enter().append("g").attr('class', 'counter')
+    # counter.each(moveToFront)
     counter.insert("rect")
       .attr("fill", (d) -> d.palette.background_color)
     counter.append('text')
@@ -56,14 +57,29 @@ class @Navigator
       .attr("font-size", "40px")
       .attr("fill", (d) -> d.palette.foreground_color)
     counter.append('text')
-      .text( (d) -> "#{d.nae} since #{'TODO'}" )
+      .text( (d) -> "#{d.name} since #{'TODO'}" )
       .attr("x", 40)
       .attr("y", 80)
       .attr("class", "edit-counter")
       .attr("font-family", "sans-serif")
       .attr("font-size", "20px")
-      .attr("fill", (d) -> d.palette.foreground_color)
+      .attr("fill", (d) -> d.palette.text_color)
 
+    @svg.selectAll(".add-counter").select('.html').transition()
+      .duration(@duration)
+      .ease('elastic')
+      .attr("width", (d) ->
+        if _this.counter_data.length > 1
+          (window.innerWidth / 4)
+        else
+          window.innerWidth
+      )
+      .attr("height", (d) ->
+        if _this.counter_data.length > 1
+          (window.innerHeight / 4)
+        else
+          window.innerHeight
+      )
     @counters.transition()
       .duration(@duration)
       .ease('elastic')
