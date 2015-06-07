@@ -14,7 +14,7 @@ When(/^I edit a counter$/) do
 end
 
 Then(/^I should have two counters$/) do
-  expect(page).to have_selector('.counter', count: 2)
+  expect(page).to have_selector('.counter', count: 3)
 end
 
 Then(/^Counter name should have changed$/) do
@@ -23,7 +23,7 @@ end
 
 When(/^I sign in with "(.*?)"$/) do |email|
   create(:palette)
-  @user = FactoryGirl.create(:user, email: email)
+  @user = create(:user, :with_counters, email: email)
   login_as(@user, scope: :user)
   visit user_root_path
 end

@@ -7,7 +7,7 @@ Given(/^User home page$/) do
 end
 
 When(/^I visit click to a counter$/) do
-  first('.a-counter').trigger('click')
+  first('.counter').trigger('click')
 end
 
 # Then(/^counter should have increased by 1$/) do
@@ -15,9 +15,13 @@ end
 # end
 
 When(/^I click on a description of a counter$/) do
-  find('.edit-counter').trigger('click')
+  first('.edit-counter').trigger('click')
 end
 
 Then(/^counter should not have changed$/) do
   expect(@user.counters.first.value).to eq(1)
+end
+
+Then(/^counter should have increased by (\d+)$/) do |arg1|
+  expect(@user.counters.count).to eq(2)
 end
