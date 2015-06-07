@@ -15,7 +15,7 @@ end
 # end
 
 When(/^I click on a description of a counter$/) do
-  find('.a-counter').trigger('click')
+  find('.edit-counter').trigger('click')
 end
 
 Then(/^counter should not have changed$/) do

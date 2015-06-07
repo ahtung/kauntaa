@@ -1,3 +1,7 @@
+Given(/^There is a palette$/) do
+  create(:palette)
+end
+
 When(/^I add a counter$/) do
   first('.add-counter-link').trigger('click')
   fill_form
@@ -5,12 +9,12 @@ end
 
 When(/^I edit a counter$/) do
   @old_counter = @user.counters.first
-  find('.a-counter .edit-counter').trigger('click')
+  find('.edit-counter').trigger('click')
   fill_form
 end
 
 Then(/^I should have two counters$/) do
-  expect(page).to have_selector('.a-counter', count: 2)
+  expect(page).to have_selector('.counter', count: 2)
 end
 
 Then(/^Counter name should have changed$/) do
