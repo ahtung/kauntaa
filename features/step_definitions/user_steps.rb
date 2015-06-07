@@ -15,4 +15,10 @@ When(/^I sign in with "(.*?)"$/) do |email|
 end
 
 def fill_form
+  sleep 1
+  counter = FactoryGirl.build(:counter)
+  fill_in 'counter_value', with: counter.value
+  fill_in 'counter_name', with: counter.name
+  page.execute_script("document.getElementById('counter_palette_id').value = #{counter.palette.id}")
+  first('.button').click
 end
