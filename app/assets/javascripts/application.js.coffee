@@ -4,6 +4,7 @@
 #= require d3
 #= require fittext
 #= require underscore
+#= require counter
 #= require navigator
 
 $(document).ready ->

@@ -1,5 +1,3 @@
-#= require counter
-
 class @Navigator
   #
   # Constructor
@@ -92,7 +90,7 @@ class @Navigator
   redraw: () ->
     _this = @
     @counters = @svg.selectAll(".counter").data(@counter_data)
-    counter = @counters.enter().append("g").attr('class', 'counter').attr('data-counter-id', (d) -> d.id).each((d) -> new Counter(d.id))
+    counter = @counters.enter().append("g").attr('class', 'counter').attr('data-counter-id', (d) -> d.id)
     # counter.each(moveToFront)
     counter.insert("rect")
       .attr("fill", (d) -> d.palette.background_color)
@@ -112,6 +110,7 @@ class @Navigator
       .attr("font-family", "sans-serif")
       # .attr("font-size", "20px")
       .attr("fill", (d) -> d.palette.text_color)
+    @counters.each((d) -> new Counter(d.id))
 
     @svg.selectAll(".add-counter").select('.html').transition()
       .duration(@duration)

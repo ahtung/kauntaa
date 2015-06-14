@@ -1,18 +1,19 @@
 class @Counter
   constructor: (id, options, value = 0) ->
     # Vars
-    @elem = $("[data-counter-id=#{id}]")
+    @elem = $("*[data-counter-id='#{id}']")
     _this = @
+
+    # Odometer
+    # TODO
     
     # FitText
-    # @elem.find(".counter-value").fitText(0.3);
-    # @elem.find(".edit-counter").fitText(1);
+    # @elem.find(".counter-value").fitText(3, { minFontSize: '20px', maxFontSize: '40px' });
+    # @elem.find(".edit-counter").fitText(1.2, { minFontSize: '20px', maxFontSize: '40px' });
 
     # Events
     @elem.on 'click', () ->
       _this.increment()
-    # $('body').on 'click', '.decrement-button', () ->
-    #   decrement()
 
   # Functions
   increment: () ->
