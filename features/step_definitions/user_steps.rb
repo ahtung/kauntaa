@@ -13,7 +13,7 @@ When(/^I edit a counter$/) do
 end
 
 Then(/^I should have two counters$/) do
-  expect(page).to have_selector('.counter', count: 3)
+  expect(page).to have_selector('.counter', count: 2)
 end
 
 Then(/^Counter name should have changed$/) do
