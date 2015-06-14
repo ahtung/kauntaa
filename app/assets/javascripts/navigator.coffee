@@ -33,6 +33,24 @@ class @Navigator
     )
 
   #
+  # Col width
+  #
+  colWidth: () ->
+    if @counter_data.length > 1
+      (window.innerWidth / @cols())
+    else
+      window.innerWidth
+
+  #
+  # Col heigth
+  #
+  colHeight: () ->
+    if @counter_data.length > 1
+      (window.innerHeight / @cols())
+    else
+      window.innerHeight
+
+  #
   # Calculate cols
   #
   cols: () ->
@@ -106,7 +124,7 @@ class @Navigator
       .attr("class", "edit-counter")
       .attr("text-anchor", "middle")
       .attr('alignment-baseline', "middle")
-      .attr("fill", (d) -> console.log(d.palette);d.palette.text_color)
+      .attr("fill", (d) -> d.palette.text_color)
     @counters.each((d) -> new Counter(d.id))
 
     @counters.transition()
@@ -121,43 +139,33 @@ class @Navigator
     @counters.select('rect').transition()
       .duration(@duration)
       .ease('elastic')
-      .attr("width", (d) ->
-        if _this.counter_data.length > 1
-          (window.innerWidth / _this.cols())
-        else
-          window.innerWidth
-      )
-      .attr("height", (d) ->
-        if _this.counter_data.length > 1
-          (window.innerHeight / _this.cols())
-        else
-          window.innerHeight
-      )
+      .attr("width", @colWidth())
+      .attr("height", @colHeight())
 
     @counters.select('.counter-value').transition()
       .duration(@duration)
       .ease('elastic')
-      .attr("x", (window.innerWidth / _this.cols()) / 2)
-      .attr("y", (window.innerHeight / _this.cols()) / 4)
+      .attr("x", @colWidth() / 2)
+      .attr("y", @colHeight() / 4)
 
     @counters.select('.edit-counter').transition()
       .duration(@duration)
       .ease('elastic')
-      .attr("x", (window.innerWidth / _this.cols()) / 2)
-      .attr("y", (window.innerHeight / _this.cols()) / 4 * 3)
+      .attr("x", @colWidth() / 2)
+      .attr("y", @colHeight() / 4 * 3)
 
 
     @svg.selectAll(".add-counter").select('.add-text').transition()
       .duration(@duration)
       .ease('elastic')
-      .attr("x", (window.innerWidth / _this.cols()) / 2)
-      .attr("y", (window.innerHeight / _this.cols()) / 4)
+      .attr("x", @colWidth() / 2)
+      .attr("y", @colHeight() / 4)
 
     @svg.selectAll(".add-counter").select(".sign-out").transition()
       .duration(@duration)
       .ease('elastic')
-      .attr("x", (window.innerWidth / _this.cols()) / 2)
-      .attr("y", (window.innerHeight / _this.cols()) / 4 * 3)
+      .attr("x", @colWidth() / 2)
+      .attr("y", @colHeight() / 4 * 3)
 
     @counters.exit().transition()
         .duration(@duration)
