@@ -37,22 +37,36 @@ class @Navigator
     )
 
   #
+  # Back
+  #
+  back: () ->
+    @mode = 'index'
+    @selectedCounter = null
+
+  #
   # Col width
   #
-  colWidth: () ->
+  colWidth: (counter) ->
     if @mode == 'index'
       (window.innerWidth / @cols())
     else
-      window.innerWidth
+      if @mode == 'edit' && @selectedCounter == counter
+        window.innerWidth
+      else
+        0
 
   #
   # Col heigth
   #
-  colHeight: () ->
+  colHeight: (counter) ->
     if @mode == 'index'
       (window.innerHeight / @cols())
     else
-      window.innerHeight
+      console.log(@selectedCounter,counter)
+      if @mode == 'edit' && @selectedCounter == counter
+        window.innerHeight
+      else
+        0
 
   #
   # Calculate cols
@@ -115,8 +129,8 @@ class @Navigator
     # counter.each(moveToFront)
     counter.insert("rect")
       .attr("fill", (d) -> d.palette.background_color)
-      .attr("width", @colWidth())
-      .attr("height", @colHeight())
+      .attr("width", (d) -> _this.colWidth(d))
+      .attr("height", (d) -> _this.colHeight(d))
     counter.append('text')
       .text( (d) -> d.value )
       .attr("text-anchor", "middle")
@@ -142,32 +156,32 @@ class @Navigator
       .select('rect').transition()
         .duration(@duration)
         .ease('elastic')
-        .attr("width", @colWidth())
-        .attr("height", @colHeight())
+        .attr("width", (d) -> _this.colWidth(d))
+        .attr("height", (d) -> _this.colHeight(d))
 
     @counters.select('.counter-value').transition()
       .duration(@duration)
       .ease('elastic')
-      .attr("x", @colWidth() / 2)
-      .attr("y", @colHeight() / 4)
+      .attr("x", (d) -> _this.colWidth(d) / 2)
+      .attr("y", (d) -> _this.colHeight(d) / 4)
 
     @counters.select('.edit-counter').transition()
       .duration(@duration)
       .ease('elastic')
-      .attr("x", @colWidth() / 2)
-      .attr("y", @colHeight() / 4 * 3)
+      .attr("x", (d) -> _this.colWidth(d) / 2)
+      .attr("y", (d) -> _this.colHeight(d) / 4 * 3)
 
     @svg.selectAll(".add-counter").select('.add-text').transition()
       .duration(@duration)
       .ease('elastic')
-      .attr("x", @colWidth() / 2)
-      .attr("y", @colHeight() / 4)
+      .attr("x", (d) -> _this.colWidth(d) / 2)
+      .attr("y", (d) -> _this.colHeight(d) / 4)
 
     @svg.selectAll(".add-counter").select(".sign-out").transition()
       .duration(@duration)
       .ease('elastic')
-      .attr("x", @colWidth() / 2)
-      .attr("y", @colHeight() / 4 * 3)
+      .attr("x", (d) -> _this.colWidth(d) / 2)
+      .attr("y", (d) -> _this.colHeight(d) / 4 * 3)
 
     @counters.exit().transition()
         .duration(@duration)
@@ -181,12 +195,12 @@ class @Navigator
     @mode = 'edit'
     counter = $(counter).closest('.counter')[0]
     id = $(counter).data('counter-id')
-    selectedCounter = null
+    @selectedCounter = null
     for counter_data in @counter_data
       if counter_data.id == id
-        selectedCounter = counter_data
+        @selectedCounter = counter_data
         break
-    @counter_data = [selectedCounter]
+    @counter_data = [@selectedCounter]
     @redraw()
 
   #
