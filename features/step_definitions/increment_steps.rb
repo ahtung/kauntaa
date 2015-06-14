@@ -23,5 +23,5 @@ Then(/^counter should not have changed$/) do
 end
 
 Then(/^counter should have increased by (\d+)$/) do |increment|
-  expect(@user.counters.count).to eq(increment.to_i)
+  expect(@user.counters.first.value).to eq(1 + increment.to_i)
 end
