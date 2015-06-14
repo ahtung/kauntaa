@@ -3,7 +3,7 @@ Given(/^There is a palette$/) do
 end
 
 When(/^I add a counter$/) do
-  first('.add-counter-link').trigger('click')
+  first('.add-text').trigger('click')
   fill_form
 end
 
