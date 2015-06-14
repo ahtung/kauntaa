@@ -10,18 +10,16 @@ When(/^I visit click to a counter$/) do
   first('.counter').trigger('click')
 end
 
-
 When(/^I click on a description of a counter$/) do
   first('.edit-counter').trigger('click')
 end
 
 Then(/^counter should not have changed$/) do
-	save_and_open_page
-  counter_value = first('.counter-value').text
+  counter_value = first('.counter').first('.counter-value').text
   expect(counter_value).to eq(1)
 end
 
 Then(/^counter should have increased by (\d+)$/) do |increment|
-  counter_value = first('.counter-value').text
+  counter_value = first('.counter').first('.counter-value').text
   expect(counter_value).to eq(1 + increment.to_i)
 end
