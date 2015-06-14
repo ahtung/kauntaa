@@ -8,8 +8,8 @@ class @Counter
     # TODO
     
     # FitText
-    # @elem.find(".counter-value").fitText(3, { minFontSize: '20px', maxFontSize: '40px' });
-    # @elem.find(".edit-counter").fitText(1.2, { minFontSize: '20px', maxFontSize: '40px' });
+    @elem.find(".counter-value").fitText(3, { minFontSize: '30px', maxFontSize: '50px' });
+    @elem.find(".edit-counter").fitText(1.2, { minFontSize: '20px', maxFontSize: '25px' });
 
     # Events
     @elem.on 'click', () ->

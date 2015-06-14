@@ -89,6 +89,8 @@ class @Navigator
   #
   redraw: () ->
     _this = @
+    width = (window.innerWidth / _this.cols())
+    height = (window.innerHeight / _this.cols())
     @counters = @svg.selectAll(".counter").data(@counter_data)
     counter = @counters.enter().append("g").attr('class', 'counter').attr('data-counter-id', (d) -> d.id)
     # counter.each(moveToFront)
@@ -96,20 +98,16 @@ class @Navigator
       .attr("fill", (d) -> d.palette.background_color)
     counter.append('text')
       .text( (d) -> d.value )
-      .attr("x", 40)
-      .attr("y", 40)
+      .attr("text-anchor", "middle")
+      .attr('alignment-baseline', "middle")
       .attr('class', 'counter-value')
-      .attr("font-family", "sans-serif")
-      # .attr("font-size", "40px")
       .attr("fill", (d) -> d.palette.foreground_color)
     counter.append('text')
       .text( (d) -> "#{d.name} since #{'TODO'}" )
-      .attr("x", 40)
-      .attr("y", 80)
       .attr("class", "edit-counter")
-      .attr("font-family", "sans-serif")
-      # .attr("font-size", "20px")
-      .attr("fill", (d) -> d.palette.text_color)
+      .attr("text-anchor", "middle")
+      .attr('alignment-baseline', "middle")
+      .attr("fill", (d) -> console.log(d.palette);d.palette.text_color)
     @counters.each((d) -> new Counter(d.id))
 
     @svg.selectAll(".add-counter").select('.html').transition()
@@ -152,7 +150,17 @@ class @Navigator
           window.innerHeight
       )
 
-    @svg.select(".add-counter").select('foreignobject').attr("width", (d) -> window.innerWidth / _this.cols()).attr("height", (d) -> window.innerHeight / _this.cols())
+    @counters.select('.counter-value').transition()
+      .duration(@duration)
+      .ease('elastic')
+      .attr("x", (window.innerWidth / _this.cols()) / 2)
+      .attr("y", (window.innerHeight / _this.cols()) / 4)
+
+    @counters.select('.edit-counter').transition()
+      .duration(@duration)
+      .ease('elastic')
+      .attr("x", (window.innerWidth / _this.cols()) / 2)
+      .attr("y", (window.innerHeight / _this.cols()) / 4 * 3)
 
     @counters.exit().transition()
         .duration(@duration)
