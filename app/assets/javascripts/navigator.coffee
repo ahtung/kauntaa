@@ -4,7 +4,7 @@ class @Navigator
   #
   constructor: () ->
     # Vars
-    @duration = 300
+    @duration = 2000
     @counter_data = []
     @svg = d3.select("#chart").append("svg").attr("class", 'svg')
     @user_id = $('#chart').data('user-id')
@@ -63,6 +63,11 @@ class @Navigator
         6
 
   #
+  # Remove 'Add'
+  #
+  removeAdd: () ->
+    console.log('asd')
+  #
   # Append 'Add' button
   #
   appendAdd: () ->
@@ -106,13 +111,13 @@ class @Navigator
   #
   redraw: () ->
     _this = @
-    width = (window.innerWidth / _this.cols())
-    height = (window.innerHeight / _this.cols())
     @counters = @svg.selectAll(".counter").data(@counter_data)
     counter = @counters.enter().append("g").attr('class', 'counter').attr('data-counter-id', (d) -> d.id)
     # counter.each(moveToFront)
     counter.insert("rect")
       .attr("fill", (d) -> d.palette.background_color)
+      .attr("width", @colWidth())
+      .attr("height", @colHeight())
     counter.append('text')
       .text( (d) -> d.value )
       .attr("text-anchor", "middle")
@@ -136,11 +141,11 @@ class @Navigator
         else
           "translate(0, 0)"
       )
-    @counters.select('rect').transition()
-      .duration(@duration)
-      .ease('elastic')
-      .attr("width", @colWidth())
-      .attr("height", @colHeight())
+      .select('rect').transition()
+        .duration(@duration)
+        .ease('elastic')
+        .attr("width", @colWidth())
+        .attr("height", @colHeight())
 
     @counters.select('.counter-value').transition()
       .duration(@duration)
@@ -153,7 +158,6 @@ class @Navigator
       .ease('elastic')
       .attr("x", @colWidth() / 2)
       .attr("y", @colHeight() / 4 * 3)
-
 
     @svg.selectAll(".add-counter").select('.add-text').transition()
       .duration(@duration)
@@ -169,7 +173,7 @@ class @Navigator
 
     @counters.exit().transition()
         .duration(@duration)
-        .attr("transfor", "translate(0, 0)")
+        .attr("transform", "translate(0, 0)")
         .remove()
 
   #
@@ -178,14 +182,10 @@ class @Navigator
   edit: (counter) ->
     counter = $(counter).closest('.counter')[0]
     id = $(counter).data('counter-id')
-    console.log(id)
     selectedCounter = null
     for counter_data in @counter_data
       if counter_data.id == id
         selectedCounter = counter_data
         break
     @counter_data = [selectedCounter]
-    console.log(@counter_data)
     @redraw()
-
-
