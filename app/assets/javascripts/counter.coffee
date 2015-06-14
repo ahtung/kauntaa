@@ -17,7 +17,6 @@ class @Counter
 
   # Functions
   increment: () ->
-    console.log(@elem.data('increment-url'))
     $.get @elem.data('increment-url'), ( data ) ->
       console.log( "Incremented." )
     , "script"

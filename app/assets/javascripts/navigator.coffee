@@ -30,7 +30,6 @@ class @Navigator
   fetchCounters: () ->
     _this = @
     d3.json("api/v1/users/#{@user_id}/counters.json", (resp) ->
-      console.log resp
       _this.counter_data = resp
       _this.redraw()
     )
