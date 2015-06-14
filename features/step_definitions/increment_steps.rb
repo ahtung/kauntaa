@@ -10,18 +10,15 @@ When(/^I visit click to a counter$/) do
   first('.counter').trigger('click')
 end
 
-# Then(/^counter should have increased by 1$/) do
-#   expect(@user.counters.first.value).to eq(2)
-# end
 
 When(/^I click on a description of a counter$/) do
   first('.edit-counter').trigger('click')
 end
 
 Then(/^counter should not have changed$/) do
-  expect(@user.counters.first.value).to eq(1)
+  expect(@user.counters.first.value).to eq(0)
 end
 
 Then(/^counter should have increased by (\d+)$/) do |increment|
-  expect(@user.counters.first.value).to eq(1 + increment.to_i)
+  expect(@user.counters.first.value).to eq(increment.to_i)
 end
