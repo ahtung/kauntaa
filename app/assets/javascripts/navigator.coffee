@@ -174,7 +174,15 @@ class @Navigator
   #
   edit: (counter) ->
     counter = $(counter).closest('.counter')[0]
-    @counter_data = [@counter_data[3]]
+    id = $(counter).data('counter-id')
+    console.log(id)
+    selectedCounter = null
+    for counter_data in @counter_data
+      if counter_data.id == id
+        selectedCounter = counter_data
+        break
+    @counter_data = [selectedCounter]
+    console.log(@counter_data)
     @redraw()
 
   #
