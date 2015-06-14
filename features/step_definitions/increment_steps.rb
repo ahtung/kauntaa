@@ -1,6 +1,6 @@
 Given(/^User home page$/) do
   create(:palette)
-  @user = FactoryGirl.create(:user)
+  @user = create(:user, :with_counters)
   @user.counters.first.update_attribute(:value, 1)
   login_as(@user, scope: :user)
   visit user_root_path
@@ -16,11 +16,12 @@ When(/^I click on a description of a counter$/) do
 end
 
 Then(/^counter should not have changed$/) do
+	save_and_open_page
   counter_value = first('.counter-value').text
-  expect(counter_value).to eq(0)
+  expect(counter_value).to eq(1)
 end
 
 Then(/^counter should have increased by (\d+)$/) do |increment|
   counter_value = first('.counter-value').text
-  expect(counter_value).to eq(increment.to_i)
+  expect(counter_value).to eq(1 + increment.to_i)
 end

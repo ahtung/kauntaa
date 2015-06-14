@@ -4,7 +4,7 @@ class @Navigator
   #
   constructor: () ->
     # Vars
-    @duration = 2000
+    @duration = 200
     @counter_data = []
     @svg = d3.select("#chart").append("svg").attr("class", 'svg')
     @user_id = $('#chart').data('user-id')
@@ -108,7 +108,7 @@ class @Navigator
   redraw: () ->
     _this = @
     @counters = @svg.selectAll(".counter").data(@counter_data)
-    counter = @counters.enter().append("g").attr('class', 'counter').attr('data-counter-id', (d) -> d.id).attr('data-increment-url', (d) -> d.increment_url)
+    counter = @counters.enter().append("g").attr('class', 'counter').attr('data-counter-id', (d) -> d.id).attr('data-increment-url', (d) -> d.increment_url).each((d) -> new Counter(d.id))
     # counter.each(moveToFront)
     counter.insert("rect")
       .attr("fill", (d) -> d.palette.background_color)
@@ -126,7 +126,6 @@ class @Navigator
       .attr("text-anchor", "middle")
       .attr('alignment-baseline', "middle")
       .attr("fill", (d) -> d.palette.text_color)
-    @counters.each((d) -> new Counter(d.id))
 
     @counters.transition()
       .duration(@duration)
