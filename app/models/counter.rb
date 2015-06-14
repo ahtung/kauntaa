@@ -29,6 +29,11 @@ class Counter < ActiveRecord::Base
     update_column(:value, clean_value + 1)
   end
 
+  # returns the increment url
+  def increment_url
+    Rails.application.routes.url_helpers.increment_user_counter_path(user_id: user.id, id: id)
+  end
+
   private
 
   # sets name to 'TODO' if no name speified
