@@ -3,10 +3,10 @@ class @Navigator
   # Constructor
   #
   constructor: () ->
-    console.log('constructor')
+    # console.log('constructor')
     # Vars
     @mode = 'index'
-    @duration = 200
+    @duration = 2000
     @counter_data = []
     @svg = d3.select("#chart").append("svg").attr("class", 'svg')
     @user_id = $('#chart').data('user-id')
@@ -62,7 +62,7 @@ class @Navigator
     if @mode == 'index'
       (window.innerHeight / @cols())
     else
-      console.log(@selectedCounter,counter)
+      # console.log(@selectedCounter,counter)
       if @mode == 'edit' && @selectedCounter == counter
         window.innerHeight
       else
@@ -84,7 +84,7 @@ class @Navigator
   # Remove 'Add'
   #
   removeAdd: () ->
-    console.log('asd')
+    # console.log('asd')
   #
   # Append 'Add' button
   #
@@ -122,7 +122,7 @@ class @Navigator
   # Redraws counters
   #
   redraw: () ->
-    console.log('redraw')
+    # console.log('redraw')
     _this = @
     @counters = @svg.selectAll(".counter").data(@counter_data)
     counter = @counters.enter().append("g").attr('class', 'counter').attr('data-counter-id', (d) -> d.id).attr('data-increment-url', (d) -> d.increment_url).each((d) -> new Counter(d.id))
@@ -185,7 +185,7 @@ class @Navigator
 
     @counters.exit().transition()
         .duration(@duration)
-        .attr("transform", "translate(0, 0)")
+        .attr("transform", "translate(#{window.innerWidth / 2}, #{window.innerHeight / 2})")
         .remove()
 
   #
@@ -200,7 +200,7 @@ class @Navigator
       if counter_data.id == id
         @selectedCounter = counter_data
         break
-    @counter_data = [@selectedCounter]
+    # @counter_data = [@selectedCounter]
     @redraw()
 
   #
