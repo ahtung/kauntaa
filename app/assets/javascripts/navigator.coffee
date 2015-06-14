@@ -86,12 +86,6 @@ class @Navigator
       .attr("font-size", "20px")
       .attr("fill", 'green')
 
-    $('#chart').on 'click', '.add-counter', (event) ->
-      console.log('add')
-      _this.redraw()
-      event.stopPropagation()
-      event.preventDefault()
-
   #
   # Update window
   #
