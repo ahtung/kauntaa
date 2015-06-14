@@ -10,7 +10,6 @@ class @Navigator
     @user_id = $('#chart').data('user-id')
     _this = @
 
-
     # Events
     d3.select(window).on('resize', () ->
       _this.updateWindow(_this)
@@ -37,6 +36,7 @@ class @Navigator
   # Append 'Add' button
   #
   appendAdd: () ->
+    _this = @
     add_counter = @svg.append("g").attr('class', 'add-counter')
     # counter.each(moveToFront)
     add_counter.insert("rect")
@@ -45,6 +45,7 @@ class @Navigator
       .text( 'Add' )
       .attr("x", 40)
       .attr("y", 40)
+      .attr("class", 'add-counter')
       .attr("font-family", "sans-serif")
       .attr("font-size", "40px")
       .attr("fill", 'blue')
@@ -55,6 +56,12 @@ class @Navigator
       .attr("font-family", "sans-serif")
       .attr("font-size", "20px")
       .attr("fill", 'green')
+
+    $('#chart').on 'click', '.add-counter', (event) ->
+      console.log('add')
+      _this.redraw()
+      event.stopPropagation()
+      event.preventDefault()
 
   #
   # Update window
@@ -70,9 +77,8 @@ class @Navigator
   #
   redraw: () ->
     _this = @
-    # console.log('redraw')
     @counters = @svg.selectAll(".counter").data(@counter_data)
-    counter = @counters.enter().append("g").attr('class', 'counter')
+    counter = @counters.enter().append("g").attr('class', 'counter').attr('data-counter-id', (d) -> d.id)
     # counter.each(moveToFront)
     counter.insert("rect")
       .attr("fill", (d) -> d.palette.background_color)
@@ -80,8 +86,9 @@ class @Navigator
       .text( (d) -> d.value )
       .attr("x", 40)
       .attr("y", 40)
+      .attr('class', 'counter-value')
       .attr("font-family", "sans-serif")
-      .attr("font-size", "40px")
+      # .attr("font-size", "40px")
       .attr("fill", (d) -> d.palette.foreground_color)
     counter.append('text')
       .text( (d) -> "#{d.name} since #{'TODO'}" )
@@ -89,7 +96,7 @@ class @Navigator
       .attr("y", 80)
       .attr("class", "edit-counter")
       .attr("font-family", "sans-serif")
-      .attr("font-size", "20px")
+      # .attr("font-size", "20px")
       .attr("fill", (d) -> d.palette.text_color)
 
     @svg.selectAll(".add-counter").select('.html').transition()

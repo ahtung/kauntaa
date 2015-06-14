@@ -1,12 +1,11 @@
 class @Counter
-  constructor: (options, value = 0) ->
-    # Odometer
-    @odometer = new Odometer(options)
-    @odometer.update(value)
-
+  constructor: (elem, options, value = 0) ->
+    # Vars
+    @elem = elem
+    
     # FitText
-    $(".counter #count").fitText(0.3);
-    $(".counter .description, .new-counter .description").fitText(1);
+    @elem.find(".counter-value").fitText(0.3);
+    @elem.find(".edit-counter").fitText(1);
 
     # Events
     # $('#chart').on 'click', '.increment-button', () ->
