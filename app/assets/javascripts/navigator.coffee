@@ -15,6 +15,9 @@ class @Navigator
       _this.updateWindow(_this)
     )
 
+    $('#chart').on 'click', '.add-text', () ->
+      _this.openAddWindow()
+
     $('#chart').on 'click', '.edit-counter', (event) ->
       _this.edit(@)
       _this.redraw()
