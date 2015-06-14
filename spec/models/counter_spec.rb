@@ -7,6 +7,7 @@ RSpec.describe Counter, type: :model do
 
   # Validations
   it { should validate_presence_of(:palette) }
+  it { should validate_presence_of(:name) }
 
   # Instance methods
   describe '#' do
