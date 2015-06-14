@@ -16,9 +16,11 @@ When(/^I click on a description of a counter$/) do
 end
 
 Then(/^counter should not have changed$/) do
-  expect(@user.counters.first.value).to eq(0)
+  counter_value = first('.counter-value').text
+  expect(counter_value).to eq(0)
 end
 
 Then(/^counter should have increased by (\d+)$/) do |increment|
-  expect(@user.counters.first.value).to eq(increment.to_i)
+  counter_value = first('.counter-value').text
+  expect(counter_value).to eq(increment.to_i)
 end
