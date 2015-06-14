@@ -15,6 +15,9 @@ class @Navigator
       _this.updateWindow(_this)
     )
 
+    $('#chart').on 'click', '.add-text', () ->
+      _this.openAddWindow()
+
     $('#chart').on 'click', '.edit-counter', (event) ->
       _this.edit(@)
       _this.redraw()
@@ -90,12 +93,6 @@ class @Navigator
       .attr("class", 'sign-out')
       .attr("font-size", "20px")
       .attr("fill", 'green')
-
-    $('#chart').on 'click', '.add-counter', (event) ->
-      console.log('add')
-      _this.redraw()
-      event.stopPropagation()
-      event.preventDefault()
 
   #
   # Update window
@@ -189,3 +186,10 @@ class @Navigator
         break
     @counter_data = [selectedCounter]
     @redraw()
+
+  #
+  # Open add window
+  #
+  openAddWindow: () ->
+    window.location.assign("/users/#{@user_id}/counters/new")
+
