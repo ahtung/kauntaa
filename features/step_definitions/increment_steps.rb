@@ -15,11 +15,11 @@ When(/^I click on a description of a counter$/) do
 end
 
 Then(/^counter should not have changed$/) do
-  counter_value = first('.counter').first('.counter-value').text
-  expect(counter_value).to eq(1)
+  counter_value = first('.counter').first('.counter-value').native.all_text.to_i
+  expect(counter_value).to eq(0)
 end
 
 Then(/^counter should have increased by (\d+)$/) do |increment|
-  counter_value = first('.counter').first('.counter-value').text
-  expect(counter_value).to eq(1 + increment.to_i)
+  counter_value = first('.counter').first('.counter-value').native.all_text.to_i
+  expect(counter_value).to eq(increment.to_i)
 end
