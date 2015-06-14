@@ -15,6 +15,11 @@ RSpec.describe Counter, type: :model do
       expect(counter.editable_attributes).to match_array %w(name value)
     end
 
+    it 'increment_url' do
+      counter = create(:counter, :with_user)
+      expect(counter.increment_url).to eq("/users/#{counter.user.id}/counters/#{counter.id}/increment")
+    end
+
     describe 'clean_value' do
       it 'should return 0 if value nil' do
         counter = create(:counter, value: nil)
