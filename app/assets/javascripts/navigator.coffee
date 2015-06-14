@@ -189,4 +189,5 @@ class @Navigator
   # Open add window
   #
   openAddWindow: () ->
-    window.location.assign("/users/#{@user_id}/counters/new")
+    palette_id = $('#chart').data('new-palette-id')
+    window.location.assign("/users/#{@user_id}/counters/new?palette_id=#{palette_id}")
