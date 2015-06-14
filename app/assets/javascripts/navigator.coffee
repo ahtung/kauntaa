@@ -3,7 +3,9 @@ class @Navigator
   # Constructor
   #
   constructor: () ->
+    console.log('constructor')
     # Vars
+    @mode = 'index'
     @duration = 200
     @counter_data = []
     @svg = d3.select("#chart").append("svg").attr("class", 'svg')
@@ -38,7 +40,7 @@ class @Navigator
   # Col width
   #
   colWidth: () ->
-    if @counter_data.length > 1
+    if @mode == 'index'
       (window.innerWidth / @cols())
     else
       window.innerWidth
@@ -47,7 +49,7 @@ class @Navigator
   # Col heigth
   #
   colHeight: () ->
-    if @counter_data.length > 1
+    if @mode == 'index'
       (window.innerHeight / @cols())
     else
       window.innerHeight
@@ -106,6 +108,7 @@ class @Navigator
   # Redraws counters
   #
   redraw: () ->
+    console.log('redraw')
     _this = @
     @counters = @svg.selectAll(".counter").data(@counter_data)
     counter = @counters.enter().append("g").attr('class', 'counter').attr('data-counter-id', (d) -> d.id).attr('data-increment-url', (d) -> d.increment_url).each((d) -> new Counter(d.id))
@@ -131,7 +134,7 @@ class @Navigator
       .duration(@duration)
       .ease('elastic')
       .attr("transform", (d, i) ->
-        if _this.counter_data.length > 1
+        if _this.mode == 'index'
           "translate(#{((i + 1) % _this.cols()) * (window.innerWidth / _this.cols())}, #{parseInt((i + 1) / _this.cols()) * (window.innerHeight / _this.cols())})"
         else
           "translate(0, 0)"
@@ -175,6 +178,7 @@ class @Navigator
   # Edit counter
   #
   edit: (counter) ->
+    @mode = 'edit'
     counter = $(counter).closest('.counter')[0]
     id = $(counter).data('counter-id')
     selectedCounter = null
