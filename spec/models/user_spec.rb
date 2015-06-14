@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
   it '#build_counter' do
     create(:palette)
     user = create(:user)
-    expect(user.counters.count).to be(1)
+    expect(user.counters.count).to be(0)
   end
 
   describe '.find_for_google_oauth2' do
