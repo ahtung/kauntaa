@@ -174,4 +174,8 @@ class @Navigator
     @counter_data = [@counter_data[3]]
     @redraw()
 
-
+  #
+  # Open add window
+  #
+  openAddWindow: () ->
+    window.location.assign("/users/#{@user_id}/counters/new")
