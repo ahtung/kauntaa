@@ -30,7 +30,6 @@ class @Navigator
   fetchCounters: () ->
     _this = @
     d3.json("api/v1/users/#{@user_id}/counters.json", (resp) ->
-      console.log resp
       _this.counter_data = resp
       _this.redraw()
     )
@@ -109,7 +108,7 @@ class @Navigator
   redraw: () ->
     _this = @
     @counters = @svg.selectAll(".counter").data(@counter_data)
-    counter = @counters.enter().append("g").attr('class', 'counter').attr('data-counter-id', (d) -> d.id)
+    counter = @counters.enter().append("g").attr('class', 'counter').attr('data-counter-id', (d) -> d.id).attr('data-increment-url', (d) -> d.increment_url)
     # counter.each(moveToFront)
     counter.insert("rect")
       .attr("fill", (d) -> d.palette.background_color)
