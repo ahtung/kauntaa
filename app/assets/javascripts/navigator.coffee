@@ -3,8 +3,10 @@ class @Navigator
   # Constructor
   #
   constructor: () ->
+    console.log('constructor')
     # Vars
-    @duration = 300
+    @mode = 'index'
+    @duration = 200
     @counter_data = []
     @svg = d3.select("#chart").append("svg").attr("class", 'svg')
     @user_id = $('#chart').data('user-id')
@@ -14,6 +16,9 @@ class @Navigator
     d3.select(window).on('resize', () ->
       _this.updateWindow(_this)
     )
+
+    $('#chart').on 'click', '.add-text', () ->
+      _this.openAddWindow()
 
     $('#chart').on 'click', '.edit-counter', (event) ->
       _this.edit(@)
@@ -27,28 +32,41 @@ class @Navigator
   fetchCounters: () ->
     _this = @
     d3.json("api/v1/users/#{@user_id}/counters.json", (resp) ->
-      console.log resp
       _this.counter_data = resp
       _this.redraw()
     )
 
   #
+  # Back
+  #
+  back: () ->
+    @mode = 'index'
+    @selectedCounter = null
+
+  #
   # Col width
   #
-  colWidth: () ->
-    if @counter_data.length > 1
+  colWidth: (counter) ->
+    if @mode == 'index'
       (window.innerWidth / @cols())
     else
-      window.innerWidth
+      if @mode == 'edit' && @selectedCounter == counter
+        window.innerWidth
+      else
+        0
 
   #
   # Col heigth
   #
-  colHeight: () ->
-    if @counter_data.length > 1
+  colHeight: (counter) ->
+    if @mode == 'index'
       (window.innerHeight / @cols())
     else
-      window.innerHeight
+      console.log(@selectedCounter,counter)
+      if @mode == 'edit' && @selectedCounter == counter
+        window.innerHeight
+      else
+        0
 
   #
   # Calculate cols
@@ -62,6 +80,11 @@ class @Navigator
       else
         6
 
+  #
+  # Remove 'Add'
+  #
+  removeAdd: () ->
+    console.log('asd')
   #
   # Append 'Add' button
   #
@@ -86,12 +109,6 @@ class @Navigator
       .attr("font-size", "20px")
       .attr("fill", 'green')
 
-    $('#chart').on 'click', '.add-counter', (event) ->
-      console.log('add')
-      _this.redraw()
-      event.stopPropagation()
-      event.preventDefault()
-
   #
   # Update window
   #
@@ -105,14 +122,15 @@ class @Navigator
   # Redraws counters
   #
   redraw: () ->
+    console.log('redraw')
     _this = @
-    width = (window.innerWidth / _this.cols())
-    height = (window.innerHeight / _this.cols())
     @counters = @svg.selectAll(".counter").data(@counter_data)
-    counter = @counters.enter().append("g").attr('class', 'counter').attr('data-counter-id', (d) -> d.id)
+    counter = @counters.enter().append("g").attr('class', 'counter').attr('data-counter-id', (d) -> d.id).attr('data-increment-url', (d) -> d.increment_url).each((d) -> new Counter(d.id))
     # counter.each(moveToFront)
     counter.insert("rect")
       .attr("fill", (d) -> d.palette.background_color)
+      .attr("width", (d) -> _this.colWidth(d))
+      .attr("height", (d) -> _this.colHeight(d))
     counter.append('text')
       .text( (d) -> d.value )
       .attr("text-anchor", "middle")
@@ -125,59 +143,69 @@ class @Navigator
       .attr("text-anchor", "middle")
       .attr('alignment-baseline', "middle")
       .attr("fill", (d) -> d.palette.text_color)
-    @counters.each((d) -> new Counter(d.id))
 
     @counters.transition()
       .duration(@duration)
       .ease('elastic')
       .attr("transform", (d, i) ->
-        if _this.counter_data.length > 1
+        if _this.mode == 'index'
           "translate(#{((i + 1) % _this.cols()) * (window.innerWidth / _this.cols())}, #{parseInt((i + 1) / _this.cols()) * (window.innerHeight / _this.cols())})"
         else
           "translate(0, 0)"
       )
-    @counters.select('rect').transition()
-      .duration(@duration)
-      .ease('elastic')
-      .attr("width", @colWidth())
-      .attr("height", @colHeight())
+      .select('rect').transition()
+        .duration(@duration)
+        .ease('elastic')
+        .attr("width", (d) -> _this.colWidth(d))
+        .attr("height", (d) -> _this.colHeight(d))
 
     @counters.select('.counter-value').transition()
       .duration(@duration)
       .ease('elastic')
-      .attr("x", @colWidth() / 2)
-      .attr("y", @colHeight() / 4)
+      .attr("x", (d) -> _this.colWidth(d) / 2)
+      .attr("y", (d) -> _this.colHeight(d) / 4)
 
     @counters.select('.edit-counter').transition()
       .duration(@duration)
       .ease('elastic')
-      .attr("x", @colWidth() / 2)
-      .attr("y", @colHeight() / 4 * 3)
-
+      .attr("x", (d) -> _this.colWidth(d) / 2)
+      .attr("y", (d) -> _this.colHeight(d) / 4 * 3)
 
     @svg.selectAll(".add-counter").select('.add-text').transition()
       .duration(@duration)
       .ease('elastic')
-      .attr("x", @colWidth() / 2)
-      .attr("y", @colHeight() / 4)
+      .attr("x", (d) -> _this.colWidth(d) / 2)
+      .attr("y", (d) -> _this.colHeight(d) / 4)
 
     @svg.selectAll(".add-counter").select(".sign-out").transition()
       .duration(@duration)
       .ease('elastic')
-      .attr("x", @colWidth() / 2)
-      .attr("y", @colHeight() / 4 * 3)
+      .attr("x", (d) -> _this.colWidth(d) / 2)
+      .attr("y", (d) -> _this.colHeight(d) / 4 * 3)
 
     @counters.exit().transition()
         .duration(@duration)
-        .attr("transfor", "translate(0, 0)")
+        .attr("transform", "translate(0, 0)")
         .remove()
 
   #
   # Edit counter
   #
   edit: (counter) ->
+    @mode = 'edit'
     counter = $(counter).closest('.counter')[0]
-    @counter_data = [@counter_data[3]]
+    id = $(counter).data('counter-id')
+    @selectedCounter = null
+    for counter_data in @counter_data
+      if counter_data.id == id
+        @selectedCounter = counter_data
+        break
+    @counter_data = [@selectedCounter]
     @redraw()
 
-
+  #
+  # Open add window
+  #
+  openAddWindow: () ->
+    palette_id = $('#chart').data('new-palette-id')
+    window.location.assign("/users/#{@user_id}/counters/new?palette_id=#{palette_id}")

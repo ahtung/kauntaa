@@ -7,12 +7,18 @@ RSpec.describe Counter, type: :model do
 
   # Validations
   it { should validate_presence_of(:palette) }
+  it { should validate_presence_of(:name) }
 
   # Instance methods
   describe '#' do
     it 'editable_attributes' do
       counter = create(:counter)
       expect(counter.editable_attributes).to match_array %w(name value)
+    end
+
+    it 'increment_url' do
+      counter = create(:counter, :with_user)
+      expect(counter.increment_url).to eq("/users/#{counter.user.id}/counters/#{counter.id}/increment")
     end
 
     describe 'clean_value' do
