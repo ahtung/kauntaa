@@ -33,6 +33,18 @@ class @Navigator
     )
 
   #
+  # Calculate cols
+  #
+  cols: () ->
+    if $(window).width() <= 640
+      2
+    else
+      if $(window).width() > 640 && $(window).width() <= 1024
+        4
+      else
+        6
+
+  #
   # Append 'Add' button
   #
   appendAdd: () ->
@@ -104,13 +116,13 @@ class @Navigator
       .ease('elastic')
       .attr("width", (d) ->
         if _this.counter_data.length > 1
-          (window.innerWidth / 4)
+          (window.innerWidth / _this.cols())
         else
           window.innerWidth
       )
       .attr("height", (d) ->
         if _this.counter_data.length > 1
-          (window.innerHeight / 4)
+          (window.innerHeight / _this.cols())
         else
           window.innerHeight
       )
@@ -119,7 +131,7 @@ class @Navigator
       .ease('elastic')
       .attr("transform", (d, i) ->
         if _this.counter_data.length > 1
-          "translate(#{((i + 1) % 4) * (window.innerWidth / 4)}, #{parseInt((i + 1) / 4) * (window.innerHeight / 4)})"
+          "translate(#{((i + 1) % _this.cols()) * (window.innerWidth / _this.cols())}, #{parseInt((i + 1) / _this.cols()) * (window.innerHeight / _this.cols())})"
         else
           "translate(0, 0)"
       )
@@ -128,18 +140,18 @@ class @Navigator
       .ease('elastic')
       .attr("width", (d) ->
         if _this.counter_data.length > 1
-          (window.innerWidth / 4)
+          (window.innerWidth / _this.cols())
         else
           window.innerWidth
       )
       .attr("height", (d) ->
         if _this.counter_data.length > 1
-          (window.innerHeight / 4)
+          (window.innerHeight / _this.cols())
         else
           window.innerHeight
       )
 
-    @svg.select(".add-counter").select('foreignobject').attr("width", (d) -> window.innerWidth / 4).attr("height", (d) -> window.innerHeight / 4)
+    @svg.select(".add-counter").select('foreignobject').attr("width", (d) -> window.innerWidth / _this.cols()).attr("height", (d) -> window.innerHeight / _this.cols())
 
     @counters.exit().transition()
         .duration(@duration)
