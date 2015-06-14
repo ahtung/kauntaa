@@ -1,21 +1,23 @@
 class @Counter
-  constructor: (options, value = 0) ->
-    # Odometer
-    @odometer = new Odometer(options)
-    @odometer.update(value)
+  constructor: (id, options, value = 0) ->
+    # Vars
+    @elem = $("*[data-counter-id='#{id}']")
+    _this = @
 
+    # Odometer
+    # TODO
+    
     # FitText
-    $(".a-counter .counter").fitText(0.3);
-    $(".a-counter .description, .new-counter .description").fitText(1);
+    @elem.find(".counter-value").fitText(3, { minFontSize: '30px', maxFontSize: '50px' });
+    @elem.find(".edit-counter").fitText(1.2, { minFontSize: '20px', maxFontSize: '25px' });
 
     # Events
-    $('body').on 'click', '.increment-button', () ->
-      increment()
-    $('body').on 'click', '.decrement-button', () ->
-      decrement()
+    @elem.on 'click', () ->
+      _this.increment()
 
   # Functions
   increment: () ->
+      console.log('increment')
       $.get $(this).data('increment-url'), ( data ) ->
         console.log( "Incremented." )
       , "script"
