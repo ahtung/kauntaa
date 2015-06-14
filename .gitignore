@@ -14,5 +14,3 @@
 /coverage
 .yardoc/
 doc/
-
-*.env

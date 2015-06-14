@@ -11,16 +11,77 @@
  * file per style scope.
  *
  *= require_self
- *= require odometer/themes/odometer-theme-minimal
  *= require fonts
  *= require foundation_and_overrides
  *= require pages
  *= require counter
  *= require header
- *= require font-awesome
  */
 
-.add-icon {
-  height:20%;
-  margin-top:10%;
+body {
+  overflow: hidden;
+}
+.new-counter,
+.new-counter a{
+    margin:0;
+    padding:0;
+}
+
+.new-counter{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  background:gray;
+  color:white;
+  .add {
+    width:100%;
+    height:50%;
+    text-align:center;
+    float:left;
+    .add-button{
+      float:left;
+      height:100%;
+      width:100%;
+      .add-icon {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        height:50%;
+        }
+      }
+    }
+  .user-menu{
+    width:100%;
+    height:50%;
+    text-align:center;
+    float:left;
+    .text{
+      height:50%;
+      a{
+        position: relative;
+        display:block;
+        &.add-counter-link{
+          top:100%;
+          transform: translateY(-100%);
+        }
+        &.sign-out{
+          top:0%;
+          transform: translateY(0%);
+        }
+      }
+    }
+  }
+}
+
+
+#chart {
+  width: 100%;
+  min-height: 100vh;
+
+  .svg {
+    width: 100%;
+    min-height: 100vh;
+  }
 }

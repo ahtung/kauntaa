@@ -1,14 +1,15 @@
-.row
-  .columns.small-1 &nbsp;
-  .columns.small-10#back_from_new_counter
-    = link_to 'Back', :back, style: "color:#{@palette.text_color};"
-  .columns.small-1 &nbsp;
-.row#counter_form
-  .columns.small-1.medium-3 &nbsp;
-  .columns.small-10.medium-6.text-center
-    h2.hide-for-small
-      small style="color:#{@palette.text_color};" Tell me about your counter:
-    h2.show-for-small.small_header
-      small style="color:#{@palette.text_color};" Tell me:
-    == render 'form'
-  .columns.small-1.medium-3 &nbsp;
+.row style='background-color:#{@palette.background_color};height:100%;'
+  .row
+    .columns.small-1 &nbsp;
+    .columns.small-10#back_from_new_counter
+      = link_to 'Back', :back, style: "color:#{@palette.text_color};"
+    .columns.small-1 &nbsp;
+  .row#counter_form
+    .columns.small-1.medium-3 &nbsp;
+    .columns.small-10.medium-6.text-center
+      h2.hide-for-small
+        small style="color:#{@palette.text_color};" Tell me about your counter:
+      h2.show-for-small.small_header
+        small style="color:#{@palette.text_color};" Tell me:
+      == render 'form'
+    .columns.small-1.medium-3 &nbsp;

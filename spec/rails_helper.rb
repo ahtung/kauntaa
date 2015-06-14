@@ -30,7 +30,7 @@ RSpec.configure do |config|
   config.include ActionView::Helpers::DateHelper
   config.include FactoryGirl::Syntax::Methods
   config.include Helpers
-  config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: /spec\/api/
+  config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: %r{ /spec\/api/ }
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)

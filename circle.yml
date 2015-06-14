@@ -4,6 +4,7 @@ test:
     - bundle exec rake style
     - bundle exec rake security
     - bundle exec rake quality
+    - bundle exec rake smoke:test
 deployment:
   staging:
     branch: develop

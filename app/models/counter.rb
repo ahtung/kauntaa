@@ -4,8 +4,10 @@ class Counter < ActiveRecord::Base
   belongs_to :user
   belongs_to :palette
 
+  # Validation
+  validates :name, :palette, presence: true
+
   # Callbacks
-  before_save :set_name
   before_update :set_creation_date
 
   attr_accessor :created_at_date, :created_at_time
@@ -26,16 +28,16 @@ class Counter < ActiveRecord::Base
     update_column(:value, clean_value + 1)
   end
 
-  private
-
-  # sets name to 'TODO' if no name speified
-  def set_name
-    update_attribute(:name, 'TODO') unless name
+  # returns the increment url
+  def increment_url
+    Rails.application.routes.url_helpers.increment_user_counter_path(user_id: user.id, id: id)
   end
+
+  private
 
   # sets creation date
   def set_creation_date
     return unless created_at_date && created_at_time
-    self.created_at = DateTime.parse("#{created_at_date} #{created_at_time}")
+    self.created_at = Time.zone.parse("#{created_at_date} #{created_at_time}")
   end
 end

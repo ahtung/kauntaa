@@ -40,8 +40,8 @@ CircleCI will do ``` circle.yml ``` and eventually deploy to heroku.
 
 ### Manual
 
-    ./script/staging/deploy
-    ./script/production/deploy
+    ./script/deploy/staging
+    ./script/deploy/production
 
 
 

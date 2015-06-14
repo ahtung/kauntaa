@@ -1,4 +1,1 @@
-$("[data-counter-id='<%= @counter.id %>'] .counter").html("<%= @counter.clean_value %>")
-
-window.counters.each (index) ->
-  this.odometer.update()
+$("[data-counter-id='<%= @counter.id %>'] .counter-value").html("<%= @counter.clean_value %>")

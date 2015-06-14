@@ -7,6 +7,7 @@ class CountersController < ApplicationController
   after_action :allow_iframe, only: :show
 
   def show
+    render layout: false
   end
 
   def index
@@ -15,12 +16,21 @@ class CountersController < ApplicationController
   end
 
   def new
-    @counter = current_user.counters.new
+    @palette = Palette.find(params[:palette_id])
+    @counter = current_user.counters.new(palette: @palette)
     authorize @counter
+    render layout: false
+  end
+
+  def new_counter
+    @counter = current_user.counters.new
+    authorize @counter, :new?
+    render layout: false
   end
 
   def edit
     authorize @counter
+    render layout: false
   end
 
   def create

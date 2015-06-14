@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 
 ruby '2.1.2'
 
+gem 'bundler', '>= 1.8.4'
 gem 'rails', '4.2.1'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
@@ -18,17 +18,16 @@ gem 'devise'
 gem 'rack-google-analytics'
 gem 'omniauth-google-oauth2'
 gem 'newrelic_rpm'
-gem 'thin'
-gem 'rails-assets-HubSpot--odometer'
-gem 'rails-assets-font-awesome'
-gem 'rails-assets-FitText.js'
-gem 'rails-assets-jquery.transit'
+gem 'puma'
 gem 'pundit'
 gem 'cane'
 gem 'roboto'
 gem 'sitemap_generator'
 gem 'fog'
 gem 'grape'
+gem 'grape-entity'
+gem 'inline_svg'
+gem 'fittextjs_rails'
 gem 'skylight'
 
 group :production do
@@ -59,4 +58,10 @@ group :test do
   gem 'rspec-its'
   gem 'shoulda-matchers', require: false
   gem 'simplecov', require: false
+  gem 'cucumber-rails', require: false
+end
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-d3'
+  gem 'rails-assets-underscore'
 end
