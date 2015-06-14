@@ -1,3 +1,4 @@
+# CounterEntity
 class CounterEntity < Grape::Entity
   expose :id
   expose :name

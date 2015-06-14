@@ -22,6 +22,6 @@ Then(/^counter should not have changed$/) do
   expect(@user.counters.first.value).to eq(1)
 end
 
-Then(/^counter should have increased by (\d+)$/) do |arg1|
-  expect(@user.counters.count).to eq(2)
+Then(/^counter should have increased by (\d+)$/) do |increment|
+  expect(@user.counters.count).to eq(increment)
 end
