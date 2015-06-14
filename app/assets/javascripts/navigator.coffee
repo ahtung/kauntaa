@@ -55,17 +55,16 @@ class @Navigator
       .attr("fill", 'red')
     add_counter.append('text')
       .text( 'Add' )
-      .attr("x", 40)
-      .attr("y", 40)
-      .attr("class", 'add-counter')
-      .attr("font-family", "sans-serif")
-      .attr("font-size", "40px")
+      .attr("text-anchor", "middle")
+      .attr('alignment-baseline', "middle")
+      .attr("class", 'add-text')
       .attr("fill", 'blue')
+      .attr("font-size", "35px")
     add_counter.append('text')
       .text( "Sign out" )
-      .attr("x", 40)
-      .attr("y", 80)
-      .attr("font-family", "sans-serif")
+      .attr("text-anchor", "middle")
+      .attr('alignment-baseline', "middle")
+      .attr("class", 'sign-out')
       .attr("font-size", "20px")
       .attr("fill", 'green')
 
@@ -110,21 +109,6 @@ class @Navigator
       .attr("fill", (d) -> console.log(d.palette);d.palette.text_color)
     @counters.each((d) -> new Counter(d.id))
 
-    @svg.selectAll(".add-counter").select('.html').transition()
-      .duration(@duration)
-      .ease('elastic')
-      .attr("width", (d) ->
-        if _this.counter_data.length > 1
-          (window.innerWidth / _this.cols())
-        else
-          window.innerWidth
-      )
-      .attr("height", (d) ->
-        if _this.counter_data.length > 1
-          (window.innerHeight / _this.cols())
-        else
-          window.innerHeight
-      )
     @counters.transition()
       .duration(@duration)
       .ease('elastic')
@@ -157,6 +141,19 @@ class @Navigator
       .attr("y", (window.innerHeight / _this.cols()) / 4)
 
     @counters.select('.edit-counter').transition()
+      .duration(@duration)
+      .ease('elastic')
+      .attr("x", (window.innerWidth / _this.cols()) / 2)
+      .attr("y", (window.innerHeight / _this.cols()) / 4 * 3)
+
+
+    @svg.selectAll(".add-counter").select('.add-text').transition()
+      .duration(@duration)
+      .ease('elastic')
+      .attr("x", (window.innerWidth / _this.cols()) / 2)
+      .attr("y", (window.innerHeight / _this.cols()) / 4)
+
+    @svg.selectAll(".add-counter").select(".sign-out").transition()
       .duration(@duration)
       .ease('elastic')
       .attr("x", (window.innerWidth / _this.cols()) / 2)
