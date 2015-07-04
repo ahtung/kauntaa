@@ -8,8 +8,8 @@ class @Counter
     # od = new Odometer({selector: "*[data-counter-id='#{id}'] .counter-value"})
 
     # FitText
-    @elem.find(".counter-value").fitText(3, { minFontSize: '30px', maxFontSize: '50px' });
-    @elem.find(".edit-counter").fitText(1.2, { minFontSize: '20px', maxFontSize: '25px' });
+    # @elem.find(".counter-value").fitText(3, { minFontSize: '30px', maxFontSize: '50px' });
+    # @elem.find(".edit-counter").fitText(1.2, { minFontSize: '20px', maxFontSize: '25px' });
 
     # Events
     d3.select("*[data-counter-id='#{id}']").on('click', () ->
