@@ -2,8 +2,8 @@ Given(/^There is a palette$/) do
   create(:palette)
 end
 
-Given(/^I click on sign out$/) do
-
+When(/^I click on sign out$/) do
+  find('.sign-out', match: :first).click
 end
 
 When(/^I add a counter$/) do
