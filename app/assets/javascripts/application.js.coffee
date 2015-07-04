@@ -9,7 +9,9 @@
 
 $(document).ready ->
   #D3
-  navigator = new Navigator
+  @user_id = $('#chart').data('user-id')
+  if @user_id.length > 0
+    navigator = new Navigator
 
   # Foundation
   $(document).foundation()
