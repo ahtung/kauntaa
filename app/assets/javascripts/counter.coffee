@@ -6,14 +6,15 @@ class @Counter
 
     # Odometer
     # TODO
-    
+
     # FitText
     @elem.find(".counter-value").fitText(3, { minFontSize: '30px', maxFontSize: '50px' });
     @elem.find(".edit-counter").fitText(1.2, { minFontSize: '20px', maxFontSize: '25px' });
 
     # Events
-    @elem.on 'click', () ->
+    d3.select("*[data-counter-id='#{id}']").on('click', () ->
       _this.increment()
+    )
 
   # Functions
   increment: () ->
