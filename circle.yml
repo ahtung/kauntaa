@@ -1,6 +1,7 @@
 test:
   override:
     - mkdir -p $CIRCLE_TEST_REPORTS/cucumber
+    - mkdir -p $CIRCLE_TEST_REPORTS/rspec
     - bundle exec rake spec
     - bundle exec rake style
     - bundle exec rake security
