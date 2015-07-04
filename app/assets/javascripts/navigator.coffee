@@ -108,6 +108,8 @@ class @Navigator
       .attr("class", 'sign-out')
       .attr("font-size", "20px")
       .attr("fill", 'green')
+      .on 'click', () ->
+        console.log('sign out clicked')
 
   #
   # Update window
