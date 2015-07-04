@@ -6,9 +6,7 @@ module V1
       segment '/:user_id' do
         get '/counters' do
           authenticate!
-          if params[:user_id].to_i > 0
-            present User.find(params[:user_id]).counters.includes(:user).includes(:palette), with: CounterEntity
-          end
+          present User.find(params[:user_id]).counters.includes(:user).includes(:palette), with: CounterEntity if params[:user_id].to_i > 0
         end
       end
     end
