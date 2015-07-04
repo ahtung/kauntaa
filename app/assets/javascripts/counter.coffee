@@ -5,7 +5,7 @@ class @Counter
     _this = @
 
     # Odometer
-    # TODO
+    # od = new Odometer({selector: "*[data-counter-id='#{id}'] .counter-value"})
 
     # FitText
     @elem.find(".counter-value").fitText(3, { minFontSize: '30px', maxFontSize: '50px' });
@@ -21,7 +21,7 @@ class @Counter
   # Functions
   increment: () ->
     $.get @elem.data('increment-url'), ( data ) ->
-      console.log()
+      console.log(  )
       # window.navigator.fetchCounters()
       # window.navigator.redraw()
     , "script"

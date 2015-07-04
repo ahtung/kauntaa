@@ -6,7 +6,7 @@ class @Navigator
     # console.log('constructor')
     # Vars
     @mode = 'index'
-    @duration = 200
+    @duration = 500
     @counter_data = []
     @svg = d3.select("#chart").append("svg").attr("class", 'svg')
     @user_id = $('#chart').data('user-id')
@@ -123,8 +123,8 @@ class @Navigator
   redraw: () ->
     _this = @
     return if @counter_data.length == 0
-    @counters = @svg.selectAll(".counter").data(@counter_data)    
-    counter = @counters.enter().append("g").attr('class', 'counter').attr('data-counter-id', (d) -> d.id).attr('data-increment-url', (d) -> d.increment_url).each((d) -> new Counter(d.id))
+    @counters = @svg.selectAll(".counter").data(@counter_data)
+    counter = @counters.enter().append("g").attr('class', 'counter odometer').attr('data-counter-id', (d) -> d.id).attr('data-increment-url', (d) -> d.increment_url).each((d) -> new Counter(d.id))
     # counter.each(moveToFront)
     counter.append("rect")
       .attr("fill", (d) -> d.palette.background_color)
@@ -152,8 +152,7 @@ class @Navigator
         else
           "translate(0, 0)"
       )
-      .select('rect').transition()
-        .duration(@duration)
+      .select('rect')
         .ease('elastic')
         .attr("width", (d) -> _this.colWidth(d))
         .attr("height", (d) -> _this.colHeight(d))
