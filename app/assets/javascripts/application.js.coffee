@@ -6,6 +6,7 @@
 #= require underscore
 #= require counter
 #= require navigator
+#= require odometer
 
 $(document).ready ->
   #D3

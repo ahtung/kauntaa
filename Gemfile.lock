@@ -355,6 +355,7 @@ GEM
       railties (= 4.2.1)
       sprockets-rails
     rails-assets-d3 (3.5.6)
+    rails-assets-odometer (0.4.7)
     rails-assets-underscore (1.8.3)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
@@ -542,6 +543,7 @@ DEPENDENCIES
   rack-google-analytics
   rails (= 4.2.1)
   rails-assets-d3!
+  rails-assets-odometer!
   rails-assets-underscore!
   rails_12factor
   roboto

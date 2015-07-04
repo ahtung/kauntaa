@@ -20,8 +20,8 @@ Then(/^counter should not have changed$/) do
 end
 
 Then(/^counter should have increased by (\d+)$/) do |increment|
-  within "#chart" do
-    counter_value = first(".counter").first('.counter-value').text.to_i
+  within '#chart' do
+    counter_value = first('.counter').first('.counter-value').text.to_i
     expect(counter_value).to eq(increment.to_i)
   end
 end
