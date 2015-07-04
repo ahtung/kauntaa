@@ -8,10 +8,8 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
 require 'helpers'
-require 'capybara/poltergeist'
 require 'pundit/rspec'
 Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
-Capybara.javascript_driver = :poltergeist
 
 ActiveRecord::Migration.maintain_test_schema!
 
