@@ -5,8 +5,7 @@ module V1
     resource :users do
       segment '/:user_id' do
         get '/counters' do
-          # authorize Counter, :index?
-          return unless authenticated
+          authenticate!
           if params[:user_id].to_i > 0
             present User.find(params[:user_id]).counters.includes(:user).includes(:palette), with: CounterEntity
           end
@@ -21,9 +20,23 @@ module V1
       end
       route_param :id do
         get do
-          return unless authenticated
+          authenticate!
           counter = Counter.find(params[:id])
           counter.increment
+        end
+      end
+    end
+
+    helpers do
+      def authenticate!
+        error!('Unauthorized. Invalid or expired token.', 401) unless current_user
+      end
+
+      def current_user
+        if env['warden'].authenticate!
+          @current_user = env['warden'].user
+        else
+          false
         end
       end
     end
