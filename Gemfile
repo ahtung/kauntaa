@@ -43,6 +43,7 @@ end
 group :development, :test do
   gem 'yard'
   gem 'byebug'
+  gem 'pry-rails'
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rspec-rails'
@@ -51,7 +52,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'database_cleaner'
-  gem 'poltergeist'
+  gem 'selenium-webdriver'
   gem 'rspec_junit_formatter', '0.2.2'
 end
 
