@@ -3,10 +3,10 @@ class @Navigator
   # Constructor
   #
   constructor: () ->
-    console.log('constructor')
+    # console.log('constructor')
     # Vars
     @mode = 'index'
-    @duration = 200
+    @duration = 500
     @counter_data = []
     @svg = d3.select("#chart").append("svg").attr("class", 'svg')
     @user_id = $('#chart').data('user-id')
@@ -62,7 +62,6 @@ class @Navigator
     if @mode == 'index'
       (window.innerHeight / @cols())
     else
-      console.log(@selectedCounter,counter)
       if @mode == 'edit' && @selectedCounter == counter
         window.innerHeight
       else
@@ -84,7 +83,7 @@ class @Navigator
   # Remove 'Add'
   #
   removeAdd: () ->
-    console.log('asd')
+    # console.log('asd')
   #
   # Append 'Add' button
   #
@@ -100,14 +99,16 @@ class @Navigator
       .attr('alignment-baseline', "middle")
       .attr("class", 'add-text')
       .attr("fill", 'blue')
-      .attr("font-size", "35px")
+      .attr("font-size", "2.5em")
     add_counter.append('text')
       .text( "Sign out" )
       .attr("text-anchor", "middle")
       .attr('alignment-baseline', "middle")
       .attr("class", 'sign-out')
-      .attr("font-size", "20px")
+      .attr("font-size", "1.3em")
       .attr("fill", 'green')
+      .on 'click', () ->
+        window.location = '/users/sign_out'
 
   #
   # Update window
@@ -122,12 +123,12 @@ class @Navigator
   # Redraws counters
   #
   redraw: () ->
-    console.log('redraw')
     _this = @
+    return if @counter_data.length == 0
     @counters = @svg.selectAll(".counter").data(@counter_data)
-    counter = @counters.enter().append("g").attr('class', 'counter').attr('data-counter-id', (d) -> d.id).attr('data-increment-url', (d) -> d.increment_url).each((d) -> new Counter(d.id))
+    counter = @counters.enter().append("g").attr('class', 'counter odometer').attr('data-counter-id', (d) -> d.id).attr('data-increment-url', (d) -> d.increment_url).each((d) -> new Counter(d.id))
     # counter.each(moveToFront)
-    counter.insert("rect")
+    counter.append("rect")
       .attr("fill", (d) -> d.palette.background_color)
       .attr("width", (d) -> _this.colWidth(d))
       .attr("height", (d) -> _this.colHeight(d))
@@ -153,8 +154,7 @@ class @Navigator
         else
           "translate(0, 0)"
       )
-      .select('rect').transition()
-        .duration(@duration)
+      .select('rect')
         .ease('elastic')
         .attr("width", (d) -> _this.colWidth(d))
         .attr("height", (d) -> _this.colHeight(d))
@@ -185,7 +185,7 @@ class @Navigator
 
     @counters.exit().transition()
         .duration(@duration)
-        .attr("transform", "translate(0, 0)")
+        .attr("transform", "translate(#{window.innerWidth / 2}, #{window.innerHeight / 2})")
         .remove()
 
   #
@@ -200,7 +200,7 @@ class @Navigator
       if counter_data.id == id
         @selectedCounter = counter_data
         break
-    @counter_data = [@selectedCounter]
+    # @counter_data = [@selectedCounter]
     @redraw()
 
   #

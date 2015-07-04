@@ -13,6 +13,10 @@ $LOAD_PATH.unshift(File.dirname(vendored_cucumber_bin) + '/../lib') unless vendo
 begin
   require 'cucumber/rake/task'
 
+  Cucumber::Rake::Task.new(:features) do |t|
+    t.cucumber_opts = "--format json --out $CIRCLE_TEST_REPORTS/cucumber/tests.cucumber"
+  end
+
   namespace :cucumber do
     Cucumber::Rake::Task.new({:ok => 'test:prepare'}, 'Run features that should pass') do |t|
       t.binary = vendored_cucumber_bin # If nil, the gem's binary is used.

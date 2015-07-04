@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 gem 'bundler', '>= 1.8.4'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.2'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -43,6 +43,7 @@ end
 group :development, :test do
   gem 'yard'
   gem 'byebug'
+  gem 'pry-rails'
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rspec-rails'
@@ -51,7 +52,8 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'database_cleaner'
-  gem 'poltergeist'
+  gem 'selenium-webdriver'
+  gem 'rspec_junit_formatter', '0.2.2'
 end
 
 group :test do
@@ -59,9 +61,11 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'simplecov', require: false
   gem 'cucumber-rails', require: false
+  gem 'grape-entity-matchers'
 end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-d3'
   gem 'rails-assets-underscore'
+  gem 'rails-assets-odometer'
 end

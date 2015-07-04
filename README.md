@@ -10,10 +10,15 @@ A personal counter
 - Foreman
 - Foundation
 - Postgresql
+- Chromedriver
+
+## Pre
+
+    brew install chromedriver
 
 ## Development
 
-``` foreman start -f Procfile.dev -e Procfile.dev.env ```
+    foreman start -f Procfile.dev -e Procfile.dev.env
 
 ## Tasks
 
@@ -42,6 +47,3 @@ CircleCI will do ``` circle.yml ``` and eventually deploy to heroku.
 
     ./script/deploy/staging
     ./script/deploy/production
-
-
-

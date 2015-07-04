@@ -1,3 +1,5 @@
 --color
---format d
 --require spec_helper
+--format d
+--format RspecJunitFormatter
+--out $CIRCLE_TEST_REPORTS/rspec/rspec.xml
