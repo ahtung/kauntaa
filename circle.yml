@@ -6,7 +6,7 @@ test:
     - bundle exec rake style
     - bundle exec rake security
     - bundle exec rake quality
-    - bundle exec rake cucumber --format json --out $CIRCLE_TEST_REPORTS/cucumber/tests.cucumber:
+    - bundle exec rake cucumber:
         environment:
           RACK_ENV: test
 deployment:
@@ -14,13 +14,13 @@ deployment:
     branch: develop
     commands:
       - ./script/deploy/staging
-      - bundle exec rake cucumber --format json --out $CIRCLE_TEST_REPORTS/cucumber/tests.cucumber:
+      - bundle exec rake cucumber:
           environment:
             RACK_ENV: staging
   production:
     branch: master
     commands:
       - ./script/deploy/production
-      - bundle exec rake cucumber --format json --out $CIRCLE_TEST_REPORTS/cucumber/tests.cucumber:
+      - bundle exec rake cucumber:
           environment:
             RACK_ENV: production
