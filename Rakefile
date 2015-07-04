@@ -5,7 +5,7 @@ require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
 
-desc "API Routes"
+desc 'API Routes'
 task :routes do
   Kauntaa::API.routes.each do |api|
     method = api.route_method.ljust(10)
