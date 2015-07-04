@@ -32,9 +32,7 @@ When(/^I sign in with "(.*?)"$/) do |email|
 end
 
 Then(/^I should have signed out/) do
-
-  save_and_open_page
-  expect(page).to have_content 'Sign in with Google'
+  expect(page).to have_content('Sign in with Google')
 end
 
 def fill_form
