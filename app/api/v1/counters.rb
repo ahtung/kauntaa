@@ -6,6 +6,7 @@ module V1
       segment '/:user_id' do
         get '/counters' do
           # authorize Counter, :index?
+          return unless authenticated
           if params[:user_id].to_i > 0
             present User.find(params[:user_id]).counters.includes(:user).includes(:palette), with: CounterEntity
           end
@@ -20,6 +21,7 @@ module V1
       end
       route_param :id do
         get do
+          return unless authenticated
           counter = Counter.find(params[:id])
           counter.increment
         end
