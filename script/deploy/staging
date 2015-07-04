@@ -8,4 +8,3 @@ export RACK_ENV="test"
 git push git@heroku.com:kauntaa-staging.git develop:master
 heroku run rake db:migrate --app kauntaa-staging
 heroku run rake db:seed --app kauntaa-staging
-bundle exec rake smoke:staging
