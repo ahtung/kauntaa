@@ -2,6 +2,10 @@ Given(/^There is a palette$/) do
   create(:palette)
 end
 
+Given(/^I click on sign out$/) do
+
+end
+
 When(/^I add a counter$/) do
   first('.add-text').trigger('click')
   fill_form
@@ -25,6 +29,10 @@ When(/^I sign in with "(.*?)"$/) do |email|
   @user = create(:user, :with_counters, email: email)
   login_as(@user, scope: :user)
   visit user_root_path
+end
+
+Then(/^I should have signed out/) do
+
 end
 
 def fill_form
