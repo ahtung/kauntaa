@@ -61,6 +61,7 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'simplecov', require: false
   gem 'cucumber-rails', require: false
+  gem 'grape-entity-matchers'
 end
 
 source 'https://rails-assets.org' do
