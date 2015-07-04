@@ -7,20 +7,20 @@ test:
     - bundle exec rake security
     - bundle exec rake quality
     - bundle exec rake cucumber --format json --out $CIRCLE_TEST_REPORTS/cucumber/tests.cucumber
-        environment:
-          RACK_ENV: test
+      environment:
+        RACK_ENV: test
 deployment:
   staging:
     branch: develop
     commands:
       - ./script/deploy/staging
       - bundle exec rake cucumber --format json --out $CIRCLE_TEST_REPORTS/cucumber/tests.cucumber
-          environment:
-            RACK_ENV: staging
+        environment:
+          RACK_ENV: staging
   production:
     branch: master
     commands:
       - ./script/deploy/production
       - bundle exec rake cucumber --format json --out $CIRCLE_TEST_REPORTS/cucumber/tests.cucumber
-          environment:
-            RACK_ENV: production
+        environment:
+          RACK_ENV: production
