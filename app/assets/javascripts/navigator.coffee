@@ -99,13 +99,13 @@ class @Navigator
       .attr('alignment-baseline', "middle")
       .attr("class", 'add-text')
       .attr("fill", 'blue')
-      .attr("font-size", "35px")
+      .attr("font-size", "2.5em")
     add_counter.append('text')
       .text( "Sign out" )
       .attr("text-anchor", "middle")
       .attr('alignment-baseline', "middle")
       .attr("class", 'sign-out')
-      .attr("font-size", "20px")
+      .attr("font-size", "1.3em")
       .attr("fill", 'green')
       .on 'click', () ->
         window.location = '/users/sign_out'
@@ -125,7 +125,7 @@ class @Navigator
   redraw: () ->
     _this = @
     return if @counter_data.length == 0
-    @counters = @svg.selectAll(".counter").data(@counter_data)    
+    @counters = @svg.selectAll(".counter").data(@counter_data)
     counter = @counters.enter().append("g").attr('class', 'counter').attr('data-counter-id', (d) -> d.id).attr('data-increment-url', (d) -> d.increment_url).each((d) -> new Counter(d.id))
     # counter.each(moveToFront)
     counter.append("rect")
@@ -138,13 +138,14 @@ class @Navigator
       .attr('alignment-baseline', "middle")
       .attr('class', 'counter-value')
       .attr("fill", (d) -> d.palette.foreground_color)
+      .attr("font-size", "2.5em")
     counter.append('text')
       .text( (d) -> "#{d.name} since #{'TODO'}" )
       .attr("class", "edit-counter")
       .attr("text-anchor", "middle")
       .attr('alignment-baseline', "middle")
       .attr("fill", (d) -> d.palette.text_color)
-
+      .attr("font-size", "1.3em")
     @counters.transition()
       .duration(@duration)
       .ease('elastic')
