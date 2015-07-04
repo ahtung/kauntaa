@@ -16,8 +16,12 @@ class @Counter
       _this.increment()
     )
 
+    # TODO(dunykirkali) edit
+
   # Functions
   increment: () ->
     $.get @elem.data('increment-url'), ( data ) ->
-      console.log( "Incremented." )
+      console.log()
+      # window.navigator.fetchCounters()
+      # window.navigator.redraw()
     , "script"
