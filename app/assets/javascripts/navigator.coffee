@@ -99,13 +99,13 @@ class @Navigator
       .attr('alignment-baseline', "middle")
       .attr("class", 'add-text')
       .attr("fill", 'blue')
-      .attr("font-size", "35px")
+      .attr("font-size", "2.5em")
     add_counter.append('text')
       .text( "Sign out" )
       .attr("text-anchor", "middle")
       .attr('alignment-baseline', "middle")
       .attr("class", 'sign-out')
-      .attr("font-size", "20px")
+      .attr("font-size", "1.3em")
       .attr("fill", 'green')
       .on 'click', () ->
         window.location = '/users/sign_out'
