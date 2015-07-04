@@ -7,7 +7,7 @@ When(/^I click on sign out$/) do
 end
 
 When(/^I add a counter$/) do
-  first('.add-text').trigger('click')
+  find('.add-text', match: :first).click
   fill_form
 end
 
