@@ -8,13 +8,14 @@ class @Navigator
     @mode = 'index'
     @duration = 500
     @counter_data = []
+    @row_and_col = []
     @svg = d3.select("#chart").append("svg").attr("class", 'svg')
     @user_id = $('#chart').data('user-id')
     _this = @
 
     # Events
     d3.select(window).on('resize', () ->
-      _this.updateWindow(_this)
+      _this.updateWindow()
     )
 
     $('#chart').on 'click', '.add-text', () ->
@@ -22,6 +23,7 @@ class @Navigator
 
     $('#chart').on 'click', '.edit-counter', (event) ->
       _this.edit(@)
+      _this.updateWindow()
       _this.redraw()
       event.stopPropagation()
       event.preventDefault()
@@ -29,10 +31,20 @@ class @Navigator
     @appendAdd()
     @fetchCounters()
 
+  # Returns the number of rows and columns given N
+  rowCol: (n) ->
+    row = Math.floor(Math.sqrt(n))
+    col = row
+    (if row == col then row++ else col++) while (row * col) < n
+    @row_and_col = [row, col]
+
+
   fetchCounters: () ->
     _this = @
     d3.json("api/v1/users/#{@user_id}/counters.json", (resp) ->
       _this.counter_data = resp
+      _this.rowCol(_this.counter_data.length + 1)
+      _this.updateWindow()
       _this.redraw()
     )
 
@@ -48,7 +60,10 @@ class @Navigator
   #
   colWidth: (counter) ->
     if @mode == 'index'
-      (window.innerWidth / @cols())
+      if window.innerWidth < 640
+        window.innerWidth
+      else
+        (window.innerWidth / @row_and_col[1])
     else
       if @mode == 'edit' && @selectedCounter == counter
         window.innerWidth
@@ -60,24 +75,15 @@ class @Navigator
   #
   colHeight: (counter) ->
     if @mode == 'index'
-      (window.innerHeight / @cols())
+      if window.innerWidth < 640
+        window.innerHeight / 2
+      else
+        (window.innerHeight / @row_and_col[0])
     else
       if @mode == 'edit' && @selectedCounter == counter
         window.innerHeight
       else
         0
-
-  #
-  # Calculate cols
-  #
-  cols: () ->
-    if $(window).width() <= 640
-      2
-    else
-      if $(window).width() > 640 && $(window).width() <= 1024
-        4
-      else
-        6
 
   #
   # Remove 'Add'
@@ -113,18 +119,21 @@ class @Navigator
   #
   # Update window
   #
-  updateWindow: (diz) ->
+  updateWindow: () ->
+    _this = @
     x = window.innerWidth || e.clientWidth || g.clientWidth
     y = window.innerHeight|| e.clientHeight|| g.clientHeight
-    # diz.svg.attr("width", x).attr("height", y)
-    diz.redraw()
+    if x < 640
+      @svg.attr("width", x).attr("height", (d) -> (_this.counter_data.length + 1) * _this.colHeight(d))
+    else
+      @svg.attr("width", x).attr("height", y)
+    @redraw()
 
   #
   # Redraws counters
   #
   redraw: () ->
     _this = @
-    return if @counter_data.length == 0
     @counters = @svg.selectAll(".counter").data(@counter_data)
     counter = @counters.enter().append("g").attr('class', 'counter odometer').attr('data-counter-id', (d) -> d.id).attr('data-increment-url', (d) -> d.increment_url).each((d) -> new Counter(d.id))
     # counter.each(moveToFront)
@@ -150,7 +159,10 @@ class @Navigator
       .ease('elastic')
       .attr("transform", (d, i) ->
         if _this.mode == 'index'
-          "translate(#{((i + 1) % _this.cols()) * (window.innerWidth / _this.cols())}, #{parseInt((i + 1) / _this.cols()) * (window.innerHeight / _this.cols())})"
+          if window.innerWidth < 640
+            "translate(0, #{parseInt((i + 1) * _this.colHeight(d))})"
+          else
+            "translate(#{((i + 1) % _this.row_and_col[1]) * _this.colWidth(d)}, #{parseInt((i + 1) / _this.row_and_col[1]) * _this.colHeight(d)})"
         else
           "translate(0, 0)"
       )
@@ -186,6 +198,8 @@ class @Navigator
     @counters.exit().transition()
         .duration(@duration)
         .attr("transform", "translate(#{window.innerWidth / 2}, #{window.innerHeight / 2})")
+        .attr("width", 0)
+        .attr("height", 0)
         .remove()
 
   #
