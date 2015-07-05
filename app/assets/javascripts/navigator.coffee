@@ -89,7 +89,7 @@ class @Navigator
   # Remove 'Add'
   #
   removeAdd: () ->
-    # console.log('asd')
+    d3.select('.add-counter').remove()
   #
   # Append 'Add' button
   #
@@ -136,7 +136,6 @@ class @Navigator
     _this = @
     @counters = @svg.selectAll(".counter").data(@counter_data)
     counter = @counters.enter().append("g").attr('class', 'counter odometer').attr('data-counter-id', (d) -> d.id).attr('data-increment-url', (d) -> d.increment_url).each((d) -> new Counter(d.id))
-    # counter.each(moveToFront)
     counter.append("rect")
       .attr("fill", (d) -> d.palette.background_color)
       .attr("width", (d) -> _this.colWidth(d))
@@ -214,7 +213,8 @@ class @Navigator
       if counter_data.id == id
         @selectedCounter = counter_data
         break
-    # @counter_data = [@selectedCounter]
+    @counter_data = [@selectedCounter]
+    @removeAdd()
     @redraw()
 
   #
