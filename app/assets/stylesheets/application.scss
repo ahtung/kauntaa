@@ -79,8 +79,9 @@ body {
 
 #chart {
   width: 100%;
-  min-height: 100vh;
-
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
   .svg {
     width: 100%;
     min-height: 100vh;
