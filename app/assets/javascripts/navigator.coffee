@@ -5,7 +5,6 @@ class @Navigator
   constructor: () ->
     # console.log('constructor')
     # Vars
-    @mode = 'index'
     @duration = 500
     @counter_data = []
     @row_and_col = []
@@ -33,7 +32,7 @@ class @Navigator
   fetchCounters: () ->
     _this = @
     if @user_id
-      d3.json("api/v1/users/#{@user_id}/counters.json", (resp) ->
+      d3.json("api/v1/me/counters.json", (resp) ->
         _this.counter_data = resp
         _this.rowCol(_this.counter_data.length + 1)
         _this.updateWindow()
@@ -41,41 +40,23 @@ class @Navigator
       )
 
   #
-  # Back
-  #
-  back: () ->
-    @mode = 'index'
-    @selectedCounter = null
-
-  #
   # Col width
   #
   colWidth: (counter) ->
-    if @mode == 'index'
-      if window.innerWidth < 640
-        window.innerWidth
-      else
-        (window.innerWidth / @row_and_col[1])
+    if window.innerWidth < 640
+      parseInt(window.innerWidth)
     else
-      if @mode == 'edit' && @selectedCounter == counter
-        window.innerWidth
-      else
-        0
+      parseInt(window.innerWidth / @row_and_col[1])
+
 
   #
   # Col heigth
   #
   colHeight: (counter) ->
-    if @mode == 'index'
-      if window.innerWidth < 640
-        window.innerHeight / 2
-      else
-        (window.innerHeight / @row_and_col[0])
+    if window.innerWidth < 640
+      parseInt(window.innerHeight / 2)
     else
-      if @mode == 'edit' && @selectedCounter == counter
-        window.innerHeight
-      else
-        0
+      parseInt(window.innerHeight / @row_and_col[0])
 
   #
   # Remove 'Add'
@@ -140,10 +121,20 @@ class @Navigator
     x = window.innerWidth || e.clientWidth || g.clientWidth
     y = window.innerHeight|| e.clientHeight|| g.clientHeight
     if x < 640
-      @svg.attr("width", x).attr("height", (d) -> (_this.counter_data.length + 1) * _this.colHeight(d))
+      if($("foreignObject").length > 0)
+        @svg.attr("width", x).attr("height", y)
+        $("foreignObject").width(x).height(y)
+      else
+        @svg.attr("width", x).attr("height", (d) -> (_this.counter_data.length + 1) * _this.colHeight(d))
+        @redraw()
     else
-      @svg.attr("width", x).attr("height", y)
-    @redraw()
+      if($("foreignObject").length > 0)
+        @svg.attr("width", x).attr("height", y)
+        $("foreignObject").width(x).height(y)
+      else
+        @svg.attr("width", x).attr("height", y)
+        @redraw()
+
 
   #
   # Redraws counters
@@ -164,7 +155,7 @@ class @Navigator
       .text( (d) -> "#{d.name} since #{d.active_since}" )
       .attr("class", "edit-counter")
       .attr("fill", (d) -> d.palette.text_color)
-    @counters.each((d) -> new Counter(d.id))
+    @counters.each((d) -> new Counter(d.id, _this))
 
     @svg.selectAll(".counter , .add-counter")
       .attr("text-anchor", "middle")
@@ -173,13 +164,10 @@ class @Navigator
       .duration(@duration)
       .ease('elastic')
       .attr("transform", (d, i) ->
-        if _this.mode == 'index'
-          if window.innerWidth < 640
-            "translate(0, #{parseInt((i + 1) * _this.colHeight(d))})"
-          else
-            "translate(#{((i + 1) % _this.row_and_col[1]) * _this.colWidth(d)}, #{parseInt((i + 1) / _this.row_and_col[1]) * _this.colHeight(d)})"
+        if window.innerWidth < 640
+          "translate(0, #{parseInt((i + 1) * _this.colHeight(d))})"
         else
-          "translate(0, 0)"
+          "translate(#{((i + 1) % _this.row_and_col[1]) * _this.colWidth(d)}, #{parseInt((i + 1) / _this.row_and_col[1]) * _this.colHeight(d)})"
       )
       .select('rect')
         .ease('elastic')
@@ -216,21 +204,6 @@ class @Navigator
         .attr("width", 0)
         .attr("height", 0)
         .remove()
-
-  #
-  # Edit counter
-  #
-  # edit: (counter) ->
-  #   @mode = 'edit'
-  #   counter = $(counter).closest('.counter')[0]
-  #   id = $(counter).data('counter-id')
-  #   @selectedCounter = null
-  #   for counter_data in @counter_data
-  #     if counter_data.id == id
-  #       @selectedCounter = counter_data
-  #       break
-  #   # @counter_data = [@selectedCounter]
-  #   @redraw()
 
   #
   # Open add window

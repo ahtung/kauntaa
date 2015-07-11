@@ -1,6 +1,9 @@
 class @Counter
-  constructor: (id, options, value = 0) ->
+  constructor: (id, nav, value = 0) ->
     # Vars
+    @nav = nav
+    @id = id
+    @svg = d3.select("#chart").select(".svg")
     @elem = $("*[data-counter-id='#{id}']")
     _this = @
     @counter = d3.selectAll(@elem.toArray())
@@ -24,6 +27,45 @@ class @Counter
   # Functions
   edit: () ->
     console.log("edit")
+    x = window.innerWidth || e.clientWidth || g.clientWidth
+    y = window.innerHeight|| e.clientHeight|| g.clientHeight
+    @svg.attr("width", x).attr("height", y)
+    @addEditWindow()
+
+  addEditWindow: () ->
+    _this = @
+    $.ajax({
+      url: "/users/" + @user_id + "/counters/" + @id + "/edit",
+      success: (result) ->
+        view = result
+        _this.svg.append("foreignObject").attr("id", "html").html(view)
+          .attr("transform", _this.elem.attr("transform"))
+          .attr("width", _this.elem.find("rect").attr("width"))
+          .attr("height", _this.elem.find("rect").attr("height"))
+          .transition(500)
+          .attr("transform", "translate(0, 0)")
+          .attr("width", $(window).width())
+          .attr("height", $(window).height())
+        $('#chart').on 'ajax:success', () ->
+          _this.svg.select("#html").transition(500).attr("transform", "translate(#{_this.elem.find("rect").attr("width")}, 0)")
+          .attr("style", "width:#{_this.elem.find("rect").attr("width")};height:#{_this.elem.find("rect").attr("height")}")
+          _this.nav.appendAdd()
+          _this.nav.fetchCounters()
+          setTimeout () ->
+            $("foreignObject").remove()
+          , 500
+
+        $('#chart').on 'ajax:error', () ->
+          console.log('error')
+
+        setTimeout(() ->
+          _this.svg.selectAll(".add-counter").remove()
+          _this.svg.selectAll(".counter").remove()
+        , 500)
+    })
+
+  removeEditWindow: () ->
+    console.log("TODO")
 
   increment: () ->
     $.getJSON @elem.data('increment-url'), ( data ) ->

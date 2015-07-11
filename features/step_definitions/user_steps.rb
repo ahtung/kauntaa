@@ -12,12 +12,12 @@ When(/^I add a counter$/) do
 end
 
 When(/^I edit a counter$/) do
-  pending
-  first('.edit-counter').trigger('click')
+  first('.edit-counter').click
   fill_form
 end
 
 Then(/^I should have two counters$/) do
+  pending
   expect(page).to have_selector('.counter', count: 2)
 end
 
@@ -37,7 +37,7 @@ Then(/^I should have signed out/) do
 end
 
 def fill_form
-  sleep 0.4
+  sleep 0.5
   @new_counter = build(:counter)
   fill_in 'counter_value', with: @new_counter.value
   fill_in 'counter_name', with: @new_counter.name
