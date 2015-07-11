@@ -41,12 +41,13 @@ class @Navigator
 
   fetchCounters: () ->
     _this = @
-    d3.json("api/v1/users/#{@user_id}/counters.json", (resp) ->
-      _this.counter_data = resp
-      _this.rowCol(_this.counter_data.length + 1)
-      _this.updateWindow()
-      _this.redraw()
-    )
+    if @user_id
+      d3.json("api/v1/users/#{@user_id}/counters.json", (resp) ->
+        _this.counter_data = resp
+        _this.rowCol(_this.counter_data.length + 1)
+        _this.updateWindow()
+        _this.redraw()
+      )
 
   #
   # Back
