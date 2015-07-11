@@ -19,7 +19,7 @@ class @Navigator
     )
 
     @appendAdd()
-    # @appendAddWindow()
+    @appendAddWindow()
     @fetchCounters()
 
   # Returns the number of rows and columns given N
@@ -125,16 +125,16 @@ class @Navigator
     x = window.innerWidth || e.clientWidth || g.clientWidth
     y = window.innerHeight|| e.clientHeight|| g.clientHeight
     if x < 640
-      if($("foreignObject").length > 0)
+      if($("#html").length > 0)
         @svg.attr("width", x).attr("height", y)
-        $("foreignObject").width(x).height(y)
+        $("#html").width(x).height(y)
       else
         @svg.attr("width", x).attr("height", (d) -> (_this.counter_data.length + 1) * _this.colHeight(d))
         @redraw()
     else
-      if($("foreignObject").length > 0)
+      if($("#html").length > 0)
         @svg.attr("width", x).attr("height", y)
-        $("foreignObject").width(x).height(y)
+        $("#html").width(x).height(y)
       else
         @svg.attr("width", x).attr("height", y)
         @redraw()
