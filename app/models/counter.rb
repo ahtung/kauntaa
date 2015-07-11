@@ -30,7 +30,7 @@ class Counter < ActiveRecord::Base
 
   # returns the increment url
   def increment_url
-    Rails.application.routes.url_helpers.increment_user_counter_path(user_id: user.id, id: id)
+    "/api/v1/users/#{user.id}/counters/#{id}/increment"
   end
 
   private

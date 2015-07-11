@@ -18,7 +18,7 @@ RSpec.describe Counter, type: :model do
 
     it 'increment_url' do
       counter = create(:counter, :with_user)
-      expect(counter.increment_url).to eq("/users/#{counter.user.id}/counters/#{counter.id}/increment")
+      expect(counter.increment_url).to eq("/api/v1/users/#{counter.user.id}/counters/#{counter.id}/increment")
     end
 
     describe 'clean_value' do
