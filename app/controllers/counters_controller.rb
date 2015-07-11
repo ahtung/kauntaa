@@ -33,16 +33,6 @@ class CountersController < ApplicationController
     render layout: false
   end
 
-  def create
-    @counter = current_user.counters.new(counter_params)
-    authorize @counter
-    if @counter.save
-      redirect_to user_root_path, notice: 'Counter created.'
-    else
-      redirect_to user_root_path, alert: 'Unable to create counter.'
-    end
-  end
-
   def update
     authorize @counter
     if @counter.update_attributes(counter_params)

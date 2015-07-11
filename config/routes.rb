@@ -19,6 +19,6 @@ Rails.application.routes.draw do
   root 'pages#welcome', as: :guest_root
 
   resources :users do
-    resources :counters, only: [:new, :create]
+    resources :counters, only: [:new]
   end
 end
