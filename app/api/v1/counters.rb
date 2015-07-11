@@ -5,7 +5,6 @@ module V1
     resource :users do
       segment '/:user_id' do
         resources :counters do
-
           desc 'List counters'
           get do
             authenticate!

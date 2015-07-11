@@ -6,7 +6,6 @@ RSpec.describe API, type: :request do
   context 'unauthenticated user' do
     describe 'GET /api/v1/users/:user_id/counters/:id' do
       it 'redirects' do
-        counter = create(:counter)
         get "/api/v1/users/#{user.id}/counters/#{user.counters.first.id}", format: :json
         expect(response.body).to include 'You need to sign in or sign up before continuing'
       end
@@ -20,7 +19,7 @@ RSpec.describe API, type: :request do
     end
 
     describe 'GET /api/v1/users/:user_id/counters/:id/increment' do
-      it "redirects" do
+      it 'redirects' do
         get "/api/v1/users/#{user.id}/counters/#{user.counters.first.id}/increment", format: :json
         expect(response.body).to include 'You need to sign in or sign up before continuing'
       end
@@ -28,8 +27,6 @@ RSpec.describe API, type: :request do
   end
 
   context 'authenticated user' do
-
-
     before :each do
       post user_session_path, user: { email: user.email, password: user.password }
     end

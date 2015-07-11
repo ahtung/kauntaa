@@ -46,7 +46,7 @@ Metrics/PerceivedComplexity:
   Max: 7
 
 StringLiterals:
-  EnforcedStyle: double_quotes
+  EnforcedStyle: single_quotes
 
 Style/ClassAndModuleChildren:
   EnforcedStyle: nested
