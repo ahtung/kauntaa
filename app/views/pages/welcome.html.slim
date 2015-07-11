@@ -10,3 +10,7 @@
       = link_to 'Sign in with Google', user_omniauth_authorize_path(:google_oauth2), class: 'button', style: "color: #{@palette.text_color}; background: #{@palette.foreground_color}; "
     - else
       = link_to 'Home', user_root_path, class: 'button',  style: "color: #{@palette.text_color}; background: #{@palette.foreground_color}; "
+
+.row
+  .columns.small-12.text-center
+    h4 = link_to 'About', page_path('about'), style: "color: #{@palette.text_color};"
