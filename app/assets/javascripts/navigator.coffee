@@ -135,7 +135,7 @@ class @Navigator
       .attr('class', 'counter-value')
       .attr("fill", (d) -> d.palette.foreground_color)
     counter.append('text')
-      .text( (d) -> "#{d.name} since #{'TODO'}" )
+      .text( (d) -> "#{d.name} since #{d.active_since}" )
       .attr("class", "edit-counter")
       .attr("fill", (d) -> d.palette.text_color)
     @counters.each((d) -> new Counter(d.id))
