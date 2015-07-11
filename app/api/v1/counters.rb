@@ -7,7 +7,7 @@ module V1
         desc 'List counters'
         get do
           authenticate!
-          present current_user.counters.includes(:user).includes(:palette), with: CounterEntity
+          present current_user.counters.includes(:user).includes(:palette).order(updated_at: :desc), with: CounterEntity
         end
 
         desc 'Increment counter'

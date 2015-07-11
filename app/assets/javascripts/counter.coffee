@@ -50,6 +50,7 @@ class @Counter
         $('#chart').on 'ajax:success', () ->
           $("foreignObject").remove()
           console.log(_this.nav)
+          _this.nav.appendAdd()
           _this.nav.fetchCounters()
 
         $('#chart').on 'ajax:error', () ->
