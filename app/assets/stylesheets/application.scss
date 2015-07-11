@@ -16,12 +16,8 @@
  *= require odometer/themes/odometer-theme-car
  *= require pages
  *= require counter
- *= require header
  */
 
-body {
-  overflow: hidden;
-}
 .new-counter,
 .new-counter a{
     margin:0;
