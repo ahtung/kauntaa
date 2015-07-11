@@ -20,5 +20,7 @@ module Kauntaa
   class Application < Rails::Application
     # config.time_zone = 'Istanbul'
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.skylight.environments += ['staging']
   end
 end
