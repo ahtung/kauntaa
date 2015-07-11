@@ -3,6 +3,7 @@ class @Counter
     # Vars
     @elem = $("*[data-counter-id='#{id}']")
     _this = @
+    @counter = d3.selectAll(@elem.toArray())
 
     # Odometer
     # od = new Odometer({selector: "*[data-counter-id='#{id}'] .counter-value"})
@@ -12,13 +13,18 @@ class @Counter
     # @elem.find(".edit-counter").fitText(1.2, { minFontSize: '20px', maxFontSize: '25px' });
 
     # Events
-    d3.select("*[data-counter-id='#{id}']").on('click', () ->
+    @counter.select('.edit-counter').on('click', () ->
+      _this.edit()
+    )
+
+    @counter.select('rect').on('click', () ->
       _this.increment()
     )
 
-    # TODO(dunykirkali) edit
-
   # Functions
+  edit: () ->
+    console.log("edit")
+
   increment: () ->
     $.getJSON @elem.data('increment-url'), ( data ) ->
       d3.select("[data-counter-id='" + data.id + "'] .counter-value")
