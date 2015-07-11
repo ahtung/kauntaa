@@ -92,12 +92,25 @@ body, h2, a{
 
   #counter_form{
     padding-top:0 !important;
-    input[type='text']{
-      font-size:14vh;
-    }
     #counter_value{
       border-bottom:0;
       margin-bottom:0;
+    }
+    .small_header{
+      padding-top: 0vh;
+      margin-bottom:0vh;
+    }
+    input[type='text']{
+      height:7vh;
+      line-height:7vh;
+      font-size:5vh;
+    }
+    input[type='date'],
+    input[type='time'],
+    .time_description{
+      // height:7vh;
+      line-height:7vh;
+      font-size:5vh;
     }
   }
 
