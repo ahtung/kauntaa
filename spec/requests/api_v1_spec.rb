@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe API, type: :request, focus: true do
+RSpec.describe API, type: :request do
   let!(:user) { create(:user, :with_counters) }
 
   context 'unauthenticated user' do
