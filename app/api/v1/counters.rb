@@ -9,7 +9,7 @@ module V1
           params do
             requires :counter, type: Hash do
               requires :name, type: String, desc: "Name"
-              optional :value, type: Integer, desc: "Value"
+              requires :value, type: Integer, desc: "Value"
               requires :palette_id, type: Integer, desc: "Palette"
             end
           end
