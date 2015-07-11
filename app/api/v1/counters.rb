@@ -5,6 +5,19 @@ module V1
     resource :users do
       segment '/:user_id' do
         resources :counters do
+          desc "Create Counter"
+          params do
+            requires :counter, type: Hash do
+              requires :name, type: String, desc: "Name"
+              optional :value, type: Integer, desc: "Value"
+              requires :palette_id, type: Integer, desc: "Palette"
+            end
+          end
+          post do
+            authenticate!
+            Counter.create!(params[:counter].merge(user: current_user).to_h)
+          end
+
           desc 'List counters'
           get do
             authenticate!
