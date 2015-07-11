@@ -1,0 +1,13 @@
+@javascript
+Feature: Pages
+  In order to view the site
+  A visitor
+  Should be able to browse pages
+
+  Scenario: Browse about page
+    When I visit "about"
+    Then page should have "About Kauntaa"
+
+  Scenario: Browse welcome page
+    When I visit "welcome"
+    Then page should have "Sign in with Google"
