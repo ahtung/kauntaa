@@ -2,7 +2,7 @@ module V1
   # Counters API
   class Counters < Grape::API
     desc "Lists users' counters"
-    namespace "me" do
+    namespace 'me' do
       resources :counters do
         desc 'List counters'
         get do
@@ -23,9 +23,9 @@ module V1
           end
         end
 
-        desc "Update a counter."
+        desc 'Update a counter.'
         params do
-          requires :id, type: String, desc: "Counter id."
+          requires :id, type: String, desc: 'Counter id.'
         end
         patch ':id' do
           authenticate!
@@ -39,7 +39,6 @@ module V1
         end
         route_param :id do
           get do
-            puts params
             authenticate!
             counter = current_user.counters.includes(:user).includes(:palette).find(params[:id])
             present counter, with: CounterEntity

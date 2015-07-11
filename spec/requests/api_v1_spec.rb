@@ -13,7 +13,7 @@ RSpec.describe API, type: :request do
 
     describe 'GET /api/v1/me/counters' do
       it 'redirects' do
-        get "/api/v1/me/counters", format: :json
+        get '/api/v1/me/counters', format: :json
         expect(response.body).to include 'You need to sign in or sign up before continuing'
       end
     end
@@ -40,7 +40,7 @@ RSpec.describe API, type: :request do
 
     describe 'GET /api/v1/me/counters' do
       it "Lists user's counters" do
-        get "/api/v1/me/counters", format: :json
+        get '/api/v1/me/counters', format: :json
         expect(response.status).to eq 200
       end
     end
