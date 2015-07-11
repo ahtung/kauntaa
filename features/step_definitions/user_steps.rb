@@ -13,7 +13,9 @@ end
 
 When(/^I click on Delete$/) do
   within '#chart' do
-    find('#delete-button', match: :first).click
+    accept_alert do
+      find('#delete-button', match: :first).click
+    end
   end
 end
 
