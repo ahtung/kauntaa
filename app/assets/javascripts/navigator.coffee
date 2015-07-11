@@ -9,6 +9,7 @@ class @Navigator
     @counter_data = []
     @row_and_col = []
     @svg = d3.select("#chart").append("svg").attr("class", 'svg')
+    @svg.append('foreignObject').attr('id','add_form_window')
     @user_id = $('#chart').data('user-id')
     _this = @
 
@@ -96,13 +97,12 @@ class @Navigator
     $.ajax
       url: "/users/#{@user_id}/counters/new?palette_id=#{palette_id}"
       success: (data) ->
-        _this.svg.append('foreignObject')
+        _this.svg.select('#add_form_window')
         .attr({
           'x': 0,
           'y': 0,
           'width': 0,
           'height': 0,
-          'id': 'add_form_window'
         })
         .append('xhtml:html')
         .append('xhtml:body')
@@ -111,8 +111,12 @@ class @Navigator
         .attr({
           'style': 'display:none;'
         })
-
-
+        $('#chart').on 'ajax:success', '#new_counter', () ->
+          _this.appendAddWindow()
+          _this.fetchCounters()
+        $('#chart').on 'ajax:error', '#new_counter', (xhr, ajaxOptions, thrownError) ->
+          error = ajaxOptions.responseText.match(/Validation failed: .+/g)[0].replace('Validation failed: ','');
+          $('#error_explanation').text(error)
   #
   # Update window
   #

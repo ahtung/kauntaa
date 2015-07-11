@@ -1,11 +1,6 @@
 .row.center-text
-  = form_for @counter, remote: true, url: (params[:action] == 'new' ? user_counters_path(current_user) : "/api/v1/me/counters/#{@counter.id}") do |f|
-    - if @counter.errors.any?
-      #error_explanation
-        h2 = "#{pluralize(@counter.errors.count, "error")} prohibited this section from being saved:"
-        ul
-          - @counter.errors.full_messages.each do |message|
-            li = message
+  = form_for @counter, remote: true, url: (params[:action] == 'new' ? "/api/v1/users/#{current_user.id}/counters" : "/api/v1/me/counters/#{@counter.id}") do |f|
+    #error_explanation style="color:#{@palette.foreground_color};"
     .columns.small-12.medium-2
       = f.text_field :value, placeholder: '00', class: 'text-center', style: "color:#{@palette.foreground_color};"
     .columns.small-12.medium-10

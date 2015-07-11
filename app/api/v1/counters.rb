@@ -1,7 +1,6 @@
 module V1
   # Counters API
   class Counters < Grape::API
-    desc "Lists users' counters"
     namespace 'me' do
       resources :counters do
         desc 'List counters'
@@ -54,6 +53,19 @@ module V1
           authenticate!
           counter = current_user.counters.find(params[:id])
           counter.destroy
+        end
+
+        desc "Create Counter"
+        params do
+          requires :counter, type: Hash do
+            requires :name, type: String, desc: "Name"
+            requires :value, type: Integer, desc: "Value"
+            requires :palette_id, type: Integer, desc: "Palette"
+          end
+        end
+        post do
+          authenticate!
+          Counter.create!(params[:counter].merge(user: current_user).to_h)
         end
       end
     end
