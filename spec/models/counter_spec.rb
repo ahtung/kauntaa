@@ -46,5 +46,12 @@ RSpec.describe Counter, type: :model do
       counter.increment
       expect(counter.value).to eq 1
     end
+
+    it 'active_since' do
+      counter = create(:counter, value: 0)
+      counter.created_at = Time.zone.now - 2.days
+      expected = distance_of_time_in_words(counter.created_at, Time.zone.now)
+      expect(expected).to eq('2 days')
+    end
   end
 end
