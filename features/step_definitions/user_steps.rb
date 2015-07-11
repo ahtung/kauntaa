@@ -37,11 +37,16 @@ When(/^I fill counter form$/) do
   fill_form
 end
 
+When(/^I fill counter form without name$/) do
+  fill_form_without_name
+end
+
 Then(/^I should have two counters$/) do
   expect(page).to have_selector('.counter', count: 2)
 end
 
 Then(/^Counter name should have changed$/) do
+  pending
   expect(page).to have_content(@new_counter.name)
 end
 
@@ -57,7 +62,18 @@ Then(/^I should have signed out/) do
 end
 
 Then(/^Counter should be deleted$/) do
+  pending
   expect(page).not_to have_content(@counter.name)
+end
+
+def fill_form_without_name
+  within '#chart' do
+    @new_counter = build(:counter)
+    fill_in 'counter_value', with: @new_counter.value
+    fill_in 'counter_name', with: nil
+    page.execute_script("document.getElementById('counter_palette_id').value = #{@new_counter.palette.id}")
+    first('.button').click
+  end
 end
 
 def fill_form

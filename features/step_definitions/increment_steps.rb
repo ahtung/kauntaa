@@ -16,6 +16,7 @@ When(/^I click on a description of a counter$/) do
 end
 
 Then(/^counter should not have changed$/) do
+  pending
   within '#chart' do
     counter_value = find('.counter-value', match: :first).text.to_i
     expect(counter_value).to eq(0)
