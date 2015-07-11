@@ -96,6 +96,8 @@ class @Navigator
       .attr("class", 'add-text')
       .attr("fill", 'blue')
       .attr("font-size", "2.5em")
+      .on 'click', () ->
+        _this.openAddWindow()
     add_counter.append('text')
       .text( "Sign out" )
       .attr("class", 'sign-out')
