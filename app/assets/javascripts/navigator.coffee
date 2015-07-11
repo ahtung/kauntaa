@@ -43,13 +43,6 @@ class @Navigator
       )
 
   #
-  # Back
-  #
-  back: () ->
-    @mode = 'index'
-    @selectedCounter = null
-
-  #
   # Col width
   #
   colWidth: (counter) ->
@@ -138,7 +131,7 @@ class @Navigator
       .text( (d) -> "#{d.name} since #{d.active_since}" )
       .attr("class", "edit-counter")
       .attr("fill", (d) -> d.palette.text_color)
-    @counters.each((d) -> new Counter(d.id))
+    @counters.each((d) -> new Counter(d.id, ))
 
     @svg.selectAll(".counter , .add-counter")
       .attr("text-anchor", "middle")
@@ -190,21 +183,6 @@ class @Navigator
         .attr("width", 0)
         .attr("height", 0)
         .remove()
-
-  #
-  # Edit counter
-  #
-  # edit: (counter) ->
-  #   @mode = 'edit'
-  #   counter = $(counter).closest('.counter')[0]
-  #   id = $(counter).data('counter-id')
-  #   @selectedCounter = null
-  #   for counter_data in @counter_data
-  #     if counter_data.id == id
-  #       @selectedCounter = counter_data
-  #       break
-  #   # @counter_data = [@selectedCounter]
-  #   @redraw()
 
   #
   # Open add window
