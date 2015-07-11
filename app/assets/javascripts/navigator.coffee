@@ -22,6 +22,7 @@ class @Navigator
       _this.openAddWindow()
 
     @appendAdd()
+    @appendAddWindow()
     @fetchCounters()
 
   # Returns the number of rows and columns given N
@@ -105,6 +106,24 @@ class @Navigator
       .attr("fill", 'green')
       .on 'click', () ->
         window.location = '/users/sign_out'
+
+  #
+  # Append Add Window
+  #
+  appendAddWindow: () ->
+    _this = @
+    palette_id = $('#chart').data('new-palette-id')
+    $.ajax
+      url: "/users/#{@user_id}/counters/new?palette_id=#{palette_id}"
+      success: (data) ->
+        _this.svg.append('foreignObject')
+        .html(data)
+        .attr({
+            'x': 0,
+            'y': 0,
+            'width': 0,
+            'height': 0
+        })
 
   #
   # Update window
