@@ -18,9 +18,6 @@ class @Navigator
       _this.updateWindow()
     )
 
-    $('#chart').on 'click', '.add-text', () ->
-      _this.openAddWindow()
-
     @appendAdd()
     @appendAddWindow()
     @fetchCounters()
