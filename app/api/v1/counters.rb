@@ -55,12 +55,12 @@ module V1
           counter.destroy
         end
 
-        desc "Create Counter"
+        desc 'Create Counter'
         params do
           requires :counter, type: Hash do
-            requires :name, type: String, desc: "Name"
-            requires :value, type: Integer, desc: "Value"
-            requires :palette_id, type: Integer, desc: "Palette"
+            requires :name, type: String, desc: 'Name'
+            requires :value, type: Integer, desc: 'Value'
+            requires :palette_id, type: Integer, desc: 'Palette'
           end
         end
         post do
