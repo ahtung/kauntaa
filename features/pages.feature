@@ -6,7 +6,7 @@ Feature: Pages
 
   Scenario: Browse about page
     When I visit "about"
-    Then page should have "About Kauntaa"
+  Then page should have "Because we love statistics"
 
   Scenario: Browse welcome page
     When I visit "welcome"
@@ -15,4 +15,4 @@ Feature: Pages
   Scenario: Link to about page
     Given Guest visit root path
     When I click on "About"
-    Then page should have "About Kauntaa"
+    Then page should have "Because we love statistics"
