@@ -10,6 +10,7 @@ class @Navigator
     @counter_data = []
     @row_and_col = []
     @svg = d3.select("#chart").append("svg").attr("class", 'svg')
+    @svg.append('foreignObject').attr('id','add_form_window')
     @user_id = $('#chart').data('user-id')
     _this = @
 
