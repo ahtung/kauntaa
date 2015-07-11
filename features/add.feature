@@ -9,3 +9,9 @@ Feature: Add
     When I sign in with "dunyakirkali@gmail.com"
      And I add a counter
     Then I should have two counters
+
+  Scenario: Don't Add Counter
+   Given There is a palette
+    When I sign in with "dunyakirkali@gmail.com"
+     And I add a counter without name
+    Then page should have "Counter cannot be created."
