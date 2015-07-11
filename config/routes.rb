@@ -17,4 +17,8 @@ Rails.application.routes.draw do
   get 'counter/new', to: 'counters#new_counter'
 
   root 'pages#about', as: :guest_root
+
+  resources :users do
+    resources :counters, only: [:new, :create]
+  end
 end

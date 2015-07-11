@@ -20,8 +20,15 @@ class @Counter
 
   # Functions
   increment: () ->
-    $.get @elem.data('increment-url'), ( data ) ->
-      console.log(  )
-      # window.navigator.fetchCounters()
-      # window.navigator.redraw()
+    $.getJSON @elem.data('increment-url'), ( data ) ->
+      d3.select("[data-counter-id='" + data.id + "'] .counter-value")
+      .text(data.value)
+      .transition()
+        .duration(200)
+        .style('font-size', '50px')
+        .attr('transform', "rotate(0 90 0)")
+      .transition()
+        .duration(200)
+        .style('font-size', '2.5em')
+        .attr('transform', "rotate(0 0 0)")
     , "script"
