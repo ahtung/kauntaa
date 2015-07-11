@@ -12,8 +12,7 @@ When(/^I add a counter$/) do
 end
 
 When(/^I edit a counter$/) do
-  pending
-  first('.edit-counter').trigger('click')
+  first('.edit-counter').click()
   fill_form
 end
 
