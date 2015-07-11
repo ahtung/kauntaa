@@ -6,4 +6,5 @@ class CounterEntity < Grape::Entity
   expose :increment_url
   expose :palette, using: PaletteEntity
   expose :user, using: UserEntity
+  expose :active_since
 end
