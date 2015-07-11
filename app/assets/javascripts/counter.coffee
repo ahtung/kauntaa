@@ -36,8 +36,8 @@ class @Counter
         view = result
         _this.svg.append("foreignObject").html(view)
           .attr("transform", _this.elem.attr("transform"))
-          .attr("width", _this.elem.width())
-          .attr("height", _this.elem.height())
+          .attr("width", _this.elem.find("rect").attr("width"))
+          .attr("height", _this.elem.find("rect").attr("height"))
           .transition(500)
           .attr("transform", "translate(0, 0)")
           .attr("width", $(window).width())
