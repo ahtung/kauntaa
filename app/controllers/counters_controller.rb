@@ -19,6 +19,7 @@ class CountersController < ApplicationController
     @palette = Palette.find(params[:palette_id])
     @counter = current_user.counters.new(palette: @palette)
     authorize @counter
+    render layout: false
   end
 
   def new_counter
