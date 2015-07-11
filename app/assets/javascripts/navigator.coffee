@@ -116,13 +116,12 @@ class @Navigator
     $.ajax
       url: "/users/#{@user_id}/counters/new?palette_id=#{palette_id}"
       success: (data) ->
-        _this.svg.append('foreignObject')
+        _this.svg.select('#add_form_window')
         .attr({
           'x': 0,
           'y': 0,
           'width': 0,
           'height': 0,
-          'id': 'add_form_window'
         })
         .append('xhtml:html')
         .append('xhtml:body')
