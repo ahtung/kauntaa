@@ -34,8 +34,18 @@ class @Counter
       url: "/users/" + @user_id + "/counters/" + @id + "/edit",
       success: (result) ->
         view = result
-        console.log(result)
-        _this.svg.append("foreignObject").attr("x", 0).attr("y", 0).attr("width", $(window).width()).attr("height", $(window).height()).html(view)
+        _this.svg.append("foreignObject").html(view)
+          .attr("transform", _this.elem.attr("transform"))
+          .attr("width", _this.elem.width())
+          .attr("height", _this.elem.height())
+          .transition(500)
+          .attr("transform", "translate(0, 0)")
+          .attr("width", $(window).width())
+          .attr("height", $(window).height())
+        setTimeout(500, () ->
+          _this.svg.selectAll(".add-counter").remove()
+          _this.svg.selectAll(".counter").remove()
+        )
     })
 
   removeEditWindow: () ->
