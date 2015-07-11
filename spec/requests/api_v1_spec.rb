@@ -75,7 +75,7 @@ RSpec.describe API, type: :request do
 
     describe 'PATCH /api/v1/me/counters/:id' do
       it "updates user's counter" do
-        patch "/api/v1/me/counters/#{user.counters.first.id}", format: :json, counter: { name: "My Widget" }
+        patch "/api/v1/me/counters/#{user.counters.first.id}", format: :json, counter: { name: 'My Widget' }
         expect(response.status).to eq 200
       end
     end
@@ -83,7 +83,7 @@ RSpec.describe API, type: :request do
     describe 'POST /api/v1/me/counters/:id' do
       xit 'creates user counter' do
         palette = create(:palette)
-        post "/api/v1/me/counters/#{user.counters.first.id}", format: :json, counter: { name: "My Widget", value: 0, palette_id: palette.id }
+        post "/api/v1/me/counters/#{user.counters.first.id}", format: :json, counter: { name: 'My Widget', value: 0, palette_id: palette.id }
         expect(response.status).to eq 200
       end
     end
