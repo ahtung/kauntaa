@@ -1,12 +1,8 @@
-.row#about_header
-  .columns.small-12.text-center
-    h1 style="color: #{@palette.foreground_color}" Kauntaa
-    h1 style="color: #{@palette.text_color}"
-      small Count anything
-
 .row
-  .columns.small-12.text-center
-    - unless user_signed_in?
-      = link_to 'Sign in with Google', user_omniauth_authorize_path(:google_oauth2), class: 'button', style: "color: #{@palette.text_color}; background: #{@palette.foreground_color}; "
-    - else
-      = link_to 'Home', user_root_path, class: 'button',  style: "color: #{@palette.text_color}; background: #{@palette.foreground_color}; "
+  .columns.small-12
+    h2 About Kauntaa
+
+    p
+      | More info
+      = link_to ' Ahtung Co.', 'http://www.ahtung.com'
+

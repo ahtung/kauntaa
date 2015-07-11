@@ -29,6 +29,7 @@ gem 'grape-entity'
 gem 'inline_svg'
 gem 'fittextjs_rails'
 gem 'skylight'
+gem 'high_voltage', '~> 2.3.0'
 
 group :production do
   gem 'rails_12factor'
