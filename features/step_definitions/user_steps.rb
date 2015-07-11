@@ -27,7 +27,6 @@ When(/^I fill counter form$/) do
 end
 
 Then(/^I should have two counters$/) do
-  pending
   expect(page).to have_selector('.counter', count: 2)
 end
 
