@@ -38,7 +38,7 @@ class @Counter
       url: "/users/" + @user_id + "/counters/" + @id + "/edit",
       success: (result) ->
         view = result
-        _this.svg.append("foreignObject").html(view)
+        _this.svg.append("foreignObject").attr("id", "html").html(view)
           .attr("transform", _this.elem.attr("transform"))
           .attr("width", _this.elem.find("rect").attr("width"))
           .attr("height", _this.elem.find("rect").attr("height"))
@@ -46,12 +46,14 @@ class @Counter
           .attr("transform", "translate(0, 0)")
           .attr("width", $(window).width())
           .attr("height", $(window).height())
-
         $('#chart').on 'ajax:success', () ->
-          $("foreignObject").remove()
-          console.log(_this.nav)
+          _this.svg.select("#html").transition(500).attr("transform", "translate(#{_this.elem.find("rect").attr("width")}, 0)")
+          .attr("style", "width:#{_this.elem.find("rect").attr("width")};height:#{_this.elem.find("rect").attr("height")}")
           _this.nav.appendAdd()
           _this.nav.fetchCounters()
+          setTimeout () ->
+            $("foreignObject").remove()
+          , 500
 
         $('#chart').on 'ajax:error', () ->
           console.log('error')
