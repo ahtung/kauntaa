@@ -38,6 +38,9 @@ class @Counter
         _this.svg.append("foreignObject").attr("x", 0).attr("y", 0).attr("width", $(window).width()).attr("height", $(window).height()).html(view)
     })
 
+  removeEditWindow: () ->
+    console.log("TODO")
+
   increment: () ->
     $.getJSON @elem.data('increment-url'), ( data ) ->
       d3.select("[data-counter-id='" + data.id + "'] .counter-value")
