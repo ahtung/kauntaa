@@ -130,9 +130,10 @@ class @Navigator
         .attr({
           'style': 'display:none;'
         })
-        $('#new_counter').on 'ajax:success', () ->
-          console.log('ajax:success!')
-        $('#new_counter').on 'ajax:error', () ->
+        $('#chart').on 'ajax:success', '#new_counter', () ->
+          _this.appendAddWindow()
+          _this.fetchCounters()
+        $('#chart').on 'ajax:error', '#new_counter', () ->
           console.log('error')
   #
   # Update window
