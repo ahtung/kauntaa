@@ -12,7 +12,7 @@ When(/^I add a counter$/) do
 end
 
 When(/^I edit a counter$/) do
-  first('.edit-counter').click()
+  first('.edit-counter').click
   fill_form
 end
 
