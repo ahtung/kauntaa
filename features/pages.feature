@@ -11,3 +11,8 @@ Feature: Pages
   Scenario: Browse welcome page
     When I visit "welcome"
     Then page should have "Sign in with Google"
+
+  Scenario: Link to about page
+    Given Guest visit root path
+    When I click on "About"
+    Then page should have "About Kauntaa"
