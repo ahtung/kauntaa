@@ -17,6 +17,13 @@ When(/^I click on Delete$/) do
   end
 end
 
+When(/^I add a counter without name$/) do
+  find('.add-text', match: :first).click
+  within('#new_counter') do
+    find('input[type="submit"]', match: :first).click
+  end
+end
+
 When(/^I edit a counter$/) do
   within '#chart' do
     find('.edit-counter', match: :first).click

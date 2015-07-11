@@ -1,6 +1,7 @@
 module V1
   # Counters API
   class Counters < Grape::API
+    default_error_status 412
     namespace 'me' do
       resources :counters do
         desc 'List counters'
@@ -67,7 +68,10 @@ module V1
         end
         post do
           authenticate!
-          Counter.create!(params[:counter].merge(user: current_user).to_h)
+          counter = Counter.new(params[:counter].merge(user: current_user).to_h)
+          unless counter.save
+            error! "Counter cannot be created."
+          end
         end
       end
     end
