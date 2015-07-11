@@ -42,10 +42,10 @@ class @Counter
           .attr("transform", "translate(0, 0)")
           .attr("width", $(window).width())
           .attr("height", $(window).height())
-        setTimeout(500, () ->
+        setTimeout(() ->
           _this.svg.selectAll(".add-counter").remove()
           _this.svg.selectAll(".counter").remove()
-        )
+        , 500)
     })
 
   removeEditWindow: () ->

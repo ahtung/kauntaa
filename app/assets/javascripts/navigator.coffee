@@ -46,9 +46,9 @@ class @Navigator
   #
   colWidth: (counter) ->
     if window.innerWidth < 640
-      window.innerWidth
+      parseInt(window.innerWidth)
     else
-      (window.innerWidth / @row_and_col[1])
+      parseInt(window.innerWidth / @row_and_col[1])
 
 
   #
@@ -56,9 +56,9 @@ class @Navigator
   #
   colHeight: (counter) ->
     if window.innerWidth < 640
-      window.innerHeight / 2
+      parseInt(window.innerHeight / 2)
     else
-      (window.innerHeight / @row_and_col[0])
+      parseInt(window.innerHeight / @row_and_col[0])
 
   #
   # Remove 'Add'
