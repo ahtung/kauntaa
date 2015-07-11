@@ -18,7 +18,7 @@ class @Navigator
     )
 
     @appendAdd()
-    @appendAddWindow()
+    # @appendAddWindow()
     @fetchCounters()
 
   # Returns the number of rows and columns given N
