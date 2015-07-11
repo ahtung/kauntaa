@@ -45,6 +45,16 @@ module V1
             present counter, with: CounterEntity
           end
         end
+
+        desc 'Delete a counter.'
+        params do
+          requires :id, type: Integer, desc: 'Counter id.'
+        end
+        delete ':id' do
+          authenticate!
+          counter = current_user.counters.find(params[:id])
+          counter.destroy
+        end
       end
     end
 

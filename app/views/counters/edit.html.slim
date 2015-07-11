@@ -15,4 +15,4 @@ div style="background-color: #{@palette.background_color};height:100vh;"
     .columns.small-1.medium-3 &nbsp;
   .row
     .column.small-12.text-right
-      = link_to 'x', user_counter_path, method: :delete, data: { confirm: "Sure?" }
+      = link_to 'Delete', "/api/v1/me/counters/#{@counter.id}", id: 'delete-button', class: 'button', method: :delete, remote: true

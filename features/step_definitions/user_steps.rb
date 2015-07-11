@@ -11,8 +11,18 @@ When(/^I add a counter$/) do
   fill_form
 end
 
+When(/^I click on Delete$/) do
+  within "#chart" do
+    find("#delete-button", match: :first).click
+  end
+end
+
 When(/^I edit a counter$/) do
   first('.edit-counter').click
+  @counter = Counter.first
+end
+
+When(/^I fill counter form$/) do
   fill_form
 end
 
@@ -34,6 +44,10 @@ end
 
 Then(/^I should have signed out/) do
   expect(page).to have_content('Sign in with Google')
+end
+
+Then(/^Counter should be deleted$/) do
+  expect(page).not_to have_content(@counter.name)
 end
 
 def fill_form
