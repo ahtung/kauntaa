@@ -70,7 +70,7 @@ module V1
           authenticate!
           counter = Counter.new(params[:counter].merge(user: current_user).to_h)
           unless counter.save
-            error! "Counter cannot be created."
+            error! counter.errors.full_messages.join(", ")
           end
         end
       end

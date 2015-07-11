@@ -14,4 +14,4 @@ Feature: Add
    Given There is a palette
     When I sign in with "dunyakirkali@gmail.com"
      And I add a counter without name
-    Then page should have "Counter cannot be created."
+    Then page should have "Name can't be blank"
