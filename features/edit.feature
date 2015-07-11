@@ -7,4 +7,5 @@ Feature: Edit
   Scenario: Edit Counter
     When I sign in with "dunyakirkali@gmail.com"
     When I edit a counter
+     And I fill counter form
     Then Counter name should have changed
