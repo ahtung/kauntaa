@@ -133,8 +133,9 @@ class @Navigator
         $('#chart').on 'ajax:success', '#new_counter', () ->
           _this.appendAddWindow()
           _this.fetchCounters()
-        $('#chart').on 'ajax:error', '#new_counter', () ->
-          console.log('error')
+        $('#chart').on 'ajax:error', '#new_counter', (xhr, ajaxOptions, thrownError) ->
+          error = ajaxOptions.responseText.match(/Validation failed: .+/g)[0].replace('Validation failed: ','');
+          $('#error_explanation').text(error)
   #
   # Update window
   #
