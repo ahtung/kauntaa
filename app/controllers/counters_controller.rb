@@ -42,15 +42,6 @@ class CountersController < ApplicationController
     end
   end
 
-  def update
-    authorize @counter
-    if @counter.update_attributes(counter_params)
-      redirect_to user_root_path, notice: 'Counter updated.'
-    else
-      redirect_to user_root_path, alert: 'Unable to update counter.'
-    end
-  end
-
   def destroy
     authorize @counter
     if @counter.destroy
