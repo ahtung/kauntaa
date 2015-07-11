@@ -49,8 +49,8 @@ class @Counter
         $('#chart').on 'ajax:success', () ->
           _this.removeEditWindow()
 
-        $('#chart').on 'ajax:error', () ->
-          console.log('error')
+        $('#chart').on 'ajax:error', (a,b) ->
+          $("#error_explanation").text(b.responseText)
 
         $('#chart').on 'click', '.back-button', (e) ->
           _this.removeEditWindow()

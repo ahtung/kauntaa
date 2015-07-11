@@ -31,7 +31,9 @@ module V1
         patch ':id' do
           authenticate!
           counter = current_user.counters.includes(:user).includes(:palette).find(params[:id])
-          counter.update(params[:counter].to_hash)
+          unless counter.update(params[:counter].to_hash)
+            error! counter.errors.full_messages.join(", ")
+          end
         end
 
         desc 'Read counter'
