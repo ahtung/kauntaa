@@ -1,7 +1,7 @@
 # CountersController
 class CountersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_counter, only: [:show, :edit, :update, :increment, :decrement, :destroy]
+  before_action :set_counter, only: [:show, :edit, :update, :destroy]
   before_action :set_palette_if_counter
   after_action :verify_authorized, except: :show
   after_action :allow_iframe, only: :show
