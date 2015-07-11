@@ -18,10 +18,8 @@ class @Navigator
       _this.updateWindow()
     )
 
-    $('#chart').on 'click', '.add-text', () ->
-      _this.openAddWindow()
-
     @appendAdd()
+    @appendAddWindow()
     @fetchCounters()
 
   # Returns the number of rows and columns given N
@@ -98,6 +96,8 @@ class @Navigator
       .attr("class", 'add-text')
       .attr("fill", 'blue')
       .attr("font-size", "2.5em")
+      .on 'click', () ->
+        _this.openAddWindow()
     add_counter.append('text')
       .text( "Sign out" )
       .attr("class", 'sign-out')
@@ -105,6 +105,32 @@ class @Navigator
       .attr("fill", 'green')
       .on 'click', () ->
         window.location = '/users/sign_out'
+
+  #
+  # Append Add Window
+  #
+  appendAddWindow: () ->
+    _this = @
+    palette_id = $('#chart').data('new-palette-id')
+    $.ajax
+      url: "/users/#{@user_id}/counters/new?palette_id=#{palette_id}"
+      success: (data) ->
+        _this.svg.append('foreignObject')
+        .attr({
+          'x': 0,
+          'y': 0,
+          'width': 0,
+          'height': 0,
+          'id': 'add_form_window'
+        })
+        .append('xhtml:html')
+        .append('xhtml:body')
+        .append('xhtml:div')
+        .html(data)
+        .attr({
+          'style': 'display:none;'
+        })
+
 
   #
   # Update window
@@ -210,5 +236,12 @@ class @Navigator
   # Open add window
   #
   openAddWindow: () ->
-    palette_id = $('#chart').data('new-palette-id')
-    window.location.assign("/users/#{@user_id}/counters/new?palette_id=#{palette_id}")
+    _this = @
+    @svg.select("#add_form_window")
+      .attr({
+        'width': '100%',
+        'height': '100%',
+      }).select('div')
+      .attr({
+        'style': 'display:block; height:100vh;'
+      })
