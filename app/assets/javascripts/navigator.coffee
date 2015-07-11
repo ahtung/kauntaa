@@ -236,6 +236,12 @@ class @Navigator
   # Open add window
   #
   openAddWindow: () ->
-    palette_id = $('#chart').data('new-palette-id')
-    window.location.assign("/users/#{@user_id}/counters/new?palette_id=#{palette_id}")
+    _this = @
+    @svg.select("#add_form_window")
       .attr({
+        'width': '100%',
+        'height': '100%',
+      }).select('div')
+      .attr({
+        'style': 'display:block; height:100vh;'
+      })
