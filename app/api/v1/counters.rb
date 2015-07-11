@@ -1,6 +1,7 @@
 module V1
   # Counters API
   class Counters < Grape::API
+    default_error_status 412
     namespace 'me' do
       resources :counters do
         desc 'List counters'
