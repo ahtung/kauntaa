@@ -33,7 +33,7 @@ class Counter < ActiveRecord::Base
 
   # returns the increment url
   def increment_url
-    "/api/v1/users/#{user.id}/counters/#{id}/increment"
+    "/api/v1/me/counters/#{id}/increment"
   end
 
   # returns the active time

@@ -2,38 +2,47 @@ module V1
   # Counters API
   class Counters < Grape::API
     desc "Lists users' counters"
-    resource :users do
-      segment '/:user_id' do
-        resources :counters do
-          desc 'List counters'
-          get do
+    namespace "me" do
+      resources :counters do
+        desc 'List counters'
+        get do
+          authenticate!
+          present current_user.counters.includes(:user).includes(:palette), with: CounterEntity
+        end
+
+        desc 'Increment counter'
+        params do
+          requires :id, type: Integer, desc: 'Counter id.'
+        end
+        route_param :id do
+          get :increment do
             authenticate!
-            present current_user.counters.includes(:user).includes(:palette), with: CounterEntity
+            counter = current_user.counters.includes(:user).includes(:palette).find(params[:id])
+            counter.increment
+            present counter, with: CounterEntity
           end
+        end
 
-          desc 'Increment counter'
-          params do
-            requires :id, type: Integer, desc: 'Counter id.'
-          end
-          route_param :id do
-            get :increment do
-              authenticate!
-              counter = current_user.counters.includes(:user).includes(:palette).find(params[:id])
-              counter.increment
-              present counter, with: CounterEntity
-            end
-          end
+        desc "Update a counter."
+        params do
+          requires :id, type: String, desc: "Counter id."
+        end
+        patch ':id' do
+          authenticate!
+          counter = current_user.counters.includes(:user).includes(:palette).find(params[:id])
+          counter.update(name: params[:name])
+        end
 
-          desc 'Read counter'
-          params do
-            requires :id, type: Integer, desc: 'Counter id.'
-          end
-          route_param :id do
-            get do
-              authenticate!
-              counter = current_user.counters.includes(:user).includes(:palette).find(params[:id])
-              present counter, with: CounterEntity
-            end
+        desc 'Read counter'
+        params do
+          requires :id, type: Integer, desc: 'Counter id.'
+        end
+        route_param :id do
+          get do
+            puts params
+            authenticate!
+            counter = current_user.counters.includes(:user).includes(:palette).find(params[:id])
+            present counter, with: CounterEntity
           end
         end
       end
