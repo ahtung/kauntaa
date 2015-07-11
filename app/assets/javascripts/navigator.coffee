@@ -5,7 +5,6 @@ class @Navigator
   constructor: () ->
     # console.log('constructor')
     # Vars
-    @mode = 'index'
     @duration = 500
     @counter_data = []
     @row_and_col = []
@@ -46,31 +45,20 @@ class @Navigator
   # Col width
   #
   colWidth: (counter) ->
-    if @mode == 'index'
-      if window.innerWidth < 640
-        window.innerWidth
-      else
-        (window.innerWidth / @row_and_col[1])
+    if window.innerWidth < 640
+      window.innerWidth
     else
-      if @mode == 'edit' && @selectedCounter == counter
-        window.innerWidth
-      else
-        0
+      (window.innerWidth / @row_and_col[1])
+
 
   #
   # Col heigth
   #
   colHeight: (counter) ->
-    if @mode == 'index'
-      if window.innerWidth < 640
-        window.innerHeight / 2
-      else
-        (window.innerHeight / @row_and_col[0])
+    if window.innerWidth < 640
+      window.innerHeight / 2
     else
-      if @mode == 'edit' && @selectedCounter == counter
-        window.innerHeight
-      else
-        0
+      (window.innerHeight / @row_and_col[0])
 
   #
   # Remove 'Add'
@@ -140,13 +128,10 @@ class @Navigator
       .duration(@duration)
       .ease('elastic')
       .attr("transform", (d, i) ->
-        if _this.mode == 'index'
-          if window.innerWidth < 640
-            "translate(0, #{parseInt((i + 1) * _this.colHeight(d))})"
-          else
-            "translate(#{((i + 1) % _this.row_and_col[1]) * _this.colWidth(d)}, #{parseInt((i + 1) / _this.row_and_col[1]) * _this.colHeight(d)})"
+        if window.innerWidth < 640
+          "translate(0, #{parseInt((i + 1) * _this.colHeight(d))})"
         else
-          "translate(0, 0)"
+          "translate(#{((i + 1) % _this.row_and_col[1]) * _this.colWidth(d)}, #{parseInt((i + 1) / _this.row_and_col[1]) * _this.colHeight(d)})"
       )
       .select('rect')
         .ease('elastic')
