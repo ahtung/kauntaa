@@ -95,10 +95,20 @@ class @Navigator
     x = window.innerWidth || e.clientWidth || g.clientWidth
     y = window.innerHeight|| e.clientHeight|| g.clientHeight
     if x < 640
-      @svg.attr("width", x).attr("height", (d) -> (_this.counter_data.length + 1) * _this.colHeight(d))
+      if($("foreignObject").length > 0)
+        @svg.attr("width", x).attr("height", y)
+        $("foreignObject").width(x).height(y)
+      else
+        @svg.attr("width", x).attr("height", (d) -> (_this.counter_data.length + 1) * _this.colHeight(d))
+        @redraw()
     else
-      @svg.attr("width", x).attr("height", y)
-    @redraw()
+      if($("foreignObject").length > 0)
+        @svg.attr("width", x).attr("height", y)
+        $("foreignObject").width(x).height(y)
+      else
+        @svg.attr("width", x).attr("height", y)
+        @redraw()
+
 
   #
   # Redraws counters
