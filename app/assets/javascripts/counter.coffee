@@ -1,6 +1,7 @@
 class @Counter
-  constructor: (id, options, value = 0) ->
+  constructor: (id, nav, value = 0) ->
     # Vars
+    @nav = nav
     @id = id
     @svg = d3.select("#chart").select(".svg")
     @elem = $("*[data-counter-id='#{id}']")
@@ -46,10 +47,13 @@ class @Counter
           .attr("width", $(window).width())
           .attr("height", $(window).height())
 
-        # $('#chart').on 'ajax:done', '.edit_counter', () ->
-        #   console.log('ajax:success!')
-        # $('#chart').on 'ajax:error', '.edit_counter', () ->
-        #   console.log('error')
+        $('#chart').on 'ajax:success', () ->
+          $("foreignObject").remove()
+          console.log(_this.nav)
+          _this.nav.fetchCounters()
+
+        $('#chart').on 'ajax:error', () ->
+          console.log('error')
 
         setTimeout(() ->
           _this.svg.selectAll(".add-counter").remove()

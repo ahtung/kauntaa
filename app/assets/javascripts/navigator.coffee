@@ -129,7 +129,7 @@ class @Navigator
       .text( (d) -> "#{d.name} since #{d.active_since}" )
       .attr("class", "edit-counter")
       .attr("fill", (d) -> d.palette.text_color)
-    @counters.each((d) -> new Counter(d.id, ))
+    @counters.each((d) -> new Counter(d.id, _this))
 
     @svg.selectAll(".counter , .add-counter")
       .attr("text-anchor", "middle")
