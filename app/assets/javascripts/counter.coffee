@@ -45,6 +45,12 @@ class @Counter
           .attr("transform", "translate(0, 0)")
           .attr("width", $(window).width())
           .attr("height", $(window).height())
+
+        # $('#chart').on 'ajax:done', '.edit_counter', () ->
+        #   console.log('ajax:success!')
+        # $('#chart').on 'ajax:error', '.edit_counter', () ->
+        #   console.log('error')
+
         setTimeout(() ->
           _this.svg.selectAll(".add-counter").remove()
           _this.svg.selectAll(".counter").remove()

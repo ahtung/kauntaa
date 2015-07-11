@@ -25,12 +25,13 @@ module V1
 
         desc 'Update a counter.'
         params do
-          requires :id, type: String, desc: 'Counter id.'
+          requires :id, type: Integer, desc: 'Counter id.'
+          requires :counter
         end
         patch ':id' do
           authenticate!
           counter = current_user.counters.includes(:user).includes(:palette).find(params[:id])
-          counter.update(name: params[:name])
+          counter.update(params[:counter].to_hash)
         end
 
         desc 'Read counter'
