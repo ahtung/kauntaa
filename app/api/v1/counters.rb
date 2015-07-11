@@ -66,7 +66,10 @@ module V1
         end
         post do
           authenticate!
-          Counter.create!(params[:counter].merge(user: current_user).to_h)
+          counter = Counter.new(params[:counter].merge(user: current_user).to_h)
+          unless counter.save
+            error! "Counter cannot be created."
+          end
         end
       end
     end
