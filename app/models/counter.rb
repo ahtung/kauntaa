@@ -1,5 +1,8 @@
 # Counter
 class Counter < ActiveRecord::Base
+  # Includes
+  include ActionView::Helpers::DateHelper
+
   # Relations
   belongs_to :user
   belongs_to :palette
@@ -31,6 +34,11 @@ class Counter < ActiveRecord::Base
   # returns the increment url
   def increment_url
     Rails.application.routes.url_helpers.increment_user_counter_path(user_id: user.id, id: id)
+  end
+
+  # returns the active time
+  def active_since
+    distance_of_time_in_words(Time.zone.now, created_at)
   end
 
   private
