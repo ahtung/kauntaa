@@ -31,9 +31,8 @@ module V1
         patch ':id' do
           authenticate!
           counter = current_user.counters.includes(:user).includes(:palette).find(params[:id])
-          unless counter.update(params[:counter].to_hash)
-            error! counter.errors.full_messages.join(", ")
-          end
+          return if counter.update(params[:counter].to_hash)
+          error! counter.errors.full_messages.join(', ')
         end
 
         desc 'Read counter'
@@ -69,9 +68,8 @@ module V1
         post do
           authenticate!
           counter = Counter.new(params[:counter].merge(user: current_user).to_h)
-          unless counter.save
-            error! counter.errors.full_messages.join(", ")
-          end
+          return if counter.save
+          error! counter.errors.full_messages.join(', ')
         end
       end
     end
