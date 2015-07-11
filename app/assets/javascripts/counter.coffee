@@ -5,7 +5,6 @@ class @Counter
     @id = id
     @svg = d3.select("#chart").select(".svg")
     @elem = $("*[data-counter-id='#{id}']")
-    @size = [@elem.find("rect").attr("width"), @elem.find("rect").attr("height")]
     _this = @
     @counter = d3.selectAll(@elem.toArray())
 
@@ -39,25 +38,20 @@ class @Counter
       url: "/users/" + @user_id + "/counters/" + @id + "/edit",
       success: (result) ->
         view = result
-        _this.svg.append("foreignObject").attr("id", "html").html(view)
+        _this.svg.append("foreignObject").html(view)
           .attr("transform", _this.elem.attr("transform"))
-          .attr("width", _this.size[0])
-          .attr("height", _this.size[1])
+          .attr("width", _this.elem.find("rect").attr("width"))
+          .attr("height", _this.elem.find("rect").attr("height"))
           .transition(500)
           .attr("transform", "translate(0, 0)")
           .attr("width", $(window).width())
           .attr("height", $(window).height())
 
         $('#chart').on 'ajax:success', () ->
+          $("foreignObject").remove()
+          console.log(_this.nav)
           _this.nav.appendAdd()
           _this.nav.fetchCounters()
-          _this.svg.select("#html").transition(500)
-          .attr("width", _this.size[0])
-          .attr("height", _this.size[1])
-          setTimeout(() ->
-            $("foreignObject").remove()
-          , 500)
-
 
         $('#chart').on 'ajax:error', () ->
           console.log('error')
