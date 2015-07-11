@@ -24,6 +24,20 @@ RSpec.describe API, type: :request do
         expect(response.body).to include 'You need to sign in or sign up before continuing'
       end
     end
+
+    describe 'PATCH /api/v1/me/counters/:id' do
+      xit 'redirects' do
+        patch "/api/v1/me/counters/#{user.counters.first.id}", format: :json
+        expect(response.body).to include 'You need to sign in or sign up before continuing'
+      end
+    end
+
+    describe 'POST /api/v1/me/counters/:id' do
+      xit 'redirects' do
+        post "/api/v1/me/counters/#{user.counters.first.id}", format: :json
+        expect(response.body).to include 'You need to sign in or sign up before continuing'
+      end
+    end
   end
 
   context 'authenticated user' do
@@ -48,6 +62,20 @@ RSpec.describe API, type: :request do
     describe 'GET /api/v1/me/counters/:id/increment' do
       it "Increment user's counter" do
         get "/api/v1/me/counters/#{user.counters.first.id}/increment", format: :json
+        expect(response.status).to eq 200
+      end
+    end
+
+    describe 'PATCH /api/v1/me/counters/:id' do
+      it "updates user's counter" do
+        patch "/api/v1/me/counters/#{user.counters.first.id}", format: :json
+        expect(response.status).to eq 200
+      end
+    end
+
+    describe 'POST /api/v1/me/counters/:id' do
+      it 'creates user counter' do
+        post "/api/v1/me/counters/#{user.counters.first.id}", format: :json
         expect(response.status).to eq 200
       end
     end
