@@ -44,7 +44,6 @@ Then(/^I should have two counters$/) do
 end
 
 Then(/^Counter name should have changed$/) do
-  pending
   expect(page).to have_content(@new_counter.name)
 end
 
@@ -60,7 +59,6 @@ Then(/^I should have signed out/) do
 end
 
 Then(/^Counter should be deleted$/) do
-  pending
   expect(page).not_to have_content(@counter.name)
 end
 
