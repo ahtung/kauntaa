@@ -1,6 +1,8 @@
 class @Counter
   constructor: (id, options, value = 0) ->
     # Vars
+    @id = id
+    @svg = d3.select("#chart").select(".svg")
     @elem = $("*[data-counter-id='#{id}']")
     _this = @
     @counter = d3.selectAll(@elem.toArray())
@@ -24,6 +26,17 @@ class @Counter
   # Functions
   edit: () ->
     console.log("edit")
+    @addEditWindow()
+
+  addEditWindow: () ->
+    _this = @
+    jQuery.ajax({
+      url: "/users/" + @user_id + "/counters/" + @id + "/edit",
+      success: (result) ->
+        view = result
+        console.log(result)
+        _this.svg.append("foreignObject").attr("x", 0).attr("y", 0).attr("width", $(window).width()).attr("height", $(window).height()).html(view)
+    })
 
   increment: () ->
     $.getJSON @elem.data('increment-url'), ( data ) ->
