@@ -9,3 +9,10 @@ Feature: Edit
     When I edit a counter
      And I fill counter form
     Then Counter name should have changed
+
+  Scenario: Don't Edit Counter
+   Given There is a palette
+    When I sign in with "dunyakirkali@gmail.com"
+    When I edit a counter
+     And I fill counter form without name
+    Then page should have "Name can't be blank"
