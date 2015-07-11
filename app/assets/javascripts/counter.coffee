@@ -30,7 +30,7 @@ class @Counter
 
   addEditWindow: () ->
     _this = @
-    jQuery.ajax({
+    $.ajax({
       url: "/users/" + @user_id + "/counters/" + @id + "/edit",
       success: (result) ->
         view = result
