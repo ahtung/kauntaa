@@ -26,6 +26,9 @@ class @Counter
   # Functions
   edit: () ->
     console.log("edit")
+    x = window.innerWidth || e.clientWidth || g.clientWidth
+    y = window.innerHeight|| e.clientHeight|| g.clientHeight
+    @svg.attr("width", x).attr("height", y)
     @addEditWindow()
 
   addEditWindow: () ->
