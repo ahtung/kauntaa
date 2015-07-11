@@ -12,8 +12,8 @@ When(/^I add a counter$/) do
 end
 
 When(/^I click on Delete$/) do
-  within "#chart" do
-    find("#delete-button", match: :first).click
+  within '#chart' do
+    find('#delete-button', match: :first).click
   end
 end
 
@@ -25,8 +25,8 @@ When(/^I add a counter without name$/) do
 end
 
 When(/^I edit a counter$/) do
-  within "#chart" do
-    find(".edit-counter", match: :first).click
+  within '#chart' do
+    find('.edit-counter', match: :first).click
     @counter = Counter.first
   end
 end
@@ -59,7 +59,7 @@ Then(/^Counter should be deleted$/) do
 end
 
 def fill_form
-  within "#chart" do
+  within '#chart' do
     @new_counter = build(:counter)
     fill_in 'counter_value', with: @new_counter.value
     fill_in 'counter_name', with: @new_counter.name

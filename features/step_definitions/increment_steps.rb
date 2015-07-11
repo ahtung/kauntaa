@@ -6,8 +6,9 @@ Given(/^User home page$/) do
 end
 
 When(/^I visit click to a counter$/) do
-  find('.counter', match: :first).click
-  sleep 0.3
+  within '#chart' do
+    find('.counter', match: :first).click
+  end
 end
 
 When(/^I click on a description of a counter$/) do
@@ -15,8 +16,10 @@ When(/^I click on a description of a counter$/) do
 end
 
 Then(/^counter should not have changed$/) do
-  counter_value = first('.counter-value').text.to_i
-  expect(counter_value).to eq(0)
+  within '#chart' do
+    counter_value = find('.counter-value', match: :first).text.to_i
+    expect(counter_value).to eq(0)
+  end
 end
 
 Then(/^counter should have increased by (\d+)$/) do |increment|
