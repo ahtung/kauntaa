@@ -18,8 +18,10 @@ When(/^I click on Delete$/) do
 end
 
 When(/^I edit a counter$/) do
-  first('.edit-counter').click
-  @counter = Counter.first
+  within "#chart" do
+    find(".edit-counter", match: :first).click
+    @counter = Counter.first
+  end
 end
 
 When(/^I fill counter form$/) do
