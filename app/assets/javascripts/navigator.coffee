@@ -5,7 +5,7 @@ class @Navigator
   constructor: () ->
     # console.log('constructor')
     # Vars
-    @duration = 500
+    @duration = 300
     @counter_data = []
     @row_and_col = []
     @svg = d3.select("#chart").append("svg").attr("class", 'svg')

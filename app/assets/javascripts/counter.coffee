@@ -42,7 +42,7 @@ class @Counter
           .attr("transform", _this.elem.attr("transform"))
           .attr("width", _this.elem.find("rect").attr("width"))
           .attr("height", _this.elem.find("rect").attr("height"))
-          .transition(500)
+          .transition(300)
           .attr("transform", "translate(0, 0)")
           .attr("width", $(window).width())
           .attr("height", $(window).height())
@@ -64,14 +64,14 @@ class @Counter
 
   removeEditWindow: () ->
     @svg.select("#html")
-      .transition(500)
+      .transition(300)
       .attr("transform", "translate(#{@elem.find("rect").attr("width")}, 0)")
       .attr("style", "width:#{@elem.find("rect").attr("width")};height:#{@elem.find("rect").attr("height")}")
     @nav.appendAdd()
     @nav.fetchCounters()
     setTimeout () ->
       $("foreignObject").remove()
-    , 500
+    , 300
 
   increment: () ->
     $.getJSON @elem.data('increment-url'), ( data ) ->
