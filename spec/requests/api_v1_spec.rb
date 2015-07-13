@@ -26,15 +26,16 @@ RSpec.describe API, type: :request do
     end
 
     describe 'PATCH /api/v1/me/counters/:id' do
-      xit 'redirects' do
-        patch "/api/v1/me/counters/#{user.counters.first.id}", format: :json
+      it 'redirects' do
+        patch "/api/v1/me/counters/#{user.counters.first.id}", format: :json, counter: { name: 'My Widget' }
         expect(response.body).to include 'You need to sign in or sign up before continuing'
       end
     end
 
     describe 'POST /api/v1/me/counters/:id' do
-      xit 'redirects' do
-        post "/api/v1/me/counters/#{user.counters.first.id}", format: :json
+      it 'redirects' do
+        palette = create(:palette)
+        post "/api/v1/me/counters", format: :json, counter: { name: 'My Widget', value: 0, palette_id: palette.id }
         expect(response.body).to include 'You need to sign in or sign up before continuing'
       end
     end
@@ -81,10 +82,10 @@ RSpec.describe API, type: :request do
     end
 
     describe 'POST /api/v1/me/counters/:id' do
-      xit 'creates user counter' do
+      it 'creates user counter' do
         palette = create(:palette)
-        post "/api/v1/me/counters/#{user.counters.first.id}", format: :json, counter: { name: 'My Widget', value: 0, palette_id: palette.id }
-        expect(response.status).to eq 200
+        post "/api/v1/me/counters", format: :json, counter: { name: 'My Widget', value: 0, palette_id: palette.id }
+        expect(response.status).to eq 201
       end
     end
 
