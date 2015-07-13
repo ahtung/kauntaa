@@ -35,7 +35,7 @@ RSpec.describe API, type: :request do
     describe 'POST /api/v1/me/counters/:id' do
       it 'redirects' do
         palette = create(:palette)
-        post "/api/v1/me/counters", format: :json, counter: { name: 'My Widget', value: 0, palette_id: palette.id }
+        post '/api/v1/me/counters', format: :json, counter: { name: 'My Widget', value: 0, palette_id: palette.id }
         expect(response.body).to include 'You need to sign in or sign up before continuing'
       end
     end
@@ -85,7 +85,7 @@ RSpec.describe API, type: :request do
         expect(response.status).to eq 400
       end
 
-      it "returns errors if no name" do
+      it 'returns errors if no name' do
         patch "/api/v1/me/counters/#{user.counters.first.id}", format: :json, counter: { name: nil }
         expect(response.status).to eq 412
       end
@@ -94,17 +94,17 @@ RSpec.describe API, type: :request do
     describe 'POST /api/v1/me/counters/:id' do
       let(:palette) { create(:palette) }
       it 'creates user counter' do
-        post "/api/v1/me/counters", format: :json, counter: { name: 'My Widget', value: 0, palette_id: palette.id }
+        post '/api/v1/me/counters', format: :json, counter: { name: 'My Widget', value: 0, palette_id: palette.id }
         expect(response.status).to eq 201
       end
 
       it 'does not create user counter if no name' do
-        post "/api/v1/me/counters", format: :json, counter: { value: 0, palette_id: palette.id }
+        post '/api/v1/me/counters', format: :json, counter: { value: 0, palette_id: palette.id }
         expect(response.status).to eq 400
       end
 
-      it "returns errors if no name" do
-        post "/api/v1/me/counters", format: :json, counter: { name: nil, value: 0, palette_id: palette.id }
+      it 'returns errors if no name' do
+        post '/api/v1/me/counters', format: :json, counter: { name: nil, value: 0, palette_id: palette.id }
         expect(response.status).to eq 412
       end
     end
