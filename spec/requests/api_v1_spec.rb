@@ -79,13 +79,33 @@ RSpec.describe API, type: :request do
         patch "/api/v1/me/counters/#{user.counters.first.id}", format: :json, counter: { name: 'My Widget' }
         expect(response.status).to eq 200
       end
+
+      it "does not update user's counter if no name" do
+        patch "/api/v1/me/counters/#{user.counters.first.id}", format: :json
+        expect(response.status).to eq 400
+      end
+
+      it "returns errors if no name" do
+        patch "/api/v1/me/counters/#{user.counters.first.id}", format: :json, counter: { name: nil }
+        expect(response.status).to eq 412
+      end
     end
 
     describe 'POST /api/v1/me/counters/:id' do
+      let(:palette) { create(:palette) }
       it 'creates user counter' do
-        palette = create(:palette)
         post "/api/v1/me/counters", format: :json, counter: { name: 'My Widget', value: 0, palette_id: palette.id }
         expect(response.status).to eq 201
+      end
+
+      it 'does not create user counter if no name' do
+        post "/api/v1/me/counters", format: :json, counter: { value: 0, palette_id: palette.id }
+        expect(response.status).to eq 400
+      end
+
+      it "returns errors if no name" do
+        post "/api/v1/me/counters", format: :json, counter: { name: nil, value: 0, palette_id: palette.id }
+        expect(response.status).to eq 412
       end
     end
 
