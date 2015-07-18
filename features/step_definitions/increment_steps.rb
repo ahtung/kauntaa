@@ -14,8 +14,8 @@ When(/^I click on a description of a counter$/) do
 end
 
 Then(/^counter should not have changed$/) do
+  sleep 1
   click_on 'Back'
-
   within '.counters' do
     counter_value = first('.counter').first('.number h2').text.to_i
     expect(counter_value).to eq(0)
