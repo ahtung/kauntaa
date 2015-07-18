@@ -12,10 +12,8 @@ When(/^I add a counter$/) do
 end
 
 When(/^I click on Delete$/) do
-  within '#chart' do
-    accept_alert do
-      find('#delete-button', match: :first).click
-    end
+  accept_alert do
+    find('#delete-button', match: :first).click
   end
 end
 
@@ -27,10 +25,8 @@ When(/^I add a counter without name$/) do
 end
 
 When(/^I edit a counter$/) do
-  within '#chart' do
-    find('.edit-counter', match: :first).click
-    @counter = Counter.first
-  end
+  find('.edit-counter-link', match: :first).click
+  @counter = Counter.first
 end
 
 When(/^I fill counter form$/) do
@@ -65,21 +61,17 @@ Then(/^Counter should be deleted$/) do
 end
 
 def fill_form_without_name
-  within '#chart' do
-    @new_counter = build(:counter)
-    fill_in 'counter_value', with: @new_counter.value
-    fill_in 'counter_name', with: nil
-    page.execute_script("document.getElementById('counter_palette_id').value = #{@new_counter.palette.id}")
-    first('.button').click
-  end
+  @new_counter = build(:counter)
+  fill_in 'counter_value', with: @new_counter.value
+  fill_in 'counter_name', with: nil
+  page.execute_script("document.getElementById('counter_palette_id').value = #{@new_counter.palette.id}")
+  first('.button').click
 end
 
 def fill_form
-  within '#chart' do
-    @new_counter = build(:counter)
-    fill_in 'counter_value', with: @new_counter.value
-    fill_in 'counter_name', with: @new_counter.name
-    page.execute_script("document.getElementById('counter_palette_id').value = #{@new_counter.palette.id}")
-    first('.button').click
-  end
+  @new_counter = build(:counter)
+  fill_in 'counter_value', with: @new_counter.value
+  fill_in 'counter_name', with: @new_counter.name
+  page.execute_script("document.getElementById('counter_palette_id').value = #{@new_counter.palette.id}")
+  first('.button').click
 end
