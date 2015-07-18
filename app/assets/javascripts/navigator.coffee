@@ -134,7 +134,7 @@ class @Navigator
     _this = @
     if @user_id
       d3.json("api/v1/me/counters.json", (resp) ->
-        _this.count = resp.length
+        _this.count = resp.length + 1
         counters.selectAll(".counter")
           .data(resp)
           .enter()

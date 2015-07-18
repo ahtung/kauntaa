@@ -67,11 +67,13 @@ Then(/^Counter should be deleted$/) do
 end
 
 def fill_form_without_name
-  @new_counter = build(:counter)
-  fill_in 'counter_value', with: @new_counter.value
-  fill_in 'counter_name', with: nil
-  page.execute_script("document.getElementById('counter_palette_id').value = #{@new_counter.palette.id}")
-  first('.button').click
+  within '#chart' do
+    @new_counter = build(:counter)
+    fill_in 'counter_value', with: @new_counter.value
+    fill_in 'counter_name', with: nil
+    page.execute_script("document.getElementById('counter_palette_id').value = #{@new_counter.palette.id}")
+    first('.button').click
+  end
 end
 
 def fill_form
