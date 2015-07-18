@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :counter do
-    name { Faker::Name.name }
+    name { Faker::Name.first_name }
     value 0
     palette
 

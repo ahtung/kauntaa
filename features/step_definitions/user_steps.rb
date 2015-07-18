@@ -12,8 +12,10 @@ When(/^I add a counter$/) do
 end
 
 When(/^I click on Delete$/) do
-  accept_alert do
-    find('#delete-button', match: :first).click
+  within ".edit-counter" do
+    accept_alert do
+      find('#delete-button', match: :first).click
+    end
   end
 end
 
@@ -69,9 +71,11 @@ def fill_form_without_name
 end
 
 def fill_form
-  @new_counter = build(:counter)
-  fill_in 'counter_value', with: @new_counter.value
-  fill_in 'counter_name', with: @new_counter.name
-  page.execute_script("document.getElementById('counter_palette_id').value = #{@new_counter.palette.id}")
-  first('.button').click
+  within ".edit-counter" do
+    @new_counter = build(:counter)
+    fill_in 'counter_value', with: @new_counter.value
+    fill_in 'counter_name', with: @new_counter.name
+    page.execute_script("document.getElementById('counter_palette_id').value = #{@new_counter.palette.id}")
+    first('.button').click
+  end
 end
