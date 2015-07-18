@@ -1,9 +1,9 @@
-.a-counter.increment-button data-counter-id="#{@counter.id}" style="background-color:#{@counter.palette.background_color};height:100%;" data-increment-url="#{ increment_user_counter_path(current_user, @counter) }"
+.increment-button style="background-color:#{@counter.palette.background_color};height:100%;" data-increment-url="#{ @counter.increment_url }"
   .count.text-center
     .number
-      h2.counter style="color: #{@counter.palette.foreground_color};"
+      h2 style="color: #{@counter.palette.foreground_color};"
         = @counter.clean_value
   .description.text-center
     .text
-      = link_to edit_user_counter_path(current_user, @counter), class: 'edit-counter', style: "color: #{@counter.palette.text_color}" do
+      = link_to edit_counter_path(@counter), class: 'edit-counter-link', style: "color: #{@counter.palette.text_color}" do
         = "#{truncate(@counter.name, length: 14)} since #{time_ago_in_words(@counter.created_at)}".html_safe

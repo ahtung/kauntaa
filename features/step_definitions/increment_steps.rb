@@ -6,25 +6,23 @@ Given(/^User home page$/) do
 end
 
 When(/^I visit click to a counter$/) do
-  within '#chart' do
-    find('.counter', match: :first).click
-  end
+  find('.counter', match: :first).click
 end
 
 When(/^I click on a description of a counter$/) do
-  find('.edit-counter', match: :first).click
+  find('.edit-counter-link', match: :first).click
 end
 
 Then(/^counter should not have changed$/) do
-  within '#chart' do
-    counter_value = find('.counter-value', match: :first).text.to_i
+  click_on 'Back'
+
+  within '.counters' do
+    counter_value = first('.counter').first('.number h2').text.to_i
     expect(counter_value).to eq(0)
   end
 end
 
 Then(/^counter should have increased by (\d+)$/) do |increment|
-  within '#chart' do
-    counter_value = first('.counter').first('.counter-value').text.to_i
-    expect(counter_value).to eq(increment.to_i)
-  end
+  counter_value = first('.counter').first('.number h2').text.to_i
+  expect(counter_value).to eq(increment.to_i)
 end

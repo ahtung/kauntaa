@@ -3,221 +3,263 @@ class @Navigator
   # Constructor
   #
   constructor: () ->
-    # console.log('constructor')
     # Vars
-    @duration = 300
-    @counter_data = []
-    @row_and_col = []
-    @svg = d3.select("#chart").append("svg").attr("class", 'svg')
-    @svg.append('foreignObject').attr('id','add_form_window')
+    @duration = 500
+    @chart = d3.select("#chart")
     @user_id = $('#chart').data('user-id')
-    _this = @
+    @mode = "index"
+    @position = { x:0, y:0 }
+
+    @appendCounters()
+    @appendHeader()
 
     # Events
+    _this = @
     d3.select(window).on('resize', () ->
-      _this.updateWindow()
+      _this.resize()
     )
 
-    @appendAdd()
-    @appendAddWindow()
-    @fetchCounters()
+  #
+  #
+  #
+  setMode: (mode, position) ->
+    if position
+      @position = position
+    if mode == "edit"
+      @removeCounters()
+      @removeHeader()
+      @appendEdit()
+    else if mode == "add"
+      @removeCounters()
+      @removeHeader()
+      @appendAdd()
+    else if mode == "index"
+      @removeAdd()
+      @appendCounters()
+      @appendHeader()
 
-  # Returns the number of rows and columns given N
-  rowCol: (n) ->
+    @mode = mode
+    # @resize()
+  #
+  #
+  #
+  colCount: () ->
+    n=10
     row = Math.floor(Math.sqrt(n))
     col = row
     (if row == col then row++ else col++) while (row * col) < n
-    @row_and_col = [row, col]
+    col
 
-
-  fetchCounters: () ->
-    _this = @
-    if @user_id
-      d3.json("api/v1/me/counters.json", (resp) ->
-        _this.counter_data = resp
-        _this.rowCol(_this.counter_data.length + 1)
-        _this.updateWindow()
-        _this.redraw()
-      )
+  #
+  #
+  #
+  rowCount: () ->
+    n=10
+    row = Math.floor(Math.sqrt(n))
+    col = row
+    (if row == col then row++ else col++) while (row * col) < n
+    row
 
   #
   # Col width
   #
-  colWidth: (counter) ->
-    if window.innerWidth < 640
-      parseInt(window.innerWidth)
-    else
-      parseInt(window.innerWidth / @row_and_col[1])
+  colWidth: () ->
+    parseInt(window.innerWidth / @colCount())
 
 
   #
   # Col heigth
   #
-  colHeight: (counter) ->
-    if window.innerWidth < 640
-      parseInt(window.innerHeight / 2)
-    else
-      parseInt(window.innerHeight / @row_and_col[0])
+  colHeight: () ->
+    parseInt(window.innerHeight / @rowCount())
 
   #
-  # Remove 'Add'
   #
-  removeAdd: () ->
-    d3.select('.add-counter').remove()
   #
-  # Append 'Add' button
+  removeHeader: () ->
+    @chart.select(".new-counter").remove()
+
+  #
+  #
+  #
+  appendHeader: () ->
+    palette_id = $('#chart').data('new-palette-id')
+    _this = @
+    @chart.append("div")
+      .attr("class", "new-counter")
+      .style("width", () -> _this.colWidth())
+      .style("height", () -> _this.colHeight())
+    _this = @
+    $.ajax({
+      url: "/counters/add?palette_id=#{palette_id}",
+      success: (result) ->
+        view = result
+        $(".new-counter").html(view)
+
+        $('.add-counter-link').on 'click', (e) ->
+          _this.setMode("add")
+          e.preventDefault()
+    })
+
+  #
+  # Append '.add-counter' div
   #
   appendAdd: () ->
-    _this = @
-    add_counter = @svg.append("g").attr('class', 'add-counter')
-    # counter.each(moveToFront)
-    add_counter.insert("rect")
-      .attr("fill", 'red')
-    add_counter.append('text')
-      .text( 'Add' )
-      .attr("class", 'add-text')
-      .attr("fill", 'blue')
-      .attr("font-size", "2.5em")
-      .on 'click', () ->
-        _this.openAddWindow()
-    add_counter.append('text')
-      .text( "Sign out" )
-      .attr("class", 'sign-out')
-      .attr("font-size", "1.3em")
-      .attr("fill", 'green')
-      .on 'click', () ->
-        window.location = '/users/sign_out'
-
-  #
-  # Append Add Window
-  #
-  appendAddWindow: () ->
+    @chart.append("div").attr("class", "add-counter")
     _this = @
     palette_id = $('#chart').data('new-palette-id')
-    $.ajax
-      url: "/users/#{@user_id}/counters/new?palette_id=#{palette_id}"
-      success: (data) ->
-        _this.svg.select('#add_form_window')
-        .attr({
-          'x': 0,
-          'y': 0,
-          'width': 0,
-          'height': 0,
-        })
-        .append('xhtml:html')
-        .append('xhtml:body')
-        .append('xhtml:div')
-        .html(data)
-        .attr({
-          'style': 'display:none;'
-        })
-        $('#chart').on 'ajax:success', '#new_counter', () ->
-          _this.appendAddWindow()
-          _this.fetchCounters()
-        $('#chart').on 'ajax:error', '#new_counter', (xhr, ajaxOptions, thrownError) ->
-          $('#error_explanation').text(ajaxOptions.responseText)
+    $.ajax({
+      url: "/counters/new?palette_id=#{palette_id}"
+      success: (result) ->
+        view = result
+        $(".add-counter").html(view)
+        $('.add-counter').on 'ajax:success', () ->
+          _this.setMode("index")
+
+        $('#chart').on 'ajax:error', (a,b) ->
+          $("#error_explanation").text(b.responseText)
+
+        $('.back-button').on 'click', (e) ->
+          _this.setMode("index")
+          e.preventDefault()
+    })
+
+  removeAdd: () ->
+    @chart.select(".add-counter").remove()
+
   #
-  # Update window
+  # Append '.counters' div
   #
-  updateWindow: () ->
+  appendCounters: () ->
+    counters = @chart.append("div").attr("class", "counters")
     _this = @
-    x = window.innerWidth || e.clientWidth || g.clientWidth
-    y = window.innerHeight|| e.clientHeight|| g.clientHeight
-    if x < 640
-      if($("#html").length > 0)
-        @svg.attr("width", x).attr("height", y)
-        $("#html").width(x).height(y)
-      else
-        @svg.attr("width", x).attr("height", (d) -> (_this.counter_data.length + 1) * _this.colHeight(d))
-        @redraw()
-    else
-      if($("#html").length > 0)
-        @svg.attr("width", x).attr("height", y)
-        $("#html").width(x).height(y)
-      else
-        @svg.attr("width", x).attr("height", y)
-        @redraw()
-
-
-  #
-  # Redraws counters
-  #
-  redraw: () ->
-    _this = @
-    @counters = @svg.selectAll(".counter").data(@counter_data)
-    counter = @counters.enter().append("g").attr('class', 'counter odometer').attr('data-counter-id', (d) -> d.id).attr('data-increment-url', (d) -> d.increment_url)
-    counter.append("rect")
-      .attr("fill", (d) -> d.palette.background_color)
-      .attr("width", (d) -> _this.colWidth(d))
-      .attr("height", (d) -> _this.colHeight(d))
-    counter.append('text')
-      .text( (d) -> d.value )
-      .attr('class', 'counter-value')
-      .attr("fill", (d) -> d.palette.foreground_color)
-    counter.append('text')
-      .text( (d) -> "#{d.name} since #{d.active_since}" )
-      .attr("class", "edit-counter")
-      .attr("fill", (d) -> d.palette.text_color)
-    @counters.each((d) -> new Counter(d.id, _this))
-
-    @svg.selectAll(".counter , .add-counter")
-      .attr("text-anchor", "middle")
-      .attr('alignment-baseline', "middle")
-    @counters.transition()
-      .duration(@duration)
-      .ease('elastic')
-      .attr("transform", (d, i) ->
-        if window.innerWidth < 640
-          "translate(0, #{parseInt((i + 1) * _this.colHeight(d))})"
-        else
-          "translate(#{((i + 1) % _this.row_and_col[1]) * _this.colWidth(d)}, #{parseInt((i + 1) / _this.row_and_col[1]) * _this.colHeight(d)})"
+    if @user_id
+      d3.json("api/v1/me/counters.json", (resp) ->
+        counters.selectAll(".counter")
+          .data(resp)
+          .enter()
+          .append("div")
+          .attr("class", "counter")
+          .attr("data-counter-id", (d) -> d.id)
+          .style("background-color", (d) -> d.palette.background_color)
+          .style("top", () -> _this.position.y)
+          .style("left", () -> _this.position.x)
+          .style("width", () -> _this.colWidth())
+          .style("height", () -> _this.colHeight())
+          .each((d,i) -> new Counter(d.id, _this, i))
+        _this.resize()
       )
-      .select('rect')
-        .ease('elastic')
-        .attr("width", (d) -> _this.colWidth(d))
-        .attr("height", (d) -> _this.colHeight(d))
-
-    @counters.select('.counter-value').transition()
-      .duration(@duration)
-      .ease('elastic')
-      .attr("x", (d) -> _this.colWidth(d) / 2)
-      .attr("y", (d) -> _this.colHeight(d) / 4)
-
-    @counters.select('.edit-counter').transition()
-      .duration(@duration)
-      .ease('elastic')
-      .attr("x", (d) -> _this.colWidth(d) / 2)
-      .attr("y", (d) -> _this.colHeight(d) / 4 * 3)
-
-    @svg.selectAll(".add-counter").select('.add-text').transition()
-      .duration(@duration)
-      .ease('elastic')
-      .attr("x", (d) -> _this.colWidth(d) / 2)
-      .attr("y", (d) -> _this.colHeight(d) / 4)
-
-    @svg.selectAll(".add-counter").select(".sign-out").transition()
-      .duration(@duration)
-      .ease('elastic')
-      .attr("x", (d) -> _this.colWidth(d) / 2)
-      .attr("y", (d) -> _this.colHeight(d) / 4 * 3)
-
-    @counters.exit().transition()
-        .duration(@duration)
-        .attr("transform", "translate(#{window.innerWidth / 2}, #{window.innerHeight / 2})")
-        .attr("width", 0)
-        .attr("height", 0)
-        .remove()
 
   #
-  # Open add window
+  # Remove '.counters' div
   #
-  openAddWindow: () ->
+  removeCounters: () ->
     _this = @
-    @svg.select("#add_form_window")
-      .attr({
-        'width': '100%',
-        'height': '100%',
-      }).select('div')
-      .attr({
-        'style': 'display:block; height:100vh;'
-      })
+    d3.selectAll(".counter")
+      .data([])
+      .exit()
+      .transition()
+      .duration(@duration)
+      .ease('elastic')
+      .style("top", 0)
+      .style("left", 0)
+      .style("width", () -> _this.colWidth())
+      .style("height", () -> _this.colHeight())
+      .remove()
+    d3.select(".counters").remove()
+
+  #
+  # Append '.edit-counter' div
+  #
+  appendEdit: () ->
+    _this = @
+    @chart.append("div")
+      .attr("class", "edit-counter")
+      .style("top", @position.x)
+      .style("left", @position.y)
+      .style("width", () -> _this.colWidth())
+      .style("height", () -> _this.colHeight())
+
+  #
+  # Resize
+  #
+  windowWidth: () ->
+    window.innerWidth
+
+  windowHeight: () ->
+    window.innerHeight
+
+  resize: () ->
+    _this = @
+    if @windowWidth() < 640
+      @resizeForSmall()
+    else
+      @resizeForNotSmall()
+
+  resizeForSmall: () ->
+    if(@mode != "index")
+      d3.select(".#{@mode}-counter")
+        .transition()
+        .duration(@duration)
+        .ease('elastic')
+        .attr("width", "#{@windowWidth()}px")
+        .attr("height", "#{@windowHeight()}px")
+    else
+      _this = @
+      d3.select(".new-counter")
+        .transition()
+        .duration(@duration)
+        .ease('elastic')
+        .attr("style", (d, i) -> "width:100%;height:50%;top:0px;left:0px;")
+      d3.selectAll(".counter")
+        .transition()
+        .duration(@duration)
+        .ease('elastic')
+        .attr("style", (d, i) -> "width:100%;height:50%;top:#{(i + 1) * _this.windowHeight() / 2}px;left:0px;background-color:#{d.palette.background_color}")
+
+  resizeForNotSmall: () ->
+    if(@mode != "index")
+      d3.select(".#{@mode}-counter")
+        .attr("width", "#{@windowWidth()}px")
+        .attr("height", "#{@windowHeight()}px")
+    else
+      _this = @
+      d3.select(".new-counter")
+        .transition()
+        .duration(@duration)
+        .ease('elastic')
+        .attr("style", (d, i) -> "width:#{_this.colWidth()}px;height:#{_this.colHeight()}px;top:0px;left:0;")
+      d3.selectAll(".counter")
+        .transition()
+        .duration(@duration)
+        .ease('elastic')
+        .attr("style", (d, i) -> "width:#{_this.colWidth()}px;height:#{_this.colHeight()}px;top:#{parseInt((i + 1) / _this.colCount()) * _this.colHeight()}px;left:#{((i + 1) % _this.colCount()) * _this.colWidth()}px;background-color:#{d.palette.background_color}")
+  #
+  # #
+  # # Append Add Window
+  # #
+  # appendAddWindow: () ->
+  #   _this = @
+  #   palette_id = $('#chart').data('new-palette-id')
+  #   $.ajax
+  #     url: "/users/#{@user_id}/counters/new?palette_id=#{palette_id}"
+  #     success: (data) ->
+  #       _this.svg.select('#add_form_window')
+  #       .attr({
+  #         'x': 0,
+  #         'y': 0,
+  #         'width': 0,
+  #         'height': 0,
+  #       })
+  #       .append('xhtml:html')
+  #       .append('xhtml:body')
+  #       .append('xhtml:div')
+  #       .html(data)
+  #       .attr({
+  #         'style': 'display:none;'
+  #       })
+  #       $('#chart').on 'ajax:success', '#new_counter', () ->
+  #         _this.appendAddWindow()
+  #         _this.fetchCounters()
+  #       $('#chart').on 'ajax:error', '#new_counter', (xhr, ajaxOptions, thrownError) ->
+  #         $('#error_explanation').text(ajaxOptions.responseText)
