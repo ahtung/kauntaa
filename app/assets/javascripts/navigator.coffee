@@ -9,8 +9,8 @@ class @Navigator
     @user_id = $('#chart').data('user-id')
     @mode = "index"
 
-    @appendHeader()
     @appendCounters()
+    @appendHeader()
 
     # Events
     _this = @
@@ -89,7 +89,11 @@ class @Navigator
   #
   appendHeader: () ->
     palette_id = $('#chart').data('new-palette-id')
-    @chart.append("div").attr("class", "new-counter")
+    _this = @
+    @chart.append("div")
+      .attr("class", "new-counter")
+      .style("width", () -> _this.colWidth())
+      .style("height", () -> _this.colHeight())
     _this = @
     $.ajax({
       url: "/counters/add?palette_id=#{palette_id}",
@@ -142,7 +146,11 @@ class @Navigator
           .append("div")
           .attr("class", "counter")
           .attr("data-counter-id", (d) -> d.id)
-          .attr("style", (d) -> "background-color:#{d.palette.background_color}")
+          .style("background-color", (d) -> d.palette.background_color)
+          .style("top", 0)
+          .style("left", 0)
+          .style("width", () -> _this.colWidth())
+          .style("height", () -> _this.colHeight())
           .each((d) -> new Counter(d.id, _this))
         _this.resize()
       )
