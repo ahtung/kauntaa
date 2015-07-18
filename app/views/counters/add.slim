@@ -1,0 +1,8 @@
+.increment-button style="background-color:#{@palette.background_color};height:100%;"
+  .count.text-center
+    .number
+      h2 style="color: #{@palette.foreground_color};"
+        = "Add"
+  .description.text-center
+    .text
+      = link_to('Sign out', destroy_user_session_path, class: "sign-out")

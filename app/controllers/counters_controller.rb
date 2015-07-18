@@ -10,6 +10,12 @@ class CountersController < ApplicationController
     render layout: false
   end
 
+  def add
+    authorize Counter, :add?
+    @palette = Palette.find(params[:palette_id])
+    render layout: false
+  end
+
   def index
     authorize Counter, :index?
     @counters = current_user.counters.order(updated_at: :desc)

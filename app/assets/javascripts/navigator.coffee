@@ -9,6 +9,7 @@ class @Navigator
     @user_id = $('#chart').data('user-id')
     @mode = "index"
 
+    @appendHeader()
     @appendCounters()
 
     # Events
@@ -23,9 +24,11 @@ class @Navigator
   setMode: (mode) ->
     if mode == "edit"
       @removeCounters()
+      @removeHeader()
       @appendEdit()
     else if mode == "index"
       @removeEdit()
+      @appendHeader()
       @appendCounters()
 
     @mode = mode
@@ -68,6 +71,26 @@ class @Navigator
       window.innerHeight / 2
     else
       parseInt(window.innerHeight / @rowCount())
+
+  #
+  #
+  #
+  removeHeader: () ->
+    @chart.select(".new-counter").remove()
+
+
+  #
+  #
+  #
+  appendHeader: () ->
+    palette_id = $('#chart').data('new-palette-id')
+    @chart.append("div").attr("class", "new-counter")
+    $.ajax({
+      url: "/counters/add?palette_id=#{palette_id}",
+      success: (result) ->
+        view = result
+        $(".new-counter").html(view)
+    })
 
   #
   # Append '.add-counter' div
@@ -139,6 +162,11 @@ class @Navigator
         .attr("height", "#{@windowHeight()}px")
     else
       _this = @
+      d3.select(".new-counter")
+        .transition()
+        .duration(@duration)
+        .ease('elastic')
+        .attr("style", (d, i) -> "width:100%;height:50%;top:0px;left:0px;")
       d3.selectAll(".counter")
         .transition()
         .duration(@duration)
@@ -152,6 +180,11 @@ class @Navigator
         .attr("height", "#{@windowHeight()}px")
     else
       _this = @
+      d3.select(".new-counter")
+        .transition()
+        .duration(@duration)
+        .ease('elastic')
+        .attr("style", (d, i) -> "width:#{_this.colWidth()}px;height:#{_this.colHeight()}px;top:0px;left:0;")
       d3.selectAll(".counter")
         .transition()
         .duration(@duration)
