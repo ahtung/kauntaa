@@ -40,7 +40,7 @@ When(/^I fill counter form without name$/) do
 end
 
 Then(/^I should have a new counter$/) do
-  within ".counters" do
+  within '.counters' do
     expect(page).to have_selector('.counter', count: 2)
   end
 end
