@@ -41,7 +41,7 @@ end
 
 Then(/^I should have a new counter$/) do
   within ".counters" do
-    expect(page).to have_selector('.counter', count: 1)
+    expect(page).to have_selector('.counter', count: 2)
   end
 end
 
