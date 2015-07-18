@@ -27,7 +27,9 @@ When(/^I add a counter without name$/) do
 end
 
 When(/^I edit a counter$/) do
-  find('.edit-counter-link', match: :first).click
+  within ".counters" do
+    find('.edit-counter-link', match: :first).click
+  end
   @counter = Counter.first
 end
 

@@ -11,8 +11,8 @@ class @Navigator
     @position = { x:0, y:0 }
     @count = 0
 
-    @appendCounters()
     @appendHeader()
+    @appendCounters()
 
     # Events
     _this = @
@@ -36,8 +36,8 @@ class @Navigator
       @appendAdd()
     else if mode == "index"
       @removeAdd()
-      @appendCounters()
       @appendHeader()
+      @appendCounters()
 
     @mode = mode
     # @resize()
