@@ -8,6 +8,7 @@ class @Navigator
     @chart = d3.select("#chart")
     @user_id = $('#chart').data('user-id')
     @mode = "index"
+    @position = { x:0, y:0 }
 
     @appendCounters()
     @appendHeader()
@@ -21,7 +22,9 @@ class @Navigator
   #
   #
   #
-  setMode: (mode) ->
+  setMode: (mode, position) ->
+    if position
+      @position = position
     if mode == "edit"
       @removeCounters()
       @removeHeader()
@@ -31,13 +34,12 @@ class @Navigator
       @removeHeader()
       @appendAdd()
     else if mode == "index"
-      @removeEdit()
       @removeAdd()
-      @appendHeader()
       @appendCounters()
+      @appendHeader()
 
     @mode = mode
-    @resize()
+    # @resize()
   #
   #
   #
@@ -62,27 +64,20 @@ class @Navigator
   # Col width
   #
   colWidth: () ->
-    if @windowWidth() < 640
-      window.innerWidth
-    else
-      parseInt(window.innerWidth / @colCount())
+    parseInt(window.innerWidth / @colCount())
 
 
   #
   # Col heigth
   #
   colHeight: () ->
-    if @windowWidth() < 640
-      window.innerHeight / 2
-    else
-      parseInt(window.innerHeight / @rowCount())
+    parseInt(window.innerHeight / @rowCount())
 
   #
   #
   #
   removeHeader: () ->
     @chart.select(".new-counter").remove()
-
 
   #
   #
@@ -147,11 +142,11 @@ class @Navigator
           .attr("class", "counter")
           .attr("data-counter-id", (d) -> d.id)
           .style("background-color", (d) -> d.palette.background_color)
-          .style("top", 0)
-          .style("left", 0)
+          .style("top", () -> _this.position.y)
+          .style("left", () -> _this.position.x)
           .style("width", () -> _this.colWidth())
           .style("height", () -> _this.colHeight())
-          .each((d) -> new Counter(d.id, _this))
+          .each((d,i) -> new Counter(d.id, _this, i))
         _this.resize()
       )
 
@@ -159,9 +154,17 @@ class @Navigator
   # Remove '.counters' div
   #
   removeCounters: () ->
+    _this = @
     d3.selectAll(".counter")
       .data([])
       .exit()
+      .transition()
+      .duration(@duration)
+      .ease('elastic')
+      .style("top", 0)
+      .style("left", 0)
+      .style("width", () -> _this.colWidth())
+      .style("height", () -> _this.colHeight())
       .remove()
     d3.select(".counters").remove()
 
@@ -169,13 +172,13 @@ class @Navigator
   # Append '.edit-counter' div
   #
   appendEdit: () ->
-    @chart.append("div").attr("class", "edit-counter")
-
-  #
-  # Append '.edit-counter' div
-  #
-  removeEdit: () ->
-    @chart.select(".edit-counter").remove()
+    _this = @
+    @chart.append("div")
+      .attr("class", "edit-counter")
+      .style("top", @position.x)
+      .style("left", @position.y)
+      .style("width", () -> _this.colWidth())
+      .style("height", () -> _this.colHeight())
 
   #
   # Resize
@@ -196,6 +199,9 @@ class @Navigator
   resizeForSmall: () ->
     if(@mode != "index")
       d3.select(".#{@mode}-counter")
+        .transition()
+        .duration(@duration)
+        .ease('elastic')
         .attr("width", "#{@windowWidth()}px")
         .attr("height", "#{@windowHeight()}px")
     else
