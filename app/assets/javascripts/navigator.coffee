@@ -9,6 +9,7 @@ class @Navigator
     @user_id = $('#chart').data('user-id')
     @mode = "index"
     @position = { x:0, y:0 }
+    @count = 0
 
     @appendCounters()
     @appendHeader()
@@ -44,20 +45,18 @@ class @Navigator
   #
   #
   colCount: () ->
-    n=10
-    row = Math.floor(Math.sqrt(n))
+    row = Math.floor(Math.sqrt(@count))
     col = row
-    (if row == col then row++ else col++) while (row * col) < n
+    (if row == col then row++ else col++) while (row * col) < @count
     col
 
   #
   #
   #
   rowCount: () ->
-    n=10
-    row = Math.floor(Math.sqrt(n))
+    row = Math.floor(Math.sqrt(@count))
     col = row
-    (if row == col then row++ else col++) while (row * col) < n
+    (if row == col then row++ else col++) while (row * col) < @count
     row
 
   #
@@ -135,6 +134,7 @@ class @Navigator
     _this = @
     if @user_id
       d3.json("api/v1/me/counters.json", (resp) ->
+        _this.count = resp.length
         counters.selectAll(".counter")
           .data(resp)
           .enter()
@@ -146,7 +146,7 @@ class @Navigator
           .style("left", () -> _this.position.x)
           .style("width", () -> _this.colWidth())
           .style("height", () -> _this.colHeight())
-          .each((d,i) -> new Counter(d.id, _this, i))
+          .each((d,i) -> new Counter(d.id, _this, i,d.value))
         _this.resize()
       )
 

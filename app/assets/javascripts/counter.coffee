@@ -1,6 +1,7 @@
 class @Counter
-  constructor: (id, nav, i) ->
+  constructor: (id, nav, i, val) ->
     # Vars
+    @value = val
     @id = id
     @index = i
     @nav = nav
@@ -38,8 +39,10 @@ class @Counter
       .select('.increment-button')
       .on 'click', () ->
         _this.increment()
+
     # Odometer
-    # od = new Odometer({selector: "*[data-counter-id='#{id}'] .number h2"})
+    el = document.querySelector("*[data-counter-id='#{@id}'] .number h2");
+    od = new Odometer(el: el, theme: "minimal", value: @value)
 
     # FitText
     # _this.elem.find(".number h2").fitText(0.1, { minFontSize: '20px', maxFontSize: '80px' });
@@ -64,25 +67,32 @@ class @Counter
           .style("height", () -> "#{window.innerHeight}px")
 
         $('.edit-counter').on 'ajax:success', () ->
-          _this.nav.setMode("index")
+          # _this.nav.setMode("index")
+          _this.back()
 
         $('#chart').on 'ajax:error', (a,b) ->
           $("#error_explanation").text(b.responseText)
 
         $('.back-button').on 'click', (e) ->
-          _this.nav.setMode("index")
-          d3EditView
-            .transition()
-            .duration(_this.nav.duration)
-            .ease('elastic')
-            .style("left", () -> "#{_this.position().x}px")
-            .style("top", () -> "#{_this.position().y}px")
-            .style("width", () -> "#{_this.nav.colWidth()}px")
-            .style("height", () -> "#{_this.nav.colHeight()}px")
-            .each("end", () -> d3EditView.remove())
+          # _this.nav.setMode("index")
+          _this.back()
           e.preventDefault()
     })
 
+  back: () ->
+    editView = $(".edit-counter")
+    d3EditView = d3.selectAll(editView.toArray())
+    @nav.setMode("index")
+    _this = @
+    d3EditView
+      .transition()
+      .duration(@nav.duration)
+      .ease('elastic')
+      .style("left", () -> "#{_this.position().x}px")
+      .style("top", () -> "#{_this.position().y}px")
+      .style("width", () -> "#{_this.nav.colWidth()}px")
+      .style("height", () -> "#{_this.nav.colHeight()}px")
+      .each("end", () -> editView.remove())
 
   increment: () ->
     _this = @
