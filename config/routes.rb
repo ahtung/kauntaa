@@ -14,16 +14,11 @@ Rails.application.routes.draw do
     root 'counters#index', as: :user_root
   end
 
-  get 'counter/new', to: 'counters#new_counter'
+  root 'pages#welcome', as: :guest_root
 
-  root 'pages#about', as: :guest_root
-
-  resources :users do
-    resources :counters do
-      member do
-        get 'increment'
-        get 'decrement'
-      end
+  resources :counters, only: [:edit, :new, :show] do
+    collection do
+      get 'add'
     end
   end
 end

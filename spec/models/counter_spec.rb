@@ -18,7 +18,7 @@ RSpec.describe Counter, type: :model do
 
     it 'increment_url' do
       counter = create(:counter, :with_user)
-      expect(counter.increment_url).to eq("/users/#{counter.user.id}/counters/#{counter.id}/increment")
+      expect(counter.increment_url).to eq("/api/v1/me/counters/#{counter.id}/increment")
     end
 
     describe 'clean_value' do
@@ -45,6 +45,13 @@ RSpec.describe Counter, type: :model do
       counter = create(:counter, value: 0)
       counter.increment
       expect(counter.value).to eq 1
+    end
+
+    it 'active_since' do
+      counter = create(:counter, value: 0)
+      counter.created_at = Time.zone.now - 2.days
+      expected = distance_of_time_in_words(counter.created_at, Time.zone.now)
+      expect(expected).to eq('2 days')
     end
   end
 end

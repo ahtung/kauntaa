@@ -20,7 +20,7 @@ end
 RSpec.shared_examples 'increment counter' do |expected_value|
   it '' do
     within "[data-counter-id='#{subject.id}']" do
-      first('.increment-button').trigger 'click'
+      first('.increment-button').click
     end
     sleep 1
     value = 0
@@ -34,7 +34,7 @@ end
 RSpec.shared_examples 'decrement counter' do |expected_value|
   xit '' do
     within "[data-counter-id='#{subject.id}']" do
-      first('.decrement-button').trigger 'click'
+      first('.decrement-button').click
     end
     sleep 1
     value = 0

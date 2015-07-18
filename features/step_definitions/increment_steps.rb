@@ -7,21 +7,25 @@ end
 
 When(/^I visit click to a counter$/) do
   find('.counter', match: :first).click
-  sleep 0.3
 end
 
 When(/^I click on a description of a counter$/) do
-  find('.edit-counter', match: :first).click
+  sleep(1)
+  within '.counters' do
+    find('.edit-counter-link', match: :first).click
+  end
+  sleep(1)
+  click_on 'Back'
 end
 
 Then(/^counter should not have changed$/) do
-  counter_value = first('.counter-value').text.to_i
-  expect(counter_value).to eq(0)
+  within '.counters' do
+    counter_value = first('.counter').first('.number h2').text.to_i
+    expect(counter_value).to eq(0)
+  end
 end
 
 Then(/^counter should have increased by (\d+)$/) do |increment|
-  within '#chart' do
-    counter_value = first('.counter').first('.counter-value').text.to_i
-    expect(counter_value).to eq(increment.to_i)
-  end
+  counter_value = first('.counter').first('.number h2').text.to_i
+  expect(counter_value).to eq(increment.to_i)
 end

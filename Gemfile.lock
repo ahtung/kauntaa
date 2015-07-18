@@ -2,38 +2,37 @@ GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
   specs:
-    CFPropertyList (2.3.1)
     abstract_type (0.0.7)
-    actionmailer (4.2.2)
-      actionpack (= 4.2.2)
-      actionview (= 4.2.2)
-      activejob (= 4.2.2)
+    actionmailer (4.2.3)
+      actionpack (= 4.2.3)
+      actionview (= 4.2.3)
+      activejob (= 4.2.3)
       mail (~> 2.5, >= 2.5.4)
       rails-dom-testing (~> 1.0, >= 1.0.5)
-    actionpack (4.2.2)
-      actionview (= 4.2.2)
-      activesupport (= 4.2.2)
+    actionpack (4.2.3)
+      actionview (= 4.2.3)
+      activesupport (= 4.2.3)
       rack (~> 1.6)
       rack-test (~> 0.6.2)
       rails-dom-testing (~> 1.0, >= 1.0.5)
-      rails-html-sanitizer (~> 1.0, >= 1.0.1)
-    actionview (4.2.2)
-      activesupport (= 4.2.2)
+      rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    actionview (4.2.3)
+      activesupport (= 4.2.3)
       builder (~> 3.1)
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
-      rails-html-sanitizer (~> 1.0, >= 1.0.1)
-    activejob (4.2.2)
-      activesupport (= 4.2.2)
+      rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    activejob (4.2.3)
+      activesupport (= 4.2.3)
       globalid (>= 0.3.0)
-    activemodel (4.2.2)
-      activesupport (= 4.2.2)
+    activemodel (4.2.3)
+      activesupport (= 4.2.3)
       builder (~> 3.1)
-    activerecord (4.2.2)
-      activemodel (= 4.2.2)
-      activesupport (= 4.2.2)
+    activerecord (4.2.3)
+      activemodel (= 4.2.3)
+      activesupport (= 4.2.3)
       arel (~> 6.0)
-    activesupport (4.2.2)
+    activesupport (4.2.3)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -43,7 +42,7 @@ GEM
       ice_nine (~> 0.11.0)
       memoizable (~> 0.4.0)
     addressable (2.3.8)
-    arel (6.0.0)
+    arel (6.0.1)
     ast (2.0.0)
     astrolabe (1.3.0)
       parser (>= 2.2.0.pre.3, < 3.0)
@@ -131,8 +130,6 @@ GEM
       multipart-post (>= 1.2, < 3)
     fastercsv (1.5.5)
     ffi (1.9.10)
-    fission (0.5.0)
-      CFPropertyList (~> 2.2)
     fittextjs_rails (1.2.0.1)
       railties (>= 3.1)
     flay (2.4.0)
@@ -141,41 +138,11 @@ GEM
     flog (4.2.1)
       ruby_parser (~> 3.1, > 3.1.0)
       sexp_processor (~> 4.4)
-    fog (1.32.0)
-      fog-atmos
-      fog-aws (>= 0.6.0)
-      fog-brightbox (~> 0.4)
-      fog-core (~> 1.32)
-      fog-ecloud (= 0.1.1)
-      fog-google (>= 0.0.2)
-      fog-json
-      fog-local
-      fog-powerdns (>= 0.1.1)
-      fog-profitbricks
-      fog-radosgw (>= 0.0.2)
-      fog-riakcs
-      fog-sakuracloud (>= 0.0.4)
-      fog-serverlove
-      fog-softlayer
-      fog-storm_on_demand
-      fog-terremark
-      fog-vmfusion
-      fog-voxel
-      fog-xml (~> 0.1.1)
-      ipaddress (~> 0.5)
-      nokogiri (~> 1.5, >= 1.5.11)
-    fog-atmos (0.1.0)
-      fog-core
-      fog-xml
-    fog-aws (0.6.0)
+    fog-aws (0.7.3)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
       ipaddress (~> 0.8)
-    fog-brightbox (0.7.2)
-      fog-core (~> 1.22)
-      fog-json
-      inflecto (~> 0.0.2)
     fog-core (1.32.0)
       builder
       excon (~> 0.45)
@@ -183,55 +150,9 @@ GEM
       mime-types
       net-scp (~> 1.1)
       net-ssh (>= 2.1.3)
-    fog-ecloud (0.1.1)
-      fog-core
-      fog-xml
-    fog-google (0.0.6)
-      fog-core
-      fog-json
-      fog-xml
     fog-json (1.0.2)
       fog-core (~> 1.0)
       multi_json (~> 1.10)
-    fog-local (0.2.1)
-      fog-core (~> 1.27)
-    fog-powerdns (0.1.1)
-      fog-core (~> 1.27)
-      fog-json (~> 1.0)
-      fog-xml (~> 0.1)
-    fog-profitbricks (0.0.3)
-      fog-core
-      fog-xml
-      nokogiri
-    fog-radosgw (0.0.4)
-      fog-core (>= 1.21.0)
-      fog-json
-      fog-xml (>= 0.0.1)
-    fog-riakcs (0.1.0)
-      fog-core
-      fog-json
-      fog-xml
-    fog-sakuracloud (1.0.1)
-      fog-core
-      fog-json
-    fog-serverlove (0.1.2)
-      fog-core
-      fog-json
-    fog-softlayer (0.4.7)
-      fog-core
-      fog-json
-    fog-storm_on_demand (0.1.1)
-      fog-core
-      fog-json
-    fog-terremark (0.1.0)
-      fog-core
-      fog-xml
-    fog-vmfusion (0.1.0)
-      fission
-      fog-core
-    fog-voxel (0.1.0)
-      fog-core
-      fog-xml
     fog-xml (0.1.2)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
@@ -264,11 +185,11 @@ GEM
     haml (4.0.6)
       tilt
     hashie (3.4.2)
+    high_voltage (2.3.0)
     highline (1.6.21)
     i18n (0.7.0)
     ice_nine (0.11.1)
-    inflecto (0.0.2)
-    inline_svg (0.5.3)
+    inline_svg (0.6.0)
       activesupport (>= 4.1.9)
       loofah (>= 2.0)
       nokogiri (~> 1.6)
@@ -346,16 +267,16 @@ GEM
       rack (>= 1.0.0)
     rack-test (0.6.3)
       rack (>= 1.0)
-    rails (4.2.2)
-      actionmailer (= 4.2.2)
-      actionpack (= 4.2.2)
-      actionview (= 4.2.2)
-      activejob (= 4.2.2)
-      activemodel (= 4.2.2)
-      activerecord (= 4.2.2)
-      activesupport (= 4.2.2)
+    rails (4.2.3)
+      actionmailer (= 4.2.3)
+      actionpack (= 4.2.3)
+      actionview (= 4.2.3)
+      activejob (= 4.2.3)
+      activemodel (= 4.2.3)
+      activerecord (= 4.2.3)
+      activesupport (= 4.2.3)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.2.2)
+      railties (= 4.2.3)
       sprockets-rails
     rails-assets-d3 (3.5.6)
     rails-assets-odometer (0.4.7)
@@ -373,9 +294,9 @@ GEM
       rails_stdout_logging
     rails_serve_static_assets (0.0.4)
     rails_stdout_logging (0.0.3)
-    railties (4.2.2)
-      actionpack (= 4.2.2)
-      activesupport (= 4.2.2)
+    railties (4.2.3)
+      actionpack (= 4.2.3)
+      activesupport (= 4.2.3)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rainbow (2.0.0)
@@ -415,7 +336,7 @@ GEM
       rspec-mocks (~> 3.3.0)
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
-    rspec_junit_formatter (0.2.2)
+    rspec_junit_formatter (0.2.3)
       builder (< 4)
       rspec-core (>= 2, < 4, != 2.12.0)
     rubocop (0.32.1)
@@ -532,12 +453,13 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fittextjs_rails
-  fog
+  fog-aws
   foreman
   foundation-rails
   grape
   grape-entity
   grape-entity-matchers
+  high_voltage (~> 2.3.0)
   inline_svg
   jbuilder (~> 2.0)
   jquery-rails
@@ -549,7 +471,7 @@ DEPENDENCIES
   puma
   pundit
   rack-google-analytics
-  rails (= 4.2.2)
+  rails (= 4.2.3)
   rails-assets-d3!
   rails-assets-odometer!
   rails-assets-underscore!
@@ -557,7 +479,7 @@ DEPENDENCIES
   roboto
   rspec-its
   rspec-rails
-  rspec_junit_formatter (= 0.2.2)
+  rspec_junit_formatter (~> 0.2.3)
   rubocop
   rubycritic
   sass-rails (~> 5.0)

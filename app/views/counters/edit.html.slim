@@ -1,21 +1,16 @@
-css:
-  body {
-    background:#{@palette.background_color};
-  }
-.row
-  .columns.small-1 &nbsp;
-  .columns.small-10#back_from_new_counter
-    = link_to 'Back', :back, style: "color:#{@palette.text_color};"
-  .columns.small-1.medium-3 &nbsp;
-.row#counter_form
-  .columns.small-1.medium-3 &nbsp;
-  .columns.small-10.medium-6.text-center
-    h2.hide-for-small
-      small style="color:#{@palette.text_color};" Tell me about your counter:
-    h2.show-for-small.small_header
-      small style="color:#{@palette.text_color};" Tell me:
-    == render 'form'
-  .columns.small-1.medium-3 &nbsp;
-.row
-  .column.small-12.text-right
-    = link_to 'x', user_counter_path, method: :delete, data: {confirm: "Sure?"}
+div style="background-color: #{@palette.background_color};height:100%;"
+  .row
+    .columns.small-1 &nbsp;
+    .columns.small-10#back_from_new_counter
+      = link_to 'Back', :back, style: "color:#{@palette.text_color};", class: "back-button"
+      = link_to 'Delete', "/api/v1/me/counters/#{@counter.id}", id: 'delete-button', method: :delete, remote: true, data: { confirm: 'Are you sure?'}, :method => :delete
+    .columns.small-1.medium-3 &nbsp;
+  .row#counter_form
+    .columns.small-1.medium-3 &nbsp;
+    .columns.small-10.medium-6.text-center
+      h2.hide-for-small
+        small style="color:#{@palette.text_color};" Tell me about your counter:
+      h2.show-for-small.small_header
+        small style="color:#{@palette.text_color};" Tell me:
+      == render 'form'
+    .columns.small-1.medium-3 &nbsp;

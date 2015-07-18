@@ -2,7 +2,7 @@
   .columns.small-12.text-center
     h1 style="color: #{@palette.foreground_color}"= link_to "Kauntaa", guest_root_path
     h2 style="color: #{@palette.text_color}"
-      small About
+      small Count anything
 
 .row
   .columns.small-12.text-center
@@ -13,18 +13,4 @@
 
 .row
   .columns.small-12.text-center
-    h3 Why?
-    p
-      | Because we love statistics
-    
-    h3 Features?
-    ul style="list-style:none;padding:0;margin:0;"
-      li API to connect with Zapier
-      li Mobile Frienly
-      li Safe
-      li Easy
-    
-    h3 Who?
-    p
-      | More info
-      = link_to ' Ahtung Co.', 'http://www.ahtung.co'
+    h4 = link_to 'About', page_path('about'), style: "color: #{@palette.text_color};"

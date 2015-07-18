@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 gem 'bundler', '>= 1.8.4'
-gem 'rails', '4.2.2'
+gem 'rails', '4.2.3'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -23,12 +23,13 @@ gem 'pundit'
 gem 'cane'
 gem 'roboto'
 gem 'sitemap_generator'
-gem 'fog'
+gem 'fog-aws'
 gem 'grape'
 gem 'grape-entity'
 gem 'inline_svg'
 gem 'fittextjs_rails'
 gem 'skylight'
+gem 'high_voltage', '~> 2.3.0'
 
 group :production do
   gem 'rails_12factor'
@@ -53,7 +54,7 @@ group :development, :test do
   gem 'launchy'
   gem 'database_cleaner'
   gem 'selenium-webdriver'
-  gem 'rspec_junit_formatter', '0.2.2'
+  gem 'rspec_junit_formatter', '~> 0.2.3'
 end
 
 group :test do

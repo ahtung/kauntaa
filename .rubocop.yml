@@ -14,7 +14,7 @@ AllCops:
   RunRailsCops: true
 
 Style/LineLength:
-  Max: 150
+  Max: 145
 Metrics/AbcSize:
   Max: 15
 Metrics/BlockNesting:
@@ -31,6 +31,9 @@ Metrics/LineLength:
     - http
     - https
 
+Style/ClassAndModuleChildren:
+  Enabled: false
+
 Metrics/MethodLength:
   CountComments: false  # count full line comments?
   Max: 13
@@ -41,3 +44,9 @@ Metrics/ParameterLists:
 
 Metrics/PerceivedComplexity:
   Max: 7
+
+StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: nested
