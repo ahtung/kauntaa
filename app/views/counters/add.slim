@@ -2,7 +2,7 @@
   .count.text-center
     .number
       h2 style="color: #{@palette.foreground_color};"
-        = "Add"
+        = link_to "Add", "#", class: 'add-counter-link'
   .description.text-center
     .text
       = link_to('Sign out', destroy_user_session_path, class: "sign-out")

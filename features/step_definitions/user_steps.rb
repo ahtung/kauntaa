@@ -7,7 +7,7 @@ When(/^I click on sign out$/) do
 end
 
 When(/^I add a counter$/) do
-  find('.add-text', match: :first).click
+  find('.add-counter-link', match: :first).click
   fill_form
 end
 
@@ -20,7 +20,7 @@ When(/^I click on Delete$/) do
 end
 
 When(/^I add a counter without name$/) do
-  find('.add-text', match: :first).click
+  find('.add-counter-link', match: :first).click
   within('#new_counter') do
     find('input[type="submit"]', match: :first).click
   end
@@ -39,8 +39,10 @@ When(/^I fill counter form without name$/) do
   fill_form_without_name
 end
 
-Then(/^I should have two counters$/) do
-  expect(page).to have_selector('.counter', count: 2)
+Then(/^I should have a new counter$/) do
+  within ".counters" do
+    expect(page).to have_selector('.counter', count: 1)
+  end
 end
 
 Then(/^Counter name should have changed$/) do
@@ -71,7 +73,7 @@ def fill_form_without_name
 end
 
 def fill_form
-  within '.edit-counter' do
+  within '#chart' do
     @new_counter = build(:counter)
     fill_in 'counter_value', with: @new_counter.value
     fill_in 'counter_name', with: @new_counter.name

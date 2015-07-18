@@ -26,8 +26,13 @@ class @Navigator
       @removeCounters()
       @removeHeader()
       @appendEdit()
+    else if mode == "add"
+      @removeCounters()
+      @removeHeader()
+      @appendAdd()
     else if mode == "index"
       @removeEdit()
+      @removeAdd()
       @appendHeader()
       @appendCounters()
 
@@ -85,11 +90,16 @@ class @Navigator
   appendHeader: () ->
     palette_id = $('#chart').data('new-palette-id')
     @chart.append("div").attr("class", "new-counter")
+    _this = @
     $.ajax({
       url: "/counters/add?palette_id=#{palette_id}",
       success: (result) ->
         view = result
         $(".new-counter").html(view)
+
+        $('.add-counter-link').on 'click', (e) ->
+          _this.setMode("add")
+          e.preventDefault()
     })
 
   #
@@ -97,6 +107,26 @@ class @Navigator
   #
   appendAdd: () ->
     @chart.append("div").attr("class", "add-counter")
+    _this = @
+    palette_id = $('#chart').data('new-palette-id')
+    $.ajax({
+      url: "/counters/new?palette_id=#{palette_id}"
+      success: (result) ->
+        view = result
+        $(".add-counter").html(view)
+        $('.add-counter').on 'ajax:success', () ->
+          _this.setMode("index")
+
+        $('#chart').on 'ajax:error', (a,b) ->
+          $("#error_explanation").text(b.responseText)
+
+        $('.back-button').on 'click', (e) ->
+          _this.setMode("index")
+          e.preventDefault()
+    })
+
+  removeAdd: () ->
+    @chart.select(".add-counter").remove()
 
   #
   # Append '.counters' div
@@ -219,16 +249,3 @@ class @Navigator
   #         _this.fetchCounters()
   #       $('#chart').on 'ajax:error', '#new_counter', (xhr, ajaxOptions, thrownError) ->
   #         $('#error_explanation').text(ajaxOptions.responseText)
-  # #
-  # # Open add window
-  # #
-  # openAddWindow: () ->
-  #   _this = @
-  #   @svg.select("#add_form_window")
-  #     .attr({
-  #       'width': '100%',
-  #       'height': '100%',
-  #     }).select('div')
-  #     .attr({
-  #       'style': 'display:block; height:100vh;'
-  #     })
