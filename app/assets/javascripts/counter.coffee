@@ -42,7 +42,7 @@ class @Counter
 
     # Odometer
     el = document.querySelector("*[data-counter-id='#{@id}'] .number h2");
-    od = new Odometer(el: el, theme: "minimal", value: @value)
+    # od = new Odometer(el: el, theme: "minimal", value: @value)
 
     # FitText
     # _this.elem.find(".number h2").fitText(0.1, { minFontSize: '20px', maxFontSize: '80px' });
