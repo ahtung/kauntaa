@@ -10,12 +10,15 @@ When(/^I visit click to a counter$/) do
 end
 
 When(/^I click on a description of a counter$/) do
-  find('.edit-counter-link', match: :first).click
+  sleep(1)
+  within ".counters" do
+    find('.edit-counter-link', match: :first).click
+  end
+  sleep(1)
+  click_on 'Back'
 end
 
 Then(/^counter should not have changed$/) do
-  sleep 1
-  click_on 'Back'
   within '.counters' do
     counter_value = first('.counter').first('.number h2').text.to_i
     expect(counter_value).to eq(0)
