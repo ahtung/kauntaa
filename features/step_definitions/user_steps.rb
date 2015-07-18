@@ -28,7 +28,7 @@ end
 
 When(/^I edit a counter$/) do
   sleep(1)
-  within ".counters" do
+  within '.counters' do
     find('.edit-counter-link', match: :first).click
   end
   @counter = Counter.first

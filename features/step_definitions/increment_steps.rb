@@ -11,7 +11,7 @@ end
 
 When(/^I click on a description of a counter$/) do
   sleep(1)
-  within ".counters" do
+  within '.counters' do
     find('.edit-counter-link', match: :first).click
   end
   sleep(1)
