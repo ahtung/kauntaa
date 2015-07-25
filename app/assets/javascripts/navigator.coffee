@@ -11,8 +11,9 @@ class @Navigator
     @position = { x:0, y:0 }
     @count = 0
 
-    @appendHeader()
-    @appendCounters()
+    if @user_id
+      @appendHeader()
+      @appendCounters()
 
     # Events
     _this = @
