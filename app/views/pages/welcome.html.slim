@@ -13,4 +13,4 @@
 
 .row
   .columns.small-12.text-center
-    h4 = link_to 'About', page_path('about'), style: "color: #{@palette.text_color};"
+    h4 = colored_link({link: page_path('about'), link_text: 'About', palette: @palette})
