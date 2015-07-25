@@ -5,8 +5,10 @@ class @Navigator
   constructor: () ->
     # Vars
     @duration = 500
-    @chart = d3.select("#chart")
-    @user_id = $('#chart').data('user-id')
+    @elem = $('#navigator')
+    @navigator = d3.select("#navigator")
+    @user_id = @elem.data('user-id')
+    @palette_id = @elem.data('new-palette-id')
     @mode = "index"
     @position = { x:0, y:0 }
     @count = 0
@@ -77,21 +79,20 @@ class @Navigator
   #
   #
   removeHeader: () ->
-    @chart.select(".new-counter").remove()
+    @navigator.select(".new-counter").remove()
 
   #
   #
   #
   appendHeader: () ->
-    palette_id = $('#chart').data('new-palette-id')
     _this = @
-    @chart.append("div")
+    @navigator.append("div")
       .attr("class", "new-counter")
       .style("width", () -> _this.colWidth())
       .style("height", () -> _this.colHeight())
     _this = @
     $.ajax({
-      url: "/counters/add?palette_id=#{palette_id}",
+      url: "/counters/add?palette_id=#{_this.palette_id}",
       success: (result) ->
         view = result
         $(".new-counter").html(view)
@@ -105,18 +106,17 @@ class @Navigator
   # Append '.add-counter' div
   #
   appendAdd: () ->
-    @chart.append("div").attr("class", "add-counter")
+    @navigator.append("div").attr("class", "add-counter")
     _this = @
-    palette_id = $('#chart').data('new-palette-id')
     $.ajax({
-      url: "/counters/new?palette_id=#{palette_id}"
+      url: "/counters/new?palette_id=#{_this.palette_id}"
       success: (result) ->
         view = result
         $(".add-counter").html(view)
         $('.add-counter').on 'ajax:success', () ->
           _this.setMode("index")
 
-        $('#chart').on 'ajax:error', (a,b) ->
+        @elem.on 'ajax:error', (a,b) ->
           $("#error_explanation").text(b.responseText)
 
         $('.back-button').on 'click', (e) ->
@@ -125,13 +125,13 @@ class @Navigator
     })
 
   removeAdd: () ->
-    @chart.select(".add-counter").remove()
+    @navigator.select(".add-counter").remove()
 
   #
   # Append '.counters' div
   #
   appendCounters: () ->
-    counters = @chart.append("div").attr("class", "counters")
+    counters = @navigator.append("div").attr("class", "counters")
     _this = @
     if @user_id
       d3.json("api/v1/me/counters.json", (resp) ->
@@ -174,7 +174,7 @@ class @Navigator
   #
   appendEdit: () ->
     _this = @
-    @chart.append("div")
+    @navigator.append("div")
       .attr("class", "edit-counter")
       .style("top", @position.x)
       .style("left", @position.y)
@@ -235,32 +235,3 @@ class @Navigator
         .duration(@duration)
         .ease('elastic')
         .attr("style", (d, i) -> "width:#{_this.colWidth()}px;height:#{_this.colHeight()}px;top:#{parseInt((i + 1) / _this.colCount()) * _this.colHeight()}px;left:#{((i + 1) % _this.colCount()) * _this.colWidth()}px;background-color:#{d.palette.background_color}")
-  #
-  # #
-  # # Append Add Window
-  # #
-  # appendAddWindow: () ->
-  #   _this = @
-  #   palette_id = $('#chart').data('new-palette-id')
-  #   $.ajax
-  #     url: "/users/#{@user_id}/counters/new?palette_id=#{palette_id}"
-  #     success: (data) ->
-  #       _this.svg.select('#add_form_window')
-  #       .attr({
-  #         'x': 0,
-  #         'y': 0,
-  #         'width': 0,
-  #         'height': 0,
-  #       })
-  #       .append('xhtml:html')
-  #       .append('xhtml:body')
-  #       .append('xhtml:div')
-  #       .html(data)
-  #       .attr({
-  #         'style': 'display:none;'
-  #       })
-  #       $('#chart').on 'ajax:success', '#new_counter', () ->
-  #         _this.appendAddWindow()
-  #         _this.fetchCounters()
-  #       $('#chart').on 'ajax:error', '#new_counter', (xhr, ajaxOptions, thrownError) ->
-  #         $('#error_explanation').text(ajaxOptions.responseText)
