@@ -16,6 +16,7 @@
  *= require odometer/themes/odometer-theme-minimal
  *= require pages
  *= require counter
+ *= require navigator
  */
 
 .new-counter,
@@ -70,10 +71,4 @@
       }
     }
   }
-}
-
-
-#chart {
-  width: 100%;
-  height: 100%;
 }
