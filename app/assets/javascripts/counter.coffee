@@ -70,7 +70,7 @@ class @Counter
           # _this.nav.setMode("index")
           _this.back()
 
-        $('#chart').on 'ajax:error', (a,b) ->
+        $('#navigator').on 'ajax:error', (a,b) ->
           $("#error_explanation").text(b.responseText)
 
         $('.back-button').on 'click', (e) ->
