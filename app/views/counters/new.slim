@@ -2,7 +2,7 @@
   .row
     .columns.small-1 &nbsp;
     .columns.small-10#back_from_new_counter
-      = link_to 'Back', :back, style: "color:#{@palette.text_color};", class: "back-button"
+      = colored_link_to "Back", :back, { palette: { text_color: @palette.text_color }, class: "back-button" }
     .columns.small-1 &nbsp;
   .row#counter_form
     .columns.small-1.medium-3 &nbsp;

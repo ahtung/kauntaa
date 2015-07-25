@@ -5,5 +5,4 @@
         = @counter.clean_value
   .description.text-center
     .text
-      = link_to edit_counter_path(@counter), class: 'edit-counter-link', style: "color: #{@counter.palette.text_color}" do
-        = "#{truncate(@counter.name, length: 14)} since #{time_ago_in_words(@counter.created_at)}".html_safe
+      = colored_link_to "#{truncate(@counter.name, length: 14)} since #{time_ago_in_words(@counter.created_at)}".html_safe, edit_counter_path(@counter), { palette: { text_color: @counter.palette.text_color }, class: 'edit-counter-link' }
