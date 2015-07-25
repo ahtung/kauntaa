@@ -1,9 +1,6 @@
 div style="background-color:#{@palette.background_color};height:100%;"
   .count.text-center
-    .number
-      h2 style="color: #{@palette.foreground_color};"
-        = link_to "#", class: 'add-counter-link' do
-          = inline_svg "add.svg", class: 'add-icon'
+    h2 style="color: #{@palette.foreground_color};"
+      = colored_link_to "", "#", { palette: { text_color: @palette.foreground_color }, class: "add-counter-link" }
   .description.text-center
-    .text
-      = colored_link_to "Sign out", destroy_user_session_path, { palette: { text_color: @palette.foreground_color }, class: "sign-out" }
+    = colored_link_to "Sign out", destroy_user_session_path, { palette: { text_color: @palette.foreground_color }, class: "sign-out" }
