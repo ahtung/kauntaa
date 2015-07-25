@@ -13,7 +13,7 @@ html lang="en"
   body style="background:#{@palette.background_color};"
     .row#about_header
       .columns.small-12.text-center
-        h1 style="color: #{@palette.foreground_color}"= link_to "Kauntaa", guest_root_path
+        h1 style="color: #{@palette.foreground_color}"= colored_link_to "Kauntaa", guest_root_path, palette: @palette
         h2 style="color: #{@palette.text_color}"
           small= yield(:header)
     .row
