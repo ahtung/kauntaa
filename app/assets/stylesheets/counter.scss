@@ -1,6 +1,13 @@
 @import "foundation_and_overrides";
 
 // Index
+
+.new-counter{
+  .number h2{
+    margin-top:0;
+  }
+}
+
 .counters {
   width: 100%;
   height: 100%;
