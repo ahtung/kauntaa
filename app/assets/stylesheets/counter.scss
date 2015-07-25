@@ -12,13 +12,11 @@
         margin-top:0;
         a{
           height:100%;
-          text-align:center;
           .add-icon {
+            position: relative;
             top: 50%;
             transform: translateY(-50%);
             height:50%;
-            left:inherit;
-            text-align:center;
           }
         }
       }
