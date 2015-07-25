@@ -1,15 +1,5 @@
-.row#about_header
-  .columns.small-12.text-center
-    h1 style="color: #{@palette.foreground_color}"= link_to "Kauntaa", guest_root_path
-    h2 style="color: #{@palette.text_color}"
-      small About
-
-.row
-  .columns.small-12.text-center
-    - unless user_signed_in?
-      = link_to 'Sign in with Google', user_omniauth_authorize_path(:google_oauth2), class: 'button', style: "color: #{@palette.text_color}; background: #{@palette.foreground_color}; "
-    - else
-      = link_to 'Home', user_root_path, class: 'button',  style: "color: #{@palette.text_color}; background: #{@palette.foreground_color}; "
+- content_for :header
+  = "About"
 
 .row
   .columns.small-12.text-center
