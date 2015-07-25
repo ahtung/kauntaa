@@ -116,7 +116,7 @@ class @Navigator
         $('.add-counter').on 'ajax:success', () ->
           _this.setMode("index")
 
-        @elem.on 'ajax:error', (a,b) ->
+        _this.elem.on 'ajax:error', (a,b) ->
           $("#error_explanation").text(b.responseText)
 
         $('.back-button').on 'click', (e) ->
