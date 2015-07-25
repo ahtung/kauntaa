@@ -1,4 +1,0 @@
-# PagesController
-class PagesController < ApplicationController
-  layout "page"
-end

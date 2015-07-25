@@ -1,21 +1,23 @@
 Rails.application.routes.draw do
+  # Robots
   mount_roboto
-  mount API => '/'
 
-  get 'pages/about'
+  # API
+  mount API => "/"
 
-  constraints(format: 'xml') do
-    get '/sitemap', to: redirect('https://s3.eu-central-1.amazonaws.com/kauntaa/sitemaps/sitemap.xml.gz')
+  # Sitemap
+  constraints(format: "xml") do
+    get "/sitemap", to: redirect("https://s3.eu-central-1.amazonaws.com/kauntaa/sitemaps/sitemap.xml.gz")
   end
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-
+  # Users
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   authenticated :user do
-    root 'counters#index', as: :user_root
+    # User root
+    root "counters#index", as: :user_root
   end
 
-  root 'pages#welcome', as: :guest_root
-
+  # Counters
   resources :counters, only: [:edit, :new, :show] do
     collection do
       get 'add'
