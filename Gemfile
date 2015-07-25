@@ -29,6 +29,7 @@ gem 'grape-entity'
 gem 'fittextjs_rails'
 gem 'skylight'
 gem 'high_voltage', '~> 2.4.0'
+gem 'meta-tags'
 
 group :production do
   gem 'rails_12factor'
