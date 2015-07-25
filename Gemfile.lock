@@ -189,10 +189,6 @@ GEM
     highline (1.6.21)
     i18n (0.7.0)
     ice_nine (0.11.1)
-    inline_svg (0.6.0)
-      activesupport (>= 4.1.9)
-      loofah (>= 2.0)
-      nokogiri (~> 1.6)
     ipaddress (0.8.0)
     jbuilder (2.3.0)
       activesupport (>= 3.0.0, < 5)
@@ -460,7 +456,6 @@ DEPENDENCIES
   grape-entity
   grape-entity-matchers
   high_voltage (~> 2.3.0)
-  inline_svg
   jbuilder (~> 2.0)
   jquery-rails
   launchy
