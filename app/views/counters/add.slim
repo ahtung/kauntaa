@@ -7,3 +7,9 @@ div style="background-color:#{@palette.background_color};height:100%;"
   .description.text-center
     .text
       = colored_link_to "Sign out", destroy_user_session_path, { palette: { text_color: @palette.foreground_color }, class: "sign-out" }
+
+css:
+  .add-icon g{
+    stroke: #{@palette.foreground_color};
+    stroke-width:2px;
+  }
