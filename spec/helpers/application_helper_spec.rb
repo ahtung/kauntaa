@@ -1,9 +1,10 @@
 require 'rails_helper'
 
-describe ApplicationHelper do
+RSpec.describe ApplicationHelper, type: :helper do
   describe "#colored_link_to" do
+    let(:palette) { create(:palette) }
+
     it "returns colored link with parameters" do
-      palette = create(:palette)
       parameters = [
         id: "home-link",
         class: "home-link",
