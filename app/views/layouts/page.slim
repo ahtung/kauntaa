@@ -14,12 +14,11 @@ html lang="en"
     .row.header
       .columns.small-12.text-center
         h1 style="color: #{@palette.foreground_color}"
-          = colored_link_to "Kauntaa", root_path, palette: @palette
+          = colored_link_to "Kauntaa", root_path, palette: { text_color: @palette.text_color }
         h2 style="color: #{@palette.text_color}"
           small= yield(:header)
     .row
       .columns.small-12.text-center
-         = link_to 'Sign in with Google', user_omniauth_authorize_path(:google_oauth2), class: 'button', style: "color: #{@palette.text_color}; background: #{@palette.foreground_color}; "  
-
+        = colored_link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), { palette: { text_color: @palette.text_color, foreground_color: @palette.foreground_color }, class: 'button' }
     == yield
     = javascript_include_tag "application"
