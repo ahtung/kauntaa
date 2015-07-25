@@ -13,16 +13,13 @@ html lang="en"
   body style="background:#{@palette.background_color};"
     .row#about_header
       .columns.small-12.text-center
-        h1 style="color: #{@palette.foreground_color}"= colored_link_to "Kauntaa", guest_root_path, palette: @palette
+        h1 style="color: #{@palette.foreground_color}"
+          = colored_link_to "Kauntaa", guest_root_path, palette: @palette
         h2 style="color: #{@palette.text_color}"
           small= yield(:header)
     .row
       .columns.small-12.text-center
-        - unless user_signed_in?
-          = link_to 'Sign in with Google', user_omniauth_authorize_path(:google_oauth2), class: 'button', style: "color: #{@palette.text_color}; background: #{@palette.foreground_color}; "
-        - else
-          = link_to 'Home', user_root_path, class: 'button',  style: "color: #{@palette.text_color}; background: #{@palette.foreground_color}; "
+         = link_to 'Sign in with Google', user_omniauth_authorize_path(:google_oauth2), class: 'button', style: "color: #{@palette.text_color}; background: #{@palette.foreground_color}; "  
 
     == yield
-
     = javascript_include_tag "application"
