@@ -5,4 +5,4 @@ div style="background-color:#{@palette.background_color};height:100%;"
         = link_to "Add", "#", class: 'add-counter-link'
   .description.text-center
     .text
-      = link_to('Sign out', destroy_user_session_path, class: "sign-out")
+      = colored_link_to "Sign out", destroy_user_session_path, { palette: { text_color: @palette.foreground_color }, class: "sign-out" }
