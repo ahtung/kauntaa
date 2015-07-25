@@ -1,11 +1,35 @@
 @import "foundation_and_overrides";
 
 // Index
+
+.new-counter{
+  .count{
+    height:50%;
+    h2{
+      margin-top:0;
+      height:100%;
+      .add-counter-link{
+        font-family:'circello';
+        transform: translateY(-50%);
+        top: 25%;
+        position: relative;
+      }
+    }
+  }
+  .description{
+    height:50%;
+    a{
+      position: relative;
+      top: 25%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
 .counters {
   width: 100%;
-  height: 100%;
 
-  .counter, .new-counter{
+  .counter{
     position:absolute;
 
     .count {
@@ -14,9 +38,15 @@
       text-align:center;
       float:left;
       .number{
-        float:left;
+        // float:left;
         height:100%;
-        width:100%;
+        width:100;
+        h2{
+          margin:auto;
+          position: relative;
+          top: 50%;
+          transform: translateY(-50%);
+        }
       }
     }
     .description{
@@ -84,7 +114,13 @@
 }
 
 @media only screen and (max-width: 40em) {
-
+  .counters{
+    height:100%;
+    .counter{
+      position:relative;
+      top:inherit !important;
+    }
+  }
   #counter_form{
     padding-top:0 !important;
     #counter_value{

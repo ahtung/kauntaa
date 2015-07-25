@@ -9,7 +9,7 @@ end
 
 Given(/^Guest visit root path$/) do
   create(:palette)
-  visit guest_root_path
+  visit root_path
 end
 
 When(/^I click on "(.*?)"/) do |arg1|

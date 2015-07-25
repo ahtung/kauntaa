@@ -2,7 +2,7 @@ div style="background-color: #{@palette.background_color};height:100%;"
   .row
     .columns.small-1 &nbsp;
     .columns.small-10#back_from_new_counter
-      = link_to 'Back', :back, style: "color:#{@palette.text_color};", class: "back-button"
+      = colored_link_to "Back", :back, { palette: { text_color: @palette.text_color }, class: "back-button" }
       = link_to 'Delete', "/api/v1/me/counters/#{@counter.id}", id: 'delete-button', method: :delete, remote: true, data: { confirm: 'Are you sure?'}, :method => :delete
     .columns.small-1.medium-3 &nbsp;
   .row#counter_form

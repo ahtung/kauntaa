@@ -1,16 +1,8 @@
-.row#about_header
-  .columns.small-12.text-center
-    h1 style="color: #{@palette.foreground_color}"= link_to "Kauntaa", guest_root_path
-    h2 style="color: #{@palette.text_color}"
-      small Count anything
-
+- set_meta_tags title: "Welcome",
+                description: "Kauntaa allows you to count anything you want",
+                keywords: "Kauntaa, counter, count"
+- content_for :header
+  = "Count anything"
 .row
   .columns.small-12.text-center
-    - unless user_signed_in?
-      = link_to 'Sign in with Google', user_omniauth_authorize_path(:google_oauth2), class: 'button', style: "color: #{@palette.text_color}; background: #{@palette.foreground_color}; "
-    - else
-      = link_to 'Home', user_root_path, class: 'button',  style: "color: #{@palette.text_color}; background: #{@palette.foreground_color}; "
-
-.row
-  .columns.small-12.text-center
-    h4 = link_to 'About', page_path('about'), style: "color: #{@palette.text_color};"
+    h4= colored_link_to "About", page_path("about"), palette: { text_color: @palette.foreground_color }
