@@ -3,8 +3,24 @@
 // Index
 
 .new-counter{
-  .number h2{
-    margin-top:0;
+  .count{
+    height:50%;
+    .number{
+      height:100%;
+      h2{
+        height:100%;
+        margin-top:0;
+        a{
+          height:100%;
+          .add-icon {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            height:50%;
+          }
+        }
+      }
+    }
   }
 }
 
