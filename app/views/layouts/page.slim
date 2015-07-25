@@ -13,12 +13,12 @@ html lang="en"
   body style="background:#{@palette.background_color};"
     .row.header
       .columns.small-12.text-center
-        h1 style="color: #{@palette.foreground_color}"
-          = colored_link_to "Kauntaa", root_path, palette: { text_color: @palette.text_color }
-        h2 style="color: #{@palette.text_color}"
-          small= yield(:header)
+        h1
+          = colored_link_to "Kauntaa", root_path, palette: { text_color: @palette.foreground_color }
+        h2
+          small style="color: #{@palette.text_color}"= yield(:header)
     .row
       .columns.small-12.text-center
-        = colored_link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), { palette: { text_color: @palette.text_color, foreground_color: @palette.foreground_color }, class: 'button' }
+        = colored_link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), { palette: { text_color: @palette.background_color, foreground_color: @palette.foreground_color }, class: 'button' }
     == yield
     = javascript_include_tag "application"
