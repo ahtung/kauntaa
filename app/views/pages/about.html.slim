@@ -1,30 +1,20 @@
-.row#about_header
-  .columns.small-12.text-center
-    h1 style="color: #{@palette.foreground_color}"= link_to "Kauntaa", guest_root_path
-    h2 style="color: #{@palette.text_color}"
-      small About
+- content_for :header
+  = "About"
 
 .row
   .columns.small-12.text-center
-    - unless user_signed_in?
-      = link_to 'Sign in with Google', user_omniauth_authorize_path(:google_oauth2), class: 'button', style: "color: #{@palette.text_color}; background: #{@palette.foreground_color}; "
-    - else
-      = link_to 'Home', user_root_path, class: 'button',  style: "color: #{@palette.text_color}; background: #{@palette.foreground_color}; "
-
-.row
-  .columns.small-12.text-center
-    h3 Why?
+    h3 style="color:#{@palette.text_color}" Why?
     p
       | Because we love statistics
     
-    h3 Features?
+    h3 style="color:#{@palette.text_color}" Features?
     ul style="list-style:none;padding:0;margin:0;"
       li API to connect with Zapier
-      li Mobile Frienly
+      li Mobile Friendly
       li Safe
       li Easy
     
-    h3 Who?
+    h3 style="color:#{@palette.text_color}" Who?
     p
       | More info
-      = link_to ' Ahtung Co.', 'http://www.ahtung.co'
+      = colored_link_to " Ahtung Co.", "http://www.ahtung.co", palette: { text_color: @palette.foreground_color }

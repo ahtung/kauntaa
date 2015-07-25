@@ -1,0 +1,24 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+
+    title == content_for?(:title) ? yield(:title) : "Kauntaa"
+
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "vendor/modernizr"
+    = csrf_meta_tag
+
+  body style="background:#{@palette.background_color};"
+    .row.header
+      .columns.small-12.text-center
+        h1
+          = colored_link_to "Kauntaa", root_path, palette: { text_color: @palette.foreground_color }
+        h2
+          small style="color: #{@palette.text_color}"= yield(:header)
+    .row
+      .columns.small-12.text-center
+        = colored_link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), { palette: { text_color: @palette.background_color, foreground_color: @palette.foreground_color }, class: 'button' }
+    == yield
+    = javascript_include_tag "application"

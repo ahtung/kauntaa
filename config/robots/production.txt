@@ -1,5 +1,5 @@
 User-Agent: *
 Allow: /
-Allow: /pages
+Allow: /about
 Disallow: /admin
 Sitemap: https://s3.eu-central-1.amazonaws.com/kauntaa/sitemaps/sitemap.xml.gz
