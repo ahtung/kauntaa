@@ -68,7 +68,7 @@ Then(/^Counter should be deleted$/) do
 end
 
 def fill_form_without_name
-  within '#chart' do
+  within '#navigator' do
     @new_counter = build(:counter)
     fill_in 'counter_value', with: @new_counter.value
     fill_in 'counter_name', with: nil
@@ -78,7 +78,7 @@ def fill_form_without_name
 end
 
 def fill_form
-  within '#chart' do
+  within '#navigator' do
     @new_counter = build(:counter)
     fill_in 'counter_value', with: @new_counter.value
     fill_in 'counter_name', with: @new_counter.name
