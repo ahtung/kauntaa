@@ -36,10 +36,6 @@ gem 'capistrano-rvm'
 gem 'capistrano-bundler'
 gem 'capistrano-passenger'
 
-group :production do
-  gem 'rails_12factor'
-end
-
 group :development do
   gem 'rubocop', require: false
   gem 'brakeman', require: false
