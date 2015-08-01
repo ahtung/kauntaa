@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 ruby '2.1.2'
 
@@ -69,8 +70,6 @@ group :test do
   gem 'grape-entity-matchers'
 end
 
-source 'https://rails-assets.org' do
-  gem 'rails-assets-d3'
-  gem 'rails-assets-underscore'
-  gem 'rails-assets-odometer'
-end
+gem 'rails-assets-d3'
+gem 'rails-assets-underscore'
+gem 'rails-assets-odometer'
