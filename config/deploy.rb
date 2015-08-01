@@ -1,4 +1,3 @@
-# config valid only for current version of Capistrano
 lock '3.4.0'
 
 set :application, 'kauntaa'
@@ -27,13 +26,12 @@ set :whenever_environment, defer { stage }
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 namespace :deploy do
-
-  desc "Run seeds"
+  desc 'Run seeds'
   task :seed do
     on roles(:app) do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          execute :rake, "db:seed"
+          execute :rake, 'db:seed'
         end
       end
     end
@@ -47,5 +45,4 @@ namespace :deploy do
       # end
     end
   end
-
 end
