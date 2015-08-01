@@ -34,7 +34,7 @@ gem 'capistrano',  '~> 3.1'
 gem 'capistrano-rails', '~> 1.1'
 gem 'capistrano-rvm'
 gem 'capistrano-bundler'
-gem 'capistrano-puma'
+gem 'capistrano3-puma'
 gem 'capistrano3-nginx', '~> 2.0'
 
 group :production do
