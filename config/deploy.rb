@@ -11,7 +11,7 @@ set :deploy_to, '/var/www/kauntaa'
 
 set :rvm_type, :system
 set :rvm_ruby_version, '2.1.2'
-set :whenever_environment, defer { stage }
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
 # Default value for :pty is false
 # set :pty, true

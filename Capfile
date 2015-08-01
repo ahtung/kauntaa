@@ -6,6 +6,6 @@ require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
 require 'capistrano/nginx'
 require 'capistrano/puma'
-require "whenever/capistrano"
+require 'whenever/capistrano'
 
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
