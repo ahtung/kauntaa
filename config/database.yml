@@ -11,7 +11,7 @@ test: &test
   database: kauntaa_test
 production:
   <<: *default
-  database: kauntaa_production
+  database: kauntaa
   username: kauntaa
   password: <%= ENV['KAUNTAA_DATABASE_PASSWORD'] %>
 
