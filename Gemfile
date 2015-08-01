@@ -34,7 +34,7 @@ gem 'capistrano',  '~> 3.1'
 gem 'capistrano-rails', '~> 1.1'
 gem 'capistrano-rvm'
 gem 'capistrano-bundler'
-gem 'capistrano-passenger'
+gem 'capistrano-puma'
 
 group :production do
   gem 'rails_12factor'
