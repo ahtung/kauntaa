@@ -30,6 +30,7 @@ gem 'grape-entity'
 gem 'fittextjs_rails'
 gem 'high_voltage', '~> 2.4.0'
 gem 'meta-tags'
+gem 'whenever', require: false
 gem 'capistrano',  '~> 3.1'
 gem 'capistrano-rails', '~> 1.1'
 gem 'capistrano-rvm'
