@@ -9,9 +9,14 @@ development:
 test: &test
   <<: *default
   database: kauntaa_test
+staging:
+  <<: *default
+  database: kauntaa_staging
+  username: kauntaa_staging
+  password: <%= ENV['KAUNTAA_DATABASE_PASSWORD'] %>
 production:
   <<: *default
-  database: kauntaa_production
+  database: kauntaa
   username: kauntaa
   password: <%= ENV['KAUNTAA_DATABASE_PASSWORD'] %>
 
