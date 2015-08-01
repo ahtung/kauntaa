@@ -2,4 +2,4 @@
 set -x
 set -e
 
-cap staging deploy
+bundle exec cap staging deploy
