@@ -149,11 +149,6 @@ GEM
     flog (4.2.1)
       ruby_parser (~> 3.1, > 3.1.0)
       sexp_processor (~> 4.4)
-    fog-aws (0.7.3)
-      fog-core (~> 1.27)
-      fog-json (~> 1.0)
-      fog-xml (~> 0.1)
-      ipaddress (~> 0.8)
     fog-core (1.32.0)
       builder
       excon (~> 0.45)
@@ -161,6 +156,10 @@ GEM
       mime-types
       net-scp (~> 1.1)
       net-ssh (>= 2.1.3)
+    fog-google (0.0.6)
+      fog-core
+      fog-json
+      fog-xml
     fog-json (1.0.2)
       fog-core (~> 1.0)
       multi_json (~> 1.10)
@@ -200,7 +199,6 @@ GEM
     highline (1.6.21)
     i18n (0.7.0)
     ice_nine (0.11.1)
-    ipaddress (0.8.0)
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -467,7 +465,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fittextjs_rails
-  fog-aws
+  fog-google
   foreman
   foundation-rails
   grape
