@@ -10,6 +10,9 @@ ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/var/www/kauntaa'
 
+set :rvm_type, :system
+set :rvm_ruby_version, '2.1.2'
+
 # Default value for :pty is false
 # set :pty, true
 
