@@ -30,6 +30,8 @@ gem 'fittextjs_rails'
 gem 'skylight'
 gem 'high_voltage', '~> 2.4.0'
 gem 'meta-tags'
+gem 'capistrano',  '~> 3.1'
+gem 'capistrano-rails', '~> 1.1'
 
 group :production do
   gem 'rails_12factor'
