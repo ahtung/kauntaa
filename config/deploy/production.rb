@@ -4,5 +4,5 @@ set :stage, :production
 set :rails_env, 'production'
 set :puma_env, 'production'
 set :nginx_domains, 'www.kauntaa.com kauntaa.com'
-set :puma_bind, "unix://#{shared_path}/tmp/sockets/puma-#{fetch :application}.sock"
-set :app_server_socket, "#{shared_path}/tmp/sockets/puma-#{fetch :application}.sock"
+set :puma_bind, "unix://#{shared_path}/tmp/sockets/puma.sock"
+set :app_server_socket, "#{shared_path}/tmp/sockets/puma.sock"

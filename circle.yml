@@ -21,6 +21,3 @@ deployment:
     branch: master
     commands:
       - ./script/deploy/production
-      - bundle exec rake cucumber:
-          environment:
-            RACK_ENV: production
