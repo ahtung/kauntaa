@@ -37,7 +37,7 @@ gem 'capistrano-rvm'
 gem 'capistrano-bundler'
 gem 'capistrano3-puma'
 gem 'capistrano3-nginx', '~> 2.0'
-gem 'capistrano3-foreman'#, github: 'dunyakirkali/capistrano-foreman'
+gem 'capistrano3-foreman', github: 'dunyakirkali/capistrano-foreman'
 
 group :production do
   gem 'rails_12factor'
