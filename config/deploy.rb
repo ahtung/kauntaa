@@ -70,6 +70,20 @@ namespace :foreman do
     end
   end
 
+  desc "Start for supervisor process"
+  task :start do
+    on roles(:app) do
+      execute "sudo supervisorctl start #{fetch(:application)}:*"
+    end
+  end
+
+  desc "Restart for supervisor process"
+  task :restart do
+    on roles(:app) do
+      execute "sudo supervisorctl restart #{fetch(:application)}:*"
+    end
+  end
+
   desc "Reread for supervisor control"
   task :reread do
     on roles(:app) do
@@ -85,7 +99,7 @@ namespace :foreman do
   end
 end
 
-# after "deploy:started", "foreman:stop"
 after "deploy:finished", "foreman:export"
 after "deploy:finished", "foreman:reread"
 after "deploy:finished", "foreman:update"
+after "deploy:finished", "foreman:restart"
