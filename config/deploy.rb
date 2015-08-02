@@ -47,3 +47,45 @@ namespace :deploy do
     end
   end
 end
+
+namespace :foreman do
+  desc "Export the Procfile to Ubuntu's upstart scripts"
+  task :export do
+    on roles(:app) do
+      within release_path do
+        execute "cd /var/www/kauntaa/current && sudo /usr/local/rvm/wrappers/ruby-2.1.2@global/bundle exec foreman export supervisord /etc/supervisor/conf.d \
+          -f ./Procfile \
+          -e /var/www/kauntaa/shared/config/.env \
+          -a #{fetch(:application)} \
+          -u deployer \
+          -l /var/www/kauntaa/current/log"
+      end
+    end
+  end
+
+  desc "Stop for supervisor processes"
+  task :stop do
+    on roles(:app) do
+      execute "sudo supervisorctl stop #{fetch(:application)}:*"
+    end
+  end
+
+  desc "Reread for supervisor control"
+  task :reread do
+    on roles(:app) do
+      execute "sudo supervisorctl reread"
+    end
+  end
+
+  desc "Update for supervisor control"
+  task :update do
+    on roles(:app) do
+      execute "sudo supervisorctl update"
+    end
+  end
+end
+
+# after "deploy:started", "foreman:stop"
+after "deploy:finished", "foreman:export"
+after "deploy:finished", "foreman:reread"
+after "deploy:finished", "foreman:update"
