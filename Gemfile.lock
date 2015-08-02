@@ -68,6 +68,24 @@ GEM
       columnize (= 0.9.0)
     cane (2.6.2)
       parallel
+    capistrano (3.4.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (~> 1.3)
+    capistrano-bundler (1.1.4)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2)
+    capistrano-rails (1.1.3)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
+    capistrano3-nginx (2.1.2)
+      capistrano (>= 3.0.0)
+    capistrano3-puma (1.1.0)
+      capistrano (~> 3.0)
+      puma (>= 2.6)
     capybara (2.4.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -76,6 +94,7 @@ GEM
       xpath (~> 2.0)
     childprocess (0.5.6)
       ffi (~> 1.0, >= 1.0.11)
+    chronic (0.10.2)
     coderay (1.1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -86,6 +105,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    colorize (0.7.7)
     columnize (0.9.0)
     concord (0.1.5)
       adamantium (~> 0.2.0)
@@ -138,11 +158,6 @@ GEM
     flog (4.2.1)
       ruby_parser (~> 3.1, > 3.1.0)
       sexp_processor (~> 4.4)
-    fog-aws (0.7.3)
-      fog-core (~> 1.27)
-      fog-json (~> 1.0)
-      fog-xml (~> 0.1)
-      ipaddress (~> 0.8)
     fog-core (1.32.0)
       builder
       excon (~> 0.45)
@@ -150,6 +165,10 @@ GEM
       mime-types
       net-scp (~> 1.1)
       net-ssh (>= 2.1.3)
+    fog-google (0.0.7)
+      fog-core
+      fog-json
+      fog-xml
     fog-json (1.0.2)
       fog-core (~> 1.0)
       multi_json (~> 1.10)
@@ -189,7 +208,6 @@ GEM
     highline (1.6.21)
     i18n (0.7.0)
     ice_nine (0.11.1)
-    ipaddress (0.8.0)
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -219,7 +237,7 @@ GEM
     multipart-post (2.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (2.9.2)
+    net-ssh (2.10.0)
     newrelic_rpm (3.12.1.298)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -365,7 +383,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    selenium-webdriver (2.46.2)
+    selenium-webdriver (2.47.1)
       childprocess (~> 0.5)
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
@@ -380,8 +398,6 @@ GEM
     simplecov-html (0.10.0)
     sitemap_generator (5.1.0)
       builder
-    skylight (0.6.1)
-      activesupport (>= 3.0.0)
     slim (3.0.6)
       temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
@@ -399,6 +415,10 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    sshkit (1.7.1)
+      colorize (>= 0.7.0)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
     temple (0.7.6)
     terminal-table (1.5.2)
     thor (0.19.1)
@@ -430,6 +450,8 @@ GEM
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
     websocket (1.2.2)
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     yard (0.8.7.6)
@@ -442,6 +464,12 @@ DEPENDENCIES
   bundler (>= 1.8.4)
   byebug
   cane
+  capistrano (~> 3.1)
+  capistrano-bundler
+  capistrano-rails (~> 1.1)
+  capistrano-rvm
+  capistrano3-nginx (~> 2.0)
+  capistrano3-puma
   capybara
   coffee-rails (~> 4.1.0)
   cucumber-rails
@@ -450,7 +478,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fittextjs_rails
-  fog-aws
+  fog-google
   foreman
   foundation-rails
   grape
@@ -469,9 +497,9 @@ DEPENDENCIES
   pundit
   rack-google-analytics
   rails (= 4.2.3)
-  rails-assets-d3!
-  rails-assets-odometer!
-  rails-assets-underscore!
+  rails-assets-d3
+  rails-assets-odometer
+  rails-assets-underscore
   rails_12factor
   roboto
   rspec-its
@@ -485,9 +513,9 @@ DEPENDENCIES
   shoulda-matchers
   simplecov
   sitemap_generator
-  skylight
   slim-rails
   spring
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
+  whenever
   yard

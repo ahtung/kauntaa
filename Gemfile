@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 ruby '2.1.2'
 
@@ -23,13 +24,19 @@ gem 'pundit'
 gem 'cane'
 gem 'roboto'
 gem 'sitemap_generator'
-gem 'fog-aws'
+gem 'fog-google'
 gem 'grape'
 gem 'grape-entity'
 gem 'fittextjs_rails'
-gem 'skylight'
 gem 'high_voltage', '~> 2.4.0'
 gem 'meta-tags'
+gem 'whenever', require: false
+gem 'capistrano',  '~> 3.1'
+gem 'capistrano-rails', '~> 1.1'
+gem 'capistrano-rvm'
+gem 'capistrano-bundler'
+gem 'capistrano3-puma'
+gem 'capistrano3-nginx', '~> 2.0'
 
 group :production do
   gem 'rails_12factor'
@@ -65,8 +72,6 @@ group :test do
   gem 'grape-entity-matchers'
 end
 
-source 'https://rails-assets.org' do
-  gem 'rails-assets-d3'
-  gem 'rails-assets-underscore'
-  gem 'rails-assets-odometer'
-end
+gem 'rails-assets-d3'
+gem 'rails-assets-underscore'
+gem 'rails-assets-odometer'
