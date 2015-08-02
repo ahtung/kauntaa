@@ -5,7 +5,7 @@ require 'capistrano/bundler'
 require 'capistrano/rails/assets'
 # require 'capistrano/rails/migrations'
 require 'capistrano/nginx'
-require 'capistrano/puma'
+# require 'capistrano/puma'
 # require 'capistrano/foreman'
 require 'whenever/capistrano'
 
