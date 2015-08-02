@@ -36,7 +36,7 @@ namespace :deploy do
 end
 
 namespace :foreman do
-  desc "Export the Procfile to supervisord"
+  desc 'Export the Procfile to supervisord'
   task :export do
     on roles(:app) do
       within release_path do
