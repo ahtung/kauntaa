@@ -6,7 +6,7 @@ set :repo_url, 'git@github.com:dunyakirkali/kauntaa.git'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
-set :branch, `git symbolic-ref HEAD`.gsub(/^refs\/heads\//, '').chomp
+set :branch, `git symbolic-ref HEAD`.gsub(%r{ ^refs\/heads\/ }, '').chomp
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/var/www/kauntaa'
@@ -55,7 +55,8 @@ namespace :foreman do
   task :export do
     on roles(:app) do
       within release_path do
-        execute "cd /var/www/kauntaa/current && sudo /usr/local/rvm/wrappers/ruby-2.1.2@global/bundle exec foreman export supervisord /etc/supervisor/conf.d \
+        execute "cd /var/www/kauntaa/current && \
+          sudo /usr/local/rvm/wrappers/ruby-2.1.2@global/bundle exec foreman export supervisord /etc/supervisor/conf.d \
           -f ./Procfile \
           -e /var/www/kauntaa/shared/config/.env \
           -a #{fetch(:application)} \
@@ -65,43 +66,43 @@ namespace :foreman do
     end
   end
 
-  desc "Stop for supervisor processes"
+  desc 'Stop for supervisor processes'
   task :stop do
     on roles(:app) do
       execute "sudo supervisorctl stop #{fetch(:application)}:*"
     end
   end
 
-  desc "Start for supervisor process"
+  desc 'Start for supervisor process'
   task :start do
     on roles(:app) do
       execute "sudo supervisorctl start #{fetch(:application)}:*"
     end
   end
 
-  desc "Restart for supervisor process"
+  desc 'Restart for supervisor process'
   task :restart do
     on roles(:app) do
       execute "sudo supervisorctl restart #{fetch(:application)}:*"
     end
   end
 
-  desc "Reread for supervisor control"
+  desc 'Reread for supervisor control'
   task :reread do
     on roles(:app) do
-      execute "sudo supervisorctl reread"
+      execute 'sudo supervisorctl reread'
     end
   end
 
-  desc "Update for supervisor control"
+  desc 'Update for supervisor control'
   task :update do
     on roles(:app) do
-      execute "sudo supervisorctl update"
+      execute 'sudo supervisorctl update'
     end
   end
 end
 
-after "deploy:finished", "foreman:export"
-after "deploy:finished", "foreman:reread"
-after "deploy:finished", "foreman:update"
-after "deploy:finished", "foreman:restart"
+after 'deploy:finished', 'foreman:export'
+after 'deploy:finished', 'foreman:reread'
+after 'deploy:finished', 'foreman:update'
+after 'deploy:finished', 'foreman:restart'
