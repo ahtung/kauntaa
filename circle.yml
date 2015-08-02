@@ -14,9 +14,6 @@ deployment:
     branch: develop
     commands:
       - ./script/deploy/staging
-      - bundle exec rake cucumber:
-          environment:
-            RACK_ENV: staging
   production:
     branch: master
     commands:

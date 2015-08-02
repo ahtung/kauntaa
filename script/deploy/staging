@@ -2,7 +2,4 @@
 set -x
 set -e
 
-export RAILS_ENV=staging
-export RACK_ENV=staging
-
 bundle exec cap staging deploy
