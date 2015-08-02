@@ -1,4 +1,4 @@
-server '104.155.32.122', user: 'dunyakirkali', roles: %w(app db web)
+server '104.155.32.122', user: 'deployer', roles: %w(app db web)
 
 set :stage, :staging
 set :rails_env, 'staging'
