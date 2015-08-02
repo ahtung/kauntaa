@@ -58,7 +58,7 @@ namespace :foreman do
           -e /var/www/kauntaa/shared/config/.env \
           -a #{fetch(:application)} \
           -u deployer \
-          -l /var/www/kauntaa/current/log"
+          -l /var/www/kauntaa/shared/log"
       end
     end
   end
