@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/dunyakirkali/capistrano-foreman.git
+  revision: a878c27427b096cf641656d9306144ff4fdac835
+  specs:
+    capistrano3-foreman (0.2.5)
+      capistrano (~> 3.0)
+      sshkit (>= 1.2.0)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -81,9 +89,6 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capistrano3-foreman (0.2.5)
-      capistrano (~> 3.0)
-      sshkit (>= 1.2.0)
     capistrano3-nginx (2.1.2)
       capistrano (>= 3.0.0)
     capistrano3-puma (1.1.0)
@@ -471,7 +476,7 @@ DEPENDENCIES
   capistrano-bundler
   capistrano-rails (~> 1.1)
   capistrano-rvm
-  capistrano3-foreman
+  capistrano3-foreman!
   capistrano3-nginx (~> 2.0)
   capistrano3-puma
   capybara
