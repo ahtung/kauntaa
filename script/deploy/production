@@ -3,5 +3,5 @@ set -x
 set -e
 
 git push git@heroku.com:kauntaa.git master
-heroku run rake db:migrate --app kauntaa
+# heroku run rake db:migrate --app kauntaa
 # bundle exec rake smoke:production
