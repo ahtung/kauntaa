@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 
 ruby '2.1.2'
 
@@ -31,16 +30,7 @@ gem 'fittextjs_rails'
 gem 'high_voltage', '~> 2.4.0'
 gem 'meta-tags'
 gem 'whenever', require: false
-gem 'capistrano',  '~> 3.1'
-gem 'capistrano-rails', '~> 1.1'
-gem 'capistrano-rvm'
-gem 'capistrano-bundler'
-gem 'capistrano3-puma'
-gem 'capistrano3-nginx', '~> 2.0'
-
-group :production do
-  gem 'rails_12factor'
-end
+gem 'rails_12factor'
 
 group :development do
   gem 'rubocop', require: false
@@ -72,6 +62,8 @@ group :test do
   gem 'grape-entity-matchers'
 end
 
-gem 'rails-assets-d3'
-gem 'rails-assets-underscore'
-gem 'rails-assets-odometer'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-d3'
+  gem 'rails-assets-underscore'
+  gem 'rails-assets-odometer'
+end

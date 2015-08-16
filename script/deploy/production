@@ -2,4 +2,6 @@
 set -x
 set -e
 
-bundle exec cap production deploy
+git push git@heroku.com:kauntaa.git master
+heroku run rake db:migrate --app kauntaa
+# bundle exec rake smoke:production
