@@ -36,10 +36,8 @@ gem 'capistrano-rvm'
 gem 'capistrano-bundler'
 gem 'capistrano3-puma'
 gem 'capistrano3-nginx', '~> 2.0'
-
-group :production do
-  gem 'rails_12factor'
-end
+gem 'net-ssh', '~> 2.9.2'
+gem 'rails_12factor'
 
 group :development do
   gem 'rubocop', require: false
